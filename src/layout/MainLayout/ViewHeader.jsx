@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom'
 // material-ui
 import { alpha, useTheme } from '@mui/material/styles'
 import { Box, IconButton, InputAdornment, OutlinedInput, Stack, Tooltip, Typography } from '@mui/material'
-import { IconArrowLeft, IconEdit, IconSearch } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // project imports
 import useSearchShortcut from '@/hooks/useSearchShortcut'
@@ -108,7 +108,7 @@ const ViewHeader = ({
                                     boxShadow: dark ? 'none' : '0 1px 2px rgba(16,24,40,0.05)'
                                 }}
                             >
-                                <IconArrowLeft size={18} stroke={1.75} />
+                                <AppIcon name='ArrowLeft' size={18} />
                             </IconButton>
                         </Tooltip>
                     )}
@@ -196,7 +196,7 @@ const ViewHeader = ({
                                         onClick={onEdit}
                                         sx={{ flexShrink: 0, color: 'text.secondary', '&:hover': { color: 'primary.main' } }}
                                     >
-                                        <IconEdit size={18} stroke={1.75} />
+                                        <AppIcon name='PencilSimpleLine' size={18} />
                                     </IconButton>
                                 </Tooltip>
                             )}
@@ -224,7 +224,7 @@ const ViewHeader = ({
                             onChange={onSearchChange}
                             startAdornment={
                                 <InputAdornment position='start' sx={{ color: 'text.secondary' }}>
-                                    <IconSearch size={16} />
+                                    <AppIcon name='MagnifyingGlass' size={16} />
                                 </InputAdornment>
                             }
                             endAdornment={

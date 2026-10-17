@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 
 // material-ui
 import { IconButton } from '@mui/material'
-import { IconEdit } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // project import
 import { AsyncDropdown } from '@/ui-component/dropdown/AsyncDropdown'
@@ -118,7 +118,7 @@ const CredentialInputHandler = ({ inputParam, data, onSelect, disabled = false }
                             />
                             {credentialId && hasPermission('credentials:update') && (
                                 <IconButton title={t('Edit')} color='primary' size='small' onClick={() => editCredential(credentialId)}>
-                                    <IconEdit />
+                                    <AppIcon name='PencilSimpleLine' />
                                 </IconButton>
                             )}
                         </div>

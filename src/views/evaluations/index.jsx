@@ -48,18 +48,7 @@ import { StyledPermissionButton } from '@/ui-component/button/RBACButtons'
 import TablePagination, { DEFAULT_ITEMS_PER_PAGE } from '@/ui-component/pagination/TablePagination'
 
 // icons
-import {
-    IconChartHistogram,
-    IconPlus,
-    IconChartBar,
-    IconRefresh,
-    IconTrash,
-    IconX,
-    IconChevronsUp,
-    IconChevronsDown,
-    IconPlayerPlay,
-    IconPlayerPause
-} from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import empty_evalSVG from '@/assets/images/empty_evals.svg'
 
 const EvalsEvaluation = () => {
@@ -164,7 +153,7 @@ const EvalsEvaluation = () => {
                             variant: 'success',
                             action: (key) => (
                                 <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                    <IconX />
+                                    <AppIcon name='X' />
                                 </Button>
                             )
                         }
@@ -182,7 +171,7 @@ const EvalsEvaluation = () => {
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -257,7 +246,7 @@ const EvalsEvaluation = () => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -333,7 +322,7 @@ const EvalsEvaluation = () => {
                                 }}
                                 title={autoRefresh ? t('Disable auto-refresh') : t('Enable auto-refresh (every 5s)')}
                             >
-                                {autoRefresh ? <IconPlayerPause /> : <IconPlayerPlay />}
+                                {autoRefresh ? <AppIcon name='Pause' /> : <AppIcon name='Play' />}
                             </ToggleButton>
                             <IconButton
                                 sx={{
@@ -348,13 +337,13 @@ const EvalsEvaluation = () => {
                                 onClick={onRefresh}
                                 title={t('Refresh')}
                             >
-                                <IconRefresh />
+                                <AppIcon name='ArrowClockwise' />
                             </IconButton>
                             <StyledPermissionButton
                                 permissionId={'evaluations:create'}
                                 sx={{ borderRadius: 2, height: '100%' }}
                                 onClick={createEvaluation}
-                                startIcon={<IconPlus />}
+                                startIcon={<AppIcon name='Plus' />}
                             >
                                 {t('New Evaluation')}
                             </StyledPermissionButton>
@@ -366,7 +355,7 @@ const EvalsEvaluation = () => {
                                 variant='outlined'
                                 onClick={deleteEvaluationsAllVersions}
                                 color='error'
-                                startIcon={<IconTrash />}
+                                startIcon={<AppIcon name='Trash' />}
                             >
                                 {selected.length === 1
                                     ? t('Delete 1 evaluation')
@@ -577,7 +566,7 @@ function EvaluationRunRow(props) {
                             variant: 'success',
                             action: (key) => (
                                 <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                    <IconX />
+                                    <AppIcon name='X' />
                                 </Button>
                             )
                         }
@@ -595,7 +584,7 @@ function EvaluationRunRow(props) {
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -654,7 +643,7 @@ function EvaluationRunRow(props) {
                     {props.item.version}{' '}
                     {props.item.version > 0 && (
                         <IconButton aria-label={t('Expand row')} size='small' color='inherit' onClick={() => setOpen(!open)}>
-                            {props.item.version > 0 && open ? <IconChevronsUp /> : <IconChevronsDown />}
+                            {props.item.version > 0 && open ? <AppIcon name='CaretDoubleUp' /> : <AppIcon name='CaretDoubleDown' />}
                         </IconButton>
                     )}
                 </StyledTableCell>
@@ -732,7 +721,7 @@ function EvaluationRunRow(props) {
                         disabled={props.item.status === 'pending'}
                         onClick={() => showResults(props.item)}
                     >
-                        <IconChartHistogram />
+                        <AppIcon name='ChartBar' />
                     </IconButton>
                 </TableCell>
             </StyledTableRow>
@@ -744,7 +733,7 @@ function EvaluationRunRow(props) {
                             variant='outlined'
                             onClick={deleteChildEvaluations}
                             color='error'
-                            startIcon={<IconTrash />}
+                            startIcon={<AppIcon name='Trash' />}
                         >
                             {childSelected.length === 1
                                 ? t('Delete 1 evaluation')
@@ -863,7 +852,7 @@ function EvaluationRunRow(props) {
                                                                     disabled={childItem.status === 'pending'}
                                                                     onClick={() => showResults(childItem)}
                                                                 >
-                                                                    <IconChartBar />
+                                                                    <AppIcon name='ChartBar' />
                                                                 </IconButton>
                                                             </StyledTableCell>
                                                         </TableRow>

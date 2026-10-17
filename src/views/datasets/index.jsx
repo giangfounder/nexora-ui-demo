@@ -42,7 +42,7 @@ import useNotifier from '@/utils/useNotifier'
 
 // icons
 import empty_datasetSVG from '@/assets/images/empty_datasets.svg'
-import { IconTrash, IconEdit, IconPlus, IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // Utils
 import { truncateString } from '@/utils/genericHelper'
@@ -142,7 +142,7 @@ const EvalDatasets = () => {
                             variant: 'success',
                             action: (key) => (
                                 <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                    <IconX />
+                                    <AppIcon name='X' />
                                 </Button>
                             )
                         }
@@ -160,7 +160,7 @@ const EvalDatasets = () => {
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -215,7 +215,7 @@ const EvalDatasets = () => {
                                 variant='contained'
                                 sx={{ borderRadius: 2, height: '100%' }}
                                 onClick={addNew}
-                                startIcon={<IconPlus />}
+                                startIcon={<AppIcon name='Plus' />}
                             >
                                 {t('Add New')}
                             </StyledPermissionButton>
@@ -327,7 +327,7 @@ const EvalDatasets = () => {
                                                             <Available permission={'datasets:update,datasets:create'}>
                                                                 <TableCell>
                                                                     <IconButton title={t('Edit')} color='primary' onClick={() => edit(ds)}>
-                                                                        <IconEdit />
+                                                                        <AppIcon name='PencilSimpleLine' />
                                                                     </IconButton>
                                                                 </TableCell>
                                                             </Available>
@@ -338,7 +338,7 @@ const EvalDatasets = () => {
                                                                         color='error'
                                                                         onClick={() => deleteDataset(ds)}
                                                                     >
-                                                                        <IconTrash />
+                                                                        <AppIcon name='Trash' />
                                                                     </IconButton>
                                                                 </TableCell>
                                                             </Available>

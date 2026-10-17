@@ -18,7 +18,7 @@ import {
     Autocomplete,
     TextField
 } from '@mui/material'
-import { IconX, IconVolume } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { useTheme } from '@mui/material/styles'
 
 // Project import
@@ -137,7 +137,7 @@ const TextToSpeech = ({ dialogProps }) => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -155,7 +155,7 @@ const TextToSpeech = ({ dialogProps }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -607,7 +607,7 @@ const TextToSpeech = ({ dialogProps }) => {
                     {/* Test Voice Section */}
                     <Box sx={{ p: 2 }}>
                         <Typography variant='h6' sx={{ mb: 2, display: 'flex', alignItems: 'center', gap: 1 }}>
-                            <IconVolume size={20} />
+                            <AppIcon name='SpeakerHigh' size={20} />
                             {t('Test Voice')}
                         </Typography>
 

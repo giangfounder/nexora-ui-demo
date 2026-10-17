@@ -32,7 +32,7 @@ import AssistantVectorStoreDialog from './AssistantVectorStoreDialog'
 import { StyledPermissionButton } from '@/ui-component/button/RBACButtons'
 
 // Icons
-import { IconX, IconPlus } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // API
 import assistantsApi from '@/api/assistants'
@@ -215,7 +215,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm, setError }) =
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -239,7 +239,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm, setError }) =
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -389,7 +389,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm, setError }) =
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -408,7 +408,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm, setError }) =
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -444,7 +444,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm, setError }) =
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -463,7 +463,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm, setError }) =
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -485,7 +485,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm, setError }) =
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -503,7 +503,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm, setError }) =
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -525,7 +525,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm, setError }) =
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -554,7 +554,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm, setError }) =
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -575,7 +575,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm, setError }) =
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -606,7 +606,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm, setError }) =
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -647,7 +647,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm, setError }) =
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -665,7 +665,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm, setError }) =
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -964,10 +964,11 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm, setError }) =
                                                                 {file.filename}
                                                             </span>
                                                             <IconButton
+                                                                aria-label={t('Remove file')}
                                                                 sx={{ height: 15, width: 15, p: 0 }}
                                                                 onClick={() => onFileDeleteClick(file.id, 'code_interpreter')}
                                                             >
-                                                                <IconX />
+                                                                <AppIcon name='X' />
                                                             </IconButton>
                                                         </div>
                                                     ))}
@@ -1045,10 +1046,11 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm, setError }) =
                                                                 {file.filename}
                                                             </span>
                                                             <IconButton
+                                                                aria-label={t('Remove file')}
                                                                 sx={{ height: 15, width: 15, p: 0 }}
                                                                 onClick={() => onFileDeleteClick(file.id, 'file_search')}
                                                             >
-                                                                <IconX />
+                                                                <AppIcon name='X' />
                                                             </IconButton>
                                                         </div>
                                                     ))}
@@ -1059,7 +1061,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm, setError }) =
                                                     variant='outlined'
                                                     component='label'
                                                     fullWidth
-                                                    startIcon={<IconPlus />}
+                                                    startIcon={<AppIcon name='Plus' />}
                                                     sx={{ marginRight: '1rem' }}
                                                     onClick={() => onAddAssistantVectorStoreClick()}
                                                 >

@@ -1,28 +1,18 @@
-import {
-    IconApi,
-    IconBoltFilled,
-    IconCalculatorFilled,
-    IconClipboardListFilled,
-    IconGlobeFilled,
-    IconPuzzleFilled,
-    IconSearch,
-    IconTerminal,
-    IconWorld
-} from '@tabler/icons-react'
+import { iconComponent } from '@/ui-component/icons/AppIcon'
 
 // tone ∈ spectrum only: orange · teal · amber · emerald · rose
 export const TOOL_CATALOG = [
-    { id: 'deepResearch', label: 'Deep Research', Icon: IconWorld, tone: 'teal', group: 'advanced', sheet: 'lg' },
-    { id: 'apiCaller', label: 'Gọi API', Icon: IconApi, tone: 'orange', group: 'advanced', sheet: 'lg' },
-    { id: 'collectInfo', label: 'Thu thập thông tin', Icon: IconClipboardListFilled, tone: 'amber', group: 'advanced', sheet: 'lg' },
-    { id: 'webBrowser', label: 'Web Browser', Icon: IconGlobeFilled, tone: 'teal', group: 'basic', sheet: 'md' },
-    { id: 'calculator', label: 'Calculator', Icon: IconCalculatorFilled, tone: 'emerald', group: 'basic', sheet: 'md' },
-    { id: 'serpAPI', label: 'Google Search', Icon: IconSearch, tone: 'orange', group: 'basic', sheet: 'md' },
-    { id: 'braveSearch', label: 'Brave Search', Icon: IconSearch, tone: 'amber', group: 'basic', sheet: 'md' },
-    { id: 'customTool', label: 'Custom Tool', Icon: IconPuzzleFilled, tone: 'orange', group: 'basic', sheet: 'lg' },
-    { id: 'requestsGet', label: 'HTTP GET', Icon: IconTerminal, tone: 'teal', group: 'basic', sheet: 'md' },
-    { id: 'requestsPost', label: 'HTTP POST', Icon: IconTerminal, tone: 'teal', group: 'basic', sheet: 'md' },
-    { id: 'zapierNLA', label: 'Zapier', Icon: IconBoltFilled, tone: 'amber', group: 'basic', sheet: 'md' }
+    { id: 'deepResearch', label: 'Deep Research', Icon: iconComponent('Globe'), tone: 'teal', group: 'advanced', sheet: 'lg' },
+    { id: 'apiCaller', label: 'Gọi API', Icon: iconComponent('PlugsConnected'), tone: 'orange', group: 'advanced', sheet: 'lg' },
+    { id: 'collectInfo', label: 'Thu thập thông tin', Icon: iconComponent('ClipboardText'), tone: 'amber', group: 'advanced', sheet: 'lg' },
+    { id: 'webBrowser', label: 'Web Browser', Icon: iconComponent('Globe'), tone: 'teal', group: 'basic', sheet: 'md' },
+    { id: 'calculator', label: 'Calculator', Icon: iconComponent('Calculator'), tone: 'emerald', group: 'basic', sheet: 'md' },
+    { id: 'serpAPI', label: 'Google Search', Icon: iconComponent('MagnifyingGlass'), tone: 'orange', group: 'basic', sheet: 'md' },
+    { id: 'braveSearch', label: 'Brave Search', Icon: iconComponent('MagnifyingGlass'), tone: 'amber', group: 'basic', sheet: 'md' },
+    { id: 'customTool', label: 'Custom Tool', Icon: iconComponent('PuzzlePiece'), tone: 'orange', group: 'basic', sheet: 'lg' },
+    { id: 'requestsGet', label: 'HTTP GET', Icon: iconComponent('Terminal'), tone: 'teal', group: 'basic', sheet: 'md' },
+    { id: 'requestsPost', label: 'HTTP POST', Icon: iconComponent('Terminal'), tone: 'teal', group: 'basic', sheet: 'md' },
+    { id: 'zapierNLA', label: 'Zapier', Icon: iconComponent('Lightning'), tone: 'amber', group: 'basic', sheet: 'md' }
 ]
 
 export const TOOL_GROUPS = [

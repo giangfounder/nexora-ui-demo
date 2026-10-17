@@ -46,7 +46,7 @@ import useConfirm from '@/hooks/useConfirm'
 
 // icons
 import workspaces_emptySVG from '@/assets/images/workspaces_empty.svg'
-import { IconEdit, IconEye, IconEyeOff, IconPlus, IconTrash, IconTrashOff, IconUsers, IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // Utils
 import { truncateString } from '@/utils/genericHelper'
@@ -123,7 +123,7 @@ function ShowWorkspaceRow(props) {
                             color='inherit'
                             onClick={() => handleViewWorkspaceUsers(props.workspace.id)}
                         >
-                            {props.workspace.userCount > 0 && open ? <IconEyeOff /> : <IconEye />}
+                            {props.workspace.userCount > 0 && open ? <AppIcon name='EyeSlash' /> : <AppIcon name='Eye' />}
                         </IconButton>
                     )}
                 </StyledTableCell>
@@ -136,12 +136,12 @@ function ShowWorkspaceRow(props) {
                             color='primary'
                             onClick={() => props.onEditClick(props.workspace)}
                         >
-                            <IconEdit />
+                            <AppIcon name='PencilSimpleLine' />
                         </PermissionIconButton>
                     )}
                     <Link to={`/workspace-users/${props.workspace.id}`}>
                         <IconButton title={t('Workspace Users')} color='primary'>
-                            <IconUsers />
+                            <AppIcon name='Users' />
                         </IconButton>
                     </Link>
                     {props.workspace.name !== 'Default Workspace' &&
@@ -152,7 +152,7 @@ function ShowWorkspaceRow(props) {
                                 color='error'
                                 onClick={() => props.onDeleteClick(props.workspace)}
                             >
-                                <IconTrashOff />
+                                <AppIcon name='TrashSimple' />
                             </IconButton>
                         ) : (
                             <PermissionIconButton
@@ -161,7 +161,7 @@ function ShowWorkspaceRow(props) {
                                 color='error'
                                 onClick={() => props.onDeleteClick(props.workspace)}
                             >
-                                <IconTrash />
+                                <AppIcon name='Trash' />
                             </PermissionIconButton>
                         ))}
                 </StyledTableCell>
@@ -305,7 +305,7 @@ const Workspaces = () => {
                             variant: 'success',
                             action: (key) => (
                                 <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                    <IconX />
+                                    <AppIcon name='X' />
                                 </Button>
                             )
                         }
@@ -324,7 +324,7 @@ const Workspaces = () => {
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -425,7 +425,7 @@ const Workspaces = () => {
                                 variant='contained'
                                 sx={{ borderRadius: 2, height: '100%' }}
                                 onClick={addNew}
-                                startIcon={<IconPlus />}
+                                startIcon={<AppIcon name='Plus' />}
                             >
                                 {t('Add New')}
                             </StyledPermissionButton>

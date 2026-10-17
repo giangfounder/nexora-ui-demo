@@ -34,10 +34,7 @@ import {
 } from '@mui/material'
 import { tableCellClasses } from '@mui/material/TableCell'
 import { alpha, styled, useTheme } from '@mui/material/styles'
-import CheckCircleIcon from '@mui/icons-material/CheckCircle'
-import ErrorIcon from '@mui/icons-material/Error'
-import { IconCircleMinus, IconClock, IconLoader, IconRefresh, IconX, IconCalendar, IconTrash } from '@tabler/icons-react'
-import DragHandleIcon from '@mui/icons-material/DragHandle'
+import { AppIcon, iconComponent } from '@/ui-component/icons/AppIcon'
 
 // project import
 import chatflowsApi from '@/api/chatflows'
@@ -61,11 +58,11 @@ const MAX_DRAWER_WIDTH = typeof window !== 'undefined' ? window.innerWidth : 192
 // ─── Status helpers ──────────────────────────────────────────────────────────
 
 const STATUS_META = {
-    SUCCEEDED: { label: 'OK', color: 'success.dark', Icon: CheckCircleIcon },
-    FAILED: { label: 'Failed', color: 'error.main', Icon: ErrorIcon },
-    SKIPPED: { label: 'Skipped', color: 'grey.500', Icon: IconCircleMinus },
-    QUEUED: { label: 'Queued', color: 'info.main', Icon: IconClock },
-    RUNNING: { label: 'Running', color: 'warning.dark', Icon: IconLoader }
+    SUCCEEDED: { label: 'OK', color: 'success.dark', Icon: iconComponent('CheckCircle') },
+    FAILED: { label: 'Failed', color: 'error.main', Icon: iconComponent('WarningCircle') },
+    SKIPPED: { label: 'Skipped', color: 'grey.500', Icon: iconComponent('MinusCircle') },
+    QUEUED: { label: 'Queued', color: 'info.main', Icon: iconComponent('Clock') },
+    RUNNING: { label: 'Running', color: 'warning.dark', Icon: iconComponent('SpinnerGap') }
 }
 
 const StatusCell = ({ status }) => {
@@ -390,7 +387,7 @@ const ScheduleHistoryDrawer = ({ open, chatflowid, onClose }) => {
                     variant: 'success',
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -407,7 +404,7 @@ const ScheduleHistoryDrawer = ({ open, chatflowid, onClose }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -472,7 +469,8 @@ const ScheduleHistoryDrawer = ({ open, chatflowid, onClose }) => {
                         }
                     }}
                 >
-                    <DragHandleIcon
+                    <AppIcon
+                        name='DotsSixVertical'
                         sx={{
                             transform: 'rotate(90deg)',
                             fontSize: '20px',
@@ -491,13 +489,13 @@ const ScheduleHistoryDrawer = ({ open, chatflowid, onClose }) => {
                 >
                     <Stack direction='row' alignItems='center' justifyContent='space-between'>
                         <Stack direction='row' alignItems='center' spacing={1.5}>
-                            <IconCalendar size={20} />
+                            <AppIcon name='Calendar' size={20} />
                             <Typography variant='h4' sx={{ m: 0 }}>
                                 {t('Schedule History')}
                             </Typography>
                         </Stack>
                         <IconButton onClick={onClose} size='small' aria-label='close'>
-                            <IconX size={18} />
+                            <AppIcon name='X' size={18} />
                         </IconButton>
                     </Stack>
 
@@ -580,7 +578,7 @@ const ScheduleHistoryDrawer = ({ open, chatflowid, onClose }) => {
                     <Stack direction='row' alignItems='center' spacing={1} sx={{ mt: 2 }}>
                         <Tooltip title={t('Refresh')}>
                             <IconButton size='small' onClick={fetchAll} disabled={logsApi.loading}>
-                                <IconRefresh size={16} color={customization?.isDarkMode ? 'white' : undefined} />
+                                <AppIcon name='ArrowClockwise' size={16} color={customization?.isDarkMode ? 'white' : undefined} />
                             </IconButton>
                         </Tooltip>
                         <FormControlLabel
@@ -599,12 +597,13 @@ const ScheduleHistoryDrawer = ({ open, chatflowid, onClose }) => {
                             {/* span wrapper so Tooltip works on a disabled button */}
                             <span>
                                 <IconButton
+                                    aria-label='Delete'
                                     size='small'
                                     color='error'
                                     onClick={() => setDeleteDialogOpen(true)}
                                     disabled={selectedIds.length === 0 || deleting}
                                 >
-                                    <IconTrash size={16} />
+                                    <AppIcon name='Trash' size={16} />
                                 </IconButton>
                             </span>
                         </Tooltip>
@@ -641,7 +640,7 @@ const ScheduleHistoryDrawer = ({ open, chatflowid, onClose }) => {
                         </Box>
                     ) : logs.length === 0 ? (
                         <Box sx={{ p: 6, textAlign: 'center', color: 'text.secondary' }}>
-                            <IconClock size={40} style={{ opacity: 0.4 }} />
+                            <AppIcon name='Clock' size={40} style={{ opacity: 0.4 }} />
                             <Typography variant='body2' sx={{ mt: 2 }}>
                                 {t('No runs yet.')}
                                 {enabled && nextRunAt ? ` Next fire ${relTime(nextRunAt)}.` : ''}
@@ -786,8 +785,8 @@ const ScheduleHistoryDrawer = ({ open, chatflowid, onClose }) => {
                     </Typography>
                 </DialogContent>
                 <DialogActions>
-                    <IconButton onClick={() => setErrorModal({ open: false, title: '', message: '' })} size='small'>
-                        <IconX size={16} />
+                    <IconButton aria-label='Close' onClick={() => setErrorModal({ open: false, title: '', message: '' })} size='small'>
+                        <AppIcon name='X' size={16} />
                     </IconButton>
                 </DialogActions>
             </Dialog>

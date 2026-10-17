@@ -20,8 +20,7 @@ import { Grid } from '@/ui-component/grid/Grid'
 import SamplePromptDialog from '@/views/evaluators/SamplePromptDialog'
 
 // Icons
-import { IconInfoCircle, IconArrowsMaximize, IconPlus, IconPuzzle, IconX, IconNotes } from '@tabler/icons-react'
-import DeleteIcon from '@mui/icons-material/Delete'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // API
 import evaluatorsApi from '@/api/evaluators'
@@ -160,7 +159,12 @@ const AddEditEvaluatorDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                 type: 'actions',
                 width: 80,
                 getActions: (params) => [
-                    <GridActionsCellItem key={'Delete'} icon={<DeleteIcon />} label={t('Delete')} onClick={deleteItem(params.id)} />
+                    <GridActionsCellItem
+                        key={'Delete'}
+                        icon={<AppIcon name='Trash' />}
+                        label={t('Delete')}
+                        onClick={deleteItem(params.id)}
+                    />
                 ]
             }
         ],
@@ -211,7 +215,7 @@ const AddEditEvaluatorDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -230,7 +234,7 @@ const AddEditEvaluatorDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -271,7 +275,7 @@ const AddEditEvaluatorDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -289,7 +293,7 @@ const AddEditEvaluatorDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -353,7 +357,7 @@ const AddEditEvaluatorDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
         >
             <DialogTitle sx={{ fontSize: '1rem' }} id='alert-dialog-title'>
                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                    <IconPuzzle style={{ marginRight: '10px' }} />
+                    <AppIcon name='PuzzlePiece' style={{ marginRight: '10px' }} />
                     {dialogProps.type === 'ADD' ? t('Add Evaluator') : t('Edit Evaluator')}
                 </div>
             </DialogTitle>
@@ -453,10 +457,15 @@ const AddEditEvaluatorDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                                     <TooltipWithParser title={t('What is the output format in JSON?')} />
                                 </Stack>
                                 <Stack style={{ position: 'relative', alignItems: 'right' }} direction='row'>
-                                    <Button variant='outlined' onClick={onShowPromptDialogClicked} startIcon={<IconNotes />} sx={{ mr: 1 }}>
+                                    <Button
+                                        variant='outlined'
+                                        onClick={onShowPromptDialogClicked}
+                                        startIcon={<AppIcon name='Notepad' />}
+                                        sx={{ mr: 1 }}
+                                    >
                                         {t('Load from Pre defined Samples')}
                                     </Button>
-                                    <Button variant='outlined' onClick={addNewRow} startIcon={<IconPlus />}>
+                                    <Button variant='outlined' onClick={addNewRow} startIcon={<AppIcon name='Plus' />}>
                                         {t('Add Item')}
                                     </Button>
                                 </Stack>
@@ -484,7 +493,7 @@ const AddEditEvaluatorDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                                             })
                                         }
                                     >
-                                        <IconArrowsMaximize />
+                                        <AppIcon name='ArrowsOut' />
                                     </IconButton>
                                 )}
                             </div>
@@ -516,7 +525,7 @@ const AddEditEvaluatorDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                                         alignItems: 'center'
                                     }}
                                 >
-                                    <IconInfoCircle size={25} color={infoText} />
+                                    <AppIcon name='Info' size={25} color={infoText} />
                                     <span style={{ color: infoText, marginLeft: 10, fontWeight: 400 }}>
                                         {t('You can use')} <strong>&#123;question&#125;</strong> <strong>&#123;actualOutput&#125;</strong>{' '}
                                         <strong>&#123;expectedOutput&#125;</strong> {t('to inject runtime values into your prompt.')}

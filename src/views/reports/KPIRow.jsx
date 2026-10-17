@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { alpha, useTheme } from '@mui/material/styles'
 import { Box, Stack, Typography } from '@mui/material'
-import { IconArrowDownRight, IconArrowUpRight } from '@tabler/icons-react'
+import { AppIcon, iconComponent } from '@/ui-component/icons/AppIcon'
 import Tag from './sections/Tag'
 import { useChartPalette } from './chartTheme'
 import { useLanguage } from '@/store/context/LanguageContext'
@@ -16,12 +16,12 @@ const KPIRow = ({ metrics }) => {
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr 1fr', md: `repeat(${metrics.length}, 1fr)` }, gap: 1.5 }}>
             {metrics.map((m) => {
                 const positive = (m.delta ?? 0) >= 0
-                const Arrow = positive ? IconArrowUpRight : IconArrowDownRight
+                const Arrow = positive ? iconComponent('ArrowUpRight') : iconComponent('ArrowDownRight')
                 return (
                     <Box key={m.label} sx={{ border: `1px solid ${alphaBorder}`, borderRadius: 2, p: 2, bgcolor: 'background.paper' }}>
                         <Stack spacing={1}>
                             <Stack direction='row' alignItems='center' spacing={0.75}>
-                                <Box sx={{ width: 6, height: 6, borderRadius: '50%', bgcolor: c.tone(m.tone) }} />
+                                {m.icon && <AppIcon name={m.icon} size={16} color={c.tone(m.tone)} />}
                                 <Typography variant='caption' sx={{ color: 'text.secondary', fontWeight: 500 }}>
                                     {m.label}
                                 </Typography>

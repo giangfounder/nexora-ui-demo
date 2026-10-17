@@ -5,7 +5,7 @@ import { enqueueSnackbar as enqueueSnackbarAction, closeSnackbar as closeSnackba
 
 // material-ui
 import { Button, IconButton, OutlinedInput, Box, List, InputAdornment, Typography } from '@mui/material'
-import { IconX, IconTrash, IconPlus, IconInfoCircle } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // Project import
 import { StyledButton } from '@/ui-component/button/StyledButton'
@@ -74,7 +74,7 @@ const StarterPrompts = ({ dialogProps, onConfirm }) => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -93,7 +93,7 @@ const StarterPrompts = ({ dialogProps, onConfirm }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -148,7 +148,7 @@ const StarterPrompts = ({ dialogProps, onConfirm }) => {
                     py: 1.25
                 }}
             >
-                <IconInfoCircle size={20} color='#16a34a' style={{ flexShrink: 0 }} />
+                <AppIcon name='Info' size={20} color='#16a34a' style={{ flexShrink: 0 }} />
                 <Typography sx={{ color: 'text.secondary', fontSize: '0.8125rem', lineHeight: 1.5 }}>
                     {t('Starter prompts will only be shown when there are no messages on the chat')}
                 </Typography>
@@ -171,6 +171,7 @@ const StarterPrompts = ({ dialogProps, onConfirm }) => {
                                             <InputAdornment position='end' sx={{ padding: '2px' }}>
                                                 {inputFields.length > 1 && (
                                                     <IconButton
+                                                        aria-label={t('Delete')}
                                                         sx={{ height: 30, width: 30 }}
                                                         size='small'
                                                         color='error'
@@ -178,7 +179,7 @@ const StarterPrompts = ({ dialogProps, onConfirm }) => {
                                                         onClick={() => removeInputFields(index)}
                                                         edge='end'
                                                     >
-                                                        <IconTrash />
+                                                        <AppIcon name='Trash' />
                                                     </IconButton>
                                                 )}
                                             </InputAdornment>
@@ -187,8 +188,8 @@ const StarterPrompts = ({ dialogProps, onConfirm }) => {
                                 </Box>
                                 <Box sx={{ width: '5%', mb: 1 }}>
                                     {index === inputFields.length - 1 && (
-                                        <IconButton color='primary' onClick={addInputField}>
-                                            <IconPlus />
+                                        <IconButton aria-label={t('Add')} color='primary' onClick={addInputField}>
+                                            <AppIcon name='Plus' />
                                         </IconButton>
                                     )}
                                 </Box>

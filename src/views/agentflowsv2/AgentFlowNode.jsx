@@ -13,27 +13,8 @@ import { flowContext } from '@/store/context/ReactFlowContext'
 import NodeInfoDialog from '@/ui-component/dialog/NodeInfoDialog'
 
 // icons
-import {
-    IconCheck,
-    IconExclamationMark,
-    IconCircleChevronRightFilled,
-    IconCopy,
-    IconTrash,
-    IconInfoCircle,
-    IconLoader,
-    IconAlertCircleFilled,
-    IconCode,
-    IconWorldWww,
-    IconPhoto,
-    IconBrandGoogle,
-    IconBrowserCheck,
-    IconMessageCircle,
-    IconClockHour4,
-    IconListDetails,
-    IconWebhook
-} from '@tabler/icons-react'
-import StopCircleIcon from '@mui/icons-material/StopCircle'
-import CancelIcon from '@mui/icons-material/Cancel'
+import { IconBrandGoogle } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // const
 import { baseURL, AGENTFLOW_ICONS } from '@/store/constant'
@@ -140,11 +121,11 @@ const AgentFlowNode = ({ data }) => {
     const getBuiltInOpenAIToolIcon = (toolName) => {
         switch (toolName) {
             case 'web_search_preview':
-                return <IconWorldWww size={14} color={'white'} />
+                return <AppIcon name='GlobeHemisphereWest' size={14} color={'white'} />
             case 'code_interpreter':
-                return <IconCode size={14} color={'white'} />
+                return <AppIcon name='Code' size={14} color={'white'} />
             case 'image_generation':
-                return <IconPhoto size={14} color={'white'} />
+                return <AppIcon name='Image' size={14} color={'white'} />
             default:
                 return null
         }
@@ -153,11 +134,11 @@ const AgentFlowNode = ({ data }) => {
     const getBuiltInGeminiToolIcon = (toolName) => {
         switch (toolName) {
             case 'urlContext':
-                return <IconWorldWww size={14} color={'white'} />
+                return <AppIcon name='GlobeHemisphereWest' size={14} color={'white'} />
             case 'googleSearch':
                 return <IconBrandGoogle size={14} color={'white'} />
             case 'codeExecution':
-                return <IconCode size={14} color={'white'} />
+                return <AppIcon name='Code' size={14} color={'white'} />
             default:
                 return null
         }
@@ -166,9 +147,9 @@ const AgentFlowNode = ({ data }) => {
     const getBuiltInAnthropicToolIcon = (toolName) => {
         switch (toolName) {
             case 'web_search_20250305':
-                return <IconWorldWww size={14} color={'white'} />
+                return <AppIcon name='GlobeHemisphereWest' size={14} color={'white'} />
             case 'web_fetch_20250910':
-                return <IconBrowserCheck size={14} color={'white'} />
+                return <AppIcon name='Browser' size={14} color={'white'} />
             default:
                 return null
         }
@@ -225,7 +206,7 @@ const AgentFlowNode = ({ data }) => {
                                 }
                             }}
                         >
-                            <IconCopy size={20} />
+                            <AppIcon name='Copy' size={20} />
                         </IconButton>
                     )}
                     <IconButton
@@ -241,7 +222,7 @@ const AgentFlowNode = ({ data }) => {
                             }
                         }}
                     >
-                        <IconTrash size={20} />
+                        <AppIcon name='Trash' size={20} />
                     </IconButton>
                     <IconButton
                         size={'small'}
@@ -257,7 +238,7 @@ const AgentFlowNode = ({ data }) => {
                             }
                         }}
                     >
-                        <IconInfoCircle size={20} />
+                        <AppIcon name='Info' size={20} />
                     </IconButton>
                 </ButtonGroup>
             </StyledNodeToolbar>
@@ -297,15 +278,15 @@ const AgentFlowNode = ({ data }) => {
                             }}
                         >
                             {data.status === 'INPROGRESS' ? (
-                                <IconLoader className='spin-animation' />
+                                <AppIcon name='SpinnerGap' className='spin-animation' />
                             ) : data.status === 'ERROR' ? (
-                                <IconExclamationMark />
+                                <AppIcon name='ExclamationMark' />
                             ) : data.status === 'TERMINATED' ? (
-                                <CancelIcon sx={{ color: getStatusBackgroundColor(data.status) }} />
+                                <AppIcon name='XCircle' sx={{ color: getStatusBackgroundColor(data.status) }} />
                             ) : data.status === 'STOPPED' ? (
-                                <StopCircleIcon sx={{ color: getStatusBackgroundColor(data.status) }} />
+                                <AppIcon name='StopCircle' sx={{ color: getStatusBackgroundColor(data.status) }} />
                             ) : (
-                                <IconCheck />
+                                <AppIcon name='Check' />
                             )}
                         </Avatar>
                     </Tooltip>
@@ -324,7 +305,7 @@ const AgentFlowNode = ({ data }) => {
                                 left: -10
                             }}
                         >
-                            <IconAlertCircleFilled color='orange' />
+                            <AppIcon name='WarningCircle' color='orange' />
                         </Avatar>
                     </Tooltip>
                 )}
@@ -410,10 +391,10 @@ const AgentFlowNode = ({ data }) => {
                                 (() => {
                                     const inputType = data.inputs.startInputType
                                     const iconMap = {
-                                        chatInput: { icon: <IconMessageCircle size={14} /> },
-                                        formInput: { icon: <IconListDetails size={14} /> },
-                                        scheduleInput: { icon: <IconClockHour4 size={14} /> },
-                                        webhookTrigger: { icon: <IconWebhook size={14} /> }
+                                        chatInput: { icon: <AppIcon name='ChatCircle' size={14} /> },
+                                        formInput: { icon: <AppIcon name='ListBullets' size={14} /> },
+                                        scheduleInput: { icon: <AppIcon name='Clock' size={14} /> },
+                                        webhookTrigger: { icon: <AppIcon name='WebhooksLogo' size={14} /> }
                                     }
                                     const info = iconMap[inputType]
                                     if (!info) return null
@@ -687,7 +668,8 @@ const AgentFlowNode = ({ data }) => {
                                         pointerEvents: 'none'
                                     }}
                                 />
-                                <IconCircleChevronRightFilled
+                                <AppIcon
+                                    name='CaretCircleRight'
                                     size={20}
                                     color={nodeColor}
                                     style={{

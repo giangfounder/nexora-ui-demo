@@ -3,14 +3,13 @@ import { useState } from 'react'
 
 // material-ui
 import { alpha, useTheme } from '@mui/material/styles'
-import { Avatar, Box, IconButton, MenuItem, Stack, TextField, Tooltip, Typography } from '@mui/material'
-import { IconDotsVertical, IconInbox, IconMessageCircle2, IconTrendingUp, IconSubtask } from '@tabler/icons-react'
-
-const ICON_STROKE = 1.75
+import { Box, IconButton, MenuItem, Stack, TextField, Tooltip, Typography } from '@mui/material'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // project imports
 import { useLanguage } from '@/store/context/LanguageContext'
-import { getAvatarColorKey, getInitials, tintBg, tintText } from './utils'
+import { getStageIcon, tintBg, tintText } from './utils'
+import PersonAvatar from '@/ui-component/avatar/PersonAvatar'
 
 // ==============================|| CUSTOMERS — PIPELINE BOARD (KANBAN, 2026) ||============================== //
 // Monday-inspired: arrow-shaped spectrum column headers, per-column sum, card with
@@ -32,11 +31,11 @@ const stageTone = (idx, total) => {
 // Derive deal value + priority from existing attributes so we don't touch mockCustomers.
 const dealValue = (c) => c.attributes?.budget || 0
 const priorityOf = (c) => {
-    if (c.tags?.includes('Khiếu nại')) return { key: 'critical', label: 'Critical', tone: 'rose' }
-    if (c.tags?.includes('VIP')) return { key: 'high', label: 'High', tone: 'orange' }
-    if ((c.attributes?.budget || 0) >= 5_000_000) return { key: 'high', label: 'High', tone: 'orange' }
-    if ((c.attributes?.budget || 0) >= 1_000_000) return { key: 'medium', label: 'Medium', tone: 'amber' }
-    return { key: 'low', label: 'Low', tone: 'teal' }
+    if (c.tags?.includes('Khiếu nại')) return { key: 'critical', label: 'Critical', tone: 'rose', icon: 'WarningOctagon' }
+    if (c.tags?.includes('VIP')) return { key: 'high', label: 'High', tone: 'orange', icon: 'CaretDoubleUp' }
+    if ((c.attributes?.budget || 0) >= 5_000_000) return { key: 'high', label: 'High', tone: 'orange', icon: 'CaretDoubleUp' }
+    if ((c.attributes?.budget || 0) >= 1_000_000) return { key: 'medium', label: 'Medium', tone: 'amber', icon: 'Equals' }
+    return { key: 'low', label: 'Low', tone: 'teal', icon: 'CaretDown' }
 }
 
 // Tiny mock: one AI recommendation attached to the first card of each column.
@@ -147,6 +146,7 @@ const PipelineBoard = ({ customers, customerTypes, onMoveCustomer, onOpenCustome
                                     letterSpacing: '0.01em'
                                 }}
                             >
+                                <AppIcon name={getStageIcon(stage.id)} size={16} style={{ marginRight: 6, flexShrink: 0 }} />
                                 <span>{t(stage.label)}</span>
                                 <Box
                                     component='span'
@@ -183,7 +183,6 @@ const PipelineBoard = ({ customers, customerTypes, onMoveCustomer, onOpenCustome
                                 {/* Cards */}
                                 <Stack spacing={1}>
                                     {stageCustomers.map((c, cardIdx) => {
-                                        const avColor = getAvatarColorKey(c.name)
                                         const pri = priorityOf(c)
                                         const priTone = theme.palette.spectrum?.[pri.tone] || theme.palette.primary
                                         const ai = cardIdx === 0 ? aiRecommend(stage.label) : null
@@ -241,7 +240,7 @@ const PipelineBoard = ({ customers, customerTypes, onMoveCustomer, onOpenCustome
                                                             aria-label={t('Thao tác thêm')}
                                                             sx={{ p: 0.5, opacity: 0.4, '&:hover': { opacity: 1 }, ml: -0.5 }}
                                                         >
-                                                            <IconDotsVertical size={16} stroke={ICON_STROKE} />
+                                                            <AppIcon name='DotsThreeVertical' size={16} />
                                                         </IconButton>
                                                     </Stack>
 
@@ -263,14 +262,7 @@ const PipelineBoard = ({ customers, customerTypes, onMoveCustomer, onOpenCustome
                                                                 gap: 0.75
                                                             }}
                                                         >
-                                                            <Box
-                                                                sx={{
-                                                                    width: 4,
-                                                                    height: 16,
-                                                                    borderRadius: 0.5,
-                                                                    bgcolor: priTone.main
-                                                                }}
-                                                            />
+                                                            <AppIcon name={pri.icon} size={14} color={priTone.main} />
                                                             {t(pri.label)}
                                                         </Box>
                                                     </Stack>
@@ -314,18 +306,7 @@ const PipelineBoard = ({ customers, customerTypes, onMoveCustomer, onOpenCustome
 
                                                     {/* Row 4: avatar + counts */}
                                                     <Stack direction='row' alignItems='center' spacing={1}>
-                                                        <Avatar
-                                                            sx={{
-                                                                width: 28,
-                                                                height: 28,
-                                                                fontSize: '0.75rem',
-                                                                fontWeight: 600,
-                                                                bgcolor: tintBg(theme, theme.palette[avColor].main, 0.15, 0.24),
-                                                                color: tintText(theme, theme.palette[avColor])
-                                                            }}
-                                                        >
-                                                            {getInitials(c.name)}
-                                                        </Avatar>
+                                                        <PersonAvatar name={c.name} size={28} />
                                                         <Box sx={{ flex: 1 }} />
                                                         <Tooltip title={t('Bình luận')}>
                                                             <Stack
@@ -343,7 +324,7 @@ const PipelineBoard = ({ customers, customerTypes, onMoveCustomer, onOpenCustome
                                                                 >
                                                                     {c.attributes?.commentCount ?? c.id.length + 2}
                                                                 </Typography>
-                                                                <IconMessageCircle2 size={14} stroke={ICON_STROKE} />
+                                                                <AppIcon name='ChatCircle' size={14} />
                                                             </Stack>
                                                         </Tooltip>
                                                         <Tooltip title={t('Công việc con')}>
@@ -362,7 +343,7 @@ const PipelineBoard = ({ customers, customerTypes, onMoveCustomer, onOpenCustome
                                                                 >
                                                                     {c.attributes?.subitemCount ?? 3}
                                                                 </Typography>
-                                                                <IconSubtask size={14} stroke={ICON_STROKE} />
+                                                                <AppIcon name='TreeView' size={14} />
                                                             </Stack>
                                                         </Tooltip>
                                                     </Stack>
@@ -382,9 +363,9 @@ const PipelineBoard = ({ customers, customerTypes, onMoveCustomer, onOpenCustome
                                                         }}
                                                     >
                                                         <Stack direction='row' spacing={0.75} alignItems='flex-start'>
-                                                            <IconTrendingUp
+                                                            <AppIcon
+                                                                name='TrendUp'
                                                                 size={13}
-                                                                stroke={ICON_STROKE}
                                                                 style={{
                                                                     color: tintText(theme, teal),
                                                                     marginTop: 2,
@@ -414,7 +395,7 @@ const PipelineBoard = ({ customers, customerTypes, onMoveCustomer, onOpenCustome
 
                                     {stageCustomers.length === 0 && (
                                         <Stack alignItems='center' spacing={0.5} sx={{ py: 4, color: 'text.disabled' }}>
-                                            <IconInbox size={22} stroke={ICON_STROKE} style={{ opacity: 0.5 }} />
+                                            <AppIcon name='Tray' size={22} style={{ opacity: 0.5 }} />
                                             <Typography variant='caption' sx={{ fontSize: '0.75rem', textAlign: 'center' }}>
                                                 {t('Kéo thẻ vào đây')}
                                             </Typography>

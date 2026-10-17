@@ -1,16 +1,16 @@
 import { useTheme } from '@mui/material/styles'
 import { Stack, Typography } from '@mui/material'
-import { IconUserFilled, IconAlertTriangleFilled, IconBoltFilled, IconCircleCheckFilled, IconStarFilled } from '@tabler/icons-react'
+import { iconComponent } from '@/ui-component/icons/AppIcon'
 import MainCard from '@/ui-component/cards/MainCard'
 import { feedEvents, feedAgo, feedText } from './mockDashboard'
 import { useLanguage } from '@/store/context/LanguageContext'
 
 const KIND_ICON = {
-    customer_new: IconUserFilled,
-    escalate: IconAlertTriangleFilled,
-    pulse_handoff: IconBoltFilled,
-    deal_closed: IconCircleCheckFilled,
-    review: IconStarFilled
+    customer_new: iconComponent('User'),
+    escalate: iconComponent('Warning'),
+    pulse_handoff: iconComponent('Lightning'),
+    deal_closed: iconComponent('CheckCircle'),
+    review: iconComponent('Star')
 }
 
 const ActivityFeed = () => {

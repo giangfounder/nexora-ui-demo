@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom'
 // material-ui
 import { alpha, getLuminance, useTheme } from '@mui/material/styles'
 import {
-    Avatar,
     Badge,
     Box,
     Button,
@@ -22,28 +21,16 @@ import {
     Tooltip,
     Typography
 } from '@mui/material'
-import {
-    IconExternalLink,
-    IconInbox,
-    IconLayoutGrid,
-    IconInfoCircle,
-    IconMessageCircle,
-    IconMoodSmile,
-    IconPaperclip,
-    IconSearch,
-    IconSend,
-    IconTemplate,
-    IconX
-} from '@tabler/icons-react'
+import { AppIcon, iconComponent } from '@/ui-component/icons/AppIcon'
 
 // project imports
 import { fullPageBottomOffset, fullPageHeight } from '@/store/constant'
 import { useLanguage } from '@/store/context/LanguageContext'
-import { getAvatarColorKey, getInitials } from '@/views/customers/utils'
 import { mockCustomers } from '@/views/customers/mockCustomers'
 import { mockEmployees } from '@/views/employees/mockEmployees'
 import { CHANNELS, CHANNEL_ORDER, HANDOFF_TAGS, mockConversations } from './mockConversations'
 import { getChannelIcon, sortByQueuePriority } from './utils'
+import PersonAvatar from '@/ui-component/avatar/PersonAvatar'
 
 // One short word per status — the colour carries the rest.
 const STATUS_UI = {
@@ -114,24 +101,7 @@ const formatSystemNote = (text, t) => {
     return t(text)
 }
 
-const CustomerAvatar = ({ name, size }) => {
-    const theme = useTheme()
-    const ck = getAvatarColorKey(name)
-    return (
-        <Avatar
-            sx={{
-                width: size,
-                height: size,
-                fontSize: size * 0.36,
-                fontWeight: 600,
-                bgcolor: alpha(theme.palette[ck].main, theme.palette.mode === 'dark' ? 0.24 : 0.15),
-                color: toneFg(theme, theme.palette[ck])
-            }}
-        >
-            {getInitials(name)}
-        </Avatar>
-    )
-}
+const CustomerAvatar = ({ name, size }) => <PersonAvatar name={name} size={size} />
 
 CustomerAvatar.propTypes = { name: PropTypes.string, size: PropTypes.number }
 
@@ -277,9 +247,12 @@ const Omnichannel = () => {
                             <Tooltip title={t('Cần xử lý')}>
                                 <Box
                                     component='span'
+                                    role='img'
                                     aria-label={t('Cần xử lý')}
-                                    sx={{ width: 7, height: 7, borderRadius: '50%', bgcolor: 'error.main', flexShrink: 0 }}
-                                />
+                                    sx={{ display: 'inline-flex', color: 'error.main', flexShrink: 0 }}
+                                >
+                                    <AppIcon name='BellRinging' size={14} />
+                                </Box>
                             </Tooltip>
                         )}
                         <Typography
@@ -508,7 +481,7 @@ const Omnichannel = () => {
                                                     bgcolor: active ? alpha(primary, 0.1) : alpha(theme.palette.text.primary, 0.06)
                                                 }}
                                             >
-                                                <IconLayoutGrid size={18} stroke={STROKE} />
+                                                <AppIcon name='GridFour' size={18} />
                                             </Box>
                                         )}
                                     </Box>
@@ -573,7 +546,7 @@ const Omnichannel = () => {
                             inputProps={{ 'aria-label': t('Tìm khách hàng') }}
                             startAdornment={
                                 <InputAdornment position='start' sx={{ color: 'text.secondary' }}>
-                                    <IconSearch size={16} stroke={STROKE} />
+                                    <AppIcon name='MagnifyingGlass' size={16} />
                                 </InputAdornment>
                             }
                             sx={{ height: 36, borderRadius: '10px', '& input': { fontSize: '0.875rem' } }}
@@ -634,7 +607,7 @@ const Omnichannel = () => {
                 <Box sx={{ flex: 1, overflowY: 'auto', pb: 1 }}>
                     {visibleConversations.length === 0 ? (
                         <Stack alignItems='center' spacing={1} sx={{ py: 8, color: 'text.disabled' }}>
-                            <IconInbox size={28} stroke={STROKE} />
+                            <AppIcon name='Tray' size={28} />
                             <Typography variant='body2'>{t('Không có hội thoại nào')}</Typography>
                         </Stack>
                     ) : (
@@ -693,7 +666,7 @@ const Omnichannel = () => {
                                 aria-label={t('Mở thông tin khách hàng')}
                                 sx={{ width: 36, height: 36, borderRadius: '10px', color: 'text.secondary' }}
                             >
-                                <IconInfoCircle size={20} stroke={STROKE} />
+                                <AppIcon name='Info' size={20} />
                             </IconButton>
                         </Tooltip>
                     </Stack>
@@ -711,7 +684,7 @@ const Omnichannel = () => {
                                 borderBottom: `1px solid ${faint}`
                             }}
                         >
-                            <Box sx={{ width: 6, height: 6, borderRadius: '50%', bgcolor: 'error.main', flexShrink: 0 }} />
+                            <AppIcon name='Lifebuoy' size={16} color={theme.palette.error.main} style={{ flexShrink: 0 }} />
                             <Typography variant='body2' sx={{ fontWeight: 600, fontSize: '0.8125rem', flexShrink: 0 }}>
                                 {t(HANDOFF_TAGS[selected.handoffTag].label)}
                             </Typography>
@@ -757,9 +730,9 @@ const Omnichannel = () => {
                             />
                             <Stack direction='row' alignItems='center' spacing={0.25} sx={{ mt: 0.5 }}>
                                 {[
-                                    { label: 'Đính kèm', icon: IconPaperclip, onClick: undefined },
-                                    { label: 'Emoji', icon: IconMoodSmile, onClick: (e) => setEmojiAnchor(e.currentTarget) },
-                                    { label: 'Mẫu trả lời', icon: IconTemplate, onClick: (e) => setMacroAnchor(e.currentTarget) }
+                                    { label: 'Đính kèm', icon: iconComponent('Paperclip'), onClick: undefined },
+                                    { label: 'Emoji', icon: iconComponent('Smiley'), onClick: (e) => setEmojiAnchor(e.currentTarget) },
+                                    { label: 'Mẫu trả lời', icon: iconComponent('Layout'), onClick: (e) => setMacroAnchor(e.currentTarget) }
                                 ].map(({ label, icon: Icon, onClick }) => (
                                     <Tooltip key={label} title={t(label)}>
                                         <IconButton
@@ -792,7 +765,7 @@ const Omnichannel = () => {
                                                 }
                                             }}
                                         >
-                                            <IconSend size={17} stroke={STROKE} />
+                                            <AppIcon name='PaperPlaneTilt' size={17} />
                                         </IconButton>
                                     </span>
                                 </Tooltip>
@@ -844,7 +817,7 @@ const Omnichannel = () => {
                 </Stack>
             ) : (
                 <Stack alignItems='center' justifyContent='center' spacing={1} sx={{ flex: 1, color: 'text.disabled' }}>
-                    <IconMessageCircle size={36} stroke={STROKE} />
+                    <AppIcon name='ChatCircle' size={36} />
                     <Typography variant='body2'>{t('Chọn một hội thoại')}</Typography>
                 </Stack>
             )}
@@ -865,7 +838,7 @@ const Omnichannel = () => {
                                 aria-label={t('Đóng')}
                                 sx={{ color: 'text.secondary' }}
                             >
-                                <IconX size={18} stroke={STROKE} />
+                                <AppIcon name='X' size={18} />
                             </IconButton>
                         </Stack>
 
@@ -924,7 +897,7 @@ const Omnichannel = () => {
                                 <Button
                                     fullWidth
                                     variant='contained'
-                                    endIcon={<IconExternalLink size={16} stroke={STROKE} />}
+                                    endIcon={<AppIcon name='ArrowSquareOut' size={16} />}
                                     onClick={() => navigate(`/customers/${customer.id}`)}
                                 >
                                     {t('Mở hồ sơ khách hàng')}

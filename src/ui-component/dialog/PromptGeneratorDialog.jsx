@@ -6,17 +6,7 @@ import { OutlinedInput, DialogActions, Button, Dialog, DialogContent, DialogTitl
 import { StyledButton } from '@/ui-component/button/StyledButton'
 import assistantsApi from '@/api/assistants'
 import { closeSnackbar as closeSnackbarAction, enqueueSnackbar as enqueueSnackbarAction } from '@/store/actions'
-import {
-    IconX,
-    IconPencilPlus,
-    IconArrowLeft,
-    IconNotebook,
-    IconLanguage,
-    IconMail,
-    IconCode,
-    IconReport,
-    IconWorld
-} from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import useNotifier from '@/utils/useNotifier'
 import { LoadingButton } from '@mui/lab'
 import { useLanguage } from '@/store/context/LanguageContext'
@@ -24,27 +14,27 @@ import { useLanguage } from '@/store/context/LanguageContext'
 const defaultInstructions = [
     {
         text: 'Summarize a document',
-        img: <IconNotebook />
+        img: <AppIcon name='Notebook' />
     },
     {
         text: 'Translate the language',
-        img: <IconLanguage />
+        img: <AppIcon name='Translate' />
     },
     {
         text: 'Write me an email',
-        img: <IconMail />
+        img: <AppIcon name='Envelope' />
     },
     {
         text: 'Convert the code to another language',
-        img: <IconCode />
+        img: <AppIcon name='Code' />
     },
     {
         text: 'Research and generate a report',
-        img: <IconReport />
+        img: <AppIcon name='Notebook' />
     },
     {
         text: 'Plan a trip',
-        img: <IconWorld />
+        img: <AppIcon name='Globe' />
     }
 ]
 
@@ -89,7 +79,7 @@ const AssistantPromptGenerator = ({ show, dialogProps, onCancel, onConfirm }) =>
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -178,7 +168,7 @@ const AssistantPromptGenerator = ({ show, dialogProps, onCancel, onConfirm }) =>
                             onClick={() => {
                                 onGenerate()
                             }}
-                            startIcon={<IconPencilPlus size={20} />}
+                            startIcon={<AppIcon name='NotePencil' size={20} />}
                         >
                             {t('Generate')}
                         </LoadingButton>
@@ -186,7 +176,7 @@ const AssistantPromptGenerator = ({ show, dialogProps, onCancel, onConfirm }) =>
                     {generatedInstruction && (
                         <Button
                             variant='outlined'
-                            startIcon={<IconArrowLeft size={20} />}
+                            startIcon={<AppIcon name='ArrowLeft' size={20} />}
                             onClick={() => {
                                 setGeneratedInstruction('')
                             }}

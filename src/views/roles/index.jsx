@@ -46,7 +46,7 @@ import useConfirm from '@/hooks/useConfirm'
 import useNotifier from '@/utils/useNotifier'
 
 // Icons
-import { IconEdit, IconPlus, IconEye, IconEyeOff, IconX, IconTrash } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import roles_emptySVG from '@/assets/images/roles_empty.svg'
 
 import { useError } from '@/store/context/ErrorContext'
@@ -285,7 +285,7 @@ function ShowRoleRow(props) {
                             color='primary'
                             onClick={() => setOpenViewPermissionsDrawer(!openViewPermissionsDrawer)}
                         >
-                            <IconEye />
+                            <AppIcon name='Eye' />
                         </PermissionIconButton>
                     </Stack>
                 </StyledTableCell>
@@ -299,7 +299,7 @@ function ShowRoleRow(props) {
                             color='inherit'
                             onClick={() => handleViewAssignedUsers(props.role.id)}
                         >
-                            {props.role.userCount > 0 && openAssignedUsersDrawer ? <IconEyeOff /> : <IconEye />}
+                            {props.role.userCount > 0 && openAssignedUsersDrawer ? <AppIcon name='EyeSlash' /> : <AppIcon name='Eye' />}
                         </PermissionIconButton>
                     )}
                 </StyledTableCell>
@@ -310,7 +310,7 @@ function ShowRoleRow(props) {
                         color='primary'
                         onClick={() => props.onEditClick(props.role)}
                     >
-                        <IconEdit />
+                        <AppIcon name='PencilSimpleLine' />
                     </PermissionIconButton>
                     <PermissionIconButton
                         permissionId={'roles:manage'}
@@ -319,7 +319,7 @@ function ShowRoleRow(props) {
                         title={props.role.userCount > 0 ? t('Remove users with the role from Workspace first') : t('Delete')}
                         onClick={() => props.onDeleteClick(props.role)}
                     >
-                        <IconTrash />
+                        <AppIcon name='Trash' />
                     </PermissionIconButton>
                 </StyledTableCell>
             </StyledTableRow>
@@ -482,7 +482,7 @@ const Roles = () => {
                             variant: 'success',
                             action: (key) => (
                                 <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                    <IconX />
+                                    <AppIcon name='X' />
                                 </Button>
                             )
                         }
@@ -500,7 +500,7 @@ const Roles = () => {
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -548,7 +548,7 @@ const Roles = () => {
                                 variant='contained'
                                 sx={{ borderRadius: 2, height: '100%' }}
                                 onClick={addNew}
-                                startIcon={<IconPlus />}
+                                startIcon={<AppIcon name='Plus' />}
                                 id='btn_createUser'
                             >
                                 {t('Add Role')}

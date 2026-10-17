@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, memo } from 'react'
 import PropTypes from 'prop-types'
 
-import { IconDatabaseImport, IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // project import
 import { StyledFab } from '@/ui-component/button/StyledFab'
@@ -51,7 +51,7 @@ const VectorStorePopUp = ({ chatflowid }) => {
                 title={t('Upsert Vector Database')}
                 onClick={handleToggle}
             >
-                {open ? <IconX /> : <IconDatabaseImport />}
+                {open ? <AppIcon name='X' /> : <AppIcon name='DownloadSimple' />}
             </StyledFab>
             <VectorStoreDialog
                 show={showExpandDialog}

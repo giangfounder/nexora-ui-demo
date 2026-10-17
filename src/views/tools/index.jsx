@@ -27,7 +27,7 @@ import { useError } from '@/store/context/ErrorContext'
 import { gridSpacing } from '@/store/constant'
 
 // icons
-import { IconPlus, IconFileUpload, IconLayoutGrid, IconList } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import ToolEmptySVG from '@/assets/images/tools_empty.svg'
 import { useLanguage } from '@/store/context/LanguageContext'
 
@@ -239,10 +239,10 @@ const Tools = () => {
     const viewToggle = (disabled) => (
         <ToggleButtonGroup sx={{ maxHeight: 40 }} value={view} color='primary' disabled={disabled} exclusive onChange={handleChange}>
             <ToggleButton sx={{ borderColor: theme.palette.alpha.border }} variant='contained' value='card' title={t('Card View')}>
-                <IconLayoutGrid size={18} stroke={1.75} />
+                <AppIcon name='GridFour' size={18} />
             </ToggleButton>
             <ToggleButton sx={{ borderColor: theme.palette.alpha.border }} variant='contained' value='list' title={t('List View')}>
-                <IconList size={18} stroke={1.75} />
+                <AppIcon name='List' size={18} />
             </ToggleButton>
         </ToggleButtonGroup>
     )
@@ -255,7 +255,7 @@ const Tools = () => {
                     permissionId={'tools:create'}
                     variant='outlined'
                     onClick={() => inputRef.current.click()}
-                    startIcon={<IconFileUpload size={18} stroke={1.75} />}
+                    startIcon={<AppIcon name='FileArrowUp' size={18} />}
                     sx={{ height: 40 }}
                 >
                     {t('Load')}
@@ -267,7 +267,7 @@ const Tools = () => {
                     permissionId={'tools:create'}
                     variant='contained'
                     onClick={addNew}
-                    startIcon={<IconPlus size={18} stroke={1.75} />}
+                    startIcon={<AppIcon name='Plus' size={18} />}
                     sx={{ height: 40 }}
                 >
                     {t('Create')}
@@ -284,7 +284,7 @@ const Tools = () => {
                     permissionId={'tools:create'}
                     variant='contained'
                     onClick={addNewCustomMcpServer}
-                    startIcon={<IconPlus size={18} stroke={1.75} />}
+                    startIcon={<AppIcon name='Plus' size={18} />}
                     sx={{ height: 40 }}
                 >
                     {t('Add Custom MCP Server')}

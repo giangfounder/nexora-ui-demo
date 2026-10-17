@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux'
 // material-ui
 import { styled } from '@mui/material/styles'
 import { Box, Grid, Tooltip, Typography, useTheme } from '@mui/material'
-import { IconTool } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
+import { mcpStatusIcon } from '@/ui-component/table/MCPServersTable'
 
 // project imports
 import MainCard from '@/ui-component/cards/MainCard'
@@ -135,14 +136,11 @@ const MCPItemCard = ({ data, onClick }) => {
                                         paddingRight: '10px'
                                     }}
                                 >
-                                    <div
-                                        style={{
-                                            width: 8,
-                                            height: 8,
-                                            borderRadius: '50%',
-                                            backgroundColor: statusColors[1],
-                                            marginRight: 5
-                                        }}
+                                    <AppIcon
+                                        name={mcpStatusIcon(data.status)}
+                                        size={12}
+                                        color={statusColors[1]}
+                                        style={{ marginRight: 5 }}
                                     />
                                     <span style={{ fontSize: '0.65rem', color: statusColors[2], textTransform: 'uppercase' }}>
                                         {data.status}
@@ -191,7 +189,7 @@ const MCPItemCard = ({ data, onClick }) => {
                                 alignItems: 'center'
                             }}
                         >
-                            <IconTool style={{ marginRight: 5 }} size={14} stroke={1.75} />
+                            <AppIcon name='Wrench' style={{ marginRight: 5 }} size={14} />
                             {toolCount} {t(toolCount === 1 ? 'tool' : 'tools')}
                         </div>
                     </Grid>

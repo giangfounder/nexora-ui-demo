@@ -1,4 +1,4 @@
-import { IconClipboard, IconDownload } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { memo, useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
@@ -84,7 +84,7 @@ export const CodeBlock = memo(({ language, chatflowid, isFullWidth, value }) => 
                     {language}
                     <div style={{ flex: 1 }}></div>
                     <IconButton size='small' title={t('Copy')} color='success' onClick={copyToClipboard}>
-                        <IconClipboard />
+                        <AppIcon name='Clipboard' />
                     </IconButton>
                     <Popover
                         open={openPopOver}
@@ -104,7 +104,7 @@ export const CodeBlock = memo(({ language, chatflowid, isFullWidth, value }) => 
                         </Typography>
                     </Popover>
                     <IconButton size='small' title={t('Download')} color='primary' onClick={downloadAsFile}>
-                        <IconDownload />
+                        <AppIcon name='DownloadSimple' />
                     </IconButton>
                 </div>
             </Box>

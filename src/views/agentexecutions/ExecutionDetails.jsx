@@ -19,22 +19,8 @@ import {
 import { TreeItem2Icon } from '@mui/x-tree-view/TreeItem2Icon'
 import { TreeItem2Provider } from '@mui/x-tree-view/TreeItem2Provider'
 import { TreeItem2DragAndDropOverlay } from '@mui/x-tree-view/TreeItem2DragAndDropOverlay'
-import DragHandleIcon from '@mui/icons-material/DragHandle'
-import CheckCircleIcon from '@mui/icons-material/CheckCircle'
-import StopCircleIcon from '@mui/icons-material/StopCircle'
-import ErrorIcon from '@mui/icons-material/Error'
+import { AppIcon, iconComponent } from '@/ui-component/icons/AppIcon'
 import { IconButton } from '@mui/material'
-import {
-    IconRefresh,
-    IconExternalLink,
-    IconCopy,
-    IconLoader,
-    IconCircleXFilled,
-    IconRelationOneToManyFilled,
-    IconShare,
-    IconWorld,
-    IconX
-} from '@tabler/icons-react'
 
 // Project imports
 import { useTheme } from '@mui/material/styles'
@@ -142,7 +128,7 @@ function CustomLabel({ icon: Icon, itemStatus, children, name, ...other }) {
                                 justifyContent: 'center'
                             }}
                         >
-                            <IconRelationOneToManyFilled size={20} color={'#9C89B8'} />
+                            <AppIcon name='FlowArrow' size={20} color={'#9C89B8'} />
                         </Box>
                     )
                 }
@@ -192,25 +178,31 @@ const isExpandable = (reactChildren) => {
 const getIconFromStatus = (status, theme) => {
     switch (status) {
         case 'FINISHED':
-            return CheckCircleIcon
+            return iconComponent('CheckCircle')
         case 'ERROR':
         case 'TIMEOUT':
-            return ErrorIcon
+            return iconComponent('WarningCircle')
         case 'TERMINATED':
             // eslint-disable-next-line react/display-name
             return (props) => {
-                const IconWrapper = (props) => <IconCircleXFilled {...props} color={theme.palette.error.main} />
+                const IconWrapper = (props) => <AppIcon name='XCircle' {...props} color={theme.palette.error.main} />
                 IconWrapper.displayName = 'TerminatedIcon'
                 return <IconWrapper {...props} />
             }
         case 'STOPPED':
-            return StopCircleIcon
+            return iconComponent('StopCircle')
         case 'INPROGRESS':
             // eslint-disable-next-line react/display-name
             return (props) => {
                 const IconWrapper = (props) => (
                     // eslint-disable-next-line
-                    <IconLoader {...props} color={theme.palette.warning.dark} className={`spin-animation ${props.className || ''}`} />
+                    <AppIcon
+                        name='SpinnerGap'
+                        {...props}
+                        color={theme.palette.warning.dark}
+                        // eslint-disable-next-line react/prop-types
+                        className={`spin-animation ${props.className || ''}`}
+                    />
                 )
                 IconWrapper.displayName = 'InProgressIcon'
                 return <IconWrapper {...props} />
@@ -326,7 +318,7 @@ export const ExecutionDetails = ({ open, isPublic, execution, metadata, onClose,
                     variant: 'success',
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => dispatch(closeSnackbarAction(key))}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -650,7 +642,7 @@ export const ExecutionDetails = ({ open, isPublic, execution, metadata, onClose,
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => dispatch(closeSnackbarAction(key))}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -744,7 +736,7 @@ export const ExecutionDetails = ({ open, isPublic, execution, metadata, onClose,
                         {!isPublic && (
                             <Chip
                                 sx={{ pl: 1 }}
-                                icon={<IconExternalLink size={15} />}
+                                icon={<AppIcon name='ArrowSquareOut' size={15} />}
                                 variant='outlined'
                                 label={localMetadata?.agentflow?.name || localMetadata?.agentflow?.id || t('Go to AgentFlow')}
                                 className={'button'}
@@ -760,7 +752,7 @@ export const ExecutionDetails = ({ open, isPublic, execution, metadata, onClose,
                             >
                                 <Chip
                                     sx={{ ml: 1, pl: 1 }}
-                                    icon={<IconCopy size={15} />}
+                                    icon={<AppIcon name='Copy' size={15} />}
                                     variant='outlined'
                                     label={copied ? t('Copied!') : t('Copy ID')}
                                     className={'button'}
@@ -775,9 +767,9 @@ export const ExecutionDetails = ({ open, isPublic, execution, metadata, onClose,
                                     sx={{ ml: 1, pl: 1 }}
                                     icon={
                                         updateExecutionApi.loading ? (
-                                            <IconLoader size={15} className='spin-animation' />
+                                            <AppIcon name='SpinnerGap' size={15} className='spin-animation' />
                                         ) : (
-                                            <IconShare size={15} />
+                                            <AppIcon name='ShareNetwork' size={15} />
                                         )
                                     }
                                     variant='outlined'
@@ -794,9 +786,9 @@ export const ExecutionDetails = ({ open, isPublic, execution, metadata, onClose,
                                 sx={{ ml: 1, pl: 1 }}
                                 icon={
                                     updateExecutionApi.loading ? (
-                                        <IconLoader size={15} className='spin-animation' />
+                                        <AppIcon name='SpinnerGap' size={15} className='spin-animation' />
                                     ) : (
-                                        <IconWorld size={15} />
+                                        <AppIcon name='Globe' size={15} />
                                     )
                                 }
                                 variant='outlined'
@@ -822,7 +814,7 @@ export const ExecutionDetails = ({ open, isPublic, execution, metadata, onClose,
                                 }}
                                 title={t('Refresh execution data')}
                             >
-                                <IconRefresh size={20} />
+                                <AppIcon name='ArrowClockwise' size={20} />
                             </IconButton>
                         </Box>
                     </Box>
@@ -891,7 +883,8 @@ export const ExecutionDetails = ({ open, isPublic, execution, metadata, onClose,
                 }
             }}
         >
-            <DragHandleIcon
+            <AppIcon
+                name='DotsSixVertical'
                 sx={{
                     transform: 'rotate(90deg)',
                     fontSize: '20px',

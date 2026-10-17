@@ -37,7 +37,7 @@ const ChannelsSLA = () => {
                             {channelSla.map((r) => (
                                 <TableRow key={r.channelId} hover>
                                     <TableCell>
-                                        <ChannelName label={r.channel} color={c.channel(r.channelId)} />
+                                        <ChannelName label={r.channel} channelId={r.channelId} color={c.channel(r.channelId)} />
                                     </TableCell>
                                     <TableCell align='right'>
                                         <Tag label={`${r.slaMet}%`} tone={r.slaMet >= 90 ? c.positive : c.warning} />

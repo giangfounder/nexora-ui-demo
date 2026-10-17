@@ -15,7 +15,7 @@ import useApi from '@/hooks/useApi'
 import { useLanguage } from '@/store/context/LanguageContext'
 
 // icons
-import { IconCheck, IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 const ConfirmEmailChange = () => {
     const confirmApi = useApi(accountApi.confirmEmailChange)
@@ -90,7 +90,7 @@ const ConfirmEmailChange = () => {
                                         justifyContent: 'center'
                                     }}
                                 >
-                                    <IconX />
+                                    <AppIcon name='X' />
                                 </Box>
                                 <Typography variant='h1'>{t('Confirmation failed.')}</Typography>
                                 <Typography variant='body2' color='textSecondary' sx={{ textAlign: 'center' }}>
@@ -112,7 +112,7 @@ const ConfirmEmailChange = () => {
                                         justifyContent: 'center'
                                     }}
                                 >
-                                    <IconCheck />
+                                    <AppIcon name='Check' />
                                 </Box>
                                 <Typography variant='h1'>{t('Email updated successfully.')}</Typography>
                                 <Typography variant='body2' color='textSecondary' sx={{ textAlign: 'center' }}>

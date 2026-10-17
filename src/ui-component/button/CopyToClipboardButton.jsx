@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 import { IconButton } from '@mui/material'
-import { IconClipboard } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { useLanguage } from '@/store/context/LanguageContext'
 
 const CopyToClipboardButton = (props) => {
@@ -16,7 +16,8 @@ const CopyToClipboardButton = (props) => {
             sx={{ background: 'transparent', border: 'none' }}
             title={t('Copy to clipboard')}
         >
-            <IconClipboard
+            <AppIcon
+                name='Clipboard'
                 style={{ width: '20px', height: '20px' }}
                 color={props.isLoading ? '#9e9e9e' : customization.isDarkMode ? 'white' : '#1e88e5'}
             />

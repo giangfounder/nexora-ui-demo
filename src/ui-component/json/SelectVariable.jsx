@@ -2,10 +2,8 @@ import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Box, List, ListItemButton, ListItem, ListItemAvatar, ListItemText, Typography, Stack } from '@mui/material'
 import PerfectScrollbar from 'react-perfect-scrollbar'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import robotPNG from '@/assets/images/robot.png'
-import chatPNG from '@/assets/images/chathistory.png'
-import diskPNG from '@/assets/images/floppy-disc.png'
-import fileAttachmentPNG from '@/assets/images/fileAttachment.png'
 import { baseURL } from '@/store/constant'
 import { useLanguage } from '@/store/context/LanguageContext'
 
@@ -103,15 +101,11 @@ const SelectVariable = ({ availableNodesForVariable, disabled = false, onSelectA
                                                     backgroundColor: 'white'
                                                 }}
                                             >
-                                                <img
-                                                    style={{
-                                                        width: '100%',
-                                                        height: '100%',
-                                                        padding: 10,
-                                                        objectFit: 'contain'
-                                                    }}
-                                                    alt='chatHistory'
-                                                    src={chatPNG}
+                                                <AppIcon
+                                                    name='ClockCounterClockwise'
+                                                    size={30}
+                                                    color='primary'
+                                                    style={{ display: 'block', margin: 10 }}
                                                 />
                                             </div>
                                         </ListItemAvatar>
@@ -142,15 +136,11 @@ const SelectVariable = ({ availableNodesForVariable, disabled = false, onSelectA
                                                     backgroundColor: 'white'
                                                 }}
                                             >
-                                                <img
-                                                    style={{
-                                                        width: '100%',
-                                                        height: '100%',
-                                                        padding: 10,
-                                                        objectFit: 'contain'
-                                                    }}
-                                                    alt='fileAttachment'
-                                                    src={fileAttachmentPNG}
+                                                <AppIcon
+                                                    name='Paperclip'
+                                                    size={30}
+                                                    color='primary'
+                                                    style={{ display: 'block', margin: 10 }}
                                                 />
                                             </div>
                                         </ListItemAvatar>
@@ -248,15 +238,11 @@ const SelectVariable = ({ availableNodesForVariable, disabled = false, onSelectA
                                                             backgroundColor: 'white'
                                                         }}
                                                     >
-                                                        <img
-                                                            style={{
-                                                                width: '100%',
-                                                                height: '100%',
-                                                                padding: 10,
-                                                                objectFit: 'contain'
-                                                            }}
-                                                            alt='state'
-                                                            src={diskPNG}
+                                                        <AppIcon
+                                                            name='FloppyDisk'
+                                                            size={30}
+                                                            color='primary'
+                                                            style={{ display: 'block', margin: 10 }}
                                                         />
                                                     </div>
                                                 </ListItemAvatar>

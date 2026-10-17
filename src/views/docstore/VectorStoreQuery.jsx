@@ -7,11 +7,10 @@ import { v4 as uuidv4 } from 'uuid'
 
 // material-ui
 import { Box, Card, Grid, Stack, Typography, OutlinedInput, IconButton, Button } from '@mui/material'
-import Embeddings from '@mui/icons-material/DynamicFeed'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { useTheme, styled } from '@mui/material/styles'
 import CardContent from '@mui/material/CardContent'
 import chunks_emptySVG from '@/assets/images/chunks_empty.svg'
-import { IconSearch, IconFileStack, IconDeviceFloppy, IconX } from '@tabler/icons-react'
 
 // project imports
 import MainCard from '@/ui-component/cards/MainCard'
@@ -159,7 +158,7 @@ const VectorStoreQuery = () => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -176,7 +175,7 @@ const VectorStoreQuery = () => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -270,7 +269,7 @@ const VectorStoreQuery = () => {
                             variant='outlined'
                             color='secondary'
                             sx={{ borderRadius: 2, height: '100%' }}
-                            startIcon={<IconDeviceFloppy />}
+                            startIcon={<AppIcon name='FloppyDisk' />}
                             onClick={saveConfig}
                         >
                             {t('Save Config')}
@@ -301,8 +300,8 @@ const VectorStoreQuery = () => {
                                         onKeyDown={handleEnter}
                                         value={query ?? ''}
                                         endAdornment={
-                                            <IconButton variant='contained' onClick={doQuery}>
-                                                <IconSearch />
+                                            <IconButton aria-label={t('Search')} variant='contained' onClick={doQuery}>
+                                                <AppIcon name='MagnifyingGlass' />
                                             </IconButton>
                                         }
                                     />
@@ -354,7 +353,7 @@ const VectorStoreQuery = () => {
                                                                     src={`${baseURL}/api/v1/node-icon/${selectedVectorStoreProvider?.name}`}
                                                                 />
                                                             ) : (
-                                                                <Embeddings color='black' />
+                                                                <AppIcon name='Stack' color='black' />
                                                             )}
                                                         </div>
                                                         <Typography sx={{ ml: 2 }} variant='h3'>
@@ -403,7 +402,8 @@ const VectorStoreQuery = () => {
                                                 border: `1px solid ${theme.palette.alpha.border}`
                                             }}
                                         >
-                                            <IconFileStack
+                                            <AppIcon
+                                                name='Files'
                                                 style={{
                                                     width: '100%',
                                                     height: '100%',

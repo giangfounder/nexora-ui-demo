@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 
 import { alpha, useTheme } from '@mui/material/styles'
 import { Box, Button, ButtonGroup, Chip, Divider, Grid, Paper, Stack, Tooltip, Typography } from '@mui/material'
-import { IconPlugConnected, IconPlugConnectedX, IconPlus, IconRefresh, IconSettings } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 import MainCard from '@/ui-component/cards/MainCard'
 import { useLanguage } from '@/store/context/LanguageContext'
@@ -193,17 +193,18 @@ const IntegrationsTab = () => {
                                                             aria-hidden
                                                             sx={{
                                                                 position: 'absolute',
-                                                                right: -2,
-                                                                bottom: -2,
-                                                                width: 10,
-                                                                height: 10,
+                                                                right: -4,
+                                                                bottom: -4,
+                                                                display: 'inline-flex',
                                                                 borderRadius: '50%',
-                                                                bgcolor: it.connected
+                                                                bgcolor: theme.palette.background.paper,
+                                                                color: it.connected
                                                                     ? theme.palette.success.main
-                                                                    : theme.palette.text.disabled,
-                                                                border: `2px solid ${theme.palette.background.paper}`
+                                                                    : theme.palette.text.disabled
                                                             }}
-                                                        />
+                                                        >
+                                                            <AppIcon name={it.connected ? 'CheckCircle' : 'MinusCircle'} size={14} />
+                                                        </Box>
                                                     </Box>
                                                     <Stack sx={{ minWidth: 0, flex: 1 }}>
                                                         <Typography variant='body2' sx={{ fontWeight: 600 }} noWrap>
@@ -254,7 +255,7 @@ const IntegrationsTab = () => {
                                                                 size='small'
                                                                 variant='text'
                                                                 color='inherit'
-                                                                startIcon={<IconRefresh size={14} stroke={1.75} />}
+                                                                startIcon={<AppIcon name='ArrowClockwise' size={14} />}
                                                                 onClick={() => sync(it.channel)}
                                                                 sx={{ flex: 1, justifyContent: 'flex-start' }}
                                                             >
@@ -269,14 +270,14 @@ const IntegrationsTab = () => {
                                                                     onClick={() => openAccounts(it.channel)}
                                                                     sx={{ minWidth: 32, px: 1 }}
                                                                 >
-                                                                    <IconSettings size={15} stroke={1.75} />
+                                                                    <AppIcon name='GearSix' size={15} />
                                                                 </Button>
                                                             </Tooltip>
                                                             <Button
                                                                 size='small'
                                                                 variant='text'
                                                                 color='error'
-                                                                startIcon={<IconPlugConnectedX size={14} stroke={1.75} />}
+                                                                startIcon={<AppIcon name='Plugs' size={14} />}
                                                                 onClick={() => toggle(it.channel)}
                                                             >
                                                                 {t('Ngắt')}
@@ -287,7 +288,7 @@ const IntegrationsTab = () => {
                                                             size='small'
                                                             fullWidth
                                                             variant='contained'
-                                                            startIcon={<IconPlugConnected size={14} stroke={1.75} />}
+                                                            startIcon={<AppIcon name='PlugsConnected' size={14} />}
                                                             onClick={() => openAccounts(it.channel)}
                                                         >
                                                             {t('Thêm tài khoản')}
@@ -351,7 +352,7 @@ const IntegrationsTab = () => {
                                                             color: 'text.secondary'
                                                         }}
                                                     >
-                                                        <IconPlus size={16} stroke={1.75} />
+                                                        <AppIcon name='Plus' size={16} />
                                                     </Box>
                                                     {isPrimary && (
                                                         <>

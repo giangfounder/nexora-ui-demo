@@ -47,7 +47,7 @@ import useNotifier from '@/utils/useNotifier'
 
 // Icons
 import APIEmptySVG from '@/assets/images/api_empty.svg'
-import { IconChevronsDown, IconChevronsUp, IconCopy, IconEdit, IconEye, IconEyeOff, IconPlus, IconTrash, IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { SharedTableCell as StyledTableCell, SharedTableRow as StyledTableRow } from '@/ui-component/table/SharedTable'
 import { useLanguage } from '@/store/context/LanguageContext'
 
@@ -72,10 +72,10 @@ function APIKeyRow(props) {
                               props.apiKey.apiKey.length - 5
                           )}`}
                     <IconButton title={t('Copy')} color='success' onClick={props.onCopyClick}>
-                        <IconCopy />
+                        <AppIcon name='Copy' />
                     </IconButton>
                     <IconButton title={t('Show')} color='inherit' onClick={props.onShowAPIClick}>
-                        {props.showApiKeys.includes(props.apiKey.apiKey) ? <IconEyeOff /> : <IconEye />}
+                        {props.showApiKeys.includes(props.apiKey.apiKey) ? <AppIcon name='EyeSlash' /> : <AppIcon name='Eye' />}
                     </IconButton>
                     <Popover
                         open={props.open}
@@ -122,7 +122,11 @@ function APIKeyRow(props) {
                     {props.apiKey.chatFlows.length}{' '}
                     {props.apiKey.chatFlows.length > 0 && (
                         <IconButton aria-label='expand row' size='small' color='inherit' onClick={() => setOpen(!open)}>
-                            {props.apiKey.chatFlows.length > 0 && open ? <IconChevronsUp /> : <IconChevronsDown />}
+                            {props.apiKey.chatFlows.length > 0 && open ? (
+                                <AppIcon name='CaretDoubleUp' />
+                            ) : (
+                                <AppIcon name='CaretDoubleDown' />
+                            )}
                         </IconButton>
                     )}
                 </StyledTableCell>
@@ -130,14 +134,14 @@ function APIKeyRow(props) {
                 <Available permission={'apikeys:update,apikeys:create'}>
                     <StyledTableCell>
                         <IconButton title={t('Edit')} color='primary' onClick={props.onEditClick}>
-                            <IconEdit />
+                            <AppIcon name='PencilSimpleLine' />
                         </IconButton>
                     </StyledTableCell>
                 </Available>
                 <Available permission={'apikeys:delete'}>
                     <StyledTableCell>
                         <IconButton title={t('Delete')} color='error' onClick={props.onDeleteClick}>
-                            <IconTrash />
+                            <AppIcon name='Trash' />
                         </IconButton>
                     </StyledTableCell>
                 </Available>
@@ -314,7 +318,7 @@ const APIKey = () => {
                             variant: 'success',
                             action: (key) => (
                                 <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                    <IconX />
+                                    <AppIcon name='X' />
                                 </Button>
                             )
                         }
@@ -332,7 +336,7 @@ const APIKey = () => {
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -382,7 +386,7 @@ const APIKey = () => {
                                 variant='contained'
                                 sx={{ height: '100%' }}
                                 onClick={addNew}
-                                startIcon={<IconPlus size={18} stroke={1.75} />}
+                                startIcon={<AppIcon name='Plus' size={18} />}
                                 id='btn_createApiKey'
                             >
                                 {t('Create Key')}

@@ -25,7 +25,7 @@ import {
 } from '@mui/material'
 import { useTheme, darken, alpha } from '@mui/material/styles'
 import { useSnackbar } from 'notistack'
-import { IconCoins, IconCoin, IconClock, IconChevronDown, IconDownload, IconTool } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import toolSVG from '@/assets/images/tool.svg'
 
 // Project imports
@@ -311,7 +311,7 @@ export const NodeExecutionDetails = ({ data, label, status, metadata, isPublic, 
                 <div style={{ flex: 1 }}></div>
                 {data.output && data.output.timeMetadata && data.output.timeMetadata.delta && (
                     <Chip
-                        icon={<IconClock size={17} />}
+                        icon={<AppIcon name='Clock' size={17} />}
                         label={t('{seconds} seconds', { seconds: (data.output.timeMetadata.delta / 1000).toFixed(2) })}
                         variant='contained'
                         color='secondary'
@@ -321,7 +321,7 @@ export const NodeExecutionDetails = ({ data, label, status, metadata, isPublic, 
                 )}
                 {data.output && data.output.usageMetadata && data.output.usageMetadata.total_tokens && (
                     <Chip
-                        icon={<IconCoins size={17} />}
+                        icon={<AppIcon name='Coins' size={17} />}
                         label={t('{count} tokens', { count: data.output.usageMetadata.total_tokens })}
                         variant='contained'
                         color='primary'
@@ -331,7 +331,7 @@ export const NodeExecutionDetails = ({ data, label, status, metadata, isPublic, 
                 )}
                 {data.output?.usageMetadata?.total_cost != null && Number(data.output.usageMetadata.total_cost) >= 0 && (
                     <Chip
-                        icon={<IconCoin size={17} />}
+                        icon={<AppIcon name='Coin' size={17} />}
                         label={
                             data.output.usageMetadata.total_cost >= 0.01
                                 ? `$${Number(data.output.usageMetadata.total_cost).toFixed(2)}`
@@ -416,7 +416,8 @@ export const NodeExecutionDetails = ({ data, label, status, metadata, isPublic, 
                                     >
                                         <AccordionSummary
                                             expandIcon={
-                                                <IconChevronDown
+                                                <AppIcon
+                                                    name='CaretDown'
                                                     color={customization.isDarkMode ? theme.palette.text.primary : undefined}
                                                 />
                                             }
@@ -571,7 +572,8 @@ export const NodeExecutionDetails = ({ data, label, status, metadata, isPublic, 
                                             >
                                                 <AccordionSummary
                                                     expandIcon={
-                                                        <IconChevronDown
+                                                        <AppIcon
+                                                            name='CaretDown'
                                                             color={
                                                                 customization.isDarkMode
                                                                     ? theme.palette.text.primary
@@ -755,7 +757,13 @@ export const NodeExecutionDetails = ({ data, label, status, metadata, isPublic, 
                                                         color: tool.error ? 'error.main' : undefined
                                                     }}
                                                     variant='outlined'
-                                                    icon={<IconTool size={15} color={tool.error ? theme.palette.error.main : undefined} />}
+                                                    icon={
+                                                        <AppIcon
+                                                            name='Wrench'
+                                                            size={15}
+                                                            color={tool.error ? theme.palette.error.main : undefined}
+                                                        />
+                                                    }
                                                     onClick={() => onUsedToolClick(tool, t('Used Tools'))}
                                                 />
                                             ) : null
@@ -920,7 +928,7 @@ export const NodeExecutionDetails = ({ data, label, status, metadata, isPublic, 
                                                     key={index}
                                                     variant='outlined'
                                                     onClick={() => downloadFile(fileAnnotation)}
-                                                    endIcon={<IconDownload color={theme.palette.primary.main} />}
+                                                    endIcon={<AppIcon name='DownloadSimple' color={theme.palette.primary.main} />}
                                                 >
                                                     {fileAnnotation.fileName}
                                                 </Button>
@@ -1016,7 +1024,13 @@ export const NodeExecutionDetails = ({ data, label, status, metadata, isPublic, 
                                                     color: tool.error ? 'error.main' : undefined
                                                 }}
                                                 variant='outlined'
-                                                icon={<IconTool size={15} color={tool.error ? theme.palette.error.main : undefined} />}
+                                                icon={
+                                                    <AppIcon
+                                                        name='Wrench'
+                                                        size={15}
+                                                        color={tool.error ? theme.palette.error.main : undefined}
+                                                    />
+                                                }
                                                 onClick={() => onUsedToolClick(tool, t('Used Tools'))}
                                             />
                                         ) : null
@@ -1137,7 +1151,7 @@ export const NodeExecutionDetails = ({ data, label, status, metadata, isPublic, 
                                                 key={index}
                                                 variant='outlined'
                                                 onClick={() => downloadFile(fileAnnotation)}
-                                                endIcon={<IconDownload color={theme.palette.primary.main} />}
+                                                endIcon={<AppIcon name='DownloadSimple' color={theme.palette.primary.main} />}
                                             >
                                                 {fileAnnotation.fileName}
                                             </Button>

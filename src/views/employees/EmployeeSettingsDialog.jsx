@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 import { alpha, useTheme } from '@mui/material/styles'
 import { Box, Button, Drawer, IconButton, MenuItem, Stack, TextField, Typography } from '@mui/material'
-import { IconPlus, IconTrashFilled, IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 import { StyledButton } from '@/ui-component/button/StyledButton'
 import { FormField, useSheetShell } from '@/hooks/useDialogShell'
@@ -46,7 +46,7 @@ const EmployeeSettingsDialog = ({ show, attributeDefs, onCancel, onSave }) => {
                             '&:hover': { bgcolor: alpha(theme.palette.text.primary, 0.06), color: 'text.primary' }
                         }}
                     >
-                        <IconX size={16} strokeWidth={2.5} />
+                        <AppIcon name='X' size={16} />
                     </IconButton>
                 </Box>
 
@@ -103,12 +103,12 @@ const EmployeeSettingsDialog = ({ show, attributeDefs, onCancel, onSave }) => {
                                             '&:hover': { bgcolor: alpha(theme.palette.error.main, 0.08), color: 'error.main' }
                                         }}
                                     >
-                                        <IconTrashFilled size={16} />
+                                        <AppIcon name='Trash' size={16} />
                                     </IconButton>
                                 </Stack>
                             ))}
                             <Button
-                                startIcon={<IconPlus size={16} strokeWidth={2.5} />}
+                                startIcon={<AppIcon name='Plus' size={16} />}
                                 onClick={addAttr}
                                 sx={{ alignSelf: 'flex-start', fontWeight: 500 }}
                             >

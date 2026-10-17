@@ -44,8 +44,7 @@ import { useAuth } from '@/hooks/useAuth'
 
 // icons
 import empty_datasetSVG from '@/assets/images/empty_datasets.svg'
-import { IconTrash, IconPlus, IconX, IconUpload, IconArrowsDownUp } from '@tabler/icons-react'
-import DragIndicatorIcon from '@mui/icons-material/DragIndicator'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { useLanguage } from '@/store/context/LanguageContext'
 
 // ==============================|| Dataset Items ||============================== //
@@ -231,7 +230,7 @@ const EvalDatasetRows = () => {
                             variant: 'success',
                             action: (key) => (
                                 <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                    <IconX />
+                                    <AppIcon name='X' />
                                 </Button>
                             )
                         }
@@ -249,7 +248,7 @@ const EvalDatasetRows = () => {
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -306,7 +305,7 @@ const EvalDatasetRows = () => {
                                 color='secondary'
                                 sx={{ borderRadius: 2, height: '100%' }}
                                 onClick={uploadCSV}
-                                startIcon={<IconUpload />}
+                                startIcon={<AppIcon name='UploadSimple' />}
                             >
                                 {t('Upload CSV')}
                             </StyledPermissionButton>
@@ -315,7 +314,7 @@ const EvalDatasetRows = () => {
                                 variant='contained'
                                 sx={{ borderRadius: 2, height: '100%' }}
                                 onClick={addNew}
-                                startIcon={<IconPlus />}
+                                startIcon={<AppIcon name='Plus' />}
                             >
                                 {t('New Item')}
                             </StyledPermissionButton>
@@ -327,7 +326,7 @@ const EvalDatasetRows = () => {
                                 variant='outlined'
                                 onClick={deleteDatasetItems}
                                 color='error'
-                                startIcon={<IconTrash />}
+                                startIcon={<AppIcon name='Trash' />}
                             >
                                 {selected.length === 1
                                     ? t('Delete {count} item', { count: selected.length })
@@ -348,7 +347,7 @@ const EvalDatasetRows = () => {
                                     permissionId={'datasets:create,datasets:update'}
                                     variant='contained'
                                     sx={{ borderRadius: 2, height: '100%', mt: 2, color: 'white' }}
-                                    startIcon={<IconPlus />}
+                                    startIcon={<AppIcon name='Plus' />}
                                     onClick={addNew}
                                 >
                                     {t('New Item')}
@@ -383,7 +382,7 @@ const EvalDatasetRows = () => {
                                                 <StyledTableCell>{t('Input')}</StyledTableCell>
                                                 <StyledTableCell>{t('Expected Output')}</StyledTableCell>
                                                 <StyledTableCell style={{ width: '1%' }}>
-                                                    <IconArrowsDownUp />
+                                                    <AppIcon name='ArrowsDownUp' />
                                                 </StyledTableCell>
                                             </TableRow>
                                         </TableHead>
@@ -461,7 +460,8 @@ const EvalDatasetRows = () => {
                                                                 {item.output}
                                                             </StyledTableCell>
                                                             <StyledTableCell style={{ width: '1%' }}>
-                                                                <DragIndicatorIcon
+                                                                <AppIcon
+                                                                    name='DotsSixVertical'
                                                                     onMouseDown={() => setDraggable(true)}
                                                                     onMouseUp={() => setDraggable(false)}
                                                                 />

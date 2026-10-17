@@ -18,7 +18,7 @@ import {
     TableCell
 } from '@mui/material'
 import { alpha, useTheme } from '@mui/material/styles'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { TableViewOnly } from '@/ui-component/table/Table'
 import StatsCard from '@/ui-component/cards/StatsCard'
 
@@ -80,7 +80,7 @@ const UpsertHistoryDetailsDialog = ({ show, dialogProps, onCancel }) => {
                                                         disableGutters
                                                     >
                                                         <AccordionSummary
-                                                            expandIcon={<ExpandMoreIcon />}
+                                                            expandIcon={<AppIcon name='CaretDown' />}
                                                             aria-controls={`nodes-accordian-${node.name}`}
                                                             id={`nodes-accordian-header-${node.name}`}
                                                         >

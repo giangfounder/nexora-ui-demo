@@ -28,18 +28,8 @@ import {
 import { TreeItem2Icon } from '@mui/x-tree-view/TreeItem2Icon'
 import { TreeItem2Provider } from '@mui/x-tree-view/TreeItem2Provider'
 import { TreeItem2DragAndDropOverlay } from '@mui/x-tree-view/TreeItem2DragAndDropOverlay'
-import CheckCircleIcon from '@mui/icons-material/CheckCircle'
-import StopCircleIcon from '@mui/icons-material/StopCircle'
-import ErrorIcon from '@mui/icons-material/Error'
+import { AppIcon, iconComponent } from '@/ui-component/icons/AppIcon'
 import { IconButton } from '@mui/material'
-import {
-    IconArrowsMaximize,
-    IconLoader,
-    IconCircleXFilled,
-    IconRelationOneToManyFilled,
-    IconChevronDown,
-    IconChevronRight
-} from '@tabler/icons-react'
 
 // Project imports
 import { useTheme } from '@mui/material/styles'
@@ -149,7 +139,7 @@ function CustomLabel({ icon: Icon, itemStatus, children, name, label, data, meta
                                     justifyContent: 'center'
                                 }}
                             >
-                                <IconRelationOneToManyFilled size={20} color={'#9C89B8'} />
+                                <AppIcon name='FlowArrow' size={20} color={'#9C89B8'} />
                             </Box>
                         )
                     }
@@ -183,7 +173,7 @@ function CustomLabel({ icon: Icon, itemStatus, children, name, label, data, meta
                         zIndex: 10 // Increase z-index to ensure the button is clickable
                     }}
                 >
-                    <IconArrowsMaximize size={15} color={'teal'} />
+                    <AppIcon name='ArrowsOut' size={15} color={'teal'} />
                 </IconButton>
                 {Icon && <Box component={Icon} className='labelIcon' color={getIconColor(itemStatus)} sx={{ ml: 1, fontSize: '1.2rem' }} />}
             </Box>
@@ -227,20 +217,26 @@ const isExpandable = (reactChildren) => {
 const getIconFromStatus = (status, theme) => {
     switch (status) {
         case 'FINISHED':
-            return CheckCircleIcon
+            return iconComponent('CheckCircle')
         case 'ERROR':
         case 'TIMEOUT':
-            return ErrorIcon
+            return iconComponent('WarningCircle')
         case 'TERMINATED':
             // eslint-disable-next-line react/display-name
-            return (props) => <IconCircleXFilled {...props} color={theme.palette.error.main} />
+            return (props) => <AppIcon name='XCircle' {...props} color={theme.palette.error.main} />
         case 'STOPPED':
-            return StopCircleIcon
+            return iconComponent('StopCircle')
         case 'INPROGRESS':
             // eslint-disable-next-line react/display-name
             return (props) => (
                 // eslint-disable-next-line
-                <IconLoader {...props} color={theme.palette.warning.dark} className={`spin-animation ${props.className || ''}`} />
+                <AppIcon
+                    name='SpinnerGap'
+                    {...props}
+                    color={theme.palette.warning.dark}
+                    // eslint-disable-next-line react/prop-types
+                    className={`spin-animation ${props.className || ''}`}
+                />
             )
     }
 }
@@ -690,9 +686,9 @@ const AgentExecutedDataCard = ({ status, execution, agentflowId, sessionId }) =>
                 >
                     <Box sx={{ display: 'flex', alignItems: 'center', flexShrink: 0, mr: 1 }}>
                         {isAccordionExpanded ? (
-                            <IconChevronDown size={16} color={theme.palette.text.secondary} />
+                            <AppIcon name='CaretDown' size={16} color={theme.palette.text.secondary} />
                         ) : (
-                            <IconChevronRight size={16} color={theme.palette.text.secondary} />
+                            <AppIcon name='CaretRight' size={16} color={theme.palette.text.secondary} />
                         )}
                     </Box>
                     {executionTree.length > 0 &&

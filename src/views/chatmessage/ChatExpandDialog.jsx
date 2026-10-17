@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { Dialog, DialogContent, DialogTitle, Button } from '@mui/material'
 import ChatMessage from './ChatMessage'
 import { StyledButton } from '@/ui-component/button/StyledButton'
-import { IconEraser } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { useLanguage } from '@/store/context/LanguageContext'
 
 const ChatExpandDialog = ({ show, dialogProps, isAgentCanvas, onClear, onCancel, previews, setPreviews }) => {
@@ -33,7 +33,7 @@ const ChatExpandDialog = ({ show, dialogProps, isAgentCanvas, onClear, onCancel,
                             color='error'
                             title={t('Clear Conversation')}
                             onClick={onClear}
-                            startIcon={<IconEraser />}
+                            startIcon={<AppIcon name='Eraser' />}
                         >
                             {t('Clear Chat')}
                         </StyledButton>
@@ -44,7 +44,7 @@ const ChatExpandDialog = ({ show, dialogProps, isAgentCanvas, onClear, onCancel,
                             color='error'
                             title={t('Clear Conversation')}
                             onClick={onClear}
-                            startIcon={<IconEraser />}
+                            startIcon={<AppIcon name='Eraser' />}
                         >
                             {t('Clear Chat')}
                         </Button>

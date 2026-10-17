@@ -21,11 +21,7 @@ import {
 } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { useLanguage } from '@/store/context/LanguageContext'
-import { IconVectorBezier2, IconMinimize } from '@tabler/icons-react'
-import LLMIcon from '@mui/icons-material/ModelTraining'
-import AlarmIcon from '@mui/icons-material/AlarmOn'
-import TokensIcon from '@mui/icons-material/AutoAwesomeMotion'
-import PaidIcon from '@mui/icons-material/Paid'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // Project imports
 import { StyledTableCell, StyledTableRow } from '@/ui-component/table/TableStyles'
@@ -81,7 +77,7 @@ const EvalsResultDialog = ({ show, dialogProps, onCancel, openDetailsDrawer }) =
                                     alignItems: 'center'
                                 }}
                             >
-                                <IconVectorBezier2 style={{ marginRight: 5 }} size={17} />
+                                <AppIcon name='BezierCurve' style={{ marginRight: 5 }} size={17} />
                                 {t('Flows Used')}:
                             </div>
                             {(dialogProps.data.evaluation.chatflowName || []).map((chatflowUsed, index) => (
@@ -101,7 +97,12 @@ const EvalsResultDialog = ({ show, dialogProps, onCancel, openDetailsDrawer }) =
                             ))}
                         </Stack>
                     )}
-                    <Button variant='outlined' sx={{ width: 'max-content' }} startIcon={<IconMinimize />} onClick={() => onCancel()}>
+                    <Button
+                        variant='outlined'
+                        sx={{ width: 'max-content' }}
+                        startIcon={<AppIcon name='CornersIn' />}
+                        onClick={() => onCancel()}
+                    >
                         {t('Minimize')}
                     </Button>
                 </Stack>
@@ -146,7 +147,7 @@ const EvalsResultDialog = ({ show, dialogProps, onCancel, openDetailsDrawer }) =
                                                 {dialogProps.data.rows.length > 0 && dialogProps.data.rows[0].metrics[index].model && (
                                                     <Chip
                                                         variant='outlined'
-                                                        icon={<LLMIcon />}
+                                                        icon={<AppIcon name='Graph' />}
                                                         color={'info'}
                                                         size='small'
                                                         label={
@@ -220,7 +221,7 @@ const EvalsResultDialog = ({ show, dialogProps, onCancel, openDetailsDrawer }) =
                                                                 >
                                                                     <Chip
                                                                         variant='outlined'
-                                                                        icon={<PaidIcon />}
+                                                                        icon={<AppIcon name='CurrencyCircleDollar' />}
                                                                         size='small'
                                                                         label={t('Total Cost: {value}', {
                                                                             value: item.metrics[index]?.totalCost || t('N/A')
@@ -230,7 +231,7 @@ const EvalsResultDialog = ({ show, dialogProps, onCancel, openDetailsDrawer }) =
                                                                     <Chip
                                                                         variant='outlined'
                                                                         size='small'
-                                                                        icon={<TokensIcon />}
+                                                                        icon={<AppIcon name='Stack' />}
                                                                         label={t('Total Tokens: {value}', {
                                                                             value: item.metrics[index]?.totalTokens || t('N/A')
                                                                         })}
@@ -241,7 +242,7 @@ const EvalsResultDialog = ({ show, dialogProps, onCancel, openDetailsDrawer }) =
                                                                             <Chip
                                                                                 variant='outlined'
                                                                                 size='small'
-                                                                                icon={<TokensIcon />}
+                                                                                icon={<AppIcon name='Stack' />}
                                                                                 label={t('Prompt Tokens: {value}', {
                                                                                     value: item.metrics[index]?.promptTokens || t('N/A')
                                                                                 })}
@@ -250,7 +251,7 @@ const EvalsResultDialog = ({ show, dialogProps, onCancel, openDetailsDrawer }) =
                                                                             <Chip
                                                                                 variant='outlined'
                                                                                 size='small'
-                                                                                icon={<TokensIcon />}
+                                                                                icon={<AppIcon name='Stack' />}
                                                                                 label={t('Completion Tokens: {value}', {
                                                                                     value: item.metrics[index]?.completionTokens || t('N/A')
                                                                                 })}
@@ -263,7 +264,7 @@ const EvalsResultDialog = ({ show, dialogProps, onCancel, openDetailsDrawer }) =
                                                                             <Chip
                                                                                 variant='outlined'
                                                                                 size='small'
-                                                                                icon={<PaidIcon />}
+                                                                                icon={<AppIcon name='CurrencyCircleDollar' />}
                                                                                 label={t('Prompt Cost: {value}', {
                                                                                     value: item.metrics[index]?.promptCost || t('N/A')
                                                                                 })}
@@ -272,7 +273,7 @@ const EvalsResultDialog = ({ show, dialogProps, onCancel, openDetailsDrawer }) =
                                                                             <Chip
                                                                                 variant='outlined'
                                                                                 size='small'
-                                                                                icon={<PaidIcon />}
+                                                                                icon={<AppIcon name='CurrencyCircleDollar' />}
                                                                                 label={t('Completion Cost: {value}', {
                                                                                     value: item.metrics[index]?.completionCost || t('N/A')
                                                                                 })}
@@ -283,7 +284,7 @@ const EvalsResultDialog = ({ show, dialogProps, onCancel, openDetailsDrawer }) =
                                                                     <Chip
                                                                         variant='outlined'
                                                                         size='small'
-                                                                        icon={<AlarmIcon />}
+                                                                        icon={<AppIcon name='Alarm' />}
                                                                         label={t('API Latency: {value}', {
                                                                             value: item.metrics[index]?.apiLatency || t('N/A')
                                                                         })}
@@ -295,7 +296,7 @@ const EvalsResultDialog = ({ show, dialogProps, onCancel, openDetailsDrawer }) =
                                                                                 <Chip
                                                                                     variant='outlined'
                                                                                     size='small'
-                                                                                    icon={<AlarmIcon />}
+                                                                                    icon={<AppIcon name='Alarm' />}
                                                                                     label={t('Chain Latency: {value}', {
                                                                                         value: item.metrics[index]?.chain || t('N/A')
                                                                                     })}
@@ -305,7 +306,7 @@ const EvalsResultDialog = ({ show, dialogProps, onCancel, openDetailsDrawer }) =
                                                                             {item.metrics[index]?.retriever && (
                                                                                 <Chip
                                                                                     variant='outlined'
-                                                                                    icon={<AlarmIcon />}
+                                                                                    icon={<AppIcon name='Alarm' />}
                                                                                     size='small'
                                                                                     sx={{ mr: 1, mb: 1 }}
                                                                                     label={t('Retriever Latency: {value}', {
@@ -316,7 +317,7 @@ const EvalsResultDialog = ({ show, dialogProps, onCancel, openDetailsDrawer }) =
                                                                             {item.metrics[index]?.tool && (
                                                                                 <Chip
                                                                                     variant='outlined'
-                                                                                    icon={<AlarmIcon />}
+                                                                                    icon={<AppIcon name='Alarm' />}
                                                                                     size='small'
                                                                                     sx={{ mr: 1, mb: 1 }}
                                                                                     label={t('Tool Latency: {value}', {
@@ -326,7 +327,7 @@ const EvalsResultDialog = ({ show, dialogProps, onCancel, openDetailsDrawer }) =
                                                                             )}{' '}
                                                                             <Chip
                                                                                 variant='outlined'
-                                                                                icon={<AlarmIcon />}
+                                                                                icon={<AppIcon name='Alarm' />}
                                                                                 size='small'
                                                                                 label={t('LLM Latency: {value}', {
                                                                                     value: item.metrics[index]?.llm || t('N/A')

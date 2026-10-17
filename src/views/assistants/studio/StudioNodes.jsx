@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types'
 import { memo, useContext } from 'react'
 import { Handle, Position } from 'reactflow'
-import { Avatar, Box, IconButton, Stack, Tooltip, Typography, useTheme } from '@mui/material'
+import { Box, IconButton, Stack, Tooltip, Typography, useTheme } from '@mui/material'
 import { alpha } from '@mui/material/styles'
-import { IconAlertTriangleFilled, IconPlus } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
+import PersonAvatar from '@/ui-component/avatar/PersonAvatar'
 
-import { StatusDot } from '@/ui-component/table/SharedTable'
+import { StatusIcon } from '@/ui-component/table/SharedTable'
 import { MetaPill, toneOf } from '@/views/assistants/custom/workspace/primitives'
 import { TOKEN_SPLIT, CUSTOMER_ATTRS, storeKey, toneOfKind } from '@/views/assistants/custom/workspace/tokens'
 import { tokenColors } from '@/views/assistants/custom/workspace/TokenEditor'
@@ -154,14 +155,14 @@ const Header = ({ Icon, tone, title, caption, id, issues }) => {
                     </Typography>
                 )}
             </Box>
-            {active && <StatusDot tone={tone || 'teal'} pulse />}
+            {active && <StatusIcon tone={tone || 'teal'} icon='Lightning' />}
             {!active && issues?.length > 0 && (
                 <Tooltip title={issues.map((i) => i.text).join(' · ')}>
                     <Box
                         component='span'
                         sx={{ display: 'flex', color: issues.some((i) => i.tone === 'rose') ? 'error.main' : 'warning.main' }}
                     >
-                        <IconAlertTriangleFilled size={14} />
+                        <AppIcon name='Warning' size={14} />
                     </Box>
                 </Tooltip>
             )}
@@ -192,13 +193,6 @@ export const AgentNode = memo(function AgentNode({ id, selected }) {
     const model = models?.find((m) => m.name === doc.settings.modelName)
     const kb = doc.tools.filter((t) => TOOL_KINDS[t.kind]?.column === 'knowledge' && t.enabled !== false).length
     const tl = doc.tools.filter((t) => TOOL_KINDS[t.kind]?.column === 'tools' && t.enabled !== false).length
-    const initials = doc.name
-        .split(' ')
-        .filter(Boolean)
-        .slice(-2)
-        .map((w) => w[0])
-        .join('')
-        .toUpperCase()
     const nodeIssues = issues?.agent || []
     return (
         <Box
@@ -234,19 +228,7 @@ export const AgentNode = memo(function AgentNode({ id, selected }) {
                 alignItems='center'
                 sx={{ px: 2, py: 1.75, bgcolor: alpha(theme.palette.primary.main, isDark ? 0.12 : 0.06) }}
             >
-                <Avatar
-                    sx={{
-                        width: 40,
-                        height: 40,
-                        borderRadius: '10px',
-                        bgcolor: 'primary.main',
-                        color: 'primary.contrastText',
-                        fontSize: '0.875rem',
-                        fontWeight: 700
-                    }}
-                >
-                    {initials || 'AI'}
-                </Avatar>
+                <PersonAvatar name={doc.name} kind='assistant' size={40} />
                 <Box sx={{ flex: 1, minWidth: 0 }}>
                     <Typography noWrap sx={{ fontSize: '1rem', fontWeight: 700, lineHeight: 1.3 }}>
                         {doc.name}
@@ -255,11 +237,11 @@ export const AgentNode = memo(function AgentNode({ id, selected }) {
                         Agent · {model?.short || doc.settings.modelName}
                     </Typography>
                 </Box>
-                {thinking && <StatusDot tone='orange' pulse />}
+                {thinking && <StatusIcon tone='orange' icon='CircleNotch' spin />}
                 {!thinking && nodeIssues.length > 0 && (
                     <Tooltip title={nodeIssues.map((i) => i.text).join(' · ')}>
                         <Box component='span' sx={{ display: 'flex', color: 'warning.main' }}>
-                            <IconAlertTriangleFilled size={16} />
+                            <AppIcon name='Warning' size={16} />
                         </Box>
                     </Tooltip>
                 )}
@@ -405,7 +387,7 @@ export const LabelNode = memo(function LabelNode({ data }) {
                             '&:hover': { borderColor: 'primary.main', color: 'primary.main' }
                         }}
                     >
-                        <IconPlus size={14} />
+                        <AppIcon name='Plus' size={14} />
                     </IconButton>
                 </Tooltip>
             )}

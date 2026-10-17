@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 // material-ui
 import { Button, Box, Typography, IconButton, OutlinedInput, InputAdornment, Alert } from '@mui/material'
-import { IconX, IconCopy, IconRefresh } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { useTheme } from '@mui/material/styles'
 
 // Project import
@@ -69,7 +69,7 @@ const McpServer = ({ dialogProps, onStatusChange }) => {
                 variant: 'success',
                 action: (key) => (
                     <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                        <IconX />
+                        <AppIcon name='X' />
                     </Button>
                 )
             }
@@ -85,7 +85,7 @@ const McpServer = ({ dialogProps, onStatusChange }) => {
                 persist: true,
                 action: (key) => (
                     <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                        <IconX />
+                        <AppIcon name='X' />
                     </Button>
                 )
             }
@@ -320,7 +320,7 @@ const McpServer = ({ dialogProps, onStatusChange }) => {
                                             title={t('Copy URL to clipboard')}
                                             sx={{ color: customization.isDarkMode ? theme.palette.grey[300] : 'inherit' }}
                                         >
-                                            <IconCopy size={18} />
+                                            <AppIcon name='Copy' size={18} />
                                         </IconButton>
                                     </InputAdornment>
                                 }
@@ -358,7 +358,7 @@ const McpServer = ({ dialogProps, onStatusChange }) => {
                                             title={t('Copy token')}
                                             sx={{ color: customization.isDarkMode ? theme.palette.grey[300] : 'inherit' }}
                                         >
-                                            <IconCopy size={18} />
+                                            <AppIcon name='Copy' size={18} />
                                         </IconButton>
                                         <IconButton
                                             size='small'
@@ -367,7 +367,7 @@ const McpServer = ({ dialogProps, onStatusChange }) => {
                                             disabled={loading}
                                             sx={{ color: customization.isDarkMode ? theme.palette.grey[300] : 'inherit' }}
                                         >
-                                            <IconRefresh size={18} />
+                                            <AppIcon name='ArrowClockwise' size={18} />
                                         </IconButton>
                                     </InputAdornment>
                                 }

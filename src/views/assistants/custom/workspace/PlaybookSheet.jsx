@@ -19,25 +19,7 @@ import {
     useTheme
 } from '@mui/material'
 import { alpha } from '@mui/material/styles'
-import {
-    IconApi,
-    IconArrowRight,
-    IconArrowsMaximize,
-    IconArrowsMinimize,
-    IconBoltFilled,
-    IconBookFilled,
-    IconChevronDown,
-    IconDirectionsFilled,
-    IconListDetails,
-    IconMessageFilled,
-    IconMessageReply,
-    IconPlus,
-    IconRoute,
-    IconTagFilled,
-    IconTrashFilled,
-    IconUserFilled,
-    IconX
-} from '@tabler/icons-react'
+import { AppIcon, iconComponent } from '@/ui-component/icons/AppIcon'
 
 import { useSheetShell } from '@/hooks/useDialogShell'
 import { AttentionStrip, Eyebrow, R_CARD, R_CONTROL, ToneTag, cardSx, closeButtonSx, hairlineListSx } from './primitives'
@@ -50,11 +32,11 @@ import TokenEditor, { TokenChip, VariablePalette } from './TokenEditor'
 // ---------------------------------------------------------------------------
 
 const STEP_META = {
-    profile: { label: 'Lấy từ hồ sơ', Icon: IconUserFilled },
-    ask: { label: 'Hỏi khách', Icon: IconMessageFilled },
-    call: { label: 'Gọi API', Icon: IconApi },
-    search: { label: 'Tìm tài liệu', Icon: IconBookFilled },
-    reply: { label: 'Trả lời', Icon: IconMessageReply }
+    profile: { label: 'Lấy từ hồ sơ', Icon: iconComponent('User') },
+    ask: { label: 'Hỏi khách', Icon: iconComponent('ChatText') },
+    call: { label: 'Gọi API', Icon: iconComponent('PlugsConnected') },
+    search: { label: 'Tìm tài liệu', Icon: iconComponent('Book') },
+    reply: { label: 'Trả lời', Icon: iconComponent('ArrowBendUpLeft') }
 }
 
 const Muted = ({ children }) => (
@@ -98,7 +80,7 @@ const StepContent = ({ step, registry }) => {
                 {chip(`api.${step.api.key}`)}
                 {step.outputs.length > 0 && (
                     <>
-                        <IconArrowRight size={14} stroke={1.75} style={{ opacity: 0.5, flexShrink: 0 }} />
+                        <AppIcon name='ArrowRight' size={14} style={{ opacity: 0.5, flexShrink: 0 }} />
                         <Muted>nhận</Muted>
                         {step.outputs.map((o) => chip(o))}
                     </>
@@ -146,7 +128,7 @@ const FieldHead = ({ icon: Icon, label, htmlFor, onExpand }) => (
                     onClick={onExpand}
                     sx={{ width: 26, height: 26, color: 'text.secondary' }}
                 >
-                    <IconArrowsMaximize size={14} stroke={1.75} />
+                    <AppIcon name='ArrowsOut' size={14} />
                 </IconButton>
             </Tooltip>
         )}
@@ -166,7 +148,7 @@ const Readback = ({ steps, issues, registry, sx }) => {
                 spacing={1}
                 sx={{ px: 2, py: 1.5, borderBottom: `1px solid ${theme.palette.alpha.divider}` }}
             >
-                <IconListDetails size={16} stroke={1.75} style={{ opacity: 0.6 }} />
+                <AppIcon name='ListBullets' size={16} style={{ opacity: 0.6 }} />
                 <Typography sx={{ fontSize: '0.8125rem', fontWeight: 700 }}>Agent hiểu như sau</Typography>
                 <Box sx={{ flex: 1 }} />
                 {rows.length > 0 && (
@@ -281,7 +263,7 @@ const PlaybookFocus = ({ open, focus, pb, health, registry, onChange, onClose })
                 spacing={1.5}
                 sx={{ px: 3, py: 2, bgcolor: 'background.paper', borderBottom: `1px solid ${theme.palette.alpha.border}` }}
             >
-                <IconDirectionsFilled size={20} style={{ opacity: 0.7 }} />
+                <AppIcon name='Signpost' size={20} style={{ opacity: 0.7 }} />
                 <Typography id={`pb-focus-title-${pb.id}`} noWrap sx={{ minWidth: 0, fontSize: '1.125rem', fontWeight: 600 }}>
                     {pb.name?.trim() || 'Kịch bản chưa đặt tên'}
                 </Typography>
@@ -291,7 +273,7 @@ const PlaybookFocus = ({ open, focus, pb, health, registry, onChange, onClose })
                     </ToneTag>
                 )}
                 <Box sx={{ flex: 1 }} />
-                <Button variant='contained' onClick={onClose} startIcon={<IconArrowsMinimize size={16} stroke={1.75} />}>
+                <Button variant='contained' onClick={onClose} startIcon={<AppIcon name='ArrowsIn' size={16} />}>
                     Thu nhỏ
                 </Button>
             </Stack>
@@ -312,7 +294,7 @@ const PlaybookFocus = ({ open, focus, pb, health, registry, onChange, onClose })
             >
                 <Stack spacing={3} sx={{ minWidth: 0, minHeight: { md: 0 } }}>
                     <Box>
-                        <FieldHead icon={IconBoltFilled} label='Trường hợp kích hoạt' htmlFor={`pb-when-full-${pb.id}`} />
+                        <FieldHead icon={iconComponent('Lightning')} label='Trường hợp kích hoạt' htmlFor={`pb-when-full-${pb.id}`} />
                         <TextField
                             id={`pb-when-full-${pb.id}`}
                             fullWidth
@@ -328,7 +310,7 @@ const PlaybookFocus = ({ open, focus, pb, health, registry, onChange, onClose })
                         />
                     </Box>
                     <Box sx={{ flex: 1, minHeight: { xs: 360, md: 0 }, display: 'flex', flexDirection: 'column' }}>
-                        <FieldHead icon={IconRoute} label='Cách xử lý' />
+                        <FieldHead icon={iconComponent('Path')} label='Cách xử lý' />
                         <TokenEditor
                             ref={scriptRef}
                             value={pb.script}
@@ -468,7 +450,7 @@ const PlaybookItem = ({ pb, index, expanded, onToggle, onChange, onDelete, regis
                         sx={{ width: 32, height: 32, borderRadius: R_CONTROL, color: 'text.secondary' }}
                     >
                         <Box
-                            component={IconChevronDown}
+                            component={iconComponent('CaretDown')}
                             size={18}
                             stroke={1.75}
                             sx={{ transform: expanded ? 'rotate(180deg)' : 'none', transition: 'transform 200ms' }}
@@ -492,7 +474,7 @@ const PlaybookItem = ({ pb, index, expanded, onToggle, onChange, onDelete, regis
                 >
                     <Stack spacing={3} sx={{ minWidth: 0 }}>
                         <Box>
-                            <FieldHead icon={IconTagFilled} label='Tên kịch bản' htmlFor={`pb-name-${pb.id}`} />
+                            <FieldHead icon={iconComponent('Tag')} label='Tên kịch bản' htmlFor={`pb-name-${pb.id}`} />
                             <TextField
                                 id={`pb-name-${pb.id}`}
                                 size='small'
@@ -504,7 +486,7 @@ const PlaybookItem = ({ pb, index, expanded, onToggle, onChange, onDelete, regis
                         </Box>
                         <Box>
                             <FieldHead
-                                icon={IconBoltFilled}
+                                icon={iconComponent('Lightning')}
                                 label='Trường hợp kích hoạt'
                                 htmlFor={`pb-when-${pb.id}`}
                                 onExpand={() => setFocus('when')}
@@ -522,7 +504,7 @@ const PlaybookItem = ({ pb, index, expanded, onToggle, onChange, onDelete, regis
                             />
                         </Box>
                         <Box>
-                            <FieldHead icon={IconRoute} label='Cách xử lý' onExpand={() => setFocus('script')} />
+                            <FieldHead icon={iconComponent('Path')} label='Cách xử lý' onExpand={() => setFocus('script')} />
                             <TokenEditor
                                 ref={scriptRef}
                                 value={pb.script}
@@ -543,7 +525,7 @@ const PlaybookItem = ({ pb, index, expanded, onToggle, onChange, onDelete, regis
                         <Button
                             size='small'
                             color='error'
-                            startIcon={<IconTrashFilled size={16} />}
+                            startIcon={<AppIcon name='Trash' size={16} />}
                             onClick={onDelete}
                             sx={{ alignSelf: 'flex-start' }}
                         >
@@ -637,7 +619,7 @@ const PlaybookSheet = ({ open, onClose, toolState, setToolState, registry }) => 
                     </Stack>
                     <Tooltip title='Đóng'>
                         <IconButton onClick={onClose} aria-label='Đóng' size='small' sx={closeButtonSx(theme)}>
-                            <IconX size={16} strokeWidth={2.5} />
+                            <AppIcon name='X' size={16} />
                         </IconButton>
                     </Tooltip>
                 </Box>
@@ -645,16 +627,11 @@ const PlaybookSheet = ({ open, onClose, toolState, setToolState, registry }) => 
                 <Box {...contentProps}>
                     {playbooks.length === 0 ? (
                         <Stack alignItems='center' spacing={1.5} sx={{ py: 6, textAlign: 'center', color: 'text.secondary' }}>
-                            <IconDirectionsFilled size={40} style={{ opacity: 0.3 }} />
+                            <AppIcon name='Signpost' size={40} style={{ opacity: 0.3 }} />
                             <Typography variant='body2'>
                                 Chưa có kịch bản. Thêm kịch bản để chỉ cho agent cách xử lý từng tình huống.
                             </Typography>
-                            <Button
-                                ref={addRef}
-                                startIcon={<IconPlus size={16} strokeWidth={2.5} />}
-                                onClick={add}
-                                sx={{ fontWeight: 500 }}
-                            >
+                            <Button ref={addRef} startIcon={<AppIcon name='Plus' size={16} />} onClick={add} sx={{ fontWeight: 500 }}>
                                 Thêm
                             </Button>
                         </Stack>
@@ -681,7 +658,7 @@ const PlaybookSheet = ({ open, onClose, toolState, setToolState, registry }) => 
                             <Button
                                 ref={addRef}
                                 fullWidth
-                                startIcon={<IconPlus size={16} strokeWidth={2.5} />}
+                                startIcon={<AppIcon name='Plus' size={16} />}
                                 onClick={add}
                                 sx={{
                                     height: 48,

@@ -10,7 +10,6 @@ import useNotifier from '@/utils/useNotifier'
 
 // material-ui
 import {
-    Avatar,
     Box,
     Button,
     ButtonBase,
@@ -43,7 +42,8 @@ import AboutDialog from '@/ui-component/dialog/AboutDialog'
 
 // assets
 import ExportingGIF from '@/assets/images/Exporting.gif'
-import { IconFileExport, IconFileUpload, IconInfoCircle, IconLogout, IconUserEdit, IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
+import PersonAvatar from '@/ui-component/avatar/PersonAvatar'
 import './index.css'
 
 // API
@@ -229,14 +229,6 @@ const ProfileSection = ({ handleLogout }) => {
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
 
     const displayName = currentUser?.name || currentUser?.email?.split('@')[0] || t('Người dùng')
-    const initials =
-        displayName
-            .split(/\s+/)
-            .filter(Boolean)
-            .slice(-2)
-            .map((w) => w[0])
-            .join('')
-            .toUpperCase() || 'U'
 
     const importAllApi = useApi(exportImportApi.importData)
     const exportAllApi = useApi(exportImportApi.exportData)
@@ -269,7 +261,7 @@ const ProfileSection = ({ handleLogout }) => {
                 persist: true,
                 action: (key) => (
                     <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                        <IconX />
+                        <AppIcon name='X' />
                     </Button>
                 )
             }
@@ -303,7 +295,7 @@ const ProfileSection = ({ handleLogout }) => {
                 variant: 'success',
                 action: (key) => (
                     <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                        <IconX />
+                        <AppIcon name='X' />
                     </Button>
                 )
             }
@@ -405,7 +397,7 @@ const ProfileSection = ({ handleLogout }) => {
                 sx={{
                     alignSelf: 'center',
                     flexShrink: 0,
-                    borderRadius: '50%',
+                    borderRadius: '11px',
                     p: '3px',
                     transition: 'box-shadow 160ms ease-out',
                     boxShadow: open ? `0 0 0 2px ${theme.palette.primary.main}` : `0 0 0 1px ${alpha(theme.palette.text.primary, 0.1)}`,
@@ -413,18 +405,7 @@ const ProfileSection = ({ handleLogout }) => {
                     '&.Mui-focusVisible': { boxShadow: theme.customShadows?.focusRing }
                 }}
             >
-                <Avatar
-                    sx={{
-                        width: 30,
-                        height: 30,
-                        fontSize: '0.75rem',
-                        fontWeight: 700,
-                        bgcolor: alpha(theme.palette.primary.main, 0.12),
-                        color: theme.palette.primary.dark
-                    }}
-                >
-                    {initials}
-                </Avatar>
+                <PersonAvatar name={displayName} size={30} />
             </ButtonBase>
             <Popper
                 placement='bottom-end'
@@ -452,18 +433,7 @@ const ProfileSection = ({ handleLogout }) => {
                                 <Box>
                                     {/* who is signed in */}
                                     <Stack direction='row' spacing={1.5} alignItems='center' sx={{ px: 2, pt: 2, pb: 1.75 }}>
-                                        <Avatar
-                                            sx={{
-                                                width: 42,
-                                                height: 42,
-                                                fontSize: '0.9375rem',
-                                                fontWeight: 700,
-                                                bgcolor: alpha(theme.palette.primary.main, 0.12),
-                                                color: theme.palette.primary.dark
-                                            }}
-                                        >
-                                            {initials}
-                                        </Avatar>
+                                        <PersonAvatar name={displayName} size={42} />
                                         <Box sx={{ minWidth: 0 }}>
                                             <Typography variant='body2' sx={{ fontWeight: 700, color: 'grey.900' }} noWrap>
                                                 {displayName}
@@ -501,7 +471,7 @@ const ProfileSection = ({ handleLogout }) => {
                                                 }}
                                             >
                                                 <ListItemIcon>
-                                                    <IconUserEdit stroke={1.75} size={19} />
+                                                    <AppIcon name='UserCircleGear' size={19} />
                                                 </ListItemIcon>
                                                 <ListItemText
                                                     primary={t('Cài đặt tài khoản')}
@@ -513,7 +483,7 @@ const ProfileSection = ({ handleLogout }) => {
                                         )}
                                         <PermissionListItemButton permissionId='workspace:export' onClick={() => setExportDialogOpen(true)}>
                                             <ListItemIcon>
-                                                <IconFileExport stroke={1.75} size={19} />
+                                                <AppIcon name='Export' size={19} />
                                             </ListItemIcon>
                                             <ListItemText
                                                 primary={t('Sao lưu dữ liệu')}
@@ -524,7 +494,7 @@ const ProfileSection = ({ handleLogout }) => {
                                         </PermissionListItemButton>
                                         <PermissionListItemButton permissionId='workspace:import' onClick={() => importAll()}>
                                             <ListItemIcon>
-                                                <IconFileUpload stroke={1.75} size={19} />
+                                                <AppIcon name='FileArrowUp' size={19} />
                                             </ListItemIcon>
                                             <ListItemText
                                                 primary={t('Khôi phục dữ liệu')}
@@ -553,7 +523,7 @@ const ProfileSection = ({ handleLogout }) => {
                                             }}
                                         >
                                             <ListItemIcon sx={{ minWidth: 34, color: 'inherit' }}>
-                                                <IconLogout stroke={1.75} size={19} />
+                                                <AppIcon name='SignOut' size={19} />
                                             </ListItemIcon>
                                             <ListItemText
                                                 primary={t('Đăng xuất')}
@@ -586,7 +556,7 @@ const ProfileSection = ({ handleLogout }) => {
                                             NEXORA
                                         </Typography>
                                         <Stack direction='row' spacing={0.5} alignItems='center' sx={{ color: 'text.secondary' }}>
-                                            <IconInfoCircle size={14} stroke={1.75} />
+                                            <AppIcon name='Info' size={14} />
                                             <Typography variant='caption' sx={{ color: 'inherit' }}>
                                                 {t('Phiên bản')}
                                             </Typography>

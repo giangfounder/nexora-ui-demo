@@ -29,7 +29,7 @@ import { useError } from '@/store/context/ErrorContext'
 import { useLanguage } from '@/store/context/LanguageContext'
 
 // icons
-import { IconAlertTriangle, IconLayoutGrid, IconList, IconPlus, IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // ==============================|| AGENTS ||============================== //
 
@@ -252,7 +252,7 @@ const Agentflows = () => {
                                 value='card'
                                 title={t('Card View')}
                             >
-                                <IconLayoutGrid size={18} stroke={1.75} />
+                                <AppIcon name='GridFour' size={18} />
                             </ToggleButton>
                             <ToggleButton
                                 sx={{ borderColor: theme.palette.alpha.border }}
@@ -260,14 +260,14 @@ const Agentflows = () => {
                                 value='list'
                                 title={t('List View')}
                             >
-                                <IconList size={18} stroke={1.75} />
+                                <AppIcon name='List' size={18} />
                             </ToggleButton>
                         </ToggleButtonGroup>
                         <StyledPermissionButton
                             permissionId={'agentflows:create'}
                             variant='contained'
                             onClick={addNew}
-                            startIcon={<IconPlus size={18} stroke={1.75} />}
+                            startIcon={<AppIcon name='Plus' size={18} />}
                             sx={{ height: 40 }}
                         >
                             {t('Add New')}
@@ -288,11 +288,7 @@ const Agentflows = () => {
                                 gap: 1.5
                             }}
                         >
-                            <IconAlertTriangle
-                                size={18}
-                                stroke={1.75}
-                                style={{ color: theme.palette.spectrum.amber.main, flexShrink: 0 }}
-                            />
+                            <AppIcon name='Warning' size={18} style={{ color: theme.palette.spectrum.amber.main, flexShrink: 0 }} />
                             <Box sx={{ flex: 1 }}>
                                 <strong>{t('V1 Agentflows are deprecated.')}</strong>{' '}
                                 {t('We recommend migrating to V2 for improved performance and continued support.')}
@@ -303,7 +299,7 @@ const Agentflows = () => {
                                 onClick={handleDismissDeprecationNotice}
                                 sx={{ color: theme.palette.text.secondary }}
                             >
-                                <IconX size={16} stroke={1.75} />
+                                <AppIcon name='X' size={16} />
                             </IconButton>
                         </Box>
                     )}

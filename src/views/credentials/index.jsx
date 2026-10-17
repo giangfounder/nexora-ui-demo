@@ -26,7 +26,7 @@ import useConfirm from '@/hooks/useConfirm'
 import useNotifier from '@/utils/useNotifier'
 
 // Icons
-import { IconTrash, IconEdit, IconX, IconPlus, IconShare } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import CredentialEmptySVG from '@/assets/images/credential_empty.svg'
 import keySVG from '@/assets/images/key.svg'
 
@@ -142,7 +142,7 @@ const Credentials = () => {
                             variant: 'success',
                             action: (key) => (
                                 <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                    <IconX />
+                                    <AppIcon name='X' />
                                 </Button>
                             )
                         }
@@ -160,7 +160,7 @@ const Credentials = () => {
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -222,7 +222,7 @@ const Credentials = () => {
                                 variant='contained'
                                 sx={{ height: '100%' }}
                                 onClick={listCredential}
-                                startIcon={<IconPlus size={18} stroke={1.75} />}
+                                startIcon={<AppIcon name='Plus' size={18} />}
                             >
                                 {t('Add Credential')}
                             </StyledPermissionButton>
@@ -356,7 +356,7 @@ const Credentials = () => {
                                                                         color='primary'
                                                                         onClick={() => share(credential)}
                                                                     >
-                                                                        <IconShare />
+                                                                        <AppIcon name='ShareNetwork' />
                                                                     </PermissionIconButton>
                                                                 </StyledTableCell>
                                                                 <StyledTableCell>
@@ -366,7 +366,7 @@ const Credentials = () => {
                                                                         color='primary'
                                                                         onClick={() => edit(credential)}
                                                                     >
-                                                                        <IconEdit />
+                                                                        <AppIcon name='PencilSimpleLine' />
                                                                     </PermissionIconButton>
                                                                 </StyledTableCell>
                                                                 <StyledTableCell>
@@ -376,7 +376,7 @@ const Credentials = () => {
                                                                         color='error'
                                                                         onClick={() => deleteCredential(credential)}
                                                                     >
-                                                                        <IconTrash />
+                                                                        <AppIcon name='Trash' />
                                                                     </PermissionIconButton>
                                                                 </StyledTableCell>
                                                             </>

@@ -29,10 +29,10 @@ export const customersGrowth90d = DAY_LABELS_90.map((day, i) => {
 })
 
 export const customersKpi = {
-    total: { label: 'Tổng khách hàng', value: '1.842', delta: 12.4, tone: 'orange' },
-    new: { label: 'Khách mới (30 ngày)', value: '284', delta: 8.7, tone: 'teal' },
-    churn: { label: 'Churn (30 ngày)', value: '3,2%', delta: -1.4, tone: 'rose' },
-    ltv: { label: 'LTV trung bình', value: '4,2M', delta: 6.1, tone: 'emerald' }
+    total: { label: 'Tổng khách hàng', value: '1.842', delta: 12.4, tone: 'orange', icon: 'UsersThree' },
+    new: { label: 'Khách mới (30 ngày)', value: '284', delta: 8.7, tone: 'teal', icon: 'UserPlus' },
+    churn: { label: 'Churn (30 ngày)', value: '3,2%', delta: -1.4, tone: 'rose', icon: 'UserMinus' },
+    ltv: { label: 'LTV trung bình', value: '4,2M', delta: 6.1, tone: 'emerald', icon: 'Coins' }
 }
 
 export const topSpendCustomers = [
@@ -93,10 +93,10 @@ export const cohortRetention = (() => {
 })()
 
 export const aiQualityKpi = {
-    rating: { label: 'Đánh giá TB', value: '4,6/5', delta: 2.1, tone: 'emerald' },
-    thumbsUp: { label: 'Phản hồi tích cực', value: '87%', delta: 3.4, tone: 'teal' },
-    handoff: { label: 'Chuyển nhân viên', value: '11,2%', delta: -0.8, tone: 'amber' },
-    firstResponse: { label: 'Phản hồi đầu (giây)', value: '3,4s', delta: -12.5, tone: 'orange' }
+    rating: { label: 'Đánh giá TB', value: '4,6/5', delta: 2.1, tone: 'emerald', icon: 'Star' },
+    thumbsUp: { label: 'Phản hồi tích cực', value: '87%', delta: 3.4, tone: 'teal', icon: 'ThumbsUp' },
+    handoff: { label: 'Chuyển nhân viên', value: '11,2%', delta: -0.8, tone: 'amber', icon: 'ArrowBendUpRight' },
+    firstResponse: { label: 'Phản hồi đầu (giây)', value: '3,4s', delta: -12.5, tone: 'orange', icon: 'Timer' }
 }
 
 export const aiQualityByDay = DAY_LABELS_90.slice(-30).map((day, i) => ({

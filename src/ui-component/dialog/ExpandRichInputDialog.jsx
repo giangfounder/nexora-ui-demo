@@ -7,7 +7,7 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 // MUI
 import { Button, Dialog, DialogActions, DialogContent, Typography, Box, ToggleButton, ToggleButtonGroup } from '@mui/material'
 import { styled } from '@mui/material/styles'
-import { IconCode, IconPencil } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // Project Import
 import { StyledButton } from '@/ui-component/button/StyledButton'
@@ -309,11 +309,11 @@ const ExpandRichInputDialog = ({ show, dialogProps, onCancel, onInputHintDialogC
                                     }}
                                 >
                                     <ToggleButton value='preview' sx={{ px: 1.5, py: 0.5, textTransform: 'none' }}>
-                                        <IconPencil size={16} style={{ marginRight: 4 }} />
+                                        <AppIcon name='PencilSimple' size={16} style={{ marginRight: 4 }} />
                                         {t('Edit')}
                                     </ToggleButton>
                                     <ToggleButton value='raw' sx={{ px: 1.5, py: 0.5, textTransform: 'none' }}>
-                                        <IconCode size={16} style={{ marginRight: 4 }} />
+                                        <AppIcon name='Code' size={16} style={{ marginRight: 4 }} />
                                         {t('Source')}
                                     </ToggleButton>
                                 </ToggleButtonGroup>

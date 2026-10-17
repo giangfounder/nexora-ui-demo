@@ -6,7 +6,7 @@ import './DateField.css'
 
 import { alpha, useTheme } from '@mui/material/styles'
 import { Box, IconButton, InputAdornment, Stack, TextField, Typography } from '@mui/material'
-import { IconCalendarFilled, IconChevronLeft, IconChevronRight, IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { useLanguage } from '@/store/context/LanguageContext'
 
 const VI_WEEKDAY = {
@@ -79,7 +79,7 @@ const DateField = ({
                 sx: { cursor: disabled ? 'default' : 'pointer', pr: 0.5 },
                 startAdornment: (
                     <InputAdornment position='start' sx={{ ml: 0.5, mr: 0.75 }}>
-                        <IconCalendarFilled size={15} style={{ opacity: 0.55 }} />
+                        <AppIcon name='Calendar' size={15} style={{ opacity: 0.55 }} />
                     </InputAdornment>
                 ),
                 endAdornment:
@@ -100,7 +100,7 @@ const DateField = ({
                                     '&:hover': { bgcolor: alpha(theme.palette.text.primary, 0.06), color: 'text.primary' }
                                 }}
                             >
-                                <IconX size={13} strokeWidth={2.5} />
+                                <AppIcon name='X' size={13} />
                             </IconButton>
                         </InputAdornment>
                     ) : null
@@ -142,7 +142,7 @@ const DateField = ({
                                 '&:hover': { bgcolor: alpha(theme.palette.text.primary, 0.06) }
                             }}
                         >
-                            <IconChevronLeft size={15} strokeWidth={2.5} />
+                            <AppIcon name='CaretLeft' size={15} />
                         </IconButton>
                         <Typography sx={{ fontSize: '0.875rem', fontWeight: 600, color: 'text.primary' }}>
                             {language === 'vi'
@@ -162,7 +162,7 @@ const DateField = ({
                                 '&:hover': { bgcolor: alpha(theme.palette.text.primary, 0.06) }
                             }}
                         >
-                            <IconChevronRight size={15} strokeWidth={2.5} />
+                            <AppIcon name='CaretRight' size={15} />
                         </IconButton>
                     </Stack>
                 )}

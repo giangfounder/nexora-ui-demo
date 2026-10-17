@@ -18,7 +18,7 @@ import {
     useTheme
 } from '@mui/material'
 import { alpha } from '@mui/material/styles'
-import { IconAlertTriangleFilled, IconArrowsExchange, IconCheck, IconChevronDown, IconSearch, IconTrash, IconX } from '@tabler/icons-react'
+import { AppIcon, iconComponent } from '@/ui-component/icons/AppIcon'
 
 import {
     R_CARD,
@@ -86,7 +86,7 @@ export const tokenSx = (theme, kind, unknown) => {
 
 const chipLabel = (name, item) => (item ? tokenShortLabel(name, item) : name)
 const KindIcon = ({ kind, size = 13 }) => {
-    const Icon = kind === 'unknown' ? IconAlertTriangleFilled : tokenKindMeta(kind).Icon
+    const Icon = kind === 'unknown' ? iconComponent('Warning') : tokenKindMeta(kind).Icon
     return <Icon size={size} stroke={1.75} style={{ flexShrink: 0, display: 'block' }} />
 }
 KindIcon.propTypes = { kind: PropTypes.string, size: PropTypes.number }
@@ -495,7 +495,7 @@ const AttrsPopover = ({ anchor, open, name, item, onClose, onDelete, onPickRepla
                     </Typography>
                 </Box>
                 <IconButton size='small' aria-label='Đóng' onClick={onClose} sx={{ color: 'text.secondary' }}>
-                    <IconX size={16} stroke={1.75} />
+                    <AppIcon name='X' size={16} />
                 </IconButton>
             </Stack>
             <Box component='dl' sx={{ m: 0, px: 2, py: 1 }}>
@@ -530,11 +530,11 @@ const AttrsPopover = ({ anchor, open, name, item, onClose, onDelete, onPickRepla
                 ))}
             </Box>
             <Stack direction='row' spacing={1} sx={{ px: 2, py: 1.25, borderTop: `1px solid ${theme.palette.alpha.border}` }}>
-                <Button size='small' variant='outlined' startIcon={<IconArrowsExchange size={14} stroke={1.75} />} onClick={onPickReplace}>
+                <Button size='small' variant='outlined' startIcon={<AppIcon name='ArrowsLeftRight' size={14} />} onClick={onPickReplace}>
                     Đổi
                 </Button>
                 <Box sx={{ flex: 1 }} />
-                <Button size='small' color='error' startIcon={<IconTrash size={14} stroke={1.75} />} onClick={onDelete}>
+                <Button size='small' color='error' startIcon={<AppIcon name='Trash' size={14} />} onClick={onDelete}>
                     Xoá
                 </Button>
             </Stack>
@@ -594,7 +594,7 @@ export const VariablePalette = ({ registry, value, onPick, groups, title = 'Bi�
                         '&:focus-within': { borderColor: 'primary.main', boxShadow: theme.customShadows?.focusRing }
                     }}
                 >
-                    <IconSearch size={14} stroke={1.75} style={{ color: theme.palette.text.secondary, flexShrink: 0 }} />
+                    <AppIcon name='MagnifyingGlass' size={14} style={{ color: theme.palette.text.secondary, flexShrink: 0 }} />
                     <InputBase
                         value={q}
                         onChange={(e) => setQ(e.target.value)}
@@ -673,7 +673,7 @@ export const VariablePalette = ({ registry, value, onPick, groups, title = 'Bi�
                                                         fontWeight: 600
                                                     }}
                                                 >
-                                                    <IconCheck size={12} stroke={2.25} />
+                                                    <AppIcon name='Check' size={12} />
                                                     {n > 1 ? n : null}
                                                 </Box>
                                             </Tooltip>
@@ -1319,7 +1319,7 @@ const TokenEditor = forwardRef(function TokenEditor(
                                         <KindIcon kind={g.id} size={14} />
                                     </Box>
                                 }
-                                endIcon={<IconChevronDown size={12} stroke={2} />}
+                                endIcon={<AppIcon name='CaretDown' size={12} />}
                                 sx={{
                                     ...quietButtonSx(theme),
                                     height: 28,

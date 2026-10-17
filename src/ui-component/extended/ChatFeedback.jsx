@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 // material-ui
 import { Button, Box, Stack } from '@mui/material'
-import { IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // Project import
 import { StyledButton } from '@/ui-component/button/StyledButton'
@@ -53,7 +53,7 @@ const ChatFeedback = ({ dialogProps, onConfirm }) => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -72,7 +72,7 @@ const ChatFeedback = ({ dialogProps, onConfirm }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }

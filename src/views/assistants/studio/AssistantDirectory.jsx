@@ -24,7 +24,7 @@ import {
     Typography,
     useTheme
 } from '@mui/material'
-import { IconDotsVertical, IconPlus, IconSearch } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 import assistantsApi from '@/api/assistants'
 import useConfirm from '@/hooks/useConfirm'
@@ -107,7 +107,7 @@ const AssistantCard = ({ doc, modelLabel, onOpen, onDuplicate, onDelete }) => {
                                 setAnchor(e.currentTarget)
                             }}
                         >
-                            <IconDotsVertical size={16} stroke={1.75} />
+                            <AppIcon name='DotsThreeVertical' size={16} />
                         </IconButton>
                     </Tooltip>
                     <Menu
@@ -300,12 +300,17 @@ const AssistantDirectory = () => {
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position='start'>
-                                <IconSearch size={16} stroke={1.75} />
+                                <AppIcon name='MagnifyingGlass' size={16} />
                             </InputAdornment>
                         )
                     }}
                 />
-                <Button variant='contained' startIcon={<IconPlus size={16} />} onClick={() => setCreating(true)} sx={{ flexShrink: 0 }}>
+                <Button
+                    variant='contained'
+                    startIcon={<AppIcon name='Plus' size={16} />}
+                    onClick={() => setCreating(true)}
+                    sx={{ flexShrink: 0 }}
+                >
                     Tạo trợ lý
                 </Button>
             </Stack>
@@ -350,7 +355,7 @@ const AssistantDirectory = () => {
                 >
                     <Typography variant='h5'>{q ? `Không có trợ lý nào tên “${q}”` : 'Chưa có trợ lý nào'}</Typography>
                     {!q && (
-                        <Button variant='contained' startIcon={<IconPlus size={16} />} onClick={() => setCreating(true)}>
+                        <Button variant='contained' startIcon={<AppIcon name='Plus' size={16} />} onClick={() => setCreating(true)}>
                             Tạo trợ lý
                         </Button>
                     )}

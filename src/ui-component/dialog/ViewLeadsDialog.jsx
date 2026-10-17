@@ -23,7 +23,7 @@ import {
     OutlinedInput
 } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import { IconFileExport, IconSearch } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import leadsEmptySVG from '@/assets/images/leads_empty.svg'
 
 // store
@@ -150,14 +150,14 @@ const ViewLeadsDialog = ({ show, dialogProps, onCancel }) => {
                                     mr: 1
                                 }}
                             >
-                                <IconSearch style={{ color: 'inherit', width: 16, height: 16 }} />
+                                <AppIcon name='MagnifyingGlass' style={{ color: 'inherit', width: 16, height: 16 }} />
                             </Box>
                         }
                         type='search'
                     />
                     <div style={{ flex: 1 }} />
                     {leads && leads.length > 0 && (
-                        <Button variant='outlined' onClick={() => exportMessages()} startIcon={<IconFileExport />}>
+                        <Button variant='outlined' onClick={() => exportMessages()} startIcon={<AppIcon name='Export' />}>
                             {t('Export')}
                         </Button>
                     )}

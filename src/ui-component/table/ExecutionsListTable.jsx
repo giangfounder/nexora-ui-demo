@@ -13,35 +13,38 @@ import {
     useTheme,
     Checkbox
 } from '@mui/material'
-import CheckCircleIcon from '@mui/icons-material/CheckCircle'
-import StopCircleIcon from '@mui/icons-material/StopCircle'
-import ErrorIcon from '@mui/icons-material/Error'
-import { IconLoader, IconCircleXFilled } from '@tabler/icons-react'
+import { AppIcon, iconComponent } from '@/ui-component/icons/AppIcon'
 import { SharedTableCell as StyledTableCell, SharedTableRow as StyledTableRow } from '@/ui-component/table/SharedTable'
 import { useLanguage } from '@/store/context/LanguageContext'
 
 const getIconFromStatus = (state, theme) => {
     switch (state) {
         case 'FINISHED':
-            return CheckCircleIcon
+            return iconComponent('CheckCircle')
         case 'ERROR':
         case 'TIMEOUT':
-            return ErrorIcon
+            return iconComponent('WarningCircle')
         case 'TERMINATED':
             // eslint-disable-next-line react/display-name
             return (props) => {
-                const IconWrapper = (props) => <IconCircleXFilled {...props} color={theme.palette.error.main} />
+                const IconWrapper = (props) => <AppIcon name='XCircle' {...props} color={theme.palette.error.main} />
                 IconWrapper.displayName = 'TerminatedIcon'
                 return <IconWrapper {...props} />
             }
         case 'STOPPED':
-            return StopCircleIcon
+            return iconComponent('StopCircle')
         case 'INPROGRESS':
             // eslint-disable-next-line react/display-name
             return (props) => {
                 const IconWrapper = (props) => (
                     // eslint-disable-next-line
-                    <IconLoader {...props} color={theme.palette.warning.dark} className={`spin-animation ${props.className || ''}`} />
+                    <AppIcon
+                        name='SpinnerGap'
+                        {...props}
+                        color={theme.palette.warning.dark}
+                        // eslint-disable-next-line react/prop-types
+                        className={`spin-animation ${props.className || ''}`}
+                    />
                 )
                 IconWrapper.displayName = 'InProgressIcon'
                 return <IconWrapper {...props} />

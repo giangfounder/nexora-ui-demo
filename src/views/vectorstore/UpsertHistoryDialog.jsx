@@ -31,8 +31,7 @@ import {
     Checkbox
 } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { IconChevronsUp, IconChevronsDown, IconTrash, IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // Project imports
 import { TableViewOnly } from '@/ui-component/table/Table'
@@ -100,7 +99,7 @@ function UpsertHistoryRow(props) {
                 <TableCell>{props.upsertHistory.result?.numDeleted ?? '0'}</TableCell>
                 <TableCell>
                     <IconButton aria-label={t('Expand row')} size='small' color='inherit' onClick={() => setOpen(!open)}>
-                        {open ? <IconChevronsUp /> : <IconChevronsDown />}
+                        {open ? <AppIcon name='CaretDoubleUp' /> : <AppIcon name='CaretDoubleDown' />}
                     </IconButton>
                 </TableCell>
             </TableRow>
@@ -118,7 +117,7 @@ function UpsertHistoryRow(props) {
                                             disableGutters
                                         >
                                             <AccordionSummary
-                                                expandIcon={<ExpandMoreIcon />}
+                                                expandIcon={<AppIcon name='CaretDown' />}
                                                 aria-controls={`nodes-accordian-${node.name}`}
                                                 id={`nodes-accordian-header-${node.name}`}
                                             >
@@ -263,7 +262,7 @@ const UpsertHistoryDialog = ({ show, dialogProps, onCancel }) => {
                     variant: 'success',
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -281,7 +280,7 @@ const UpsertHistoryDialog = ({ show, dialogProps, onCancel }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -365,7 +364,7 @@ const UpsertHistoryDialog = ({ show, dialogProps, onCancel }) => {
                                 variant='outlined'
                                 onClick={handleRemoveHistory}
                                 color='error'
-                                startIcon={<IconTrash />}
+                                startIcon={<AppIcon name='Trash' />}
                             >
                                 {selected.length === 1
                                     ? t('Delete {count} row', { count: selected.length })

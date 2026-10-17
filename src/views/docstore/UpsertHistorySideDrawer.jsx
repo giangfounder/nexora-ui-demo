@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import moment from 'moment/moment'
 
 import { Stack, Button, Box, SwipeableDrawer } from '@mui/material'
-import { IconSquareRoundedChevronsRight } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import {
     Timeline,
     TimelineConnector,
@@ -41,7 +41,7 @@ const UpsertHistorySideDrawer = ({ show, dialogProps, onClickFunction, onSelectH
     return (
         <>
             <SwipeableDrawer anchor='right' open={show} onClose={() => onClickFunction()} onOpen={onOpen}>
-                <Button startIcon={<IconSquareRoundedChevronsRight />} onClick={() => onClickFunction()}>
+                <Button startIcon={<AppIcon name='CaretDoubleRight' />} onClick={() => onClickFunction()}>
                     {t('Close')}
                 </Button>
                 <Box style={{ width: 350, margin: 10 }} role='presentation' onClick={onClickFunction}>

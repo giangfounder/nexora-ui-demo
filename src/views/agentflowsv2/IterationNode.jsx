@@ -13,17 +13,7 @@ import { flowContext } from '@/store/context/ReactFlowContext'
 import NodeInfoDialog from '@/ui-component/dialog/NodeInfoDialog'
 
 // icons
-import {
-    IconCheck,
-    IconExclamationMark,
-    IconCircleChevronRightFilled,
-    IconCopy,
-    IconTrash,
-    IconInfoCircle,
-    IconLoader
-} from '@tabler/icons-react'
-import StopCircleIcon from '@mui/icons-material/StopCircle'
-import CancelIcon from '@mui/icons-material/Cancel'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // const
 import { baseURL, AGENTFLOW_ICONS } from '@/store/constant'
@@ -230,7 +220,7 @@ const IterationNode = ({ data }) => {
                             }
                         }}
                     >
-                        <IconCopy size={20} />
+                        <AppIcon name='Copy' size={20} />
                     </IconButton>
                     <IconButton
                         size={'small'}
@@ -245,7 +235,7 @@ const IterationNode = ({ data }) => {
                             }
                         }}
                     >
-                        <IconTrash size={20} />
+                        <AppIcon name='Trash' size={20} />
                     </IconButton>
                     <IconButton
                         size={'small'}
@@ -261,7 +251,7 @@ const IterationNode = ({ data }) => {
                             }
                         }}
                     >
-                        <IconInfoCircle size={20} />
+                        <AppIcon name='Info' size={20} />
                     </IconButton>
                 </ButtonGroup>
             </StyledNodeToolbar>
@@ -303,15 +293,15 @@ const IterationNode = ({ data }) => {
                             }}
                         >
                             {data.status === 'INPROGRESS' ? (
-                                <IconLoader className='spin-animation' />
+                                <AppIcon name='SpinnerGap' className='spin-animation' />
                             ) : data.status === 'ERROR' ? (
-                                <IconExclamationMark />
+                                <AppIcon name='ExclamationMark' />
                             ) : data.status === 'TERMINATED' ? (
-                                <CancelIcon sx={{ color: getStatusBackgroundColor(data.status) }} />
+                                <AppIcon name='XCircle' sx={{ color: getStatusBackgroundColor(data.status) }} />
                             ) : data.status === 'STOPPED' ? (
-                                <StopCircleIcon sx={{ color: getStatusBackgroundColor(data.status) }} />
+                                <AppIcon name='StopCircle' sx={{ color: getStatusBackgroundColor(data.status) }} />
                             ) : (
-                                <IconCheck />
+                                <AppIcon name='Check' />
                             )}
                         </Avatar>
                     </Tooltip>
@@ -401,7 +391,8 @@ const IterationNode = ({ data }) => {
                                         pointerEvents: 'none'
                                     }}
                                 />
-                                <IconCircleChevronRightFilled
+                                <AppIcon
+                                    name='CaretCircleRight'
                                     size={20}
                                     color={nodeColor}
                                     style={{

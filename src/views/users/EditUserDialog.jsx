@@ -13,7 +13,7 @@ import ConfirmDialog from '@/ui-component/dialog/ConfirmDialog'
 import { Dropdown } from '@/ui-component/dropdown/Dropdown'
 
 // Icons
-import { IconX, IconUser } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // API
 import userApi from '@/api/user'
@@ -94,7 +94,7 @@ const EditUserDialog = ({ show, dialogProps, onCancel, onConfirm, setError }) =>
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -113,7 +113,7 @@ const EditUserDialog = ({ show, dialogProps, onCancel, onConfirm, setError }) =>
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -133,7 +133,7 @@ const EditUserDialog = ({ show, dialogProps, onCancel, onConfirm, setError }) =>
         >
             <DialogTitle sx={{ fontSize: '1rem' }} id='alert-dialog-title'>
                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                    <IconUser style={{ marginRight: '10px' }} />
+                    <AppIcon name='User' style={{ marginRight: '10px' }} />
                     {t('Edit User')}
                 </div>
             </DialogTitle>

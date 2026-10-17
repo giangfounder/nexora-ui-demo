@@ -43,7 +43,7 @@ import useConfirm from '@/hooks/useConfirm'
 import useNotifier from '@/utils/useNotifier'
 
 // Icons
-import { IconTrash, IconEdit, IconX, IconPlus, IconUser, IconEyeOff, IconEye, IconUserStar } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import users_emptySVG from '@/assets/images/users_empty.svg'
 
 // store
@@ -102,7 +102,8 @@ function ShowUserRow(props) {
                             }}
                         >
                             {props?.row?.isOrgOwner ? (
-                                <IconUserStar
+                                <AppIcon
+                                    name='UserCircleCheck'
                                     style={{
                                         width: '100%',
                                         height: '100%',
@@ -111,7 +112,8 @@ function ShowUserRow(props) {
                                     }}
                                 />
                             ) : (
-                                <IconUser
+                                <AppIcon
+                                    name='User'
                                     style={{
                                         width: '100%',
                                         height: '100%',
@@ -149,7 +151,7 @@ function ShowUserRow(props) {
                         color='inherit'
                         onClick={() => handleViewUserRoles(props.row.userId, props.row.organizationId)}
                     >
-                        {props.row.roleCount > 0 && open ? <IconEyeOff /> : <IconEye />}
+                        {props.row.roleCount > 0 && open ? <AppIcon name='EyeSlash' /> : <AppIcon name='Eye' />}
                     </PermissionIconButton>
                 </StyledTableCell>
                 <StyledTableCell>
@@ -168,7 +170,7 @@ function ShowUserRow(props) {
                             color='primary'
                             onClick={() => props.onEditClick(props.row)}
                         >
-                            <IconEdit />
+                            <AppIcon name='PencilSimpleLine' />
                         </PermissionIconButton>
                     )}
                     {!props.row.isOrgOwner &&
@@ -182,7 +184,7 @@ function ShowUserRow(props) {
                                 color='error'
                                 onClick={() => props.onDeleteClick(props.row.user)}
                             >
-                                <IconTrash />
+                                <AppIcon name='Trash' />
                             </PermissionIconButton>
                         ))}
                 </StyledTableCell>
@@ -336,7 +338,7 @@ const Users = () => {
                             variant: 'success',
                             action: (key) => (
                                 <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                    <IconX />
+                                    <AppIcon name='X' />
                                 </Button>
                             )
                         }
@@ -354,7 +356,7 @@ const Users = () => {
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -411,7 +413,7 @@ const Users = () => {
                                 variant='contained'
                                 sx={{ borderRadius: 2, height: '100%' }}
                                 onClick={addNew}
-                                startIcon={<IconPlus />}
+                                startIcon={<AppIcon name='Plus' />}
                                 id='btn_createUser'
                             >
                                 {t('Invite User')}

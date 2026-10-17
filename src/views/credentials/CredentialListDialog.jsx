@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
 import { List, ListItemButton, Dialog, DialogContent, DialogTitle, Box, OutlinedInput, InputAdornment, Typography } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import { IconSearch, IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // const
 import { baseURL } from '@/store/constant'
@@ -75,7 +75,7 @@ const CredentialListDialog = ({ show, dialogProps, onCancel, onCredentialSelecte
                         placeholder={t('Search credential')}
                         startAdornment={
                             <InputAdornment position='start'>
-                                <IconSearch stroke={1.5} size='1rem' color={theme.palette.grey[500]} />
+                                <AppIcon name='MagnifyingGlass' size='1rem' color={theme.palette.grey[500]} />
                             </InputAdornment>
                         }
                         endAdornment={
@@ -90,8 +90,8 @@ const CredentialListDialog = ({ show, dialogProps, onCancel, onCredentialSelecte
                                 }}
                                 title={t('Clear Search')}
                             >
-                                <IconX
-                                    stroke={1.5}
+                                <AppIcon
+                                    name='X'
                                     size='1rem'
                                     onClick={() => filterSearch('')}
                                     style={{

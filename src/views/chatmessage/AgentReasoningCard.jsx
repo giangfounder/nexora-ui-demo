@@ -1,5 +1,5 @@
 import { Box, Card, CardContent, Chip, Stack } from '@mui/material'
-import { IconTool, IconDeviceSdCard } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { MemoizedReactMarkdown } from '@/ui-component/markdown/MemoizedReactMarkdown'
 import nextAgentGIF from '@/assets/images/next-agent.gif'
 import PropTypes from 'prop-types'
@@ -100,7 +100,7 @@ const AgentReasoningCard = ({
                                     sx={{ mr: 1, mt: 1 }}
                                     variant='outlined'
                                     clickable
-                                    icon={<IconTool size={15} />}
+                                    icon={<AppIcon name='Wrench' size={15} />}
                                     onClick={() => onSourceDialogClick(tool, t('Used Tools'))}
                                 />
                             ) : null
@@ -116,7 +116,7 @@ const AgentReasoningCard = ({
                             sx={{ mr: 1, mt: 1 }}
                             variant='outlined'
                             clickable
-                            icon={<IconDeviceSdCard size={15} />}
+                            icon={<AppIcon name='HardDrive' size={15} />}
                             onClick={() => onSourceDialogClick(agent.state, t('State'))}
                         />
                     </div>

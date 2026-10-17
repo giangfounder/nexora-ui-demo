@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Box, Typography } from '@mui/material'
-import { IconChartBar, IconHeadset, IconMessageCheck, IconTrendingUp, IconUserStar } from '@tabler/icons-react'
+import { iconComponent } from '@/ui-component/icons/AppIcon'
 
 import MainCard from '@/ui-component/cards/MainCard'
 import ViewHeader from '@/layout/MainLayout/ViewHeader'
@@ -29,35 +29,35 @@ const REPORTS = [
         key: 'growth',
         label: 'Tăng trưởng',
         question: 'Khách hàng đang tăng hay giảm?',
-        icon: IconTrendingUp,
+        icon: iconComponent('TrendUp'),
         sections: [CustomersOverview, CustomersLifecycle]
     },
     {
         key: 'value',
         label: 'Giá trị khách',
         question: 'Ai là khách giá trị?',
-        icon: IconUserStar,
+        icon: iconComponent('UserCircleCheck'),
         sections: [CustomersSegments, CustomersCohort]
     },
     {
         key: 'ai-quality',
         label: 'Chất lượng trả lời',
         question: 'Trả lời tự động tốt đến đâu?',
-        icon: IconMessageCheck,
+        icon: iconComponent('ChatCircleText'),
         sections: [ChatAIQuality, ChatTopics, ChatSentiment]
     },
     {
         key: 'handoff',
         label: 'Bàn giao & SLA',
         question: 'Việc nào cần người xử lý?',
-        icon: IconHeadset,
+        icon: iconComponent('Headset'),
         sections: [ChatHandoff, ChannelsSLA]
     },
     {
         key: 'channels',
         label: 'Hiệu quả kênh',
         question: 'Kênh nào hiệu quả?',
-        icon: IconChartBar,
+        icon: iconComponent('ChartBar'),
         sections: [ChannelsCompare, ChannelsFunnel, ChannelsCost]
     }
 ]

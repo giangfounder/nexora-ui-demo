@@ -6,7 +6,7 @@ import ReactJson from 'flowise-react-json-view'
 import { Typography, Card, CardContent, Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material'
 import StatsCard from '@/ui-component/cards/StatsCard'
 import { HIDE_CANVAS_DIALOG, SHOW_CANVAS_DIALOG } from '@/store/actions'
-import { IconZoomScan } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { useLanguage } from '@/store/context/LanguageContext'
 
 const UpsertResultDialog = ({ show, dialogProps, onCancel, onGoToRetrievalQuery }) => {
@@ -95,7 +95,7 @@ const UpsertResultDialog = ({ show, dialogProps, onCancel, onGoToRetrievalQuery 
                                 },
                                 mb: 2
                             }}
-                            startIcon={<IconZoomScan />}
+                            startIcon={<AppIcon name='MagnifyingGlassPlus' />}
                             onClick={onGoToRetrievalQuery}
                         >
                             {t('Test Retrieval')}

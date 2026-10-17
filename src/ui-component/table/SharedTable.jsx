@@ -5,6 +5,8 @@ import { alpha, styled } from '@mui/material/styles'
 import { Box, TableCell, TableContainer, TableRow, Typography } from '@mui/material'
 import { tableCellClasses } from '@mui/material/TableCell'
 
+import { AppIcon } from '@/ui-component/icons/AppIcon'
+
 // ==============================|| SHARED NEXORA TABLE PRIMITIVES ||============================== //
 // One system used by every NEXORA view (customers, employees, prism, configuration, omnichannel).
 // Replaces the ~20 duplicated local StyledTableCell copies that hard-coded `grey[900] + '25'`
@@ -85,42 +87,45 @@ export const SharedTableContainer = styled(TableContainer)(({ theme }) => ({
     boxShadow: theme.customShadows?.xs
 }))
 
-// ------- StatusDot -------
-// 8px dot for status columns. `tone` maps to spectrum. Pair with a text label for A11y.
-export const StatusDot = ({ tone = 'teal', size = 8, pulse = false, ...others }) => (
+// ------- StatusIcon -------
+// Status marker for tables, chips and lists: a filled glyph that names the state, tinted by `tone`.
+// Never a bare coloured dot (colour alone doesn't say what the state is). Pair with a text label.
+// `icon` picks the glyph for the specific state; without it the tone's generic glyph is used.
+export const TONE_ICONS = {
+    emerald: 'CheckCircle',
+    rose: 'XCircle',
+    amber: 'WarningCircle',
+    orange: 'ArrowCircleRight',
+    teal: 'Info'
+}
+
+export const StatusIcon = ({ tone = 'teal', icon, size = 14, spin = false, sx: sxProp = {}, ...others }) => (
     <Box
         component='span'
         aria-hidden
         sx={(theme) => ({
-            display: 'inline-block',
-            width: size,
-            height: size,
-            borderRadius: '50%',
-            bgcolor: theme.palette.spectrum?.[tone]?.main || theme.palette.text.disabled,
+            display: 'inline-flex',
             flexShrink: 0,
-            ...(pulse && {
-                boxShadow: `0 0 0 0 ${alpha(theme.palette.spectrum?.[tone]?.main || '#000', 0.5)}`,
-                animation: 'gtech-pulse 1.6s ease-out infinite'
-            }),
-            '@keyframes gtech-pulse': {
-                '0%': { boxShadow: `0 0 0 0 ${alpha(theme.palette.spectrum?.[tone]?.main || '#000', 0.45)}` },
-                '70%': { boxShadow: `0 0 0 8px ${alpha(theme.palette.spectrum?.[tone]?.main || '#000', 0)}` },
-                '100%': { boxShadow: `0 0 0 0 ${alpha(theme.palette.spectrum?.[tone]?.main || '#000', 0)}` }
-            }
+            color: theme.palette.spectrum?.[tone]?.main || theme.palette.text.disabled,
+            ...sxProp
         })}
         {...others}
-    />
+    >
+        <AppIcon name={icon || TONE_ICONS[tone] || 'Info'} size={size} className={spin ? 'spin-animation' : undefined} />
+    </Box>
 )
 
-StatusDot.propTypes = {
+StatusIcon.propTypes = {
     tone: PropTypes.oneOf(['rose', 'orange', 'amber', 'emerald', 'teal']),
+    icon: PropTypes.string,
     size: PropTypes.number,
-    pulse: PropTypes.bool
+    spin: PropTypes.bool,
+    sx: PropTypes.object
 }
 
 // ------- StatusPill -------
 // Compact pill for status columns. Text is required (never icon-only for A11y).
-export const StatusPill = ({ tone = 'teal', label, sx: sxProp = {}, ...others }) => (
+export const StatusPill = ({ tone = 'teal', icon, label, sx: sxProp = {}, ...others }) => (
     <Box
         component='span'
         sx={(theme) => {
@@ -143,13 +148,14 @@ export const StatusPill = ({ tone = 'teal', label, sx: sxProp = {}, ...others })
         }}
         {...others}
     >
-        <StatusDot tone={tone} size={6} />
+        <StatusIcon tone={tone} icon={icon} size={12} />
         {label}
     </Box>
 )
 
 StatusPill.propTypes = {
     tone: PropTypes.oneOf(['rose', 'orange', 'amber', 'emerald', 'teal']),
+    icon: PropTypes.string,
     label: PropTypes.node,
     sx: PropTypes.object
 }

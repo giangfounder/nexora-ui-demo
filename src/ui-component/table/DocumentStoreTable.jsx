@@ -16,7 +16,7 @@ import {
     Typography
 } from '@mui/material'
 import DocumentStoreStatus from '@/views/docstore/DocumentStoreStatus'
-import { IconDotsVertical } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { SharedTableCell as StyledTableCell, SharedTableRow as StyledTableRow } from '@/ui-component/table/SharedTable'
 import { useLanguage } from '@/store/context/LanguageContext'
 
@@ -240,7 +240,7 @@ export const DocumentStoreTable = ({ data, isLoading, onRowClick, images, showAc
                                                             onActionMenuClick(event, row)
                                                         }}
                                                     >
-                                                        <IconDotsVertical size={18} />
+                                                        <AppIcon name='DotsThreeVertical' size={18} />
                                                     </IconButton>
                                                 </StyledTableCell>
                                             )}

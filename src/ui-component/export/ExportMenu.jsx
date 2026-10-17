@@ -1,30 +1,20 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Button, ListItemIcon, ListItemText, Menu, MenuItem, Snackbar, Typography } from '@mui/material'
-import {
-    IconBraces,
-    IconChevronDown,
-    IconCode,
-    IconDownload,
-    IconFileSpreadsheet,
-    IconFileText,
-    IconFileTypePdf,
-    IconTable,
-    IconWorld
-} from '@tabler/icons-react'
+import { AppIcon, iconComponent } from '@/ui-component/icons/AppIcon'
 
 import { useLanguage } from '@/store/context/LanguageContext'
 import { EXPORT_FORMATS } from '@/utils/tableExport'
 
 const FORMAT_ICONS = {
-    pdf: IconFileTypePdf,
-    html: IconWorld,
-    xlsx: IconFileSpreadsheet,
-    ods: IconFileSpreadsheet,
-    csv: IconTable,
-    tsv: IconFileText,
-    json: IconBraces,
-    xml: IconCode
+    pdf: iconComponent('FilePdf'),
+    html: iconComponent('Globe'),
+    xlsx: iconComponent('FileXls'),
+    ods: iconComponent('FileXls'),
+    csv: iconComponent('Table'),
+    tsv: iconComponent('FileText'),
+    json: iconComponent('BracketsCurly'),
+    xml: iconComponent('Code')
 }
 
 // ==============================|| EXPORT MENU ||============================== //
@@ -47,8 +37,8 @@ const ExportMenu = ({ caption, onExport, label, formats = EXPORT_FORMATS, button
             <Button
                 variant='outlined'
                 color='inherit'
-                startIcon={<IconDownload size={18} stroke={1.75} />}
-                endIcon={<IconChevronDown size={16} stroke={2} />}
+                startIcon={<AppIcon name='DownloadSimple' size={18} />}
+                endIcon={<AppIcon name='CaretDown' size={16} />}
                 aria-haspopup='true'
                 aria-expanded={Boolean(anchor)}
                 onClick={(e) => setAnchor(e.currentTarget)}
@@ -75,7 +65,7 @@ const ExportMenu = ({ caption, onExport, label, formats = EXPORT_FORMATS, button
                     </Typography>
                 )}
                 {formats.flatMap((f, i) => {
-                    const Icon = FORMAT_ICONS[f.id] || IconFileText
+                    const Icon = FORMAT_ICONS[f.id] || iconComponent('FileText')
                     const startsGroup = f.group && f.group !== formats[i - 1]?.group
                     return [
                         startsGroup && (

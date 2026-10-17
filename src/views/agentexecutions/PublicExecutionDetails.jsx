@@ -11,7 +11,7 @@ import useApi from '@/hooks/useApi'
 
 // MUI
 import { Box, Card, Stack, Typography, useTheme, CircularProgress } from '@mui/material'
-import { IconCircleXFilled } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { alpha } from '@mui/material/styles'
 import { useLanguage } from '@/store/context/LanguageContext'
 
@@ -77,7 +77,7 @@ const PublicExecutionDetails = () => {
                                     }}
                                 >
                                     <Stack spacing={2} alignItems='center'>
-                                        <IconCircleXFilled size={50} color={theme.palette.error.main} />
+                                        <AppIcon name='XCircle' size={50} color={theme.palette.error.main} />
                                         <Typography variant='h3' color='error.main' align='center'>
                                             {t('Invalid Execution')}
                                         </Typography>

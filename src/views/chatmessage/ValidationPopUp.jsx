@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import { Typography, Box, ClickAwayListener, Paper, Popper, Button } from '@mui/material'
 import { useTheme, alpha, lighten, darken } from '@mui/material/styles'
-import { IconCheckbox, IconMessage, IconX, IconExclamationCircle, IconChecklist } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // project import
 import { StyledFab } from '@/ui-component/button/StyledFab'
@@ -134,7 +134,7 @@ const ValidationPopUp = ({ chatflowid, hidden }) => {
                     color: 'white'
                 }}
             >
-                {item.type === 'LLM' ? <span>ℓ</span> : <IconMessage size={16} />}
+                {item.type === 'LLM' ? <span>ℓ</span> : <AppIcon name='ChatText' size={16} />}
             </Box>
         )
     }
@@ -151,7 +151,7 @@ const ValidationPopUp = ({ chatflowid, hidden }) => {
                     title={t('Validate Nodes')}
                     onClick={handleToggle}
                 >
-                    {open ? <IconX /> : <IconChecklist />}
+                    {open ? <AppIcon name='X' /> : <AppIcon name='ListChecks' />}
                 </StyledFab>
             )}
 
@@ -239,7 +239,8 @@ const ValidationPopUp = ({ chatflowid, hidden }) => {
                                                                 gap: 2
                                                             }}
                                                         >
-                                                            <IconExclamationCircle
+                                                            <AppIcon
+                                                                name='WarningCircle'
                                                                 color='#FFB938'
                                                                 size={20}
                                                                 style={{
@@ -279,7 +280,7 @@ const ValidationPopUp = ({ chatflowid, hidden }) => {
                                             color='teal'
                                             onClick={validateFlow}
                                             disabled={loading}
-                                            startIcon={loading ? null : <IconCheckbox size={18} />}
+                                            startIcon={loading ? null : <AppIcon name='CheckSquare' size={18} />}
                                             sx={{ color: 'white', minWidth: '120px' }}
                                         >
                                             {loading ? t('Validating...') : t('Validate Flow')}

@@ -3,16 +3,8 @@ import PropTypes from 'prop-types'
 
 import { alpha, useTheme } from '@mui/material/styles'
 import { Box, Chip, Divider, MenuItem, Paper, Stack, Switch, TextField, Typography } from '@mui/material'
-import {
-    IconAdjustments,
-    IconBrandFacebook,
-    IconBrandGoogle,
-    IconBuildingBroadcastTower,
-    IconMessageReply,
-    IconPlugConnected,
-    IconRoute,
-    IconShield
-} from '@tabler/icons-react'
+import { IconBrandFacebook, IconBrandGoogle } from '@tabler/icons-react'
+import { iconComponent } from '@/ui-component/icons/AppIcon'
 
 import MainCard from '@/ui-component/cards/MainCard'
 import ViewHeader from '@/layout/MainLayout/ViewHeader'
@@ -42,18 +34,18 @@ const SettingsView = () => {
                 key: 'channels',
                 label: t('Kênh'),
                 items: [
-                    { key: 'connections', label: t('Kết nối kênh'), icon: IconPlugConnected },
-                    { key: 'routing', label: t('Định tuyến hội thoại'), icon: IconRoute },
-                    { key: 'agents', label: t('Trả lời tự động theo kênh'), icon: IconMessageReply }
+                    { key: 'connections', label: t('Kết nối kênh'), icon: iconComponent('PlugsConnected') },
+                    { key: 'routing', label: t('Định tuyến hội thoại'), icon: iconComponent('Path') },
+                    { key: 'agents', label: t('Trả lời tự động theo kênh'), icon: iconComponent('ArrowBendUpLeft') }
                 ]
             },
             {
                 key: 'system',
                 label: t('Hệ thống'),
                 items: [
-                    { key: 'general', label: t('Chung'), icon: IconAdjustments },
-                    { key: 'security', label: t('Bảo mật'), icon: IconShield },
-                    { key: 'webhooks', label: t('Webhook'), icon: IconBuildingBroadcastTower }
+                    { key: 'general', label: t('Chung'), icon: iconComponent('Sliders') },
+                    { key: 'security', label: t('Bảo mật'), icon: iconComponent('Shield') },
+                    { key: 'webhooks', label: t('Webhook'), icon: iconComponent('Broadcast') }
                 ]
             },
             {
@@ -230,7 +222,7 @@ const WebhooksSection = () => {
     return (
         <SectionShell title={t('Webhook')}>
             <EmptyState
-                Icon={IconBuildingBroadcastTower}
+                Icon={iconComponent('Broadcast')}
                 title={t('Sắp có')}
                 body={t('Bạn sẽ có thể đăng ký endpoint để nhận sự kiện hội thoại và đơn hàng.')}
             />

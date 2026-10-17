@@ -1,12 +1,12 @@
 // assets
-import { IconTrash, IconMessage, IconAdjustmentsHorizontal, IconUsers } from '@tabler/icons-react'
+import { iconComponent } from '@/ui-component/icons/AppIcon'
 
 // constant
 const icons = {
-    IconTrash,
-    IconMessage,
-    IconAdjustmentsHorizontal,
-    IconUsers
+    IconTrash: iconComponent('Trash'),
+    IconMessage: iconComponent('ChatText'),
+    IconAdjustmentsHorizontal: iconComponent('SlidersHorizontal'),
+    IconUsers: iconComponent('Users')
 }
 
 // ==============================|| SETTINGS MENU ITEMS ||============================== //

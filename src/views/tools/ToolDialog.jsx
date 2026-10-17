@@ -10,7 +10,7 @@ import { StyledButton } from '@/ui-component/button/StyledButton'
 import { Grid } from '@/ui-component/grid/Grid'
 import { TooltipWithParser } from '@/ui-component/tooltip/TooltipWithParser'
 import { GridActionsCellItem } from '@mui/x-data-grid'
-import DeleteIcon from '@mui/icons-material/Delete'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import ConfirmDialog from '@/ui-component/dialog/ConfirmDialog'
 import { CodeEditor } from '@/ui-component/editor/CodeEditor'
 import HowToUseFunctionDialog from './HowToUseFunctionDialog'
@@ -20,7 +20,6 @@ import ExportAsTemplateDialog from '@/ui-component/dialog/ExportAsTemplateDialog
 import PasteJSONDialog from './PasteJSONDialog'
 
 // Icons
-import { IconX, IconFileDownload, IconPlus, IconTemplate, IconCode } from '@tabler/icons-react'
 
 // API
 import toolsApi from '@/api/tools'
@@ -161,7 +160,12 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm, set
                 type: 'actions',
                 width: 80,
                 getActions: (params) => [
-                    <GridActionsCellItem key={'Delete'} icon={<DeleteIcon />} label={t('Delete')} onClick={deleteItem(params.id)} />
+                    <GridActionsCellItem
+                        key={'Delete'}
+                        icon={<AppIcon name='Trash' />}
+                        label={t('Delete')}
+                        onClick={deleteItem(params.id)}
+                    />
                 ]
             }
         ],
@@ -269,7 +273,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm, set
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -297,7 +301,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm, set
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -315,7 +319,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm, set
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -341,7 +345,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm, set
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -359,7 +363,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm, set
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -388,7 +392,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm, set
                             variant: 'success',
                             action: (key) => (
                                 <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                    <IconX />
+                                    <AppIcon name='X' />
                                 </Button>
                             )
                         }
@@ -406,7 +410,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm, set
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -441,7 +445,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm, set
                                     style={{ marginRight: '10px' }}
                                     variant='outlined'
                                     onClick={() => onSaveAsTemplate()}
-                                    startIcon={<IconTemplate />}
+                                    startIcon={<AppIcon name='Layout' />}
                                     color='secondary'
                                 >
                                     {t('Save As Template')}
@@ -450,7 +454,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm, set
                                     permissionId={'tools:export'}
                                     variant='outlined'
                                     onClick={() => exportTool()}
-                                    startIcon={<IconFileDownload />}
+                                    startIcon={<AppIcon name='FileArrowDown' />}
                                 >
                                     {t('Export')}
                                 </PermissionButton>
@@ -526,10 +530,14 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm, set
                             </Stack>
                             {dialogProps.type !== 'TEMPLATE' && (
                                 <Stack direction='row' spacing={1}>
-                                    <Button variant='outlined' onClick={() => setShowPasteJSONDialog(true)} startIcon={<IconCode />}>
+                                    <Button
+                                        variant='outlined'
+                                        onClick={() => setShowPasteJSONDialog(true)}
+                                        startIcon={<AppIcon name='Code' />}
+                                    >
                                         {t('Paste JSON')}
                                     </Button>
-                                    <Button variant='outlined' onClick={addNewRow} startIcon={<IconPlus />}>
+                                    <Button variant='outlined' onClick={addNewRow} startIcon={<AppIcon name='Plus' />}>
                                         {t('Add Item')}
                                     </Button>
                                 </Stack>

@@ -18,8 +18,7 @@ import { TableViewOnly } from '@/ui-component/table/Table'
 import documentstoreApi from '@/api/documentstore'
 import useApi from '@/hooks/useApi'
 import { alpha, useTheme } from '@mui/material/styles'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { IconInfoCircle } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { baseURL } from '@/store/constant'
 import { useLanguage } from '@/store/context/LanguageContext'
 
@@ -339,7 +338,7 @@ curl -X POST ${baseURL}/api/v1/document-store/upsert/${dialogProps.storeId} \\
                         gap: 1.5
                     }}
                 >
-                    <IconInfoCircle size={18} stroke={1.75} style={{ color: theme.palette.spectrum.teal.main, flexShrink: 0 }} />
+                    <AppIcon name='Info' size={18} style={{ color: theme.palette.spectrum.teal.main, flexShrink: 0 }} />
                     <Box sx={{ flex: 1 }}>
                         <strong>{t('Note:')}</strong>{' '}
                         {t('Upsert API can only be used when the existing document loader has been upserted before.')}
@@ -364,7 +363,7 @@ curl -X POST ${baseURL}/api/v1/document-store/upsert/${dialogProps.storeId} \\
                                     disableGutters
                                 >
                                     <AccordionSummary
-                                        expandIcon={<ExpandMoreIcon />}
+                                        expandIcon={<AppIcon name='CaretDown' />}
                                         aria-controls={`nodes-accordian-${nodeLabel}`}
                                         id={`nodes-accordian-header-${nodeLabel}`}
                                     >

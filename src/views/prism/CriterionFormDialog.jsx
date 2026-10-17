@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 // material-ui
 import { alpha, useTheme } from '@mui/material/styles'
 import { Box, Button, Drawer, IconButton, MenuItem, Slider, Stack, TextField, Typography } from '@mui/material'
-import { IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // project imports
 import { FormField, useSheetShell } from '@/hooks/useDialogShell'
@@ -57,7 +57,7 @@ const CriterionFormDialog = ({ show, criterion, onCancel, onSave }) => {
                             '&:hover': { bgcolor: alpha(theme.palette.text.primary, 0.06), color: 'text.primary' }
                         }}
                     >
-                        <IconX size={16} stroke={1.75} />
+                        <AppIcon name='X' size={16} />
                     </IconButton>
                 </Box>
 

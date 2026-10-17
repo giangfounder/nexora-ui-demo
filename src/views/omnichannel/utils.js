@@ -1,4 +1,4 @@
-import { IconMessageCircleFilled } from '@tabler/icons-react'
+import { iconComponent } from '@/ui-component/icons/AppIcon'
 import { PRIORITY_WEIGHT, STATUS_WEIGHT } from './mockConversations'
 import {
     EmailIcon,
@@ -30,7 +30,7 @@ const CHANNEL_ICONS = {
     lazada: LazadaIcon
 }
 
-export const getChannelIcon = (channelId) => CHANNEL_ICONS[channelId] || IconMessageCircleFilled
+export const getChannelIcon = (channelId) => CHANNEL_ICONS[channelId] || iconComponent('ChatCircle')
 
 export const TAG_COLORS = {
     VIP: 'warning',

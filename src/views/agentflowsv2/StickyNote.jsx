@@ -8,7 +8,7 @@ import { styled, useTheme, alpha, darken, lighten } from '@mui/material/styles'
 
 // project imports
 import { ButtonGroup, IconButton, Box } from '@mui/material'
-import { IconCopy, IconTrash } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { Input } from '@/ui-component/input/Input'
 import MainCard from '@/ui-component/cards/MainCard'
 
@@ -78,7 +78,7 @@ const StickyNote = ({ data }) => {
                             }
                         }}
                     >
-                        <IconCopy size={20} />
+                        <AppIcon name='Copy' size={20} />
                     </IconButton>
                     <IconButton
                         size={'small'}
@@ -93,7 +93,7 @@ const StickyNote = ({ data }) => {
                             }
                         }}
                     >
-                        <IconTrash size={20} />
+                        <AppIcon name='Trash' size={20} />
                     </IconButton>
                 </ButtonGroup>
             </StyledNodeToolbar>

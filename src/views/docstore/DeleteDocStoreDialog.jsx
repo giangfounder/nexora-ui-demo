@@ -24,9 +24,7 @@ import {
     Link
 } from '@mui/material'
 import { alpha, useTheme } from '@mui/material/styles'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import SettingsIcon from '@mui/icons-material/Settings'
-import { IconAlertTriangle } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { TableViewOnly } from '@/ui-component/table/Table'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -201,7 +199,7 @@ const DeleteDocStoreDialog = ({ show, dialogProps, onCancel, onDelete }) => {
                             padding: 10
                         }}
                     >
-                        <IconAlertTriangle size={70} color={theme.palette.warning.main} />
+                        <AppIcon name='Warning' size={70} color={theme.palette.warning.main} />
                         <span style={{ color: noteTextColor, marginLeft: 10 }}>
                             <strong>{t('Note:')}</strong>{' '}
                             {t(
@@ -221,7 +219,7 @@ const DeleteDocStoreDialog = ({ show, dialogProps, onCancel, onDelete }) => {
                 {vsFlowData && vsFlowData.length > 0 && rmFlowData && rmFlowData.length > 0 && (
                     <Card sx={{ borderColor: theme.palette.primary[200] + 75, p: 2 }} variant='outlined'>
                         <Stack sx={{ mt: 1, mb: 2, ml: 1, alignItems: 'center' }} direction='row' spacing={2}>
-                            <SettingsIcon />
+                            <AppIcon name='GearSix' />
                             <Typography variant='h4'>{t('Configuration')}</Typography>
                         </Stack>
                         <Stack direction='column'>
@@ -240,7 +238,7 @@ const DeleteDocStoreDialog = ({ show, dialogProps, onCancel, onDelete }) => {
                                                                 disableGutters
                                                             >
                                                                 <AccordionSummary
-                                                                    expandIcon={<ExpandMoreIcon />}
+                                                                    expandIcon={<AppIcon name='CaretDown' />}
                                                                     aria-controls={`nodes-accordian-${node.name}`}
                                                                     id={`nodes-accordian-header-${node.name}`}
                                                                 >

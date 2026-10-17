@@ -36,10 +36,7 @@ import { baseURL } from '@/store/constant'
 import { useError } from '@/store/context/ErrorContext'
 
 // icons
-import { IconX, IconEditCircle, IconRowInsertTop, IconDeviceFloppy, IconRefresh, IconClock } from '@tabler/icons-react'
-import Embeddings from '@mui/icons-material/DynamicFeed'
-import Storage from '@mui/icons-material/Storage'
-import DynamicFeed from '@mui/icons-material/Filter1'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // utils
 import { initNode, showHideInputParams, getFileName } from '@/utils/genericHelper'
@@ -237,7 +234,7 @@ const VectorStoreConfigure = () => {
                     variant: 'warning',
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -401,7 +398,7 @@ const VectorStoreConfigure = () => {
                     variant: 'success',
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -533,7 +530,7 @@ const VectorStoreConfigure = () => {
                                                 borderRadius: 2,
                                                 height: '100%'
                                             }}
-                                            startIcon={<IconRefresh size={18} stroke={1.75} />}
+                                            startIcon={<AppIcon name='ArrowClockwise' size={18} />}
                                             onClick={() => resetVectorStoreConfig()}
                                         >
                                             {t('Reset')}
@@ -544,7 +541,7 @@ const VectorStoreConfigure = () => {
                                         <Button
                                             variant='outlined'
                                             sx={{ height: '100%' }}
-                                            startIcon={<IconDeviceFloppy size={18} stroke={1.75} />}
+                                            startIcon={<AppIcon name='FloppyDisk' size={18} />}
                                             onClick={() => saveVectorStoreConfig()}
                                         >
                                             {t('Save Config')}
@@ -557,14 +554,14 @@ const VectorStoreConfigure = () => {
                                                 sx={{
                                                     height: '100%'
                                                 }}
-                                                startIcon={<IconRowInsertTop size={18} stroke={1.75} />}
+                                                startIcon={<AppIcon name='RowsPlusTop' size={18} />}
                                                 onClick={() => tryAndInsertIntoStore()}
                                             >
                                                 {t('Upsert')}
                                             </Button>
                                         )}
                                     <IconButton onClick={showUpsertHistoryDrawer} size='small' color='inherit' title={t('Upsert History')}>
-                                        <IconClock />
+                                        <AppIcon name='Clock' />
                                     </IconButton>
                                 </ViewHeader>
                                 <Steps />
@@ -574,7 +571,9 @@ const VectorStoreConfigure = () => {
                                             <Button
                                                 onClick={showEmbeddingsList}
                                                 fullWidth={true}
-                                                startIcon={<Embeddings style={{ background: 'transparent', height: 32, width: 32 }} />}
+                                                startIcon={
+                                                    <AppIcon name='Stack' style={{ background: 'transparent', height: 32, width: 32 }} />
+                                                }
                                                 sx={{
                                                     color: theme.palette.text.secondary,
                                                     borderRadius: '10px',
@@ -632,7 +631,7 @@ const VectorStoreConfigure = () => {
                                                                             src={`${baseURL}/api/v1/node-icon/${selectedEmbeddingsProvider?.name}`}
                                                                         />
                                                                     ) : (
-                                                                        <Embeddings color='black' />
+                                                                        <AppIcon name='Stack' color='black' />
                                                                     )}
                                                                 </div>
                                                                 <Typography sx={{ ml: 2 }} variant='h3'>
@@ -649,12 +648,13 @@ const VectorStoreConfigure = () => {
                                                                     {Object.keys(selectedEmbeddingsProvider).length > 0 && (
                                                                         <>
                                                                             <IconButton
+                                                                                aria-label={t('Change')}
                                                                                 variant='outlined'
                                                                                 sx={{ ml: 1 }}
                                                                                 color='secondary'
                                                                                 onClick={showEmbeddingsList}
                                                                             >
-                                                                                <IconEditCircle />
+                                                                                <AppIcon name='PencilCircle' />
                                                                             </IconButton>
                                                                         </>
                                                                     )}
@@ -686,7 +686,9 @@ const VectorStoreConfigure = () => {
                                             <Button
                                                 onClick={showVectorStoreList}
                                                 fullWidth={true}
-                                                startIcon={<Storage style={{ background: 'transparent', height: 32, width: 32 }} />}
+                                                startIcon={
+                                                    <AppIcon name='Database' style={{ background: 'transparent', height: 32, width: 32 }} />
+                                                }
                                                 sx={{
                                                     color: theme.palette.text.secondary,
                                                     borderRadius: '10px',
@@ -748,7 +750,7 @@ const VectorStoreConfigure = () => {
                                                                             src={`${baseURL}/api/v1/node-icon/${selectedVectorStoreProvider?.name}`}
                                                                         />
                                                                     ) : (
-                                                                        <Embeddings color='black' />
+                                                                        <AppIcon name='Stack' color='black' />
                                                                     )}
                                                                 </div>
                                                                 <Typography sx={{ ml: 2 }} variant='h3'>
@@ -765,12 +767,13 @@ const VectorStoreConfigure = () => {
                                                                     {Object.keys(selectedVectorStoreProvider).length > 0 && (
                                                                         <>
                                                                             <IconButton
+                                                                                aria-label={t('Change')}
                                                                                 variant='outlined'
                                                                                 sx={{ ml: 1 }}
                                                                                 color='secondary'
                                                                                 onClick={showVectorStoreList}
                                                                             >
-                                                                                <IconEditCircle />
+                                                                                <AppIcon name='PencilCircle' />
                                                                             </IconButton>
                                                                         </>
                                                                     )}
@@ -806,7 +809,10 @@ const VectorStoreConfigure = () => {
                                                     isRecordManagerUnavailable ? (
                                                         <></>
                                                     ) : (
-                                                        <DynamicFeed style={{ background: 'transparent', height: 32, width: 32 }} />
+                                                        <AppIcon
+                                                            name='NumberSquareOne'
+                                                            style={{ background: 'transparent', height: 32, width: 32 }}
+                                                        />
                                                     )
                                                 }
                                                 sx={{
@@ -872,7 +878,7 @@ const VectorStoreConfigure = () => {
                                                                             src={`${baseURL}/api/v1/node-icon/${selectedRecordManagerProvider?.name}`}
                                                                         />
                                                                     ) : (
-                                                                        <Embeddings color='black' />
+                                                                        <AppIcon name='Stack' color='black' />
                                                                     )}
                                                                 </div>
                                                                 <Typography sx={{ ml: 2 }} variant='h3'>
@@ -889,12 +895,13 @@ const VectorStoreConfigure = () => {
                                                                     {Object.keys(selectedRecordManagerProvider).length > 0 && (
                                                                         <>
                                                                             <IconButton
+                                                                                aria-label={t('Change')}
                                                                                 variant='outlined'
                                                                                 sx={{ ml: 1 }}
                                                                                 color='secondary'
                                                                                 onClick={showRecordManagerList}
                                                                             >
-                                                                                <IconEditCircle />
+                                                                                <AppIcon name='PencilCircle' />
                                                                             </IconButton>
                                                                         </>
                                                                     )}

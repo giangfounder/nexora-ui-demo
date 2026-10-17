@@ -5,7 +5,7 @@ import { enqueueSnackbar as enqueueSnackbarAction, closeSnackbar as closeSnackba
 
 // material-ui
 import { Button, IconButton, OutlinedInput, Box, InputAdornment, Stack, Typography } from '@mui/material'
-import { IconX, IconTrash, IconPlus } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // Project import
 import { StyledButton } from '@/ui-component/button/StyledButton'
@@ -68,7 +68,7 @@ const AllowedDomains = ({ dialogProps, onConfirm, hideTitle = false }) => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -87,7 +87,7 @@ const AllowedDomains = ({ dialogProps, onConfirm, hideTitle = false }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -151,6 +151,7 @@ const AllowedDomains = ({ dialogProps, onConfirm, hideTitle = false }) => {
                                             <InputAdornment position='end' sx={{ padding: '2px' }}>
                                                 {inputFields.length > 1 && (
                                                     <IconButton
+                                                        aria-label={t('Delete')}
                                                         sx={{ height: 30, width: 30 }}
                                                         size='small'
                                                         color='error'
@@ -158,7 +159,7 @@ const AllowedDomains = ({ dialogProps, onConfirm, hideTitle = false }) => {
                                                         onClick={() => removeInputFields(index)}
                                                         edge='end'
                                                     >
-                                                        <IconTrash />
+                                                        <AppIcon name='Trash' />
                                                     </IconButton>
                                                 )}
                                             </InputAdornment>
@@ -167,8 +168,8 @@ const AllowedDomains = ({ dialogProps, onConfirm, hideTitle = false }) => {
                                 </Box>
                                 <Box sx={{ width: '5%', mb: 1 }}>
                                     {index === inputFields.length - 1 && (
-                                        <IconButton color='primary' onClick={addInputField}>
-                                            <IconPlus />
+                                        <IconButton aria-label={t('Add')} color='primary' onClick={addInputField}>
+                                            <AppIcon name='Plus' />
                                         </IconButton>
                                     )}
                                 </Box>

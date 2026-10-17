@@ -27,7 +27,7 @@ import {
     Tooltip
 } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import { IconLayoutGrid, IconList, IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // project imports
 import MainCard from '@/ui-component/cards/MainCard'
@@ -237,7 +237,7 @@ const Marketplace = () => {
                             variant: 'success',
                             action: (key) => (
                                 <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                    <IconX />
+                                    <AppIcon name='X' />
                                 </Button>
                             )
                         }
@@ -255,7 +255,7 @@ const Marketplace = () => {
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -599,7 +599,7 @@ const Marketplace = () => {
                                     value='card'
                                     title={t('Card View')}
                                 >
-                                    <IconLayoutGrid size={18} stroke={1.75} />
+                                    <AppIcon name='GridFour' size={18} />
                                 </ToggleButton>
                                 <ToggleButton
                                     sx={{ borderColor: theme.palette.alpha.border }}
@@ -607,7 +607,7 @@ const Marketplace = () => {
                                     value='list'
                                     title={t('List View')}
                                 >
-                                    <IconList size={18} stroke={1.75} />
+                                    <AppIcon name='List' size={18} />
                                 </ToggleButton>
                             </ToggleButtonGroup>
                         </ViewHeader>
@@ -820,7 +820,7 @@ const Marketplace = () => {
                                         sx={{ width: 'max-content', mb: 2, borderRadius: '20px' }}
                                         variant='outlined'
                                         onClick={() => clearAllUsecases()}
-                                        startIcon={<IconX size={18} stroke={1.75} />}
+                                        startIcon={<AppIcon name='X' size={18} />}
                                     >
                                         {t('Clear All')}
                                     </Button>

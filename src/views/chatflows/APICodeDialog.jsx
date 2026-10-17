@@ -19,7 +19,7 @@ import {
     Card
 } from '@mui/material'
 import { CopyBlock, atomOneDark } from 'react-code-blocks'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { alpha, useTheme } from '@mui/material/styles'
 import { useAuth } from '@/hooks/useAuth'
 import { useLanguage } from '@/store/context/LanguageContext'
@@ -38,10 +38,6 @@ import { SET_CHATFLOW } from '@/store/actions'
 import pythonSVG from '@/assets/images/python.svg'
 import javascriptSVG from '@/assets/images/javascript.svg'
 import cURLSVG from '@/assets/images/cURL.svg'
-import EmbedSVG from '@/assets/images/embed.svg'
-import ShareChatbotSVG from '@/assets/images/sharing.png'
-import settingsSVG from '@/assets/images/settings.svg'
-import { IconInfoCircle, IconBox, IconVariable, IconExclamationCircle } from '@tabler/icons-react'
 
 // API
 import apiKeyApi from '@/api/apikey'
@@ -94,6 +90,9 @@ function a11yProps(index) {
         'aria-controls': `attachment-tabpanel-${index}`
     }
 }
+
+// Tabs with a functional (non-brand) icon; the other tabs show the language/tool logo
+const TAB_ICONS = { Embed: 'Code', 'Share Chatbot': 'ShareNetwork', Configuration: 'GearSix' }
 
 const APICodeDialog = ({ show, dialogProps, onCancel }) => {
     const portalElement = document.getElementById('portal')
@@ -475,14 +474,8 @@ query({"question": "Hey, how are you?"}).then((response) => {
             return pythonSVG
         } else if (codeLang === 'JavaScript') {
             return javascriptSVG
-        } else if (codeLang === 'Embed') {
-            return EmbedSVG
         } else if (codeLang === 'cURL') {
             return cURLSVG
-        } else if (codeLang === 'Share Chatbot') {
-            return ShareChatbotSVG
-        } else if (codeLang === 'Configuration') {
-            return settingsSVG
         }
         return pythonSVG
     }
@@ -809,7 +802,7 @@ formData.append("openAIApiKey[openAIEmbeddings_0]", "sk-my-openai-2nd-key")`
                             padding: 12
                         }}
                     >
-                        <IconExclamationCircle size={28} color={warnFg} style={{ flexShrink: 0 }} />
+                        <AppIcon name='WarningCircle' size={28} color={warnFg} style={{ flexShrink: 0 }} />
                         <span style={{ color: warnFg, marginLeft: 10, fontWeight: 500 }}>
                             {renderRich(
                                 t(
@@ -832,7 +825,7 @@ formData.append("openAIApiKey[openAIEmbeddings_0]", "sk-my-openai-2nd-key")`
                                 }}
                             >
                                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                                    <IconInfoCircle size={28} color={okFg} />
+                                    <AppIcon name='Info' size={28} color={okFg} />
                                     <span style={{ color: okFg, marginLeft: 10, fontWeight: 500 }}>
                                         {renderRich(
                                             t(
@@ -868,11 +861,15 @@ formData.append("openAIApiKey[openAIEmbeddings_0]", "sk-my-openai-2nd-key")`
                                     {codes.map((codeLang, index) => (
                                         <Tab
                                             icon={
-                                                <img
-                                                    style={{ objectFit: 'cover', height: 15, width: 'auto' }}
-                                                    src={getSVG(codeLang)}
-                                                    alt='code'
-                                                />
+                                                TAB_ICONS[codeLang] ? (
+                                                    <AppIcon name={TAB_ICONS[codeLang]} size={16} />
+                                                ) : (
+                                                    <img
+                                                        style={{ objectFit: 'cover', height: 15, width: 'auto' }}
+                                                        src={getSVG(codeLang)}
+                                                        alt='code'
+                                                    />
+                                                )
                                             }
                                             iconPosition='start'
                                             key={index}
@@ -945,7 +942,7 @@ formData.append("openAIApiKey[openAIEmbeddings_0]", "sk-my-openai-2nd-key")`
                                                             alignItems: 'center'
                                                         }}
                                                     >
-                                                        <IconExclamationCircle size={30} color={warnFg} />
+                                                        <AppIcon name='WarningCircle' size={30} color={warnFg} />
                                                         <span style={{ color: warnFg, marginLeft: 10, fontWeight: 500 }}>
                                                             {t(
                                                                 'For security reason, override config is disabled by default. You can change this by going into Chatflow Configuration -> Security tab, and enable the property you want to override.'
@@ -969,7 +966,7 @@ formData.append("openAIApiKey[openAIEmbeddings_0]", "sk-my-openai-2nd-key")`
                                                             direction='row'
                                                             spacing={2}
                                                         >
-                                                            <IconBox />
+                                                            <AppIcon name='Cube' />
                                                             <Typography variant='h4'>{t('Nodes')}</Typography>
                                                         </Stack>
                                                         {Object.keys(nodeConfig)
@@ -982,7 +979,7 @@ formData.append("openAIApiKey[openAIEmbeddings_0]", "sk-my-openai-2nd-key")`
                                                                     disableGutters
                                                                 >
                                                                     <AccordionSummary
-                                                                        expandIcon={<ExpandMoreIcon />}
+                                                                        expandIcon={<AppIcon name='CaretDown' />}
                                                                         aria-controls={`nodes-accordian-${nodeLabel}`}
                                                                         id={`nodes-accordian-header-${nodeLabel}`}
                                                                     >
@@ -1039,7 +1036,7 @@ formData.append("openAIApiKey[openAIEmbeddings_0]", "sk-my-openai-2nd-key")`
                                                             direction='row'
                                                             spacing={2}
                                                         >
-                                                            <IconVariable />
+                                                            <AppIcon name='BracketsSquare' />
                                                             <Typography variant='h4'>{t('Variables')}</Typography>
                                                         </Stack>
                                                         <TableViewOnly rows={variableOverrides} columns={['name', 'type', 'enabled']} />
@@ -1078,7 +1075,7 @@ formData.append("openAIApiKey[openAIEmbeddings_0]", "sk-my-openai-2nd-key")`
                                                             alignItems: 'center'
                                                         }}
                                                     >
-                                                        <IconInfoCircle size={30} color={okFg} />
+                                                        <AppIcon name='Info' size={30} color={okFg} />
                                                         <span style={{ color: okFg, marginLeft: 10, fontWeight: 500 }}>
                                                             {t(
                                                                 'You can also specify multiple values for a config parameter by specifying the node id'

@@ -29,27 +29,7 @@ import {
     useTheme
 } from '@mui/material'
 import { alpha } from '@mui/material/styles'
-import {
-    IconAdjustmentsFilled,
-    IconArrowLeft,
-    IconArrowsMaximize,
-    IconArrowsMinimize,
-    IconArticleFilled,
-    IconBookFilled,
-    IconBrain,
-    IconChevronRight,
-    IconCpu,
-    IconDeviceFloppy,
-    IconDirectionsFilled,
-    IconDotsVertical,
-    IconFileTextFilled,
-    IconPlus,
-    IconPuzzleFilled,
-    IconSearch,
-    IconUserFilled,
-    IconVariable,
-    IconX
-} from '@tabler/icons-react'
+import { AppIcon, iconComponent } from '@/ui-component/icons/AppIcon'
 
 import assistantsApi from '@/api/assistants'
 import documentStoreApi from '@/api/documentstore'
@@ -80,7 +60,6 @@ import PlaybookSheet, { playbookHealth } from './PlaybookSheet'
 import TokenEditor from './TokenEditor'
 import ToolSheet from './ToolSheet'
 import ChatTestPanel from './ChatTestPanel'
-import { getInitials } from '@/views/customers/utils'
 
 const parseModel = (m) => {
     const paren = m.label.match(/\(([^)]+)\)/)?.[1]
@@ -194,9 +173,9 @@ const AssistantWorkspace = () => {
     const varCount = toolState.collectInfo.variables.length
 
     const NAV_ITEMS = [
-        { key: 'setup', label: 'Thiết lập', Icon: IconAdjustmentsFilled, tone: 'orange' },
-        { key: 'knowledge', label: 'Kiến thức', Icon: IconBookFilled, tone: 'emerald', count: selectedStoreIds.length },
-        { key: 'tools', label: 'Công cụ', Icon: IconPuzzleFilled, tone: 'teal', count: enabledCount }
+        { key: 'setup', label: 'Thiết lập', Icon: iconComponent('Sliders'), tone: 'orange' },
+        { key: 'knowledge', label: 'Kiến thức', Icon: iconComponent('Book'), tone: 'emerald', count: selectedStoreIds.length },
+        { key: 'tools', label: 'Công cụ', Icon: iconComponent('PuzzlePiece'), tone: 'teal', count: enabledCount }
     ]
 
     const filteredTools = useMemo(() => {
@@ -290,10 +269,10 @@ const AssistantWorkspace = () => {
                         '&:hover': { color: 'text.primary', bgcolor: theme.palette.alpha.hover }
                     }}
                 >
-                    <IconArrowLeft size={14} stroke={1.75} />
+                    <AppIcon name='ArrowLeft' size={14} />
                     Trợ lý
                 </Box>
-                <IconChevronRight size={14} stroke={1.75} />
+                <AppIcon name='CaretRight' size={14} />
                 <Typography sx={{ fontSize: '0.8125rem', fontWeight: 500 }} color='text.primary' noWrap>
                     {name}
                 </Typography>
@@ -325,7 +304,7 @@ const AssistantWorkspace = () => {
                             boxShadow: inputShadow(theme)
                         }}
                     >
-                        {getInitials(name || 'Trợ lý mới')}
+                        <AppIcon name='Robot' size={28} />
                     </Box>
                     <Box
                         aria-hidden
@@ -371,28 +350,38 @@ const AssistantWorkspace = () => {
                                 color: dirty ? 'warning.dark' : 'success.dark'
                             }}
                         >
-                            <Box
-                                component='span'
-                                sx={{ width: 7, height: 7, borderRadius: '50%', bgcolor: dirty ? 'warning.main' : 'success.main' }}
-                            />
+                            <AppIcon name={dirty ? 'PencilSimpleLine' : 'CheckCircle'} size={14} />
                             {dirty ? 'Chưa lưu' : 'Đang hoạt động'}
                         </Box>
                     </Stack>
                     <Stack direction='row' sx={{ mt: 1.5, flexWrap: 'wrap', gap: 1 }}>
                         {[
-                            { key: 'model', Icon: IconCpu, tone: 'orange', text: model?.short || 'Chưa chọn mô hình', go: () => setTab(0) },
+                            {
+                                key: 'model',
+                                Icon: iconComponent('Cpu'),
+                                tone: 'orange',
+                                text: model?.short || 'Chưa chọn mô hình',
+                                go: () => setTab(0)
+                            },
                             {
                                 key: 'kb',
-                                Icon: IconBookFilled,
+                                Icon: iconComponent('Book'),
                                 tone: 'emerald',
                                 n: selectedStoreIds.length,
                                 text: 'kho tài liệu',
                                 go: () => setTab(1)
                             },
-                            { key: 'tools', Icon: IconPuzzleFilled, tone: 'teal', n: enabledCount, text: 'công cụ', go: () => setTab(2) },
+                            {
+                                key: 'tools',
+                                Icon: iconComponent('PuzzlePiece'),
+                                tone: 'teal',
+                                n: enabledCount,
+                                text: 'công cụ',
+                                go: () => setTab(2)
+                            },
                             {
                                 key: 'pb',
-                                Icon: IconDirectionsFilled,
+                                Icon: iconComponent('Signpost'),
                                 tone: 'amber',
                                 n: toolState.playbooks.length,
                                 text: 'kịch bản',
@@ -400,7 +389,7 @@ const AssistantWorkspace = () => {
                             },
                             {
                                 key: 'vars',
-                                Icon: IconVariable,
+                                Icon: iconComponent('BracketsSquare'),
                                 tone: 'amber',
                                 n: varCount,
                                 text: 'biến thu thập',
@@ -473,7 +462,7 @@ const AssistantWorkspace = () => {
                         size='medium'
                         onClick={save}
                         disabled={saving || !dirty}
-                        startIcon={saving ? <CircularProgress size={14} color='inherit' /> : <IconDeviceFloppy size={16} stroke={1.75} />}
+                        startIcon={saving ? <CircularProgress size={14} color='inherit' /> : <AppIcon name='FloppyDisk' size={16} />}
                         sx={{
                             minWidth: 120,
                             height: 40,
@@ -508,7 +497,7 @@ const AssistantWorkspace = () => {
                         aria-label='Hành động khác'
                         aria-haspopup='menu'
                         onClick={(e) => setMenuAnchor(e.currentTarget)}
-                        startIcon={<IconDotsVertical size={16} stroke={1.75} />}
+                        startIcon={<AppIcon name='DotsThreeVertical' size={16} />}
                         sx={{
                             height: 40,
                             px: 2,
@@ -597,7 +586,7 @@ const AssistantWorkspace = () => {
                     ))}
                     <Box sx={{ mt: 1, pt: 1, borderTop: `1px solid ${theme.palette.alpha.divider}` }}>
                         <NavItem
-                            icon={IconDirectionsFilled}
+                            icon={iconComponent('Signpost')}
                             label='Kịch bản'
                             tone='amber'
                             count={toolState.playbooks.length}
@@ -606,19 +595,10 @@ const AssistantWorkspace = () => {
                             ariaLabel={playbookAlert.count ? `Mở kịch bản xử lý, ${playbookAlert.count} cần xem lại` : 'Mở kịch bản xử lý'}
                             endIcon={
                                 playbookAlert.count > 0 ? (
-                                    <Box
-                                        aria-hidden
-                                        sx={{
-                                            width: 8,
-                                            height: 8,
-                                            borderRadius: '50%',
-                                            flexShrink: 0,
-                                            bgcolor: playbookAlert.tone === 'rose' ? 'error.main' : 'warning.main',
-                                            boxShadow: `0 0 0 3px ${alpha(
-                                                playbookAlert.tone === 'rose' ? theme.palette.error.main : theme.palette.warning.main,
-                                                0.18
-                                            )}`
-                                        }}
+                                    <AppIcon
+                                        name={playbookAlert.tone === 'rose' ? 'WarningOctagon' : 'WarningCircle'}
+                                        size={16}
+                                        color={playbookAlert.tone === 'rose' ? theme.palette.error.main : theme.palette.warning.main}
                                     />
                                 ) : null
                             }
@@ -632,7 +612,7 @@ const AssistantWorkspace = () => {
                         {/* ---------- Tab: Thiết lập ---------- */}
                         {tab === 0 && (
                             <Stack spacing={3} role='tabpanel' id='ws-tabpanel-0' aria-labelledby='ws-tab-0'>
-                                <SectionCard title='Danh tính' icon={IconUserFilled} tone='orange'>
+                                <SectionCard title='Danh tính' icon={iconComponent('User')} tone='orange'>
                                     <Box
                                         sx={{
                                             display: 'grid',
@@ -703,7 +683,7 @@ const AssistantWorkspace = () => {
 
                                 <SectionCard
                                     title='Hướng dẫn'
-                                    icon={IconArticleFilled}
+                                    icon={iconComponent('Article')}
                                     tone='amber'
                                     action={
                                         <>
@@ -725,7 +705,7 @@ const AssistantWorkspace = () => {
                                                     onClick={() => setPromptFull(true)}
                                                     sx={{ width: 26, height: 26, borderRadius: R_CONTROL, color: 'text.secondary' }}
                                                 >
-                                                    <IconArrowsMaximize size={14} stroke={1.75} />
+                                                    <AppIcon name='ArrowsOut' size={14} />
                                                 </IconButton>
                                             </Tooltip>
                                         </>
@@ -742,7 +722,7 @@ const AssistantWorkspace = () => {
                                     />
                                 </SectionCard>
 
-                                <SectionCard title='Tham số' id='section-params' icon={IconBrain} tone='teal'>
+                                <SectionCard title='Tham số' id='section-params' icon={iconComponent('Brain')} tone='teal'>
                                     <Box sx={hairlineListSx(theme)}>
                                         <SettingRow label='Temperature' labelId='p-temp' value={params.temperature.toFixed(1)}>
                                             <Slider
@@ -813,13 +793,13 @@ const AssistantWorkspace = () => {
                             <Stack spacing={3} role='tabpanel' id='ws-tabpanel-1' aria-labelledby='ws-tab-1'>
                                 <SectionCard
                                     title='Kho tài liệu'
-                                    icon={IconBookFilled}
+                                    icon={iconComponent('Book')}
                                     tone='emerald'
                                     action={
                                         <Tooltip title='Tạo kho tài liệu mới'>
                                             <Button
                                                 size='small'
-                                                startIcon={<IconPlus size={14} strokeWidth={2.5} />}
+                                                startIcon={<AppIcon name='Plus' size={14} />}
                                                 onClick={() => navigate('/document-stores')}
                                                 sx={quietButtonSx(theme)}
                                             >
@@ -873,7 +853,7 @@ const AssistantWorkspace = () => {
                                                     ...p.InputProps,
                                                     startAdornment: (
                                                         <InputAdornment position='start' sx={{ color: 'text.secondary', ml: 0.5 }}>
-                                                            <IconSearch size={16} stroke={1.75} />
+                                                            <AppIcon name='MagnifyingGlass' size={16} />
                                                         </InputAdornment>
                                                     )
                                                 }}
@@ -892,7 +872,7 @@ const AssistantWorkspace = () => {
                                                 return (
                                                     <Stack key={s.id} direction='row' spacing={1.5} alignItems='center' sx={{ py: 1.5 }}>
                                                         <Box sx={{ display: 'inline-flex', color: 'text.secondary', flexShrink: 0 }}>
-                                                            <IconBookFilled size={18} />
+                                                            <AppIcon name='Book' size={18} />
                                                         </Box>
                                                         <Box sx={{ flex: 1, minWidth: 0 }}>
                                                             <Stack direction='row' spacing={1} alignItems='center' sx={{ minWidth: 0 }}>
@@ -924,7 +904,7 @@ const AssistantWorkspace = () => {
                                                                     color: 'text.secondary'
                                                                 }}
                                                             >
-                                                                <IconX size={16} stroke={1.75} />
+                                                                <AppIcon name='X' size={16} />
                                                             </IconButton>
                                                         </Tooltip>
                                                     </Stack>
@@ -934,7 +914,7 @@ const AssistantWorkspace = () => {
                                     )}
                                 </SectionCard>
 
-                                <SectionCard title='Truy xuất' icon={IconFileTextFilled} tone='teal'>
+                                <SectionCard title='Truy xuất' icon={iconComponent('FileText')} tone='teal'>
                                     <FormField
                                         label={
                                             <LabelWithTip
@@ -1039,7 +1019,7 @@ const AssistantWorkspace = () => {
                                         inputProps={{ 'aria-label': 'Tìm công cụ' }}
                                         startAdornment={
                                             <InputAdornment position='start' sx={{ color: 'text.secondary' }}>
-                                                <IconSearch size={16} stroke={1.75} />
+                                                <AppIcon name='MagnifyingGlass' size={16} />
                                             </InputAdornment>
                                         }
                                         sx={{ width: { xs: '100%', sm: 240 }, height: 36, '& input': { fontSize: '0.875rem' } }}
@@ -1048,7 +1028,7 @@ const AssistantWorkspace = () => {
 
                                 {filteredTools.length === 0 ? (
                                     <Stack alignItems='center' spacing={1} sx={{ py: 8, color: 'text.disabled' }}>
-                                        <IconPuzzleFilled size={28} />
+                                        <AppIcon name='PuzzlePiece' size={28} />
                                         <Typography variant='body2'>Không có công cụ phù hợp</Typography>
                                     </Stack>
                                 ) : (
@@ -1186,7 +1166,7 @@ const AssistantWorkspace = () => {
                             onClick={() => setPromptFull(false)}
                             sx={{ width: 36, height: 36, borderRadius: R_CARD, color: 'text.secondary' }}
                         >
-                            <IconArrowsMinimize size={18} stroke={1.75} />
+                            <AppIcon name='ArrowsIn' size={18} />
                         </IconButton>
                     </Tooltip>
                 </Stack>

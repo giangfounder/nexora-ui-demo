@@ -7,7 +7,7 @@ import { Avatar, Box, ButtonBase, Typography, Stack } from '@mui/material'
 import { StyledButton } from '@/ui-component/button/StyledButton'
 
 // icons
-import { IconCopy, IconChevronLeft } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { Available } from '@/ui-component/rbac/available'
 import { useLanguage } from '@/store/context/LanguageContext'
 
@@ -47,7 +47,7 @@ const MarketplaceCanvasHeader = ({ flowName, flowData, onChatflowCopy }) => {
                         color='inherit'
                         onClick={() => navigate(-1)}
                     >
-                        <IconChevronLeft stroke={1.75} size={18} />
+                        <AppIcon name='CaretLeft' size={18} />
                     </Avatar>
                 </ButtonBase>
             </Box>
@@ -70,7 +70,7 @@ const MarketplaceCanvasHeader = ({ flowName, flowData, onChatflowCopy }) => {
                         variant='contained'
                         title={t('Use Chatflow')}
                         onClick={() => onChatflowCopy(flowData)}
-                        startIcon={<IconCopy />}
+                        startIcon={<AppIcon name='Copy' />}
                     >
                         {t('Use Template')}
                     </StyledButton>

@@ -2,20 +2,19 @@ import PropTypes from 'prop-types'
 import { useMemo, useState } from 'react'
 
 import { alpha, useTheme } from '@mui/material/styles'
-import { Avatar, Box, Paper, Stack, Typography } from '@mui/material'
-import { IconInbox } from '@tabler/icons-react'
+import { Box, Paper, Stack, Typography } from '@mui/material'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 import { useLanguage } from '@/store/context/LanguageContext'
-import { StatusDot } from '@/ui-component/table/SharedTable'
-import { getAvatarColorKey, getInitials } from '@/views/customers/utils'
-
-const ICON_STROKE = 1.75
+import { StatusIcon } from '@/ui-component/table/SharedTable'
+import PersonAvatar from '@/ui-component/avatar/PersonAvatar'
 
 const DEPT_TONES = ['teal', 'amber', 'orange', 'emerald', 'rose']
 const toneFor = (idx) => DEPT_TONES[idx % DEPT_TONES.length]
 
 const STATUS_TONE = { active: 'emerald', invited: 'amber', disabled: 'rose' }
 const STATUS_LABEL = { active: 'Đang hoạt động', invited: 'Đã mời', disabled: 'Vô hiệu' }
+const STATUS_ICON = { active: 'CheckCircle', invited: 'EnvelopeSimple', disabled: 'Prohibit' }
 
 const EmployeeKanban = ({ employees, roles, onOpenEmployee, onMoveEmployee }) => {
     const { t } = useLanguage()
@@ -37,7 +36,7 @@ const EmployeeKanban = ({ employees, roles, onOpenEmployee, onMoveEmployee }) =>
     if (departments.length === 0) {
         return (
             <Box sx={{ p: 8, textAlign: 'center', color: 'text.secondary' }}>
-                <IconInbox size={40} stroke={ICON_STROKE} style={{ opacity: 0.3, marginBottom: 12 }} />
+                <AppIcon name='Tray' size={40} style={{ opacity: 0.3, marginBottom: 12 }} />
                 <Typography>{t('Chưa có nhân viên nào phù hợp')}</Typography>
             </Box>
         )
@@ -81,7 +80,7 @@ const EmployeeKanban = ({ employees, roles, onOpenEmployee, onMoveEmployee }) =>
                             spacing={1}
                             sx={{ px: 1.75, height: 44, borderBottom: `1px solid ${alphaBorder}` }}
                         >
-                            <StatusDot tone={tone} size={8} />
+                            <StatusIcon tone={tone} icon='Buildings' size={16} />
                             <Typography variant='body2' sx={{ fontWeight: 600, flex: 1, minWidth: 0 }} noWrap>
                                 {dept}
                             </Typography>
@@ -92,7 +91,6 @@ const EmployeeKanban = ({ employees, roles, onOpenEmployee, onMoveEmployee }) =>
 
                         <Stack spacing={1} sx={{ flex: 1, p: 1.25, minHeight: 120 }}>
                             {columnEmployees.map((emp) => {
-                                const avColor = getAvatarColorKey(emp.name)
                                 const role = roleById(emp.roleId)
                                 const statusTone = STATUS_TONE[emp.status] || 'teal'
                                 return (
@@ -127,18 +125,7 @@ const EmployeeKanban = ({ employees, roles, onOpenEmployee, onMoveEmployee }) =>
                                         }}
                                     >
                                         <Stack direction='row' spacing={1.25} alignItems='center' sx={{ mb: 1 }}>
-                                            <Avatar
-                                                sx={{
-                                                    width: 28,
-                                                    height: 28,
-                                                    fontSize: '0.75rem',
-                                                    fontWeight: 600,
-                                                    bgcolor: alpha(theme.palette[avColor].main, isDark ? 0.24 : 0.15),
-                                                    color: isDark ? theme.palette[avColor].light : theme.palette[avColor].dark
-                                                }}
-                                            >
-                                                {getInitials(emp.name)}
-                                            </Avatar>
+                                            <PersonAvatar name={emp.name} size={28} />
                                             <Stack sx={{ minWidth: 0, flex: 1 }}>
                                                 <Typography variant='body2' sx={{ fontWeight: 600 }} noWrap>
                                                     {emp.name}
@@ -154,7 +141,7 @@ const EmployeeKanban = ({ employees, roles, onOpenEmployee, onMoveEmployee }) =>
                                                 {role?.name || '—'}
                                             </Typography>
                                             <Stack direction='row' spacing={0.75} alignItems='center' sx={{ flexShrink: 0 }}>
-                                                <StatusDot tone={statusTone} size={7} />
+                                                <StatusIcon tone={statusTone} icon={STATUS_ICON[emp.status]} />
                                                 <Typography variant='caption'>{t(STATUS_LABEL[emp.status] || emp.status)}</Typography>
                                             </Stack>
                                         </Stack>
@@ -164,7 +151,7 @@ const EmployeeKanban = ({ employees, roles, onOpenEmployee, onMoveEmployee }) =>
 
                             {columnEmployees.length === 0 && (
                                 <Stack alignItems='center' spacing={0.5} sx={{ py: 4, color: 'text.disabled' }}>
-                                    <IconInbox size={20} stroke={ICON_STROKE} />
+                                    <AppIcon name='Tray' size={20} />
                                     <Typography variant='caption'>{t('Kéo nhân viên vào đây')}</Typography>
                                 </Stack>
                             )}

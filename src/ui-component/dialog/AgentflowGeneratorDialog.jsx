@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import { Box, Typography, OutlinedInput, DialogActions, Button, Dialog, DialogContent, DialogTitle, LinearProgress } from '@mui/material'
 import chatflowsApi from '@/api/chatflows'
 import { closeSnackbar as closeSnackbarAction, enqueueSnackbar as enqueueSnackbarAction } from '@/store/actions'
-import { IconX, IconPencilPlus, IconArrowLeft } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import useNotifier from '@/utils/useNotifier'
 import { LoadingButton } from '@mui/lab'
 import generatorGIF from '@/assets/images/agentflow-generator.gif'
@@ -130,7 +130,7 @@ const AgentflowGeneratorDialog = ({ show, dialogProps, onCancel, onConfirm }) =>
                 variant: 'warning',
                 action: (key) => (
                     <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                        <IconX />
+                        <AppIcon name='X' />
                     </Button>
                 )
             }
@@ -218,7 +218,7 @@ const AgentflowGeneratorDialog = ({ show, dialogProps, onCancel, onConfirm }) =>
                         persist: false,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -233,7 +233,7 @@ const AgentflowGeneratorDialog = ({ show, dialogProps, onCancel, onConfirm }) =>
                     persist: false,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -421,7 +421,7 @@ const AgentflowGeneratorDialog = ({ show, dialogProps, onCancel, onConfirm }) =>
                                     onClick={() => {
                                         onGenerate()
                                     }}
-                                    startIcon={<IconPencilPlus size={18} stroke={1.75} />}
+                                    startIcon={<AppIcon name='NotePencil' size={18} />}
                                     disabled={
                                         loading ||
                                         !customAssistantInstruction.trim() ||
@@ -436,7 +436,7 @@ const AgentflowGeneratorDialog = ({ show, dialogProps, onCancel, onConfirm }) =>
                             {generatedInstruction && (
                                 <Button
                                     variant='outlined'
-                                    startIcon={<IconArrowLeft size={20} />}
+                                    startIcon={<AppIcon name='ArrowLeft' size={20} />}
                                     onClick={() => {
                                         setGeneratedInstruction('')
                                     }}

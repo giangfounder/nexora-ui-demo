@@ -14,7 +14,7 @@ import ConfirmDialog from '@/ui-component/dialog/ConfirmDialog'
 import { Grid } from '@/ui-component/grid/Grid'
 
 // Icons
-import { IconX, IconShare } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // API
 import workspaceApi from '@/api/workspace'
@@ -138,7 +138,7 @@ const ShareWithWorkspaceDialog = ({ show, dialogProps, onCancel, setError }) => 
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -157,7 +157,7 @@ const ShareWithWorkspaceDialog = ({ show, dialogProps, onCancel, setError }) => 
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -177,7 +177,7 @@ const ShareWithWorkspaceDialog = ({ show, dialogProps, onCancel, setError }) => 
         >
             <DialogTitle sx={{ fontSize: '1rem' }} id='alert-dialog-title'>
                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                    <IconShare style={{ marginRight: '10px' }} />
+                    <AppIcon name='ShareNetwork' style={{ marginRight: '10px' }} />
                     {dialogProps.data.title}
                 </div>
             </DialogTitle>

@@ -9,7 +9,7 @@ import { useTheme, darken, lighten } from '@mui/material/styles'
 import NodeCardWrapper from '@/ui-component/cards/NodeCardWrapper'
 import NodeTooltip from '@/ui-component/tooltip/NodeTooltip'
 import { IconButton, Box } from '@mui/material'
-import { IconCopy, IconTrash } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { Input } from '@/ui-component/input/Input'
 
 // const
@@ -87,7 +87,7 @@ const StickyNote = ({ data }) => {
                                     '&:hover': { color: theme?.palette.primary.main }
                                 }}
                             >
-                                <IconCopy />
+                                <AppIcon name='Copy' />
                             </IconButton>
                             <IconButton
                                 title={t('Delete')}
@@ -101,7 +101,7 @@ const StickyNote = ({ data }) => {
                                     '&:hover': { color: theme?.palette.error.main }
                                 }}
                             >
-                                <IconTrash />
+                                <AppIcon name='Trash' />
                             </IconButton>
                         </div>
                     }

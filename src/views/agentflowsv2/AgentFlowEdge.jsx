@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 import { SET_DIRTY } from '@/store/actions'
 import { flowContext } from '@/store/context/ReactFlowContext'
-import { IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 function EdgeLabel({ transform, isHumanInput, label, color }) {
     return (
@@ -167,7 +167,7 @@ const AgentFlowEdge = ({ id, sourceX, sourceY, targetX, targetY, sourcePosition,
                                 e.currentTarget.style.boxShadow = '0 0 4px rgba(0,0,0,0.3)'
                             }}
                         >
-                            <IconX stroke={2} size='12' color='white' />
+                            <AppIcon name='X' size='12' color='white' />
                         </button>
                     </div>
                 </foreignObject>

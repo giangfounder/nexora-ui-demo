@@ -25,17 +25,7 @@ import {
     useTheme
 } from '@mui/material'
 import { alpha } from '@mui/material/styles'
-import {
-    IconArrowLeft,
-    IconArrowRight,
-    IconBraces,
-    IconChevronRight,
-    IconPlus,
-    IconSend,
-    IconTrashFilled,
-    IconWorld,
-    IconX
-} from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 import { useSheetShell, FormField } from '@/hooks/useDialogShell'
 import {
@@ -89,7 +79,7 @@ ListHead.propTypes = { label: PropTypes.node, count: PropTypes.number }
 
 // SettingsDialog text add button.
 const AddButton = ({ onClick }) => (
-    <Button startIcon={<IconPlus size={16} strokeWidth={2.5} />} onClick={onClick} sx={{ alignSelf: 'flex-start', fontWeight: 500 }}>
+    <Button startIcon={<AppIcon name='Plus' size={16} />} onClick={onClick} sx={{ alignSelf: 'flex-start', fontWeight: 500 }}>
         Thêm
     </Button>
 )
@@ -162,7 +152,7 @@ const DeepResearchBody = ({ value, onChange }) => {
                             variant='contained'
                             onClick={addLinks}
                             disabled={!draft.trim()}
-                            startIcon={<IconPlus size={15} stroke={1.75} />}
+                            startIcon={<AppIcon name='Plus' size={15} />}
                             sx={{ flexShrink: 0 }}
                         >
                             Thêm
@@ -189,7 +179,7 @@ const DeepResearchBody = ({ value, onChange }) => {
                                             color: 'text.secondary'
                                         }}
                                     >
-                                        <IconWorld size={12} stroke={1.75} />
+                                        <AppIcon name='Globe' size={12} />
                                     </Avatar>
                                     <Box sx={{ flex: 1, minWidth: 0 }}>
                                         <Typography noWrap sx={{ fontSize: '0.875rem', fontWeight: 500 }}>
@@ -221,7 +211,7 @@ const DeepResearchBody = ({ value, onChange }) => {
                                             onClick={() => removeLink(l.id)}
                                             sx={rowDeleteSx(theme)}
                                         >
-                                            <IconTrashFilled size={16} />
+                                            <AppIcon name='Trash' size={16} />
                                         </IconButton>
                                     </Tooltip>
                                 </Stack>
@@ -300,7 +290,7 @@ const VarInsertMenu = ({ collectNames, otherOutputs, onPick }) => {
                     aria-expanded={open ? 'true' : undefined}
                     onMouseDown={(e) => e.preventDefault()}
                     onClick={(e) => setAnchor(e.currentTarget)}
-                    startIcon={<IconBraces size={14} stroke={1.75} />}
+                    startIcon={<AppIcon name='BracketsCurly' size={14} />}
                     sx={{ ...quietButtonSx(theme), mr: -1 }}
                 >
                     Chèn
@@ -438,7 +428,7 @@ const ApiDetail = ({ api, onChange, onBack, onDelete, toolState }) => {
                         onClick={onBack}
                         sx={{ ml: -1, width: 32, height: 32, borderRadius: R_CONTROL, color: 'text.secondary' }}
                     >
-                        <IconArrowLeft size={18} stroke={1.75} />
+                        <AppIcon name='ArrowLeft' size={18} />
                     </IconButton>
                 </Tooltip>
                 <Typography noWrap sx={{ flex: 1, minWidth: 0, fontSize: '0.9375rem', fontWeight: 600 }}>
@@ -545,7 +535,7 @@ const ApiDetail = ({ api, onChange, onBack, onDelete, toolState }) => {
                                     onClick={() => set({ headers: api.headers.filter((x) => x.id !== h.id) })}
                                     sx={rowDeleteSx(theme)}
                                 >
-                                    <IconTrashFilled size={16} />
+                                    <AppIcon name='Trash' size={16} />
                                 </IconButton>
                             </Tooltip>
                         </Stack>
@@ -553,7 +543,7 @@ const ApiDetail = ({ api, onChange, onBack, onDelete, toolState }) => {
                     <Box>
                         <Button
                             size='small'
-                            startIcon={<IconPlus size={14} strokeWidth={2.5} />}
+                            startIcon={<AppIcon name='Plus' size={14} />}
                             onClick={() => set({ headers: [...api.headers, { id: `h${Date.now()}`, key: '', value: '' }] })}
                             sx={{ fontWeight: 500 }}
                         >
@@ -650,7 +640,7 @@ const ApiDetail = ({ api, onChange, onBack, onDelete, toolState }) => {
                                 InputProps={{ sx: monoSx }}
                             />
                             <Box component='span' sx={{ display: 'inline-flex', flexShrink: 0, color: 'text.disabled' }}>
-                                <IconArrowRight size={16} stroke={1.75} />
+                                <AppIcon name='ArrowRight' size={16} />
                             </Box>
                             <TextField
                                 size='small'
@@ -677,7 +667,7 @@ const ApiDetail = ({ api, onChange, onBack, onDelete, toolState }) => {
                                     onClick={() => set({ outputs: api.outputs.filter((x) => x.id !== o.id) })}
                                     sx={rowDeleteSx(theme)}
                                 >
-                                    <IconTrashFilled size={16} />
+                                    <AppIcon name='Trash' size={16} />
                                 </IconButton>
                             </Tooltip>
                         </Stack>
@@ -685,7 +675,7 @@ const ApiDetail = ({ api, onChange, onBack, onDelete, toolState }) => {
                     <Box>
                         <Button
                             size='small'
-                            startIcon={<IconPlus size={14} strokeWidth={2.5} />}
+                            startIcon={<AppIcon name='Plus' size={14} />}
                             onClick={() => set({ outputs: [...api.outputs, { id: `o${Date.now()}`, path: '', var: '' }] })}
                             sx={{ fontWeight: 500 }}
                         >
@@ -697,11 +687,16 @@ const ApiDetail = ({ api, onChange, onBack, onDelete, toolState }) => {
 
             <Box>
                 <Stack direction='row' spacing={1}>
-                    <Button variant='outlined' onClick={sendTest} disabled={sending} startIcon={<IconSend size={16} stroke={1.75} />}>
+                    <Button
+                        variant='outlined'
+                        onClick={sendTest}
+                        disabled={sending}
+                        startIcon={<AppIcon name='PaperPlaneTilt' size={16} />}
+                    >
                         {sending ? 'Đang gửi…' : 'Thử'}
                     </Button>
                     <Box sx={{ flex: 1 }} />
-                    <Button color='error' startIcon={<IconTrashFilled size={16} />} onClick={onDelete}>
+                    <Button color='error' startIcon={<AppIcon name='Trash' size={16} />} onClick={onDelete}>
                         Xoá
                     </Button>
                 </Stack>
@@ -856,7 +851,7 @@ const ApiListBody = ({ value, onChange, toolState }) => {
                                     }
                                     inputProps={{ 'aria-label': `Bật ${a.name}` }}
                                 />
-                                <IconChevronRight size={16} stroke={1.75} style={{ flexShrink: 0, opacity: 0.5 }} />
+                                <AppIcon name='CaretRight' size={16} style={{ flexShrink: 0, opacity: 0.5 }} />
                             </Stack>
                         )
                     })}
@@ -970,7 +965,7 @@ const CollectInfoBody = ({ value, onChange, toolState }) => {
                                                 onClick={() => onChange({ ...value, variables: vars.filter((x) => x.id !== v.id) })}
                                                 sx={rowDeleteSx(theme)}
                                             >
-                                                <IconTrashFilled size={16} />
+                                                <AppIcon name='Trash' size={16} />
                                             </IconButton>
                                         </Tooltip>
                                     </Box>
@@ -1133,7 +1128,7 @@ const ToolSheet = ({ tool, toolState, setToolState, onClose }) => {
                         </Tooltip>
                         <Tooltip title='Đóng'>
                             <IconButton onClick={onClose} aria-label='Đóng' size='small' sx={closeButtonSx(theme)}>
-                                <IconX size={16} strokeWidth={2.5} />
+                                <AppIcon name='X' size={16} />
                             </IconButton>
                         </Tooltip>
                     </Stack>

@@ -2,7 +2,7 @@ import { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { FormControl, OutlinedInput, InputAdornment, IconButton, CircularProgress, Typography } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import { IconEye, IconEyeOff } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { REDACTED_CREDENTIAL_VALUE } from '@/store/constant'
 import { useLanguage } from '@/store/context/LanguageContext'
 
@@ -110,9 +110,9 @@ export const SensitiveInput = ({ inputParam, value, onChange, disabled = false, 
                                     {isRevealing ? (
                                         <CircularProgress size={16} />
                                     ) : isVisible ? (
-                                        <IconEyeOff size={18} />
+                                        <AppIcon name='EyeSlash' size={18} />
                                     ) : (
-                                        <IconEye size={18} />
+                                        <AppIcon name='Eye' size={18} />
                                     )}
                                 </IconButton>
                             </InputAdornment>

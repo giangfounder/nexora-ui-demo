@@ -25,7 +25,7 @@ import { useLanguage } from '@/store/context/LanguageContext'
 import { useError } from '@/store/context/ErrorContext'
 
 // Icons
-import { IconAlertTriangle, IconX, IconCopy } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import MicrosoftSVG from '@/assets/images/microsoft-azure.svg'
 import GoogleSVG from '@/assets/images/google.svg'
 import Auth0SVG from '@/assets/images/auth0.svg'
@@ -211,7 +211,7 @@ const SSOConfigPage = () => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -228,7 +228,7 @@ const SSOConfigPage = () => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -273,7 +273,7 @@ const SSOConfigPage = () => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -288,7 +288,7 @@ const SSOConfigPage = () => {
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -305,7 +305,7 @@ const SSOConfigPage = () => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -434,7 +434,7 @@ const SSOConfigPage = () => {
                                 }}
                             >
                                 <Box sx={{ pl: 2 }}>
-                                    <IconAlertTriangle size={25} color={theme.palette.warning.main} />
+                                    <AppIcon name='Warning' size={25} color={theme.palette.warning.main} />
                                 </Box>
                                 <Stack flexDirection='column'>
                                     <span style={{ color: isDark ? theme.palette.warning.light : theme.palette.warning.dark }}>
@@ -664,7 +664,7 @@ const SSOConfigPage = () => {
                                                 }, 1500)
                                             }}
                                         >
-                                            <IconCopy />
+                                            <AppIcon name='Copy' />
                                         </IconButton>
                                     </Stack>
                                 </Box>
@@ -765,7 +765,7 @@ const SSOConfigPage = () => {
                                                 }, 1500)
                                             }}
                                         >
-                                            <IconCopy />
+                                            <AppIcon name='Copy' />
                                         </IconButton>
                                     </Stack>
                                 </Box>
@@ -850,7 +850,7 @@ const SSOConfigPage = () => {
                                                 }, 1500)
                                             }}
                                         >
-                                            <IconCopy />
+                                            <AppIcon name='Copy' />
                                         </IconButton>
                                     </Stack>
                                 </Box>
@@ -951,7 +951,7 @@ const SSOConfigPage = () => {
                                                 }, 1500)
                                             }}
                                         >
-                                            <IconCopy />
+                                            <AppIcon name='Copy' />
                                         </IconButton>
                                     </Stack>
                                 </Box>

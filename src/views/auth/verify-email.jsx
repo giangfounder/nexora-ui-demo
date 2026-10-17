@@ -15,9 +15,8 @@ import useApi from '@/hooks/useApi'
 import { useLanguage } from '@/store/context/LanguageContext'
 
 // icons
-import { IconCheck } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { useState } from 'react'
-import { IconX } from '@tabler/icons-react'
 
 const VerifyEmail = () => {
     const accountVerifyApi = useApi(accountApi.verifyAccountEmail)
@@ -94,7 +93,7 @@ const VerifyEmail = () => {
                                         justifyContent: 'center'
                                     }}
                                 >
-                                    <IconX />
+                                    <AppIcon name='X' />
                                 </Box>
                                 <Typography variant='h1'>{t('Verification Failed.')}</Typography>
                             </>
@@ -113,7 +112,7 @@ const VerifyEmail = () => {
                                         justifyContent: 'center'
                                     }}
                                 >
-                                    <IconCheck />
+                                    <AppIcon name='Check' />
                                 </Box>
                                 <Typography variant='h1'>{t('Email Verified Successfully.')}</Typography>
                             </>

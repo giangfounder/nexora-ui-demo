@@ -5,7 +5,6 @@ import useUrlTabState from '@/hooks/useUrlTabState'
 
 import { alpha, useTheme } from '@mui/material/styles'
 import {
-    Avatar,
     Box,
     Button,
     Chip,
@@ -21,24 +20,16 @@ import {
     Tooltip,
     Typography
 } from '@mui/material'
-import {
-    IconCheck,
-    IconChevronRight,
-    IconDots,
-    IconEdit,
-    IconExternalLink,
-    IconFile,
-    IconHistory,
-    IconMessages,
-    IconNote,
-    IconPencil,
-    IconPlus
-} from '@tabler/icons-react'
+import { AppIcon, iconComponent } from '@/ui-component/icons/AppIcon'
 
 import MainCard from '@/ui-component/cards/MainCard'
 import { TabPanel } from '@/ui-component/tabs/TabPanel'
 import { useLanguage } from '@/store/context/LanguageContext'
-import { getAvatarColorKey, getInitials, tintBg, tintText } from './utils'
+import { getStageIcon, tintBg, tintText } from './utils'
+import PersonAvatar from '@/ui-component/avatar/PersonAvatar'
+
+// Activity timeline: each entry is marked by what happened, not by a dot
+const LOG_ICONS = { created: 'UserPlus', stage: 'ArrowsDownUp', note: 'NotePencil', reply: 'ChatCircleText', file: 'Paperclip' }
 import { mockAttributeDefs, mockCustomerTypes, mockCustomers } from './mockCustomers'
 import { getAtlasCustomerInsight, mockCustomerFiles, mockCustomerNotes, mockInteractionLog } from './mockAtlas'
 import { mockEmployees } from '@/views/employees/mockEmployees'
@@ -137,7 +128,6 @@ const CustomerDetail = () => {
         )
     }
 
-    const colorKey = getAvatarColorKey(customer.name)
     const displayActive = waveIdx !== null ? waveIdx : activeStepIndex
     const displayLabel = t(type?.stages[displayActive]?.label) || ''
 
@@ -231,10 +221,10 @@ const CustomerDetail = () => {
     AtlasCard.propTypes = { label: PropTypes.node, headline: PropTypes.node, body: PropTypes.node, source: PropTypes.node }
 
     const feedIconFor = (kind) => {
-        if (kind === 'chat' || kind === 'reply') return IconMessages
-        if (kind === 'note') return IconNote
-        if (kind === 'file') return IconFile
-        return IconHistory
+        if (kind === 'chat' || kind === 'reply') return iconComponent('Chats')
+        if (kind === 'note') return iconComponent('Note')
+        if (kind === 'file') return iconComponent('File')
+        return iconComponent('ClockCounterClockwise')
     }
 
     return (
@@ -257,25 +247,14 @@ const CustomerDetail = () => {
                 >
                     {t('Khách hàng')}
                 </Box>
-                <IconChevronRight size={14} strokeWidth={1.75} />
+                <AppIcon name='CaretRight' size={14} />
                 <Typography sx={{ fontSize: '0.8125rem', color: 'text.primary', fontWeight: 500 }} noWrap>
                     {customer.name}
                 </Typography>
             </Stack>
 
             <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} alignItems={{ sm: 'flex-start' }} sx={{ mb: 3 }}>
-                <Avatar
-                    sx={{
-                        width: 52,
-                        height: 52,
-                        fontSize: '1.125rem',
-                        fontWeight: 600,
-                        bgcolor: tintBg(theme, theme.palette[colorKey].main, 0.15, 0.24),
-                        color: tintText(theme, theme.palette[colorKey])
-                    }}
-                >
-                    {getInitials(customer.name)}
-                </Avatar>
+                <PersonAvatar name={customer.name} size={52} />
                 <Stack sx={{ flex: 1, minWidth: 0 }} spacing={0.75}>
                     <Stack direction='row' alignItems='center' sx={{ flexWrap: 'wrap', columnGap: 2, rowGap: 1, minWidth: 0 }}>
                         <Typography
@@ -346,7 +325,7 @@ const CustomerDetail = () => {
                                                     overflow: 'hidden'
                                                 }}
                                             >
-                                                {isPast ? <IconCheck size={14} strokeWidth={2.5} /> : <span>{i + 1}</span>}
+                                                <AppIcon name={isPast ? 'Check' : getStageIcon(s.id)} size={14} />
                                                 {isActive && <span>{t(s.label)}</span>}
                                             </Box>
                                         </Tooltip>
@@ -367,7 +346,7 @@ const CustomerDetail = () => {
                     </Stack>
                 </Stack>
                 <Stack direction='row' spacing={1} alignItems='center' sx={{ flexShrink: 0 }}>
-                    <Button variant='contained' startIcon={<IconEdit size={16} strokeWidth={1.75} />}>
+                    <Button variant='contained' startIcon={<AppIcon name='PencilSimpleLine' size={16} />}>
                         {t('Chỉnh sửa')}
                     </Button>
                     <Tooltip title={t('Hành động khác')}>
@@ -376,7 +355,7 @@ const CustomerDetail = () => {
                             onClick={(e) => setMenuAnchor(e.currentTarget)}
                             sx={{ width: 36, height: 36, borderRadius: 1.5, border: `1px solid ${alphaBorder}` }}
                         >
-                            <IconDots size={17} strokeWidth={1.75} />
+                            <AppIcon name='DotsThree' size={17} />
                         </IconButton>
                     </Tooltip>
                     <Menu
@@ -471,21 +450,18 @@ const CustomerDetail = () => {
                                                 alignItems='flex-start'
                                                 sx={{ pb: i === logs.length - 1 ? 0 : 2.5 }}
                                             >
-                                                <Box sx={{ position: 'relative', width: 18, flexShrink: 0, pt: 0.75 }}>
-                                                    <Box
-                                                        sx={{
-                                                            width: 8,
-                                                            height: 8,
-                                                            borderRadius: '50%',
-                                                            bgcolor: theme.palette.primary.main,
-                                                            mx: 'auto'
-                                                        }}
+                                                <Box sx={{ position: 'relative', width: 18, flexShrink: 0, pt: 0.25 }}>
+                                                    <AppIcon
+                                                        name={LOG_ICONS[log.action] || 'ClockCounterClockwise'}
+                                                        size={18}
+                                                        color={theme.palette.primary.main}
+                                                        style={{ display: 'block' }}
                                                     />
                                                     {i < logs.length - 1 && (
                                                         <Box
                                                             sx={{
                                                                 position: 'absolute',
-                                                                top: 16,
+                                                                top: 24,
                                                                 bottom: -18,
                                                                 left: '50%',
                                                                 width: 1,
@@ -526,7 +502,7 @@ const CustomerDetail = () => {
                                         />
                                         <Button
                                             variant='contained'
-                                            startIcon={<IconPlus size={15} strokeWidth={1.75} />}
+                                            startIcon={<AppIcon name='Plus' size={15} />}
                                             onClick={addNote}
                                             disabled={!newNote.trim()}
                                         >
@@ -582,7 +558,7 @@ const CustomerDetail = () => {
                                                         p: 1.5
                                                     }}
                                                 >
-                                                    <IconFile size={18} strokeWidth={1.75} />
+                                                    <AppIcon name='File' size={18} />
                                                     <Stack sx={{ flex: 1, minWidth: 0 }}>
                                                         <Typography sx={{ fontWeight: 500, fontSize: '0.875rem' }} noWrap>
                                                             {f.name}
@@ -634,7 +610,7 @@ const CustomerDetail = () => {
                                                         </Stack>
                                                         <Button
                                                             size='small'
-                                                            endIcon={<IconExternalLink size={13} strokeWidth={1.75} />}
+                                                            endIcon={<AppIcon name='ArrowSquareOut' size={13} />}
                                                             onClick={() => navigate('/omnichannel')}
                                                         >
                                                             {t('Mở trong Inbox')}
@@ -700,7 +676,7 @@ const CustomerDetail = () => {
                                 <Eyebrow>{t('Hoạt động gần đây')}</Eyebrow>
                                 <Tooltip title={t('Thêm ghi chú')}>
                                     <IconButton size='small' onClick={() => setTab(2)} sx={{ width: 26, height: 26 }}>
-                                        <IconPencil size={14} strokeWidth={1.75} />
+                                        <AppIcon name='PencilSimple' size={14} />
                                     </IconButton>
                                 </Tooltip>
                             </Stack>

@@ -23,21 +23,10 @@ import {
     DialogActions,
     Alert
 } from '@mui/material'
-import IconAutoFixHigh from '@mui/icons-material/AutoFixHigh'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import InputAdornment from '@mui/material/InputAdornment'
 import { tooltipClasses } from '@mui/material/Tooltip'
 import { useGridApiContext } from '@mui/x-data-grid'
-import {
-    IconPencilPlus,
-    IconVariable,
-    IconArrowsMaximize,
-    IconEdit,
-    IconAlertTriangle,
-    IconInfoCircle,
-    IconRefresh,
-    IconX,
-    IconCopy
-} from '@tabler/icons-react'
 import { Tabs } from '@mui/base/Tabs'
 import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete'
 
@@ -654,7 +643,7 @@ const NodeInputHandler = ({
                 variant: 'warning',
                 action: (key) => (
                     <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                        <IconX />
+                        <AppIcon name='X' />
                     </Button>
                 )
             }
@@ -670,7 +659,7 @@ const NodeInputHandler = ({
                     variant: 'error',
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -710,7 +699,7 @@ const NodeInputHandler = ({
                             variant: 'success',
                             action: (key) => (
                                 <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                    <IconX />
+                                    <AppIcon name='X' />
                                 </Button>
                             )
                         }
@@ -727,7 +716,7 @@ const NodeInputHandler = ({
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -758,7 +747,7 @@ const NodeInputHandler = ({
                             variant: 'success',
                             action: (key) => (
                                 <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                    <IconX />
+                                    <AppIcon name='X' />
                                 </Button>
                             )
                         }
@@ -775,7 +764,7 @@ const NodeInputHandler = ({
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -907,7 +896,7 @@ const NodeInputHandler = ({
                                         sx={{ borderRadius: 25, width: '100%', mb: 2, mt: 0 }}
                                         variant='outlined'
                                         onClick={() => onShowPromptHubButtonClicked()}
-                                        endIcon={<IconAutoFixHigh />}
+                                        endIcon={<AppIcon name='MagicWand' />}
                                     >
                                         Langchain Hub
                                     </Button>
@@ -953,7 +942,7 @@ const NodeInputHandler = ({
                                     color='secondary'
                                     onClick={() => onInputHintDialogClicked(inputParam.hint)}
                                 >
-                                    <IconInfoCircle />
+                                    <AppIcon name='Info' />
                                 </IconButton>
                             )}
                             {inputParam.hint && isAdditionalParams && (
@@ -964,14 +953,14 @@ const NodeInputHandler = ({
                                     onClick={() => {
                                         onInputHintDialogClicked(inputParam.hint)
                                     }}
-                                    startIcon={<IconInfoCircle size={17} />}
+                                    startIcon={<AppIcon name='Info' size={17} />}
                                 >
                                     {inputParam.hint.label}
                                 </Button>
                             )}
                             {inputParam.acceptVariable && inputParam.type === 'string' && (
                                 <Tooltip title={t('Type {{ to select variables')}>
-                                    <IconVariable size={20} style={{ color: 'teal' }} />
+                                    <AppIcon name='BracketsSquare' size={20} style={{ color: 'teal' }} />
                                 </Tooltip>
                             )}
                             {inputParam.generateDocStoreDescription && (
@@ -985,7 +974,7 @@ const NodeInputHandler = ({
                                     color='secondary'
                                     onClick={() => generateDocStoreToolDesc(data.inputs['documentStore'])}
                                 >
-                                    <IconPencilPlus />
+                                    <AppIcon name='NotePencil' />
                                 </IconButton>
                             )}
                             {inputParam.generateInstruction && (
@@ -1000,7 +989,7 @@ const NodeInputHandler = ({
                                     color='secondary'
                                     onClick={() => generateInstruction()}
                                 >
-                                    <IconPencilPlus />
+                                    <AppIcon name='NotePencil' />
                                 </IconButton>
                             )}
                             {((inputParam.type === 'string' && inputParam.rows) || inputParam.type === 'code') && (
@@ -1017,7 +1006,7 @@ const NodeInputHandler = ({
                                         onExpandDialogClicked(data.inputs[inputParam.name] ?? inputParam.default ?? '', inputParam)
                                     }
                                 >
-                                    <IconArrowsMaximize />
+                                    <AppIcon name='ArrowsOut' />
                                 </IconButton>
                             )}
                         </div>
@@ -1034,7 +1023,7 @@ const NodeInputHandler = ({
                                     marginBottom: 10
                                 }}
                             >
-                                <IconAlertTriangle size={30} color='orange' />
+                                <AppIcon name='Warning' size={30} color='orange' />
                                 <span style={{ color: 'rgb(116,66,16)', marginLeft: 10 }}>{parser(inputParam.warning)}</span>
                             </div>
                         )}
@@ -1179,7 +1168,7 @@ const NodeInputHandler = ({
                                                 >
                                                     {/* Match the Start node's accent green (#7EE787) so the copy
                                                         action reads as a "primary" action on this node. */}
-                                                    <IconCopy size={16} color='#7EE787' />
+                                                    <AppIcon name='Copy' size={16} color='#7EE787' />
                                                 </IconButton>
                                             </Tooltip>
                                         </InputAdornment>
@@ -1258,18 +1247,18 @@ const NodeInputHandler = ({
                                                                     )
                                                                 }}
                                                             >
-                                                                <IconCopy size={16} />
+                                                                <AppIcon name='Copy' size={16} />
                                                             </IconButton>
                                                         </Tooltip>
                                                     )}
                                                     <Tooltip title={t('Regenerate secret')}>
                                                         <IconButton size='small' onClick={handleSetWebhookSecret}>
-                                                            <IconRefresh size={16} />
+                                                            <AppIcon name='ArrowClockwise' size={16} />
                                                         </IconButton>
                                                     </Tooltip>
                                                     <Tooltip title={t('Remove secret')}>
                                                         <IconButton size='small' onClick={handleClearWebhookSecret}>
-                                                            <IconX size={16} />
+                                                            <AppIcon name='X' size={16} />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </InputAdornment>
@@ -1401,7 +1390,7 @@ const NodeInputHandler = ({
                                             size='small'
                                             onClick={() => editAsyncOption(inputParam.name, data.inputs[inputParam.name])}
                                         >
-                                            <IconEdit />
+                                            <AppIcon name='PencilSimpleLine' />
                                         </IconButton>
                                     )}
                                     {inputParam.refresh && (
@@ -1411,7 +1400,7 @@ const NodeInputHandler = ({
                                             size='small'
                                             onClick={() => setReloadTimestamp(Date.now().toString())}
                                         >
-                                            <IconRefresh />
+                                            <AppIcon name='ArrowClockwise' />
                                         </IconButton>
                                     )}
                                 </div>
@@ -1651,7 +1640,7 @@ const NodeInputHandler = ({
                                 persist: true,
                                 action: (key) => (
                                     <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                        <IconX />
+                                        <AppIcon name='X' />
                                     </Button>
                                 )
                             }

@@ -17,7 +17,7 @@ import NodeInfoDialog from '@/ui-component/dialog/NodeInfoDialog'
 
 // const
 import { baseURL } from '@/store/constant'
-import { IconTrash, IconCopy, IconInfoCircle, IconAlertTriangle } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { flowContext } from '@/store/context/ReactFlowContext'
 import { useLanguage } from '@/store/context/LanguageContext'
 import LlamaindexPNG from '@/assets/images/llamaindex.png'
@@ -125,7 +125,7 @@ const CanvasNode = ({ data }) => {
                                 sx={{ height: '35px', width: '35px', '&:hover': { color: theme?.palette.primary.main } }}
                                 color={theme?.customization?.isDarkMode ? theme.colors?.paper : 'inherit'}
                             >
-                                <IconCopy />
+                                <AppIcon name='Copy' />
                             </IconButton>
                             <IconButton
                                 title={t('Delete')}
@@ -135,7 +135,7 @@ const CanvasNode = ({ data }) => {
                                 sx={{ height: '35px', width: '35px', '&:hover': { color: 'red' } }}
                                 color={theme?.customization?.isDarkMode ? theme.colors?.paper : 'inherit'}
                             >
-                                <IconTrash />
+                                <AppIcon name='Trash' />
                             </IconButton>
                             <IconButton
                                 title={t('Info')}
@@ -146,7 +146,7 @@ const CanvasNode = ({ data }) => {
                                 sx={{ height: '35px', width: '35px', '&:hover': { color: theme?.palette.secondary.main } }}
                                 color={theme?.customization?.isDarkMode ? theme.colors?.paper : 'inherit'}
                             >
-                                <IconInfoCircle />
+                                <AppIcon name='Info' />
                             </IconButton>
                         </div>
                     }
@@ -205,7 +205,7 @@ const CanvasNode = ({ data }) => {
                                 <>
                                     <Tooltip title={<span style={{ whiteSpace: 'pre-line' }}>{warningMessage}</span>} placement='top'>
                                         <IconButton sx={{ height: 35, width: 35 }}>
-                                            <IconAlertTriangle size={35} color='orange' />
+                                            <AppIcon name='Warning' size={35} color='orange' />
                                         </IconButton>
                                     </Tooltip>
                                 </>

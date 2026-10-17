@@ -26,7 +26,7 @@ import {
     Tab,
     Tabs
 } from '@mui/material'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // third-party
 import PerfectScrollbar from 'react-perfect-scrollbar'
@@ -38,7 +38,6 @@ import { StyledFab } from '@/ui-component/button/StyledFab'
 import AgentflowGeneratorDialog from '@/ui-component/dialog/AgentflowGeneratorDialog'
 
 // icons
-import { IconPlus, IconSearch, IconMinus, IconX, IconPencilPlus } from '@tabler/icons-react'
 import LlamaindexPNG from '@/assets/images/llamaindex.png'
 import LangChainPNG from '@/assets/images/langchain.png'
 import utilNodesPNG from '@/assets/images/utilNodes.png'
@@ -420,7 +419,7 @@ const AddNodes = ({ nodesData, node, isAgentCanvas, isAgentflowv2, onFlowGenerat
                 title={t('Add Node')}
                 onClick={handleToggle}
             >
-                {open ? <IconMinus /> : <IconPlus />}
+                {open ? <AppIcon name='Minus' /> : <AppIcon name='Plus' />}
             </StyledFab>
             {isAgentflowv2 && (
                 <StyledFab
@@ -438,7 +437,7 @@ const AddNodes = ({ nodesData, node, isAgentCanvas, isAgentflowv2, onFlowGenerat
                     aria-label={t('Generate Agentflow')}
                     title={t('Generate Agentflow')}
                 >
-                    <IconPencilPlus />
+                    <AppIcon name='NotePencil' />
                 </StyledFab>
             )}
 
@@ -487,7 +486,7 @@ const AddNodes = ({ nodesData, node, isAgentCanvas, isAgentflowv2, onFlowGenerat
                                             placeholder={t('Search nodes')}
                                             startAdornment={
                                                 <InputAdornment position='start'>
-                                                    <IconSearch stroke={1.5} size='1rem' color={theme.palette.grey[500]} />
+                                                    <AppIcon name='MagnifyingGlass' size='1rem' color={theme.palette.grey[500]} />
                                                 </InputAdornment>
                                             }
                                             endAdornment={
@@ -502,8 +501,8 @@ const AddNodes = ({ nodesData, node, isAgentCanvas, isAgentflowv2, onFlowGenerat
                                                     }}
                                                     title={t('Clear Search')}
                                                 >
-                                                    <IconX
-                                                        stroke={1.5}
+                                                    <AppIcon
+                                                        name='X'
                                                         size='1rem'
                                                         onClick={() => filterSearch('')}
                                                         style={{
@@ -620,7 +619,7 @@ const AddNodes = ({ nodesData, node, isAgentCanvas, isAgentflowv2, onFlowGenerat
                                                             disableGutters
                                                         >
                                                             <AccordionSummary
-                                                                expandIcon={<ExpandMoreIcon />}
+                                                                expandIcon={<AppIcon name='CaretDown' />}
                                                                 aria-controls={`nodes-accordian-${category}`}
                                                                 id={`nodes-accordian-header-${category}`}
                                                             >

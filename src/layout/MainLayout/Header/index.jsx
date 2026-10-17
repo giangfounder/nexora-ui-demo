@@ -8,7 +8,7 @@ import { alpha, useTheme } from '@mui/material/styles'
 import { Box, ButtonBase, IconButton, Stack } from '@mui/material'
 
 // icons
-import { IconMenu2 } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // project imports
 import LogoSection from '../LogoSection'
@@ -136,7 +136,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
                             }
                         }}
                     >
-                        <IconMenu2 stroke={1.75} size={18} />
+                        <AppIcon name='List' size={18} />
                     </ButtonBase>
                 )}
                 <Box component='span' sx={{ display: 'flex', flexShrink: 0 }}>

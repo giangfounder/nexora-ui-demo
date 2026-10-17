@@ -7,8 +7,7 @@ import { Box, Collapse, List, ListItemButton, ListItemIcon, ListItemText, Typogr
 import NavItem from '../NavItem'
 import { useLanguage } from '@/store/context/LanguageContext'
 
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
-import { IconChevronDown, IconChevronRight } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 const NavCollapse = ({ menu, level }) => {
     const theme = useTheme()
@@ -38,7 +37,8 @@ const NavCollapse = ({ menu, level }) => {
     const menuIcon = menu.icon ? (
         <Icon size={18} strokeWidth={isActive || open ? 2 : 1.75} />
     ) : (
-        <FiberManualRecordIcon
+        <AppIcon
+            name='Circle'
             sx={{
                 width: selected === menu.id ? 8 : 6,
                 height: selected === menu.id ? 8 : 6
@@ -126,7 +126,7 @@ const NavCollapse = ({ menu, level }) => {
                         transform: open ? 'rotate(90deg)' : 'rotate(0deg)'
                     }}
                 >
-                    {open ? <IconChevronDown size={14} strokeWidth={1.75} /> : <IconChevronRight size={14} strokeWidth={1.75} />}
+                    {open ? <AppIcon name='CaretDown' size={14} /> : <AppIcon name='CaretRight' size={14} />}
                 </Box>
             </ListItemButton>
             <Collapse in={open} timeout='auto' unmountOnExit>

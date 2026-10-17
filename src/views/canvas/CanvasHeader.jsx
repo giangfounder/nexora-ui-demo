@@ -8,16 +8,7 @@ import { useTheme, styled, alpha } from '@mui/material/styles'
 import { Avatar, Box, ButtonBase, Typography, Stack, Switch, TextField, Button, Tooltip } from '@mui/material'
 
 // icons
-import {
-    IconSettings,
-    IconChevronLeft,
-    IconDeviceFloppy,
-    IconPencil,
-    IconCheck,
-    IconX,
-    IconCode,
-    IconAlertTriangleFilled
-} from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // project imports
 import Settings from '@/views/settings'
@@ -217,7 +208,7 @@ const CanvasHeader = ({ chatflow, isAgentCanvas, isAgentflowV2, handleSaveFlow, 
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -437,7 +428,7 @@ const CanvasHeader = ({ chatflow, isAgentCanvas, isAgentflowV2, handleSaveFlow, 
                                     }
                                 }}
                             >
-                                <IconChevronLeft stroke={1.75} size={18} />
+                                <AppIcon name='CaretLeft' size={18} />
                             </Avatar>
                         </ButtonBase>
                     </Box>
@@ -470,7 +461,7 @@ const CanvasHeader = ({ chatflow, isAgentCanvas, isAgentflowV2, handleSaveFlow, 
                                                 color='inherit'
                                                 onClick={() => setEditingFlowName(true)}
                                             >
-                                                <IconPencil stroke={1.75} size={18} />
+                                                <AppIcon name='PencilSimple' size={18} />
                                             </Avatar>
                                         </ButtonBase>
                                     </Available>
@@ -509,7 +500,7 @@ const CanvasHeader = ({ chatflow, isAgentCanvas, isAgentflowV2, handleSaveFlow, 
                                         color='inherit'
                                         onClick={submitFlowName}
                                     >
-                                        <IconCheck stroke={1.75} size={18} />
+                                        <AppIcon name='Check' size={18} />
                                     </Avatar>
                                 </ButtonBase>
                                 <ButtonBase title={t('Cancel')} sx={{ borderRadius: '6px' }}>
@@ -525,7 +516,7 @@ const CanvasHeader = ({ chatflow, isAgentCanvas, isAgentflowV2, handleSaveFlow, 
                                         color='inherit'
                                         onClick={() => setEditingFlowName(false)}
                                     >
-                                        <IconX stroke={1.75} size={18} />
+                                        <AppIcon name='X' size={18} />
                                     </Avatar>
                                 </ButtonBase>
                             </Stack>
@@ -554,7 +545,7 @@ const CanvasHeader = ({ chatflow, isAgentCanvas, isAgentflowV2, handleSaveFlow, 
                             >
                                 {!scheduleCanEnable && !scheduleEnabled ? (
                                     <>
-                                        <IconAlertTriangleFilled size={16} color={theme.palette.warning.main} style={{ marginRight: 4 }} />
+                                        <AppIcon name='Warning' size={16} color={theme.palette.warning.main} style={{ marginRight: 4 }} />
                                         <LockedScheduleSwitch checked={false} disabled isDark={isDark} />
                                     </>
                                 ) : (
@@ -580,7 +571,7 @@ const CanvasHeader = ({ chatflow, isAgentCanvas, isAgentflowV2, handleSaveFlow, 
                                 color='inherit'
                                 onClick={onAPIDialogClick}
                             >
-                                <IconCode stroke={1.75} size={18} />
+                                <AppIcon name='Code' size={18} />
                             </Avatar>
                         </ButtonBase>
                     )}
@@ -597,7 +588,7 @@ const CanvasHeader = ({ chatflow, isAgentCanvas, isAgentflowV2, handleSaveFlow, 
                                 color='inherit'
                                 onClick={onSaveChatflowClick}
                             >
-                                <IconDeviceFloppy stroke={1.75} size={18} />
+                                <AppIcon name='FloppyDisk' size={18} />
                             </Avatar>
                         </ButtonBase>
                     </Available>
@@ -612,7 +603,7 @@ const CanvasHeader = ({ chatflow, isAgentCanvas, isAgentflowV2, handleSaveFlow, 
                             }}
                             onClick={() => setSettingsOpen(!isSettingsOpen)}
                         >
-                            <IconSettings stroke={1.75} size={18} />
+                            <AppIcon name='GearSix' size={18} />
                         </Avatar>
                     </ButtonBase>
                 </Box>

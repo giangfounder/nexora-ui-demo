@@ -19,7 +19,7 @@ import {
     ToggleButtonGroup,
     Typography
 } from '@mui/material'
-import { IconBookmark, IconTrash } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { useLanguage } from '@/store/context/LanguageContext'
 import useSavedViews from '@/hooks/useSavedViews'
 import { CHANNELS, CHANNEL_ORDER } from '@/views/omnichannel/mockConversations'
@@ -115,7 +115,7 @@ const FilterBar = ({ range, onRangeChange, channel, onChannelChange, team, onTea
                 <Button
                     size='small'
                     variant='outlined'
-                    startIcon={<IconBookmark size={14} stroke={1.75} />}
+                    startIcon={<AppIcon name='BookmarkSimple' size={14} />}
                     onClick={(e) => setAnchor(e.currentTarget)}
                     sx={{
                         textTransform: 'none',
@@ -169,7 +169,7 @@ const FilterBar = ({ range, onRangeChange, channel, onChannelChange, team, onTea
                             }}
                             sx={{ ml: 1 }}
                         >
-                            <IconTrash size={14} stroke={1.75} />
+                            <AppIcon name='Trash' size={14} />
                         </IconButton>
                     </MenuItem>
                 ))}

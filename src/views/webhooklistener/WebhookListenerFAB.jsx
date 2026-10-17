@@ -2,7 +2,7 @@ import { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Badge, Tooltip } from '@mui/material'
 import { keyframes } from '@mui/system'
-import { IconWebhook } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 import { StyledFab } from '@/ui-component/button/StyledFab'
 import WebhookListenerDrawer from './WebhookListenerDrawer'
@@ -64,7 +64,7 @@ const WebhookListenerFAB = ({ chatflowid, onOpenChange }) => {
                     }}
                 >
                     <StyledFab size='small' color='secondary' aria-label='webhook-listener' onClick={handleToggle}>
-                        <IconWebhook size={18} stroke={2.2} />
+                        <AppIcon name='WebhooksLogo' size={18} />
                     </StyledFab>
                 </Badge>
             </Tooltip>

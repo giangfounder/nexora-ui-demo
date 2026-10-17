@@ -36,7 +36,7 @@ import { useSelector } from 'react-redux'
 
 // icons
 import execution_empty from '@/assets/images/executions_empty.svg'
-import { IconTrash } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // const
 import TablePagination, { DEFAULT_ITEMS_PER_PAGE } from '@/ui-component/pagination/TablePagination'
@@ -363,6 +363,7 @@ const AgentExecutions = () => {
                                         <Tooltip title={t('Delete selected executions')}>
                                             <span>
                                                 <IconButton
+                                                    aria-label={t('Delete')}
                                                     sx={{ height: 30, width: 30 }}
                                                     size='small'
                                                     color='error'
@@ -370,7 +371,7 @@ const AgentExecutions = () => {
                                                     edge='end'
                                                     disabled={selectedExecutionIds.length === 0}
                                                 >
-                                                    <IconTrash />
+                                                    <AppIcon name='Trash' />
                                                 </IconButton>
                                             </span>
                                         </Tooltip>

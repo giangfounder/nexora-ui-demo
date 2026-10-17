@@ -4,22 +4,7 @@ import { createPortal } from 'react-dom'
 import { useSelector } from 'react-redux'
 import { Box, Dialog, DialogContent, DialogTitle, Typography, IconButton } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import {
-    IconX,
-    IconShieldLock,
-    IconWorldWww,
-    IconUserPlus,
-    IconMessage2,
-    IconArrowForwardUp,
-    IconThumbUp,
-    IconMicrophone,
-    IconVolume,
-    IconUpload,
-    IconChartBar,
-    IconCode,
-    IconServer,
-    IconAdjustments
-} from '@tabler/icons-react'
+import { AppIcon, iconComponent } from '@/ui-component/icons/AppIcon'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
 // Section components
@@ -45,19 +30,19 @@ const CONFIGURATION_GROUPS = [
             {
                 label: 'Rate Limit',
                 id: 'rateLimit',
-                icon: IconShieldLock,
+                icon: iconComponent('ShieldCheckered'),
                 description: 'Limit API requests per time window'
             },
             {
                 label: 'Allowed Domains',
                 id: 'allowedDomains',
-                icon: IconWorldWww,
+                icon: iconComponent('GlobeHemisphereWest'),
                 description: 'Restrict chatbot to specific domains'
             },
             {
                 label: 'Leads',
                 id: 'leads',
-                icon: IconUserPlus,
+                icon: iconComponent('UserPlus'),
                 description: 'Capture visitor contact information'
             }
         ]
@@ -68,19 +53,19 @@ const CONFIGURATION_GROUPS = [
             {
                 label: 'Starter Prompts',
                 id: 'conversationStarters',
-                icon: IconMessage2,
+                icon: iconComponent('ChatTeardropText'),
                 description: 'Suggested prompts for new conversations'
             },
             {
                 label: 'Follow-up Prompts',
                 id: 'followUpPrompts',
-                icon: IconArrowForwardUp,
+                icon: iconComponent('ArrowUUpRight'),
                 description: 'Auto-generate follow-up questions'
             },
             {
                 label: 'Chat Feedback',
                 id: 'chatFeedback',
-                icon: IconThumbUp,
+                icon: iconComponent('ThumbsUp'),
                 description: 'Allow users to rate responses'
             }
         ]
@@ -91,19 +76,19 @@ const CONFIGURATION_GROUPS = [
             {
                 label: 'Speech to Text',
                 id: 'speechToText',
-                icon: IconMicrophone,
+                icon: iconComponent('Microphone'),
                 description: 'Voice input transcription'
             },
             {
                 label: 'Text to Speech',
                 id: 'textToSpeech',
-                icon: IconVolume,
+                icon: iconComponent('SpeakerHigh'),
                 description: 'Audio response playback'
             },
             {
                 label: 'File Upload',
                 id: 'fileUpload',
-                icon: IconUpload,
+                icon: iconComponent('UploadSimple'),
                 description: 'Allow file uploads in chat'
             }
         ]
@@ -114,25 +99,25 @@ const CONFIGURATION_GROUPS = [
             {
                 label: 'Analytics',
                 id: 'analyseChatflow',
-                icon: IconChartBar,
+                icon: iconComponent('ChartBar'),
                 description: 'Connect analytics providers'
             },
             {
                 label: 'Post Processing',
                 id: 'postProcessing',
-                icon: IconCode,
+                icon: iconComponent('Code'),
                 description: 'Custom JavaScript post-processing'
             },
             {
                 label: 'MCP Server',
                 id: 'mcpServer',
-                icon: IconServer,
+                icon: iconComponent('HardDrives'),
                 description: 'Model Context Protocol server'
             },
             {
                 label: 'Override Config',
                 id: 'overrideConfig',
-                icon: IconAdjustments,
+                icon: iconComponent('Sliders'),
                 description: 'Override flow configuration via API'
             }
         ]
@@ -319,6 +304,7 @@ const ChatflowConfigurationDialog = ({ show, isAgentCanvas, dialogProps, onCance
             >
                 <Typography sx={{ fontSize: '1.125rem', fontWeight: 600, color: 'text.primary' }}>{t(dialogProps.title)}</Typography>
                 <IconButton
+                    aria-label={t('Close')}
                     size='small'
                     onClick={onCancel}
                     sx={{
@@ -326,7 +312,7 @@ const ChatflowConfigurationDialog = ({ show, isAgentCanvas, dialogProps, onCance
                         '&:hover': { bgcolor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.04)' }
                     }}
                 >
-                    <IconX size={18} />
+                    <AppIcon name='X' size={18} />
                 </IconButton>
             </DialogTitle>
 

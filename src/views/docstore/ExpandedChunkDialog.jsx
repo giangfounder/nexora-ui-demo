@@ -7,7 +7,7 @@ import { HIDE_CANVAS_DIALOG, SHOW_CANVAS_DIALOG } from '@/store/actions'
 
 // Material
 import { Button, Dialog, IconButton, DialogContent, DialogTitle, Typography, useTheme } from '@mui/material'
-import { IconEdit, IconTrash, IconX, IconLanguage } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // Project imports
 import { CodeEditor } from '@/ui-component/editor/CodeEditor'
@@ -99,7 +99,7 @@ const ExpandedChunkDialog = ({ show, dialogProps, onCancel, onChunkEdit, onDelet
                                 title={t('Edit Chunk')}
                                 sx={{ ml: 2 }}
                             >
-                                <IconEdit />
+                                <AppIcon name='PencilSimpleLine' />
                             </PermissionIconButton>
                         )}
                         {isEdit && !isReadOnly && (
@@ -128,11 +128,11 @@ const ExpandedChunkDialog = ({ show, dialogProps, onCancel, onChunkEdit, onDelet
                                 title={t('Delete Chunk')}
                                 sx={{ ml: 1 }}
                             >
-                                <IconTrash />
+                                <AppIcon name='Trash' />
                             </PermissionIconButton>
                         )}
                         <IconButton onClick={onCancel} size='small' color='inherit' title={t('Close')} sx={{ ml: 1 }}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </IconButton>
                     </div>
                 )}
@@ -157,7 +157,7 @@ const ExpandedChunkDialog = ({ show, dialogProps, onCancel, onChunkEdit, onDelet
                                 marginBottom: '10px'
                             }}
                         >
-                            <IconLanguage style={{ marginRight: 5 }} size={15} />
+                            <AppIcon name='Translate' style={{ marginRight: 5 }} size={15} />
                             {t('{count} characters', { count: selectedChunk?.pageContent?.length ?? 0 })}
                         </div>
                         <div style={{ marginTop: '5px' }}></div>

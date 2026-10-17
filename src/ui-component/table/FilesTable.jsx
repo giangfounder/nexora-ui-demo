@@ -12,7 +12,7 @@ import {
     Typography,
     useTheme
 } from '@mui/material'
-import { IconTrash } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { SharedTableCell as StyledTableCell, SharedTableRow as StyledTableRow } from '@/ui-component/table/SharedTable'
 import { useLanguage } from '@/store/context/LanguageContext'
 
@@ -126,8 +126,13 @@ export const FilesTable = ({ data, isLoading, filterFunction, handleDelete }) =>
                                             </Typography>
                                         </StyledTableCell>
                                         <StyledTableCell key='3'>
-                                            <IconButton color='error' onClick={() => handleDelete(row)} size='small'>
-                                                <IconTrash />
+                                            <IconButton
+                                                aria-label={t('Delete')}
+                                                color='error'
+                                                onClick={() => handleDelete(row)}
+                                                size='small'
+                                            >
+                                                <AppIcon name='Trash' />
                                             </IconButton>
                                         </StyledTableCell>
                                     </StyledTableRow>

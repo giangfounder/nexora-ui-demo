@@ -1,10 +1,10 @@
 import { alpha, useTheme } from '@mui/material/styles'
-import { Avatar, Stack, Typography } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import MainCard from '@/ui-component/cards/MainCard'
 import { mockEmployees } from '@/views/employees/mockEmployees'
-import { getInitials, getAvatarColorKey } from '@/views/customers/utils'
 import { teamStats } from './mockDashboard'
 import { useLanguage } from '@/store/context/LanguageContext'
+import PersonAvatar from '@/ui-component/avatar/PersonAvatar'
 
 const TeamRankTable = () => {
     const theme = useTheme()
@@ -24,7 +24,6 @@ const TeamRankTable = () => {
             <Typography sx={{ fontWeight: 700, fontSize: '0.875rem', mb: 1.5 }}>{t('Nhân viên hôm nay')}</Typography>
             <Stack>
                 {rows.map(({ emp, conversations }, i) => {
-                    const avatarKey = getAvatarColorKey(emp.name)
                     return (
                         <Stack
                             key={emp.id}
@@ -36,18 +35,7 @@ const TeamRankTable = () => {
                                 borderTop: i === 0 ? 'none' : `1px solid ${alpha(theme.palette.text.primary, 0.06)}`
                             }}
                         >
-                            <Avatar
-                                sx={{
-                                    width: 24,
-                                    height: 24,
-                                    bgcolor: alpha(theme.palette[avatarKey].main, 0.15),
-                                    color: theme.palette[avatarKey].main,
-                                    fontSize: '0.6875rem',
-                                    fontWeight: 600
-                                }}
-                            >
-                                {getInitials(emp.name)}
-                            </Avatar>
+                            <PersonAvatar name={emp.name} size={24} />
                             <Typography
                                 variant='body2'
                                 sx={{ fontWeight: 600, color: 'text.primary', fontSize: '0.8125rem', flexShrink: 0 }}

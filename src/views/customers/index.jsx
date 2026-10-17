@@ -5,7 +5,6 @@ import useUrlTabState from '@/hooks/useUrlTabState'
 // material-ui
 import { alpha, useTheme } from '@mui/material/styles'
 import {
-    Avatar,
     Box,
     Button,
     Chip,
@@ -28,29 +27,14 @@ import {
     Tooltip,
     Typography
 } from '@mui/material'
-import {
-    IconAddressBook,
-    IconBookmark,
-    IconChevronDown,
-    IconEdit,
-    IconFilterOff,
-    IconLayoutKanban,
-    IconPlus,
-    IconSearch,
-    IconSettings,
-    IconChartDots,
-    IconTable,
-    IconTrash,
-    IconUsersGroup,
-    IconX
-} from '@tabler/icons-react'
+import { AppIcon, iconComponent } from '@/ui-component/icons/AppIcon'
 
 // project imports
 import MainCard from '@/ui-component/cards/MainCard'
 import ViewHeader from '@/layout/MainLayout/ViewHeader'
 import ConfirmDialog from '@/ui-component/dialog/ConfirmDialog'
 import TablePagination, { DEFAULT_ITEMS_PER_PAGE } from '@/ui-component/pagination/TablePagination'
-import { SharedTableCell, SharedTableRow, SharedTableContainer, StatusDot } from '@/ui-component/table/SharedTable'
+import { SharedTableCell, SharedTableRow, SharedTableContainer, StatusIcon } from '@/ui-component/table/SharedTable'
 import { useLanguage } from '@/store/context/LanguageContext'
 import useConfirm from '@/hooks/useConfirm'
 import useSavedViews from '@/hooks/useSavedViews'
@@ -58,10 +42,9 @@ import CustomerFormDialog from './CustomerFormDialog'
 import SettingsDialog from './SettingsDialog'
 import PipelineBoard from './PipelineBoard'
 import AtlasInsightTab from './AtlasInsightTab'
-import { getAvatarColorKey, getInitials, tintBg, tintText } from './utils'
+import { getStageIcon, tintBg } from './utils'
+import PersonAvatar from '@/ui-component/avatar/PersonAvatar'
 import { mockAttributeDefs, mockCustomerTypes, mockCustomers } from './mockCustomers'
-
-const ICON_STROKE = 1.75
 
 const STAGE_TONES = ['teal', 'amber', 'orange', 'emerald', 'rose']
 const stageTone = (idx, total) => (total > 0 ? STAGE_TONES[Math.min(idx, STAGE_TONES.length - 1)] : 'teal')
@@ -152,7 +135,8 @@ const Customers = () => {
         const stageIndex = type?.stages.findIndex((s) => s.id === customer.stageId) ?? -1
         return {
             label: t(type?.stages[stageIndex]?.label) || '—',
-            tone: stageTone(stageIndex, type?.stages.length || 0)
+            tone: stageTone(stageIndex, type?.stages.length || 0),
+            icon: getStageIcon(customer.stageId)
         }
     }
 
@@ -214,7 +198,6 @@ const Customers = () => {
                 <TableBody>
                     {pagedCustomers.map((c) => {
                         const stage = stageInfo(c)
-                        const colorKey = getAvatarColorKey(c.name)
                         return (
                             <SharedTableRow
                                 key={c.id}
@@ -228,18 +211,7 @@ const Customers = () => {
                             >
                                 <SharedTableCell>
                                     <Stack direction='row' spacing={1.25} alignItems='center'>
-                                        <Avatar
-                                            sx={{
-                                                width: 28,
-                                                height: 28,
-                                                fontSize: '0.75rem',
-                                                fontWeight: 600,
-                                                bgcolor: tintBg(theme, theme.palette[colorKey].main, 0.15, 0.24),
-                                                color: tintText(theme, theme.palette[colorKey])
-                                            }}
-                                        >
-                                            {getInitials(c.name)}
-                                        </Avatar>
+                                        <PersonAvatar name={c.name} size={28} />
                                         <Typography variant='body2' sx={{ fontWeight: 500 }}>
                                             {c.name}
                                         </Typography>
@@ -252,7 +224,7 @@ const Customers = () => {
                                 </SharedTableCell>
                                 <SharedTableCell>
                                     <Stack direction='row' spacing={0.75} alignItems='center'>
-                                        <StatusDot tone={stage.tone} size={7} />
+                                        <StatusIcon tone={stage.tone} icon={stage.icon} />
                                         <Typography variant='body2'>{stage.label}</Typography>
                                     </Stack>
                                 </SharedTableCell>
@@ -281,7 +253,7 @@ const Customers = () => {
                                                 setShowForm(true)
                                             }}
                                         >
-                                            <IconEdit size={16} stroke={ICON_STROKE} />
+                                            <AppIcon name='PencilSimpleLine' size={16} />
                                         </IconButton>
                                     </Tooltip>
                                     <Tooltip title={t('Xoá')}>
@@ -297,7 +269,7 @@ const Customers = () => {
                                                 }
                                             }}
                                         >
-                                            <IconTrash size={16} stroke={ICON_STROKE} />
+                                            <AppIcon name='Trash' size={16} />
                                         </IconButton>
                                     </Tooltip>
                                 </SharedTableCell>
@@ -351,7 +323,7 @@ const Customers = () => {
                                     variant='standard'
                                     disableUnderline
                                     aria-label={field.label}
-                                    IconComponent={IconChevronDown}
+                                    IconComponent={iconComponent('CaretDown')}
                                     sx={{
                                         minWidth: 110,
                                         '& .MuiSelect-select': {
@@ -387,7 +359,7 @@ const Customers = () => {
                                     variant='standard'
                                     disableUnderline
                                     aria-label={field.label}
-                                    IconComponent={IconChevronDown}
+                                    IconComponent={iconComponent('CaretDown')}
                                     sx={{
                                         minWidth: 90,
                                         '& .MuiSelect-select': {
@@ -438,7 +410,7 @@ const Customers = () => {
                                 aria-label={t('Bỏ lọc')}
                                 sx={{ borderRadius: 0, borderLeft: `1px solid ${alphaBorder}`, px: 0.75 }}
                             >
-                                <IconX size={13} stroke={ICON_STROKE} />
+                                <AppIcon name='X' size={13} />
                             </IconButton>
                         </Box>
                     )
@@ -446,7 +418,7 @@ const Customers = () => {
 
                 <Button
                     size='small'
-                    startIcon={<IconPlus size={14} stroke={ICON_STROKE} />}
+                    startIcon={<AppIcon name='Plus' size={14} />}
                     onClick={(e) => setFilterAnchor(e.currentTarget)}
                     sx={{
                         height: 30,
@@ -485,7 +457,7 @@ const Customers = () => {
                 {filters.length > 0 && (
                     <Button
                         size='small'
-                        startIcon={<IconFilterOff size={13} stroke={ICON_STROKE} />}
+                        startIcon={<AppIcon name='FunnelX' size={13} />}
                         onClick={() => setFilters([])}
                         sx={{ color: 'text.secondary' }}
                     >
@@ -497,7 +469,7 @@ const Customers = () => {
 
                 <Button
                     size='small'
-                    startIcon={<IconBookmark size={14} stroke={ICON_STROKE} />}
+                    startIcon={<AppIcon name='BookmarkSimple' size={14} />}
                     onClick={(e) => setSavedAnchor(e.currentTarget)}
                     sx={{ color: 'text.secondary' }}
                 >
@@ -518,7 +490,7 @@ const Customers = () => {
                         }}
                         disabled={filters.length === 0 && !search}
                     >
-                        <IconPlus size={14} stroke={ICON_STROKE} style={{ marginRight: 8 }} />
+                        <AppIcon name='Plus' size={14} style={{ marginRight: 8 }} />
                         {t('Lưu bộ lọc hiện tại')}
                     </MenuItem>
                     {savedViews.length > 0 && <Divider />}
@@ -538,7 +510,7 @@ const Customers = () => {
                                 aria-label={t('Xoá')}
                                 sx={{ p: 0.5 }}
                             >
-                                <IconTrash size={13} stroke={ICON_STROKE} />
+                                <AppIcon name='Trash' size={13} />
                             </IconButton>
                         </MenuItem>
                     ))}
@@ -567,8 +539,8 @@ const Customers = () => {
                     '& .MuiTabs-indicator': { height: 2, borderRadius: '2px 2px 0 0' }
                 }}
             >
-                <Tab icon={<IconAddressBook size={16} stroke={ICON_STROKE} />} iconPosition='start' label={t('Danh sách khách hàng')} />
-                <Tab icon={<IconChartDots size={16} stroke={ICON_STROKE} />} iconPosition='start' label={t('Phân tích')} />
+                <Tab icon={<AppIcon name='AddressBook' size={16} />} iconPosition='start' label={t('Danh sách khách hàng')} />
+                <Tab icon={<AppIcon name='ChartScatter' size={16} />} iconPosition='start' label={t('Phân tích')} />
             </Tabs>
 
             {pageTab === 1 && <AtlasInsightTab />}
@@ -594,7 +566,7 @@ const Customers = () => {
                                 }}
                                 startAdornment={
                                     <InputAdornment position='start' sx={{ color: 'text.secondary' }}>
-                                        <IconSearch size={16} stroke={ICON_STROKE} />
+                                        <AppIcon name='MagnifyingGlass' size={16} />
                                     </InputAdornment>
                                 }
                                 sx={{ width: 280, height: 36 }}
@@ -605,12 +577,12 @@ const Customers = () => {
                                     aria-label={t('Cấu hình')}
                                     sx={{ width: 36, height: 36, borderRadius: '6px', border: `1px solid ${alphaBorder}` }}
                                 >
-                                    <IconSettings size={17} stroke={ICON_STROKE} />
+                                    <AppIcon name='GearSix' size={17} />
                                 </IconButton>
                             </Tooltip>
                             <Button
                                 variant='contained'
-                                startIcon={<IconPlus size={16} stroke={ICON_STROKE} />}
+                                startIcon={<AppIcon name='Plus' size={16} />}
                                 onClick={() => {
                                     setEditingCustomer(null)
                                     setShowForm(true)
@@ -649,10 +621,10 @@ const Customers = () => {
                                 }}
                             >
                                 <ToggleButton value='table'>
-                                    <IconTable size={14} stroke={ICON_STROKE} /> {t('Bảng')}
+                                    <AppIcon name='Table' size={14} /> {t('Bảng')}
                                 </ToggleButton>
                                 <ToggleButton value='kanban'>
-                                    <IconLayoutKanban size={14} stroke={ICON_STROKE} /> {t('Kanban')}
+                                    <AppIcon name='Kanban' size={14} /> {t('Kanban')}
                                 </ToggleButton>
                             </ToggleButtonGroup>
                             <Divider orientation='vertical' flexItem sx={{ height: 22, alignSelf: 'center' }} />
@@ -663,7 +635,7 @@ const Customers = () => {
                     {view === 'table' &&
                         (filteredCustomers.length === 0 ? (
                             <Box sx={{ p: 8, textAlign: 'center', color: 'text.secondary' }}>
-                                <IconUsersGroup size={40} stroke={ICON_STROKE} style={{ opacity: 0.3, marginBottom: 12 }} />
+                                <AppIcon name='UsersThree' size={40} style={{ opacity: 0.3, marginBottom: 12 }} />
                                 <Typography>{t('Không tìm thấy khách hàng phù hợp')}</Typography>
                             </Box>
                         ) : (

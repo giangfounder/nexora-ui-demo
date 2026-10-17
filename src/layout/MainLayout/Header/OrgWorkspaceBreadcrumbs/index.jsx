@@ -17,10 +17,8 @@ import {
     ListItemIcon,
     Select
 } from '@mui/material'
-import { Check } from '@mui/icons-material'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { alpha, styled } from '@mui/material/styles'
-
-import { IconChevronDown } from '@tabler/icons-react'
 
 // api
 import userApi from '@/api/user'
@@ -285,7 +283,7 @@ const OrgWorkspaceBreadcrumbs = () => {
                                 <ListItemText>{org.name}</ListItemText>
                                 {org.id === activeOrganizationId && (
                                     <ListItemIcon sx={{ minWidth: 'auto' }}>
-                                        <Check />
+                                        <AppIcon name='Check' />
                                     </ListItemIcon>
                                 )}
                             </MenuItem>
@@ -301,7 +299,7 @@ const OrgWorkspaceBreadcrumbs = () => {
                                 <ListItemText>{workspace.name}</ListItemText>
                                 {workspace.id === activeWorkspaceId && (
                                     <ListItemIcon sx={{ minWidth: 'auto' }}>
-                                        <Check />
+                                        <AppIcon name='Check' />
                                     </ListItemIcon>
                                 )}
                             </MenuItem>
@@ -311,14 +309,14 @@ const OrgWorkspaceBreadcrumbs = () => {
                         <StyledBreadcrumb
                             isDarkMode={customization.isDarkMode}
                             label={assignedOrganizations.find((org) => org.id === activeOrganizationId)?.name || t('Organization')}
-                            deleteIcon={<IconChevronDown size={16} />}
+                            deleteIcon={<AppIcon name='CaretDown' size={16} />}
                             onDelete={handleOrgClick}
                             onClick={handleOrgClick}
                         />
                         <StyledBreadcrumb
                             isDarkMode={customization.isDarkMode}
                             label={assignedWorkspaces.find((ws) => ws.id === activeWorkspaceId)?.name || t('Workspace')}
-                            deleteIcon={<IconChevronDown size={16} />}
+                            deleteIcon={<AppIcon name='CaretDown' size={16} />}
                             onDelete={handleWorkspaceClick}
                             onClick={handleWorkspaceClick}
                         />

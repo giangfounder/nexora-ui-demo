@@ -4,7 +4,6 @@ import { createPortal } from 'react-dom'
 
 import { alpha, useTheme } from '@mui/material/styles'
 import {
-    Avatar,
     AvatarGroup,
     Box,
     Button,
@@ -24,14 +23,14 @@ import {
     Tooltip,
     Typography
 } from '@mui/material'
-import { IconCrown, IconEdit, IconGripVertical, IconPlus, IconTrash, IconUser, IconUsers, IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 import { useLanguage } from '@/store/context/LanguageContext'
 import useDialogShell, { FormField } from '@/hooks/useDialogShell'
 import { mockEmployees, mockTeams } from '@/views/employees/mockEmployees'
 import { CHANNELS, CHANNEL_ORDER } from '@/views/omnichannel/mockConversations'
-import { getAvatarColorKey, getInitials } from '@/views/customers/utils'
 import { mockRoutingRules, ROUTING_STRATEGIES } from './mockSettings'
+import PersonAvatar from '@/ui-component/avatar/PersonAvatar'
 
 const emptyRule = {
     id: '',
@@ -107,21 +106,9 @@ const RoutingRulesTab = () => {
     const UserBadge = ({ id }) => {
         const emp = empById(id)
         if (!emp) return null
-        const colorKey = getAvatarColorKey(emp.name)
         return (
             <Stack direction='row' spacing={0.75} alignItems='center'>
-                <Avatar
-                    sx={{
-                        width: 22,
-                        height: 22,
-                        typography: 'caption',
-                        fontWeight: 600,
-                        bgcolor: alpha(theme.palette[colorKey].main, isDark ? 0.24 : 0.15),
-                        color: isDark ? theme.palette[colorKey].light : theme.palette[colorKey].dark
-                    }}
-                >
-                    {getInitials(emp.name)}
-                </Avatar>
+                <PersonAvatar name={emp.name} size={22} />
                 <Typography variant='caption' sx={{ fontWeight: 500 }}>
                     {emp.name}
                 </Typography>
@@ -136,7 +123,7 @@ const RoutingRulesTab = () => {
         return (
             <Stack direction='row' spacing={1} alignItems='center'>
                 <Box sx={{ display: 'flex', color: isDark ? palette.light : palette.dark }}>
-                    <IconUsers size={14} stroke={1.75} />
+                    <AppIcon name='Users' size={14} />
                 </Box>
                 <Typography variant='caption' sx={{ fontWeight: 500 }}>
                     {team.name}
@@ -154,18 +141,7 @@ const RoutingRulesTab = () => {
                     }}
                 >
                     {members.map((m) => {
-                        const c = getAvatarColorKey(m.name)
-                        return (
-                            <Avatar
-                                key={m.id}
-                                sx={{
-                                    bgcolor: alpha(theme.palette[c].main, isDark ? 0.24 : 0.15),
-                                    color: isDark ? theme.palette[c].light : theme.palette[c].dark
-                                }}
-                            >
-                                {getInitials(m.name)}
-                            </Avatar>
-                        )
+                        return <PersonAvatar key={m.id} name={m.name} size={28} />
                     })}
                 </AvatarGroup>
             </Stack>
@@ -178,7 +154,7 @@ const RoutingRulesTab = () => {
     return (
         <Stack spacing={2}>
             <Stack direction='row' justifyContent='flex-end' alignItems='center'>
-                <Button variant='contained' size='small' startIcon={<IconPlus size={16} stroke={1.75} />} onClick={startNew}>
+                <Button variant='contained' size='small' startIcon={<AppIcon name='Plus' size={16} />} onClick={startNew}>
                     {t('Thêm luật')}
                 </Button>
             </Stack>
@@ -214,7 +190,7 @@ const RoutingRulesTab = () => {
                                 '&:hover': { borderColor: alpha(theme.palette.text.primary, 0.24) }
                             }}
                         >
-                            <IconGripVertical size={16} stroke={1.75} style={{ opacity: 0.35, cursor: 'grab' }} />
+                            <AppIcon name='DotsSixVertical' size={16} style={{ opacity: 0.35, cursor: 'grab' }} />
 
                             <Stack alignItems='center' spacing={0.25}>
                                 <Typography variant='body2' sx={{ fontWeight: 600, fontVariantNumeric: 'tabular-nums' }}>
@@ -269,7 +245,7 @@ const RoutingRulesTab = () => {
                                         aria-label={t('Chỉnh sửa {name}', { name: rule.name })}
                                         onClick={() => startEdit(rule)}
                                     >
-                                        <IconEdit size={16} stroke={1.75} />
+                                        <AppIcon name='PencilSimpleLine' size={16} />
                                     </IconButton>
                                 </Tooltip>
                                 <Tooltip title={t('Xoá')}>
@@ -279,7 +255,7 @@ const RoutingRulesTab = () => {
                                         aria-label={t('Xoá {name}', { name: rule.name })}
                                         onClick={() => deleteRule(rule.id)}
                                     >
-                                        <IconTrash size={16} stroke={1.75} />
+                                        <AppIcon name='Trash' size={16} />
                                     </IconButton>
                                 </Tooltip>
                             </Stack>
@@ -306,7 +282,7 @@ const RoutingRulesTab = () => {
                                     '&:hover': { bgcolor: alpha(theme.palette.text.primary, 0.06), color: 'text.primary' }
                                 }}
                             >
-                                <IconX size={16} stroke={1.75} />
+                                <AppIcon name='X' size={16} />
                             </IconButton>
                         </Box>
                     </DialogTitle>
@@ -416,10 +392,10 @@ const RoutingRulesTab = () => {
                                         aria-label={t('Giao cho')}
                                     >
                                         <ToggleButton value='user' sx={{ px: 2, gap: 0.75 }}>
-                                            <IconUser size={14} stroke={1.75} /> {t('Cá nhân')}
+                                            <AppIcon name='User' size={14} /> {t('Cá nhân')}
                                         </ToggleButton>
                                         <ToggleButton value='team' sx={{ px: 2, gap: 0.75 }}>
-                                            <IconUsers size={14} stroke={1.75} /> {t('Nhóm nhân viên')}
+                                            <AppIcon name='Users' size={14} /> {t('Nhóm nhân viên')}
                                         </ToggleButton>
                                     </ToggleButtonGroup>
 
@@ -454,13 +430,10 @@ const RoutingRulesTab = () => {
                                                     {mockTeams.map((tm) => (
                                                         <MenuItem key={tm.id} value={tm.id}>
                                                             <Stack direction='row' spacing={1} alignItems='center'>
-                                                                <Box
-                                                                    sx={{
-                                                                        width: 8,
-                                                                        height: 8,
-                                                                        borderRadius: '50%',
-                                                                        bgcolor: (theme.palette[tm.color] || theme.palette.primary).main
-                                                                    }}
+                                                                <AppIcon
+                                                                    name='UsersThree'
+                                                                    size={16}
+                                                                    color={(theme.palette[tm.color] || theme.palette.primary).main}
                                                                 />
                                                                 <span>
                                                                     {tm.name} · {t('{n} thành viên', { n: tm.memberIds.length })}
@@ -507,7 +480,7 @@ const RoutingRulesTab = () => {
                                                         <Chip
                                                             key={mid}
                                                             size='small'
-                                                            icon={isLead ? <IconCrown size={12} stroke={1.75} /> : undefined}
+                                                            icon={isLead ? <AppIcon name='Crown' size={12} /> : undefined}
                                                             label={emp.name}
                                                             variant='outlined'
                                                             sx={{

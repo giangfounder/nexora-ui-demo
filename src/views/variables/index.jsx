@@ -43,7 +43,7 @@ import useConfirm from '@/hooks/useConfirm'
 import useNotifier from '@/utils/useNotifier'
 
 // Icons
-import { IconTrash, IconEdit, IconX, IconPlus, IconVariable } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import VariablesEmptySVG from '@/assets/images/variables_empty.svg'
 
 // const
@@ -143,7 +143,7 @@ const Variables = () => {
                             variant: 'success',
                             action: (key) => (
                                 <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                    <IconX />
+                                    <AppIcon name='X' />
                                 </Button>
                             )
                         }
@@ -161,7 +161,7 @@ const Variables = () => {
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -214,7 +214,7 @@ const Variables = () => {
                                 variant='contained'
                                 sx={{ height: '100%' }}
                                 onClick={addNew}
-                                startIcon={<IconPlus size={18} stroke={1.75} />}
+                                startIcon={<AppIcon name='Plus' size={18} />}
                                 id='btn_createVariable'
                             >
                                 {t('Add Variable')}
@@ -334,7 +334,8 @@ const Variables = () => {
                                                                             borderRadius: '50%'
                                                                         }}
                                                                     >
-                                                                        <IconVariable
+                                                                        <AppIcon
+                                                                            name='BracketsSquare'
                                                                             style={{
                                                                                 width: '100%',
                                                                                 height: '100%',
@@ -367,7 +368,7 @@ const Variables = () => {
                                                                         color='primary'
                                                                         onClick={() => edit(variable)}
                                                                     >
-                                                                        <IconEdit />
+                                                                        <AppIcon name='PencilSimpleLine' />
                                                                     </IconButton>
                                                                 </StyledTableCell>
                                                             </Available>
@@ -378,7 +379,7 @@ const Variables = () => {
                                                                         color='error'
                                                                         onClick={() => deleteVariable(variable)}
                                                                     >
-                                                                        <IconTrash />
+                                                                        <AppIcon name='Trash' />
                                                                     </IconButton>
                                                                 </StyledTableCell>
                                                             </Available>

@@ -21,7 +21,7 @@ import filesApi from '@/api/files'
 import useApi from '@/hooks/useApi'
 
 // icons
-import { IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { useDispatch } from 'react-redux'
 import { useError } from '@/store/context/ErrorContext'
 import { useLanguage } from '@/store/context/LanguageContext'
@@ -76,7 +76,7 @@ const Files = () => {
                             variant: 'success',
                             action: (key) => (
                                 <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                    <IconX />
+                                    <AppIcon name='X' />
                                 </Button>
                             )
                         }
@@ -93,7 +93,7 @@ const Files = () => {
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }

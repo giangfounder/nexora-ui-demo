@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import moment from 'moment/moment'
 
 import { Button, Box, SwipeableDrawer } from '@mui/material'
-import { IconSquareRoundedChevronsRight } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import {
     Timeline,
     TimelineConnector,
@@ -44,7 +44,7 @@ const EvaluationResultVersionsSideDrawer = ({ show, dialogProps, onClickFunction
 
     return (
         <SwipeableDrawer anchor='right' open={show} onClose={() => onClickFunction()} onOpen={onOpen}>
-            <Button startIcon={<IconSquareRoundedChevronsRight />} onClick={() => onClickFunction()}>
+            <Button startIcon={<AppIcon name='CaretDoubleRight' />} onClick={() => onClickFunction()}>
                 {t('Close')}
             </Button>
             <Box style={{ width: 350, margin: 10 }} role='presentation' onClick={onClickFunction}>

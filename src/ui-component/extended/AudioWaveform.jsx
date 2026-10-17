@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { Box, IconButton, CircularProgress } from '@mui/material'
-import { IconPlayerPlay, IconPlayerPause } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { useTheme } from '@mui/material/styles'
 
 const AudioWaveform = ({
@@ -237,6 +237,7 @@ const AudioWaveform = ({
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 {/* Play/Pause Button */}
                 <IconButton
+                    aria-label='Play or pause'
                     onClick={handlePlayPause}
                     disabled={disabled || isGenerating}
                     size='small'
@@ -261,9 +262,9 @@ const AudioWaveform = ({
                     {isGenerating ? (
                         <CircularProgress size={16} />
                     ) : isPlaying ? (
-                        <IconPlayerPause size={16} />
+                        <AppIcon name='Pause' size={16} />
                     ) : (
-                        <IconPlayerPlay size={16} />
+                        <AppIcon name='Play' size={16} />
                     )}
                 </IconButton>
 

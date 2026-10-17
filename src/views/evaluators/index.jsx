@@ -30,7 +30,7 @@ import { useLanguage } from '@/store/context/LanguageContext'
 
 // icons
 import empty_evaluatorSVG from '@/assets/images/empty_evaluators.svg'
-import { IconTrash, IconPlus, IconJson, IconX, IconNumber123, IconAbc, IconAugmentedReality } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // const
 import { evaluators as evaluatorsOptions, numericOperators } from '../evaluators/evaluatorConstant'
@@ -120,7 +120,7 @@ const Evaluators = () => {
                             variant: 'success',
                             action: (key) => (
                                 <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                    <IconX />
+                                    <AppIcon name='X' />
                                 </Button>
                             )
                         }
@@ -138,7 +138,7 @@ const Evaluators = () => {
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -194,7 +194,7 @@ const Evaluators = () => {
                                 sx={{ borderRadius: 2, height: '100%' }}
                                 variant='contained'
                                 onClick={newEvaluator}
-                                startIcon={<IconPlus />}
+                                startIcon={<AppIcon name='Plus' />}
                             >
                                 {t('New Evaluator')}
                             </StyledPermissionButton>
@@ -285,7 +285,7 @@ const Evaluators = () => {
                                                                     {ds?.type === 'numeric' && (
                                                                         <Stack flexDirection='row' sx={{ alignItems: 'center' }}>
                                                                             <Chip
-                                                                                icon={<IconNumber123 />}
+                                                                                icon={<AppIcon name='NumberSquareOne' />}
                                                                                 label={t('Numeric')}
                                                                                 variant='outlined'
                                                                             />
@@ -294,7 +294,7 @@ const Evaluators = () => {
                                                                     {ds?.type === 'text' && (
                                                                         <Stack flexDirection='row' sx={{ alignItems: 'center' }}>
                                                                             <Chip
-                                                                                icon={<IconAbc />}
+                                                                                icon={<AppIcon name='TextAa' />}
                                                                                 label={t('Text Based')}
                                                                                 variant='outlined'
                                                                             />
@@ -303,7 +303,7 @@ const Evaluators = () => {
                                                                     {ds?.type === 'json' && (
                                                                         <Stack flexDirection='row' sx={{ alignItems: 'center' }}>
                                                                             <Chip
-                                                                                icon={<IconJson />}
+                                                                                icon={<AppIcon name='BracketsCurly' />}
                                                                                 label={t('JSON Based')}
                                                                                 variant='outlined'
                                                                             />
@@ -312,7 +312,7 @@ const Evaluators = () => {
                                                                     {ds?.type === 'llm' && (
                                                                         <Stack flexDirection='row' sx={{ alignItems: 'center' }}>
                                                                             <Chip
-                                                                                icon={<IconAugmentedReality />}
+                                                                                icon={<AppIcon name='CubeFocus' />}
                                                                                 label={t('LLM Based')}
                                                                                 variant='outlined'
                                                                             />
@@ -541,7 +541,7 @@ const Evaluators = () => {
                                                                         color='error'
                                                                         onClick={() => deleteEvaluator(ds)}
                                                                     >
-                                                                        <IconTrash />
+                                                                        <AppIcon name='Trash' />
                                                                     </PermissionIconButton>
                                                                 </TableCell>
                                                             </StyledTableRow>

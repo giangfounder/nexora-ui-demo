@@ -21,7 +21,7 @@ import assistantsApi from '@/api/assistants'
 import useApi from '@/hooks/useApi'
 
 // icons
-import { IconPlus } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { useLanguage } from '@/store/context/LanguageContext'
 
 // ==============================|| CustomAssistantLayout ||============================== //
@@ -110,7 +110,7 @@ const CustomAssistantLayout = () => {
                                 variant='contained'
                                 sx={{ borderRadius: 2, height: 40 }}
                                 onClick={addNew}
-                                startIcon={<IconPlus />}
+                                startIcon={<AppIcon name='Plus' />}
                             >
                                 {t('Add')}
                             </StyledPermissionButton>

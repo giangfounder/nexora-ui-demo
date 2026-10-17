@@ -24,7 +24,7 @@ import { useError } from '@/store/context/ErrorContext'
 import { useLanguage } from '@/store/context/LanguageContext'
 
 // Icons
-import { IconExclamationCircle, IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // ==============================|| ResetPasswordPage ||============================== //
 
@@ -120,7 +120,7 @@ const ResetPasswordPage = () => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -142,7 +142,7 @@ const ResetPasswordPage = () => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -160,7 +160,7 @@ const ResetPasswordPage = () => {
             <MainCard>
                 <Stack flexDirection='column' sx={{ maxWidth: '480px', gap: 3 }}>
                     {authErrors && authErrors.length > 0 && (
-                        <Alert icon={<IconExclamationCircle />} variant='filled' severity='error'>
+                        <Alert icon={<AppIcon name='WarningCircle' />} variant='filled' severity='error'>
                             <ul style={{ margin: 0 }}>
                                 {authErrors.map((msg, key) => (
                                     <li key={key}>{msg}</li>
@@ -169,7 +169,7 @@ const ResetPasswordPage = () => {
                         </Alert>
                     )}
                     {authRateLimitError && (
-                        <Alert icon={<IconExclamationCircle />} variant='filled' severity='error'>
+                        <Alert icon={<AppIcon name='WarningCircle' />} variant='filled' severity='error'>
                             {authRateLimitError}
                         </Alert>
                     )}

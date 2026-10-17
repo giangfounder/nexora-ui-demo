@@ -1,4 +1,4 @@
-import { Info } from '@mui/icons-material'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { IconButton, Tooltip } from '@mui/material'
 import parser from 'html-react-parser'
 import PropTypes from 'prop-types'
@@ -10,7 +10,8 @@ export const TooltipWithParser = ({ title, sx }) => {
     return (
         <Tooltip title={parser(title)} placement='right'>
             <IconButton sx={{ height: 15, width: 15, ml: 2, mt: -0.5 }}>
-                <Info
+                <AppIcon
+                    name='Info'
                     sx={{
                         ...sx,
                         background: 'transparent',

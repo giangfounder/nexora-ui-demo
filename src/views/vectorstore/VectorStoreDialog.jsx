@@ -23,8 +23,7 @@ import { CheckboxInput } from '@/ui-component/checkbox/Checkbox'
 import { BackdropLoader } from '@/ui-component/loading/BackdropLoader'
 import { TableViewOnly } from '@/ui-component/table/Table'
 
-import { IconX, IconInfoCircle, IconExclamationCircle } from '@tabler/icons-react'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import pythonSVG from '@/assets/images/python.svg'
 import javascriptSVG from '@/assets/images/javascript.svg'
 import cURLSVG from '@/assets/images/cURL.svg'
@@ -316,7 +315,7 @@ formData.append("openAIApiKey[openAIEmbeddings_0]", "sk-my-openai-2nd-key")`
                     variant: 'success',
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -332,7 +331,7 @@ formData.append("openAIApiKey[openAIEmbeddings_0]", "sk-my-openai-2nd-key")`
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -434,7 +433,7 @@ formData.append("openAIApiKey[openAIEmbeddings_0]", "sk-my-openai-2nd-key")`
                                                     disableGutters
                                                 >
                                                     <AccordionSummary
-                                                        expandIcon={<ExpandMoreIcon />}
+                                                        expandIcon={<AppIcon name='CaretDown' />}
                                                         aria-controls={`nodes-accordian-${node.data.name}`}
                                                         id={`nodes-accordian-header-${node.data.name}`}
                                                     >
@@ -565,7 +564,7 @@ formData.append("openAIApiKey[openAIEmbeddings_0]", "sk-my-openai-2nd-key")`
                                                                             alignItems: 'center'
                                                                         }}
                                                                     >
-                                                                        <IconExclamationCircle size={30} color='rgb(116,66,16)' />
+                                                                        <AppIcon name='WarningCircle' size={30} color='rgb(116,66,16)' />
                                                                         <span
                                                                             style={{
                                                                                 color: 'rgb(116,66,16)',
@@ -606,7 +605,7 @@ formData.append("openAIApiKey[openAIEmbeddings_0]", "sk-my-openai-2nd-key")`
                                                                             alignItems: 'center'
                                                                         }}
                                                                     >
-                                                                        <IconInfoCircle size={30} color='#2d6a4f' />
+                                                                        <AppIcon name='Info' size={30} color='#2d6a4f' />
                                                                         <span style={{ color: '#2d6a4f', marginLeft: 10, fontWeight: 500 }}>
                                                                             {t(
                                                                                 'You can also specify multiple values for a config parameter by specifying the node id'

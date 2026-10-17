@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import { alpha, getLuminance, useTheme } from '@mui/material/styles'
 import { Avatar, Box, Button, Chip, Drawer, IconButton, Stack, Switch, TextField, Tooltip, Typography } from '@mui/material'
-import { IconPlus, IconTrashFilled, IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 import { useLanguage } from '@/store/context/LanguageContext'
 import { FormField, useSheetShell } from '@/hooks/useDialogShell'
@@ -90,7 +90,7 @@ const ChannelAccountsDialog = ({ show, channel, accounts, onCancel, onSave }) =>
                             '&:hover': { bgcolor: alpha(theme.palette.text.primary, 0.06), color: 'text.primary' }
                         }}
                     >
-                        <IconX size={16} strokeWidth={2.5} />
+                        <AppIcon name='X' size={16} />
                     </IconButton>
                 </Box>
 
@@ -120,7 +120,7 @@ const ChannelAccountsDialog = ({ show, channel, accounts, onCancel, onSave }) =>
                             <Button
                                 variant='contained'
                                 size='small'
-                                startIcon={<IconPlus size={16} strokeWidth={2.5} />}
+                                startIcon={<AppIcon name='Plus' size={16} />}
                                 onClick={addAccount}
                                 disabled={!draft.name.trim()}
                                 sx={{ flexShrink: 0, height: 40 }}
@@ -197,7 +197,7 @@ const ChannelAccountsDialog = ({ show, channel, accounts, onCancel, onSave }) =>
                                                     '&:hover': { bgcolor: alpha(theme.palette.error.main, 0.08), color: 'error.main' }
                                                 }}
                                             >
-                                                <IconTrashFilled size={14} />
+                                                <AppIcon name='Trash' size={14} />
                                             </IconButton>
                                         </Tooltip>
                                     </Stack>

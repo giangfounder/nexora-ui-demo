@@ -16,7 +16,7 @@ import MarketplaceCanvasHeader from './MarketplaceCanvasHeader'
 import StickyNote from '../canvas/StickyNote'
 
 // icons
-import { IconMagnetFilled, IconMagnetOff, IconArtboard, IconArtboardOff } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { useLanguage } from '@/store/context/LanguageContext'
 
 const nodeTypes = { customNode: MarketplaceCanvasNode, stickyNote: StickyNote }
@@ -115,7 +115,7 @@ const MarketplaceCanvas = () => {
                                         title={t('Toggle snapping')}
                                         aria-label={t('Toggle snapping')}
                                     >
-                                        {isSnappingEnabled ? <IconMagnetFilled /> : <IconMagnetOff />}
+                                        {isSnappingEnabled ? <AppIcon name='Magnet' /> : <AppIcon name='Magnet' style={{ opacity: 0.4 }} />}
                                     </button>
                                     <button
                                         className='react-flow__controls-button react-flow__controls-interactive'
@@ -125,7 +125,11 @@ const MarketplaceCanvas = () => {
                                         title={t('Toggle background')}
                                         aria-label={t('Toggle background')}
                                     >
-                                        {isBackgroundEnabled ? <IconArtboard /> : <IconArtboardOff />}
+                                        {isBackgroundEnabled ? (
+                                            <AppIcon name='GridNine' />
+                                        ) : (
+                                            <AppIcon name='GridNine' style={{ opacity: 0.4 }} />
+                                        )}
                                     </button>
                                 </Controls>
                                 {isBackgroundEnabled && <Background color='#aaa' gap={16} />}

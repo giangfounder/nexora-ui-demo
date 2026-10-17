@@ -15,7 +15,7 @@ import { SwitchInput } from '@/ui-component/switch/Switch'
 import { TooltipWithParser } from '@/ui-component/tooltip/TooltipWithParser'
 
 // Icons
-import { IconX, IconDatabase } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // API
 import datasetApi from '@/api/dataset'
@@ -101,7 +101,7 @@ const AddEditDatasetDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -119,7 +119,7 @@ const AddEditDatasetDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -144,7 +144,7 @@ const AddEditDatasetDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -162,7 +162,7 @@ const AddEditDatasetDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -182,7 +182,7 @@ const AddEditDatasetDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
         >
             <DialogTitle sx={{ fontSize: '1rem' }} id='alert-dialog-title'>
                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                    <IconDatabase style={{ marginRight: '10px' }} />
+                    <AppIcon name='Database' style={{ marginRight: '10px' }} />
                     {dialogProps.type === 'ADD' ? t('Add Dataset') : t('Edit Dataset')}
                 </div>
             </DialogTitle>

@@ -16,7 +16,7 @@ import {
 import useNotifier from '@/utils/useNotifier'
 import { StyledButton } from '@/ui-component/button/StyledButton'
 import Chip from '@mui/material/Chip'
-import { IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // API
 import marketplacesApi from '@/api/marketplaces'
@@ -107,7 +107,7 @@ const ExportAsTemplateDialog = ({ show, dialogProps, onCancel }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -145,7 +145,7 @@ const ExportAsTemplateDialog = ({ show, dialogProps, onCancel }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -165,7 +165,7 @@ const ExportAsTemplateDialog = ({ show, dialogProps, onCancel }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }

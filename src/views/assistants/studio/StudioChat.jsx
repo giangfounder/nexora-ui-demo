@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import {
-    Avatar,
     Box,
     Button,
     Collapse,
@@ -16,22 +15,15 @@ import {
     useTheme
 } from '@mui/material'
 import { alpha, keyframes } from '@mui/material/styles'
-import { IconChevronDown, IconRefresh, IconSend, IconUserFilled } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 import { R_CARD, R_CONTROL, tintBg, toneOf } from '@/views/assistants/custom/workspace/primitives'
 import { TEST_CUSTOMERS, customerValues, interpolate } from '@/views/assistants/custom/workspace/tokens'
 import { agentTurn } from './runtime'
+import PersonAvatar from '@/ui-component/avatar/PersonAvatar'
 
 const bounce = keyframes`0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}`
 const nowHm = () => new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })
-const initials = (name = '') =>
-    name
-        .split(' ')
-        .filter(Boolean)
-        .slice(-2)
-        .map((w) => w[0])
-        .join('')
-        .toUpperCase()
 const STARTERS = [
     'Giờ mở cửa thế nào?',
     'Pulse X1 Pro trả góp 12 tháng bao nhiêu?',
@@ -69,7 +61,11 @@ const Trace = ({ steps, onSelectNode }) => {
                 }}
             >
                 Agent đã làm {steps.length} bước{toolsUsed ? ` · dùng ${toolsUsed} công cụ` : ''}
-                <IconChevronDown size={14} style={{ transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 150ms' }} />
+                <AppIcon
+                    name='CaretDown'
+                    size={14}
+                    style={{ transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 150ms' }}
+                />
             </Box>
             <Collapse in={open}>
                 <Stack spacing={0.25} sx={{ mt: 0.75, pl: 1.25, borderLeft: `1px solid ${theme.palette.alpha.borderStrong}` }}>
@@ -93,14 +89,11 @@ const Trace = ({ steps, onSelectNode }) => {
                                     '&:hover': { bgcolor: theme.palette.alpha.hover }
                                 }}
                             >
-                                <Box
-                                    sx={{
-                                        width: 6,
-                                        height: 6,
-                                        borderRadius: '50%',
-                                        flexShrink: 0,
-                                        bgcolor: c ? c.main : theme.palette.text.disabled
-                                    }}
+                                <AppIcon
+                                    name='CheckCircle'
+                                    size={12}
+                                    color={c ? c.main : theme.palette.text.disabled}
+                                    style={{ flexShrink: 0 }}
                                 />
                                 <Typography sx={{ fontSize: '0.75rem', color: c ? (isDark ? c.light : c.dark) : 'text.secondary' }}>
                                     {s.label}
@@ -172,22 +165,7 @@ const StudioChat = ({ doc, stores, onRun, onSelectNode }) => {
         )
     }
 
-    const teal = toneOf(theme, 'teal')
-    const botAvatar = (
-        <Avatar
-            sx={{
-                width: 26,
-                height: 26,
-                borderRadius: '8px',
-                fontSize: '0.625rem',
-                fontWeight: 700,
-                bgcolor: 'primary.main',
-                color: 'primary.contrastText'
-            }}
-        >
-            {initials(doc.name) || 'AI'}
-        </Avatar>
-    )
+    const botAvatar = <PersonAvatar name={doc.name} size={26} kind='assistant' />
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', minHeight: 0 }}>
@@ -203,22 +181,10 @@ const StudioChat = ({ doc, stores, onRun, onSelectNode }) => {
                 <Button
                     size='small'
                     onClick={(e) => setAnchor(e.currentTarget)}
-                    endIcon={<IconChevronDown size={14} />}
+                    endIcon={<AppIcon name='CaretDown' size={14} />}
                     sx={{ color: 'text.primary', px: 1, minWidth: 0, maxWidth: 230 }}
                 >
-                    <Avatar
-                        sx={{
-                            width: 20,
-                            height: 20,
-                            mr: 1,
-                            fontSize: '0.5625rem',
-                            fontWeight: 700,
-                            bgcolor: tintBg(theme, teal.main),
-                            color: theme.palette.mode === 'dark' ? teal.light : teal.dark
-                        }}
-                    >
-                        {customer ? initials(customer.name) : <IconUserFilled size={11} />}
-                    </Avatar>
+                    <PersonAvatar name={customer?.name} size={20} sx={{ mr: 1 }} />
                     <Box component='span' sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {customer ? customer.name : 'Khách vãng lai'}
                     </Box>
@@ -253,7 +219,7 @@ const StudioChat = ({ doc, stores, onRun, onSelectNode }) => {
                 <Box sx={{ flex: 1 }} />
                 <Tooltip title='Làm mới hội thoại'>
                     <IconButton size='small' onClick={reset} aria-label='Làm mới hội thoại'>
-                        <IconRefresh size={16} stroke={1.75} />
+                        <AppIcon name='ArrowClockwise' size={16} />
                     </IconButton>
                 </Tooltip>
             </Stack>
@@ -408,7 +374,7 @@ const StudioChat = ({ doc, stores, onRun, onSelectNode }) => {
                         '&.Mui-disabled': { bgcolor: theme.palette.alpha.hover, color: 'text.disabled' }
                     }}
                 >
-                    <IconSend size={18} stroke={1.75} />
+                    <AppIcon name='PaperPlaneTilt' size={18} />
                 </IconButton>
             </Stack>
         </Box>

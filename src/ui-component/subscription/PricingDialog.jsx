@@ -19,7 +19,7 @@ import {
     Typography
 } from '@mui/material'
 import { alpha, useTheme } from '@mui/material/styles'
-import { IconAlertCircle, IconCheck, IconCreditCard, IconExternalLink, IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { useSnackbar } from 'notistack'
 import PropTypes from 'prop-types'
 import { useEffect, useMemo, useState } from 'react'
@@ -248,7 +248,7 @@ const PricingDialog = ({ open, onClose }) => {
                         }}
                         disabled={isUpdatingPlan}
                     >
-                        <IconX />
+                        <AppIcon name='X' />
                     </IconButton>
                 </DialogTitle>
                 <DialogContent>
@@ -342,7 +342,12 @@ const PricingDialog = ({ open, onClose }) => {
                                     <Box sx={{ flexGrow: 1 }}>
                                         {plan.features.map((feature, index) => (
                                             <Box key={index} sx={{ display: 'flex', alignItems: 'start', mb: 1 }}>
-                                                <IconCheck color={theme.palette.success.dark} size={15} style={{ marginRight: 8 }} />
+                                                <AppIcon
+                                                    name='Check'
+                                                    color={theme.palette.success.dark}
+                                                    size={15}
+                                                    style={{ marginRight: 8 }}
+                                                />
                                                 <Box>
                                                     <Typography variant='body1'>{feature.text}</Typography>
                                                     {feature.subtext && (
@@ -420,7 +425,7 @@ const PricingDialog = ({ open, onClose }) => {
                                     gap: 1
                                 }}
                             >
-                                <IconAlertCircle size={20} />
+                                <AppIcon name='WarningCircle' size={20} />
                                 {t('You must remove additional seats and users before changing your plan.')}
                             </Typography>
                         ) : workspaceCount > 1 ? (
@@ -435,7 +440,7 @@ const PricingDialog = ({ open, onClose }) => {
                                         gap: 1
                                     }}
                                 >
-                                    <IconAlertCircle size={20} />
+                                    <AppIcon name='WarningCircle' size={20} />
                                     {t('You must remove all workspaces except the default workspace before changing your plan.')}
                                 </Typography>
                             </>
@@ -451,7 +456,7 @@ const PricingDialog = ({ open, onClose }) => {
                                         gap: 1
                                     }}
                                 >
-                                    <IconAlertCircle size={20} />
+                                    <AppIcon name='WarningCircle' size={20} />
                                     {t('You must remove all API keys with sharing permissions before changing your plan.')}
                                 </Typography>
                             </>
@@ -465,7 +470,7 @@ const PricingDialog = ({ open, onClose }) => {
                                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                             {getCustomerDefaultSourceApi.data.invoice_settings.default_payment_method.card && (
                                                 <>
-                                                    <IconCreditCard size={20} stroke={1.5} color={theme.palette.primary.main} />
+                                                    <AppIcon name='CreditCard' size={20} color={theme.palette.primary.main} />
                                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                                         <Typography sx={{ textTransform: 'capitalize' }}>
                                                             {
@@ -493,13 +498,13 @@ const PricingDialog = ({ open, onClose }) => {
                                 ) : (
                                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, p: 2 }}>
                                         <Typography color='error' sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                            <IconAlertCircle size={20} />
+                                            <AppIcon name='WarningCircle' size={20} />
                                             {t('No payment method found')}
                                         </Typography>
                                         <Button
                                             disabled={isOpeningBillingPortal}
                                             variant='contained'
-                                            endIcon={!isOpeningBillingPortal && <IconExternalLink />}
+                                            endIcon={!isOpeningBillingPortal && <AppIcon name='ArrowSquareOut' />}
                                             onClick={handleBillingPortalClick}
                                         >
                                             {isOpeningBillingPortal ? (

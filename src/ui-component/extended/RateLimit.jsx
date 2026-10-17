@@ -11,7 +11,7 @@ import { TooltipWithParser } from '@/ui-component/tooltip/TooltipWithParser'
 import { SwitchInput } from '@/ui-component/switch/Switch'
 
 // Icons
-import { IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // API
 import chatflowsApi from '@/api/chatflows'
@@ -88,7 +88,7 @@ const RateLimit = ({ dialogProps, hideTitle = false }) => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -106,7 +106,7 @@ const RateLimit = ({ dialogProps, hideTitle = false }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }

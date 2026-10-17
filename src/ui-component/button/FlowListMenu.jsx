@@ -5,20 +5,9 @@ import PropTypes from 'prop-types'
 import { styled, alpha } from '@mui/material/styles'
 import Menu from '@mui/material/Menu'
 import { PermissionMenuItem } from '@/ui-component/button/RBACButtons'
-import EditIcon from '@mui/icons-material/Edit'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import Divider from '@mui/material/Divider'
-import FileCopyIcon from '@mui/icons-material/FileCopy'
-import FileDownloadIcon from '@mui/icons-material/Downloading'
-import FileDeleteIcon from '@mui/icons-material/Delete'
-import FileCategoryIcon from '@mui/icons-material/Category'
-import PictureInPictureAltIcon from '@mui/icons-material/PictureInPictureAlt'
-import ThumbsUpDownOutlinedIcon from '@mui/icons-material/ThumbsUpDownOutlined'
-import VpnLockOutlinedIcon from '@mui/icons-material/VpnLockOutlined'
-import MicNoneOutlinedIcon from '@mui/icons-material/MicNoneOutlined'
-import ExportTemplateOutlinedIcon from '@mui/icons-material/BookmarksOutlined'
 import Button from '@mui/material/Button'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import { IconX } from '@tabler/icons-react'
 
 import chatflowsApi from '@/api/chatflows'
 
@@ -207,7 +196,7 @@ export default function FlowListMenu({ chatflow, isAgentCanvas, isAgentflowV2, s
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -254,7 +243,7 @@ export default function FlowListMenu({ chatflow, isAgentCanvas, isAgentflowV2, s
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -296,7 +285,7 @@ export default function FlowListMenu({ chatflow, isAgentCanvas, isAgentflowV2, s
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -350,7 +339,7 @@ export default function FlowListMenu({ chatflow, isAgentCanvas, isAgentflowV2, s
                 aria-expanded={open ? 'true' : undefined}
                 disableElevation
                 onClick={handleClick}
-                endIcon={<KeyboardArrowDownIcon />}
+                endIcon={<AppIcon name='CaretDown' />}
             >
                 {t('Options')}
             </Button>
@@ -368,7 +357,7 @@ export default function FlowListMenu({ chatflow, isAgentCanvas, isAgentflowV2, s
                     onClick={handleFlowRename}
                     disableRipple
                 >
-                    <EditIcon />
+                    <AppIcon name='PencilSimpleLine' />
                     {t('Rename')}
                 </PermissionMenuItem>
                 <PermissionMenuItem
@@ -376,7 +365,7 @@ export default function FlowListMenu({ chatflow, isAgentCanvas, isAgentflowV2, s
                     onClick={handleDuplicate}
                     disableRipple
                 >
-                    <FileCopyIcon />
+                    <AppIcon name='Copy' />
                     {t('Duplicate')}
                 </PermissionMenuItem>
                 <PermissionMenuItem
@@ -384,11 +373,11 @@ export default function FlowListMenu({ chatflow, isAgentCanvas, isAgentflowV2, s
                     onClick={handleExport}
                     disableRipple
                 >
-                    <FileDownloadIcon />
+                    <AppIcon name='CloudArrowDown' />
                     {t('Export')}
                 </PermissionMenuItem>
                 <PermissionMenuItem permissionId={'templates:flowexport'} onClick={handleExportTemplate} disableRipple>
-                    <ExportTemplateOutlinedIcon />
+                    <AppIcon name='BookmarksSimple' />
                     {t('Save As Template')}
                 </PermissionMenuItem>
                 <Divider sx={{ my: 0.5 }} />
@@ -397,7 +386,7 @@ export default function FlowListMenu({ chatflow, isAgentCanvas, isAgentflowV2, s
                     onClick={handleFlowStarterPrompts}
                     disableRipple
                 >
-                    <PictureInPictureAltIcon />
+                    <AppIcon name='PictureInPicture' />
                     {t('Starter Prompts')}
                 </PermissionMenuItem>
                 <PermissionMenuItem
@@ -405,7 +394,7 @@ export default function FlowListMenu({ chatflow, isAgentCanvas, isAgentflowV2, s
                     onClick={handleFlowChatFeedback}
                     disableRipple
                 >
-                    <ThumbsUpDownOutlinedIcon />
+                    <AppIcon name='ThumbsUp' />
                     {t('Chat Feedback')}
                 </PermissionMenuItem>
                 <PermissionMenuItem
@@ -413,7 +402,7 @@ export default function FlowListMenu({ chatflow, isAgentCanvas, isAgentflowV2, s
                     onClick={handleAllowedDomains}
                     disableRipple
                 >
-                    <VpnLockOutlinedIcon />
+                    <AppIcon name='GlobeSimple' />
                     {t('Allowed Domains')}
                 </PermissionMenuItem>
                 <PermissionMenuItem
@@ -421,7 +410,7 @@ export default function FlowListMenu({ chatflow, isAgentCanvas, isAgentflowV2, s
                     onClick={handleSpeechToText}
                     disableRipple
                 >
-                    <MicNoneOutlinedIcon />
+                    <AppIcon name='Microphone' />
                     {t('Speech To Text')}
                 </PermissionMenuItem>
                 <PermissionMenuItem
@@ -429,7 +418,7 @@ export default function FlowListMenu({ chatflow, isAgentCanvas, isAgentflowV2, s
                     onClick={handleFlowCategory}
                     disableRipple
                 >
-                    <FileCategoryIcon />
+                    <AppIcon name='Shapes' />
                     {t('Update Category')}
                 </PermissionMenuItem>
                 <Divider sx={{ my: 0.5 }} />
@@ -438,7 +427,7 @@ export default function FlowListMenu({ chatflow, isAgentCanvas, isAgentflowV2, s
                     onClick={handleDelete}
                     disableRipple
                 >
-                    <FileDeleteIcon />
+                    <AppIcon name='Trash' />
                     {t('Delete')}
                 </PermissionMenuItem>
             </StyledMenu>

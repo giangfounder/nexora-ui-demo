@@ -13,7 +13,7 @@ import {
     Stack,
     useTheme
 } from '@mui/material'
-import { IconShare, IconTrash } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { PermissionIconButton } from '@/ui-component/button/RBACButtons'
 import { SharedTableCell as StyledTableCell, SharedTableRow as StyledTableRow } from '@/ui-component/table/SharedTable'
 import { useLanguage } from '@/store/context/LanguageContext'
@@ -218,7 +218,7 @@ export const MarketplaceTable = ({
                                                                 color='primary'
                                                                 onClick={() => onShare(row)}
                                                             >
-                                                                <IconShare />
+                                                                <AppIcon name='ShareNetwork' />
                                                             </PermissionIconButton>
                                                         )}
                                                         {onDelete && (
@@ -228,7 +228,7 @@ export const MarketplaceTable = ({
                                                                 color='error'
                                                                 onClick={() => onDelete(row)}
                                                             >
-                                                                <IconTrash />
+                                                                <AppIcon name='Trash' />
                                                             </PermissionIconButton>
                                                         )}
                                                     </>

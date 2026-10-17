@@ -17,8 +17,7 @@ import {
     AccordionSummary,
     AccordionDetails
 } from '@mui/material'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { IconX, IconInfoCircle } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // Project import
 import { StyledButton } from '@/ui-component/button/StyledButton'
@@ -105,7 +104,7 @@ const FileUpload = ({ dialogProps }) => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -123,7 +122,7 @@ const FileUpload = ({ dialogProps }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -186,7 +185,7 @@ const FileUpload = ({ dialogProps }) => {
                         py: 1.25
                     }}
                 >
-                    <IconInfoCircle size={20} color='#16a34a' style={{ flexShrink: 0 }} />
+                    <AppIcon name='Info' size={20} color='#16a34a' style={{ flexShrink: 0 }} />
                     <Typography sx={{ color: 'text.secondary', fontSize: '0.8125rem', lineHeight: 1.5 }}>{parser(message)}</Typography>
                 </Box>
                 <SwitchInput label={t('Enable Full File Upload')} onChange={handleChange} value={fullFileUpload} />
@@ -244,7 +243,7 @@ const FileUpload = ({ dialogProps }) => {
                     }}
                 >
                     <AccordionSummary
-                        expandIcon={<ExpandMoreIcon sx={{ fontSize: '1.1rem', color: 'text.secondary' }} />}
+                        expandIcon={<AppIcon name='CaretDown' sx={{ fontSize: '1.1rem', color: 'text.secondary' }} />}
                         sx={{ minHeight: 40, px: 2, '& .MuiAccordionSummary-content': { my: 0.75 } }}
                     >
                         <Typography sx={{ fontSize: '0.8125rem', fontWeight: 500, color: 'text.secondary' }}>

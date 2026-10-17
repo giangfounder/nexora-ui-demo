@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 // material-ui
 import { alpha, useTheme } from '@mui/material/styles'
 import { Box, Chip, Fab, IconButton, Paper, Stack, TextField, Tooltip, Typography, Zoom } from '@mui/material'
-import { IconArrowUpCircleFilled, IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // project imports
 import { useLanguage } from '@/store/context/LanguageContext'
@@ -264,7 +264,7 @@ const MiraAssistant = () => {
                             </Typography>
                         </Stack>
                         <IconButton size='small' aria-label={t('Đóng')} onClick={() => setOpen(false)} sx={{ color: 'text.secondary' }}>
-                            <IconX size={18} />
+                            <AppIcon name='X' size={18} />
                         </IconButton>
                     </Stack>
 
@@ -320,7 +320,7 @@ const MiraAssistant = () => {
                             }}
                         />
                         <IconButton color='primary' aria-label={t('Gửi')} onClick={() => ask(draft)}>
-                            <IconArrowUpCircleFilled size={22} />
+                            <AppIcon name='ArrowCircleUp' size={22} />
                         </IconButton>
                     </Stack>
                 </Paper>
@@ -384,7 +384,7 @@ const MiraAssistant = () => {
                                 borderColor: 'background.paper'
                             }}
                         >
-                            <IconX size={12} strokeWidth={2.5} />
+                            <AppIcon name='X' size={12} />
                         </Box>
                     )}
                 </Fab>

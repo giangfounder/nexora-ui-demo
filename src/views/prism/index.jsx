@@ -1,6 +1,6 @@
 // material-ui
 import { Stack, Tab, Tabs } from '@mui/material'
-import { IconAdjustments, IconChartHistogram } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // project imports
 import MainCard from '@/ui-component/cards/MainCard'
@@ -37,8 +37,8 @@ const Prism = () => {
                         '& .MuiTabs-indicator': { height: 2 }
                     }}
                 >
-                    <Tab icon={<IconChartHistogram size={16} stroke={1.75} />} iconPosition='start' label={t('Bảng điểm')} />
-                    <Tab icon={<IconAdjustments size={16} stroke={1.75} />} iconPosition='start' label={t('Tiêu chí chấm điểm')} />
+                    <Tab icon={<AppIcon name='ChartBar' size={16} />} iconPosition='start' label={t('Bảng điểm')} />
+                    <Tab icon={<AppIcon name='Sliders' size={16} />} iconPosition='start' label={t('Tiêu chí chấm điểm')} />
                 </Tabs>
 
                 {tab === 0 && <ScoresTab />}

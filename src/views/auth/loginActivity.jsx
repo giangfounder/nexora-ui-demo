@@ -42,7 +42,7 @@ import useApi from '@/hooks/useApi'
 import useNotifier from '@/utils/useNotifier'
 
 // Icons
-import { IconChevronLeft, IconChevronRight, IconCircleX, IconLogin, IconLogout } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // store
 import { useError } from '@/store/context/ErrorContext'
@@ -320,13 +320,15 @@ const LoginActivity = () => {
                                             }}
                                         >
                                             <IconButton
+                                                aria-label={t('Previous page')}
                                                 size='small'
                                                 onClick={() => changePage(currentPage - 1)}
                                                 style={{ marginRight: 10 }}
                                                 variant='outlined'
                                                 disabled={currentPage === 1}
                                             >
-                                                <IconChevronLeft
+                                                <AppIcon
+                                                    name='CaretLeft'
                                                     color={currentPage === 1 ? theme.palette.text.disabled : theme.palette.text.primary}
                                                 />
                                             </IconButton>
@@ -336,13 +338,15 @@ const LoginActivity = () => {
                                                 total: totalRecords
                                             })}
                                             <IconButton
+                                                aria-label={t('Next page')}
                                                 size='small'
                                                 onClick={() => changePage(currentPage + 1)}
                                                 style={{ marginLeft: 10 }}
                                                 variant='outlined'
                                                 disabled={end >= totalRecords}
                                             >
-                                                <IconChevronRight
+                                                <AppIcon
+                                                    name='CaretRight'
                                                     color={end >= totalRecords ? theme.palette.text.disabled : theme.palette.text.primary}
                                                 />
                                             </IconButton>
@@ -432,7 +436,8 @@ const LoginActivity = () => {
                                                                         }}
                                                                     >
                                                                         {item.activityCode === 0 && (
-                                                                            <IconLogin
+                                                                            <AppIcon
+                                                                                name='SignIn'
                                                                                 style={{
                                                                                     width: '100%',
                                                                                     height: '100%',
@@ -443,7 +448,8 @@ const LoginActivity = () => {
                                                                             />
                                                                         )}
                                                                         {item.activityCode === 1 && (
-                                                                            <IconLogout
+                                                                            <AppIcon
+                                                                                name='SignOut'
                                                                                 style={{
                                                                                     width: '100%',
                                                                                     height: '100%',
@@ -454,7 +460,8 @@ const LoginActivity = () => {
                                                                             />
                                                                         )}
                                                                         {item.activityCode < 0 && (
-                                                                            <IconCircleX
+                                                                            <AppIcon
+                                                                                name='XCircle'
                                                                                 style={{
                                                                                     width: '100%',
                                                                                     height: '100%',

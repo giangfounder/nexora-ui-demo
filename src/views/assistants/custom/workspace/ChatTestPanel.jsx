@@ -2,19 +2,7 @@ import PropTypes from 'prop-types'
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react'
 import { Box, Button, ButtonBase, IconButton, InputBase, Menu, MenuItem, Stack, Tooltip, Typography, useTheme } from '@mui/material'
 import { alpha, keyframes } from '@mui/material/styles'
-import {
-    IconApi,
-    IconBookFilled,
-    IconClipboardListFilled,
-    IconMessageCircleFilled,
-    IconRefresh,
-    IconRoute,
-    IconSelector,
-    IconSend,
-    IconTemplate,
-    IconUserFilled,
-    IconWorld
-} from '@tabler/icons-react'
+import { AppIcon, iconComponent } from '@/ui-component/icons/AppIcon'
 
 import {
     InitialsAvatar,
@@ -158,7 +146,7 @@ const PlaybookMarker = ({ label }) => {
                     fontWeight: 600
                 }}
             >
-                <IconRoute size={13} stroke={1.75} />
+                <AppIcon name='Path' size={13} />
                 {label}
             </Box>
         </Stack>
@@ -275,7 +263,7 @@ const ChatTestPanel = ({ assistantName, welcome, modelLabel, stores, selectedSto
                 if (v) {
                     vals[step.attr] = v
                     if (step.as) vals[step.as] = v
-                    traces.push({ tone: 'teal', icon: IconUserFilled, label: `{{${step.attr}}} = ${short(v)}` })
+                    traces.push({ tone: 'teal', icon: iconComponent('User'), label: `{{${step.attr}}} = ${short(v)}` })
                 }
             } else if (step.kind === 'ask') {
                 if (vals[step.var.name] !== undefined) continue
@@ -290,7 +278,7 @@ const ChatTestPanel = ({ assistantName, welcome, modelLabel, stores, selectedSto
                     failed = true
                     traces.push({
                         tone: 'rose',
-                        icon: IconApi,
+                        icon: iconComponent('PlugsConnected'),
                         label: `${api.name} lỗi${toolState.guards.onError === 'retry' ? ' · đã thử lại' : ''}`
                     })
                     if (toolState.guards.onError === 'handoff') {
@@ -302,12 +290,12 @@ const ChatTestPanel = ({ assistantName, welcome, modelLabel, stores, selectedSto
                 step.outputs.forEach((o) => {
                     if (!vals[o]) vals[o] = sampleValue(o)
                 })
-                traces.push({ tone: 'orange', icon: IconApi, label: `${api.method} ${api.name} · 200` })
+                traces.push({ tone: 'orange', icon: iconComponent('PlugsConnected'), label: `${api.method} ${api.name} · 200` })
             } else if (step.kind === 'search') {
                 const store = stores.find((s) => s.id === step.store.id)
                 if (storeKey(step.store) === 'san_pham') vals.__products = productsOf(store)
                 else vals.__hit = searchStores(state.question, [store]) || vals.__hit
-                traces.push({ tone: 'emerald', icon: IconBookFilled, label: `{{${step.token}}}` })
+                traces.push({ tone: 'emerald', icon: iconComponent('Book'), label: `{{${step.token}}}` })
             }
         }
         setRun(null)
@@ -323,18 +311,18 @@ const ChatTestPanel = ({ assistantName, welcome, modelLabel, stores, selectedSto
             if (!skip && v.type === 'phone' && !/^0\d{9}$/.test(text.replace(/[\s.-]/g, '')))
                 return {
                     text: 'Số điện thoại cần đủ 10 số và bắt đầu bằng 0, bạn kiểm tra lại giúp mình nhé.',
-                    traces: [{ tone: 'rose', icon: IconClipboardListFilled, label: `{{${v.name}}} chưa hợp lệ` }]
+                    traces: [{ tone: 'rose', icon: iconComponent('ClipboardText'), label: `{{${v.name}}} chưa hợp lệ` }]
                 }
             if (!skip && v.type === 'number' && Number.isNaN(parseBudget(text)))
                 return {
                     text: 'Bạn cho mình con số cụ thể nhé, ví dụ “5 triệu”.',
-                    traces: [{ tone: 'rose', icon: IconClipboardListFilled, label: `{{${v.name}}} chưa hợp lệ` }]
+                    traces: [{ tone: 'rose', icon: iconComponent('ClipboardText'), label: `{{${v.name}}} chưa hợp lệ` }]
                 }
             const value = skip ? '' : text.trim()
             return advance(
                 { ...run, values: { ...run.values, [v.name]: value } },
                 run.idx + 1,
-                [{ tone: 'amber', icon: IconClipboardListFilled, label: `{{${v.name}}} = ${skip ? '∅' : short(value)}` }],
+                [{ tone: 'amber', icon: iconComponent('ClipboardText'), label: `{{${v.name}}} = ${skip ? '∅' : short(value)}` }],
                 'Cảm ơn bạn! '
             )
         }
@@ -343,7 +331,7 @@ const ChatTestPanel = ({ assistantName, welcome, modelLabel, stores, selectedSto
         if (playbook) {
             const { steps } = compilePlaybook(playbook.script, { registry, toolState, customer: cust })
             return advance({ steps, values: {}, playbook, question: text }, 0, [
-                { kind: 'playbook', tone: 'teal', icon: IconRoute, label: `Kịch bản · ${playbook.name}` }
+                { kind: 'playbook', tone: 'teal', icon: iconComponent('Path'), label: `Kịch bản · ${playbook.name}` }
             ])
         }
 
@@ -352,7 +340,9 @@ const ChatTestPanel = ({ assistantName, welcome, modelLabel, stores, selectedSto
             const ctxUsed = /\{\{customer\./.test(retrievalQuery || '') && cust
             return {
                 text: hit.chunk.pageContent,
-                traces: [{ tone: 'emerald', icon: IconBookFilled, label: `{{kb.${storeKey(hit.store)}}}${ctxUsed ? ' + hồ sơ' : ''}` }]
+                traces: [
+                    { tone: 'emerald', icon: iconComponent('Book'), label: `{{kb.${storeKey(hit.store)}}}${ctxUsed ? ' + hồ sơ' : ''}` }
+                ]
             }
         }
 
@@ -360,7 +350,7 @@ const ChatTestPanel = ({ assistantName, welcome, modelLabel, stores, selectedSto
             const hosts = toolState.deepResearch.links.slice(0, 2).map((l) => hostOf(l.url))
             return {
                 text: `Mình chưa thấy câu trả lời trong kho tài liệu nên đã nghiên cứu thêm ${toolState.deepResearch.links.length} nguồn. Đây là phản hồi mẫu của bản prototype — khi chạy thật, agent sẽ tổng hợp nội dung kèm trích dẫn.`,
-                traces: [{ tone: 'teal', icon: IconWorld, label: `Deep Research · ${hosts.join(', ')}` }]
+                traces: [{ tone: 'teal', icon: iconComponent('Globe'), label: `Deep Research · ${hosts.join(', ')}` }]
             }
         }
         return { text: 'Mình chưa có thông tin cho câu hỏi này. Bạn thử gắn thêm kho tài liệu hoặc bật Deep Research nhé.', traces: [] }
@@ -422,7 +412,7 @@ const ChatTestPanel = ({ assistantName, welcome, modelLabel, stores, selectedSto
                             color: 'primary.main'
                         }}
                     >
-                        <IconMessageCircleFilled size={18} />
+                        <AppIcon name='ChatCircle' size={18} />
                     </Box>
                     <Box sx={{ flex: 1, minWidth: 0 }}>
                         <Typography sx={{ fontSize: '0.9375rem', fontWeight: 700, lineHeight: 1.3 }}>Chat thử</Typography>
@@ -435,7 +425,7 @@ const ChatTestPanel = ({ assistantName, welcome, modelLabel, stores, selectedSto
                             size='small'
                             variant='outlined'
                             onClick={reset}
-                            startIcon={<IconRefresh size={14} stroke={1.75} />}
+                            startIcon={<AppIcon name='ArrowClockwise' size={14} />}
                             sx={{ height: 30, color: 'text.primary', borderColor: theme.palette.alpha.borderStrong, fontWeight: 600 }}
                         >
                             Làm mới
@@ -477,7 +467,7 @@ const ChatTestPanel = ({ assistantName, welcome, modelLabel, stores, selectedSto
                             </Box>
                         </Typography>
                     </Box>
-                    <IconSelector size={16} stroke={1.75} style={{ flexShrink: 0, color: theme.palette.text.secondary }} />
+                    <AppIcon name='CaretUpDown' size={16} style={{ flexShrink: 0, color: theme.palette.text.secondary }} />
                 </ButtonBase>
             </Box>
             <Menu
@@ -721,7 +711,7 @@ const ChatTestPanel = ({ assistantName, welcome, modelLabel, stores, selectedSto
                             color: toneText(theme, toneOf(theme, 'amber'))
                         }}
                     >
-                        <IconClipboardListFilled size={14} style={{ flexShrink: 0 }} />
+                        <AppIcon name='ClipboardText' size={14} style={{ flexShrink: 0 }} />
                         <Typography sx={{ flex: 1, minWidth: 0, fontSize: '0.75rem', fontWeight: 600 }} noWrap>
                             Agent đang chờ: {varLabel(pendingVar)}
                         </Typography>
@@ -768,7 +758,7 @@ const ChatTestPanel = ({ assistantName, welcome, modelLabel, stores, selectedSto
                                 onClick={(e) => setStarterAnchor(e.currentTarget)}
                                 sx={{ width: 36, height: 36, borderRadius: '10px', color: 'text.secondary' }}
                             >
-                                <IconTemplate size={18} stroke={1.75} />
+                                <AppIcon name='Layout' size={18} />
                             </IconButton>
                         </span>
                     </Tooltip>
@@ -811,7 +801,7 @@ const ChatTestPanel = ({ assistantName, welcome, modelLabel, stores, selectedSto
                                     }
                                 }}
                             >
-                                <IconSend size={17} stroke={2} />
+                                <AppIcon name='PaperPlaneTilt' size={17} />
                             </IconButton>
                         </span>
                     </Tooltip>

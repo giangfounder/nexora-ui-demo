@@ -7,7 +7,7 @@ import ReactJson from 'flowise-react-json-view'
 import { Box, Card, Button, Grid, IconButton, Stack, Typography } from '@mui/material'
 import { useTheme, styled } from '@mui/material/styles'
 import CardContent from '@mui/material/CardContent'
-import { IconLanguage, IconX, IconChevronLeft, IconChevronRight } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import chunks_emptySVG from '@/assets/images/chunks_empty.svg'
 
 // project imports
@@ -111,7 +111,7 @@ const ShowStoredChunks = () => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -130,7 +130,7 @@ const ShowStoredChunks = () => {
                     variant: 'error',
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -160,7 +160,7 @@ const ShowStoredChunks = () => {
                             variant: 'success',
                             action: (key) => (
                                 <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                    <IconX />
+                                    <AppIcon name='X' />
                                 </Button>
                             )
                         }
@@ -179,7 +179,7 @@ const ShowStoredChunks = () => {
                         variant: 'error',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -299,13 +299,15 @@ const ShowStoredChunks = () => {
                             >
                                 <div style={{ marginRight: 20, display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                                     <IconButton
+                                        aria-label={t('Previous page')}
                                         size='small'
                                         onClick={() => changePage(currentPage - 1)}
                                         style={{ marginRight: 10 }}
                                         variant='outlined'
                                         disabled={currentPage === 1}
                                     >
-                                        <IconChevronLeft
+                                        <AppIcon
+                                            name='CaretLeft'
                                             color={currentPage === 1 ? theme.palette.text.disabled : theme.palette.text.primary}
                                         />
                                     </IconButton>
@@ -315,19 +317,21 @@ const ShowStoredChunks = () => {
                                         total: totalChunks
                                     })}
                                     <IconButton
+                                        aria-label={t('Next page')}
                                         size='small'
                                         onClick={() => changePage(currentPage + 1)}
                                         style={{ marginLeft: 10 }}
                                         variant='outlined'
                                         disabled={end >= totalChunks}
                                     >
-                                        <IconChevronRight
+                                        <AppIcon
+                                            name='CaretRight'
                                             color={end >= totalChunks ? theme.palette.text.disabled : theme.palette.text.primary}
                                         />
                                     </IconButton>
                                 </div>
                                 <div style={{ marginRight: 20, display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                                    <IconLanguage style={{ marginRight: 10 }} size={20} />
+                                    <AppIcon name='Translate' style={{ marginRight: 10 }} size={20} />
                                     {t('{count} characters', { count: getChunksApi.data?.characters?.toLocaleString() ?? '' })}
                                 </div>
                             </div>

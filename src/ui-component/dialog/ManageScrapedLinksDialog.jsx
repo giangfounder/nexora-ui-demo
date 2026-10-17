@@ -16,7 +16,7 @@ import {
     Stack,
     Typography
 } from '@mui/material'
-import { IconEraser, IconPlus, IconTrash, IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
 import { StyledButton } from '@/ui-component/button/StyledButton'
@@ -77,7 +77,7 @@ const ManageScrapedLinksDialog = ({ show, dialogProps, onCancel, onSave }) => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -92,7 +92,7 @@ const ManageScrapedLinksDialog = ({ show, dialogProps, onCancel, onSave }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -168,12 +168,13 @@ const ManageScrapedLinksDialog = ({ show, dialogProps, onCancel, onSave }) => {
                     <Typography sx={{ fontWeight: 500 }}>{t('Scraped Links')}</Typography>
                     <Box sx={{ width: 'auto', flexGrow: 1 }}>
                         <IconButton
+                            aria-label={t('Add link')}
                             sx={{ height: 30, width: 30, marginLeft: '8px' }}
                             size='small'
                             color='primary'
                             onClick={() => handleAddLink()}
                         >
-                            <IconPlus />
+                            <AppIcon name='Plus' />
                         </IconButton>
                     </Box>
                     {selectedLinks.length > 0 ? (
@@ -183,7 +184,7 @@ const ManageScrapedLinksDialog = ({ show, dialogProps, onCancel, onSave }) => {
                             color='error'
                             title={t('Clear All Links')}
                             onClick={handleRemoveAllLinks}
-                            startIcon={<IconEraser />}
+                            startIcon={<AppIcon name='Eraser' />}
                         >
                             {t('Clear All')}
                         </Button>
@@ -217,13 +218,14 @@ const ManageScrapedLinksDialog = ({ show, dialogProps, onCancel, onSave }) => {
                                     </Box>
                                     <Box sx={{ width: 'auto', flexGrow: 1 }}>
                                         <IconButton
+                                            aria-label={t('Remove link')}
                                             sx={{ height: 30, width: 30 }}
                                             size='small'
                                             color='error'
                                             onClick={() => handleRemoveLink(index)}
                                             edge='end'
                                         >
-                                            <IconTrash />
+                                            <AppIcon name='Trash' />
                                         </IconButton>
                                     </Box>
                                 </div>

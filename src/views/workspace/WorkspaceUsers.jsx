@@ -42,7 +42,7 @@ import useConfirm from '@/hooks/useConfirm'
 
 // icons
 import empty_datasetSVG from '@/assets/images/empty_datasets.svg'
-import { IconEdit, IconX, IconUnlink, IconUserPlus } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // store
 import { useError } from '@/store/context/ErrorContext'
@@ -195,7 +195,7 @@ const WorkspaceDetails = () => {
                     variant: 'error',
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -217,7 +217,7 @@ const WorkspaceDetails = () => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -242,7 +242,7 @@ const WorkspaceDetails = () => {
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -331,7 +331,7 @@ const WorkspaceDetails = () => {
                                         disabled={usersSelected.length === 0}
                                         onClick={unlinkUser}
                                         color='error'
-                                        startIcon={<IconUnlink />}
+                                        startIcon={<AppIcon name='LinkBreak' />}
                                     >
                                         {t('Remove Users')}
                                     </PermissionButton>
@@ -340,7 +340,7 @@ const WorkspaceDetails = () => {
                                         variant='contained'
                                         sx={{ borderRadius: 2, height: '100%' }}
                                         onClick={addUser}
-                                        startIcon={<IconUserPlus />}
+                                        startIcon={<AppIcon name='UserPlus' />}
                                     >
                                         {t('Add User')}
                                     </StyledPermissionButton>
@@ -361,7 +361,7 @@ const WorkspaceDetails = () => {
                                     permissionId={'workspace:add-user'}
                                     variant='contained'
                                     sx={{ borderRadius: 2, height: '100%', mt: 2, color: 'white' }}
-                                    startIcon={<IconUserPlus />}
+                                    startIcon={<AppIcon name='UserPlus' />}
                                     onClick={addUser}
                                 >
                                     {t('Add User')}
@@ -509,7 +509,7 @@ const WorkspaceDetails = () => {
                                                                         color='primary'
                                                                         onClick={() => onEditClick(item)}
                                                                     >
-                                                                        <IconEdit />
+                                                                        <AppIcon name='PencilSimpleLine' />
                                                                     </IconButton>
                                                                 )}
                                                                 {!item.isOrgOwner && item.status.toUpperCase() === 'ACTIVE' && (
@@ -518,7 +518,7 @@ const WorkspaceDetails = () => {
                                                                         color='primary'
                                                                         onClick={() => onEditClick(item)}
                                                                     >
-                                                                        <IconEdit />
+                                                                        <AppIcon name='PencilSimpleLine' />
                                                                     </IconButton>
                                                                 )}
                                                             </StyledTableCell>

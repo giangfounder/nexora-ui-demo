@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import { alpha, useTheme } from '@mui/material/styles'
-import { Avatar, Box, Stack, Typography } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 import MainCard from '@/ui-component/cards/MainCard'
 import { mockCustomers } from '@/views/customers/mockCustomers'
-import { getInitials, getAvatarColorKey } from '@/views/customers/utils'
 import { watchlistScores } from './mockDashboard'
 import { useLanguage } from '@/store/context/LanguageContext'
+import PersonAvatar from '@/ui-component/avatar/PersonAvatar'
 
 const scoreTone = (score) => {
     if (score >= 85) return 'rose'
@@ -34,7 +34,6 @@ const WatchlistTable = () => {
             <Stack>
                 {rows.map(({ customer, score, reason, reasonVars }, i) => {
                     const tone = theme.palette.spectrum[scoreTone(score)].main
-                    const avatarKey = getAvatarColorKey(customer.name)
                     return (
                         <Stack
                             key={customer.id}
@@ -49,18 +48,7 @@ const WatchlistTable = () => {
                                 '&:hover': { bgcolor: alpha(theme.palette.text.primary, 0.03) }
                             }}
                         >
-                            <Avatar
-                                sx={{
-                                    width: 24,
-                                    height: 24,
-                                    bgcolor: alpha(theme.palette[avatarKey].main, 0.15),
-                                    color: theme.palette[avatarKey].main,
-                                    fontSize: '0.6875rem',
-                                    fontWeight: 600
-                                }}
-                            >
-                                {getInitials(customer.name)}
-                            </Avatar>
+                            <PersonAvatar name={customer.name} size={24} />
                             <Typography
                                 variant='body2'
                                 sx={{ fontWeight: 600, color: 'text.primary', fontSize: '0.8125rem', flexShrink: 0 }}

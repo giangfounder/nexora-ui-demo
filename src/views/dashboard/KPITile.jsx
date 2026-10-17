@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { alpha, useTheme } from '@mui/material/styles'
 import { Box, Stack, Typography } from '@mui/material'
-import { IconArrowUpRight } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import MainCard from '@/ui-component/cards/MainCard'
 import { useLanguage } from '@/store/context/LanguageContext'
 
@@ -33,7 +33,7 @@ const KPITile = ({ label, value, deltaPct }) => {
                             fontWeight: 600
                         }}
                     >
-                        <IconArrowUpRight size={12} strokeWidth={2.5} style={{ transform: positive ? 'none' : 'rotate(90deg)' }} />
+                        <AppIcon name='ArrowUpRight' size={12} style={{ transform: positive ? 'none' : 'rotate(90deg)' }} />
                         {positive ? '+' : ''}
                         {deltaPct}%
                     </Box>

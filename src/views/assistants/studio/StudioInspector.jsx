@@ -24,7 +24,7 @@ import {
     useTheme
 } from '@mui/material'
 import { alpha } from '@mui/material/styles'
-import { IconArrowsMaximize, IconArrowsMinimize, IconPlus, IconTrash } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 import { FormField } from '@/hooks/useDialogShell'
 import { R_CARD, monoSx, toneOf } from '@/views/assistants/custom/workspace/primitives'
@@ -204,7 +204,7 @@ export const AgentForm = ({ doc, setDoc, models, registry, issues }) => {
                             <span>Hướng dẫn</span>
                             <Tooltip title='Mở toàn màn hình'>
                                 <IconButton size='small' aria-label='Mở toàn màn hình' onClick={() => setFull(true)} sx={{ mr: -0.5 }}>
-                                    <IconArrowsMaximize size={15} stroke={1.75} />
+                                    <AppIcon name='ArrowsOut' size={15} />
                                 </IconButton>
                             </Tooltip>
                         </Stack>
@@ -268,7 +268,7 @@ export const AgentForm = ({ doc, setDoc, models, registry, issues }) => {
                     </Typography>
                     <Tooltip title='Thu nhỏ'>
                         <IconButton aria-label='Thu nhỏ' onClick={() => setFull(false)}>
-                            <IconArrowsMinimize size={18} stroke={1.75} />
+                            <AppIcon name='ArrowsIn' size={18} />
                         </IconButton>
                     </Tooltip>
                 </Stack>
@@ -371,7 +371,7 @@ export const ToolForm = ({ tool, doc, setDoc, stores, onRemove, issues }) => {
                         </Tooltip>
                         <Tooltip title='Gỡ khỏi agent'>
                             <IconButton aria-label='Gỡ khỏi agent' onClick={onRemove} sx={{ '&:hover': { color: 'error.main' } }}>
-                                <IconTrash size={18} stroke={1.75} />
+                                <AppIcon name='Trash' size={18} />
                             </IconButton>
                         </Tooltip>
                     </Stack>
@@ -469,7 +469,7 @@ export const ToolForm = ({ tool, doc, setDoc, stores, onRemove, issues }) => {
                             <Box>
                                 <Button
                                     variant='outlined'
-                                    startIcon={<IconPlus size={16} />}
+                                    startIcon={<AppIcon name='Plus' size={16} />}
                                     onClick={() => {
                                         const a = newApi(doc.apis.length + 1)
                                         setDoc((d) => ({ ...d, apis: [...d.apis, a] }))
@@ -603,7 +603,7 @@ export const InfoForm = ({ kind, refId, doc, setDoc, registry, issues, onRemove 
                     action={
                         <Button
                             size='small'
-                            startIcon={<IconPlus size={14} />}
+                            startIcon={<AppIcon name='Plus' size={14} />}
                             onClick={() => setDoc((d) => ({ ...d, rules: [...d.rules, ''] }))}
                         >
                             Thêm
@@ -624,7 +624,7 @@ export const InfoForm = ({ kind, refId, doc, setDoc, registry, issues, onRemove 
                                 aria-label='Xoá quy tắc'
                                 onClick={() => setDoc((d) => ({ ...d, rules: d.rules.filter((_, j) => j !== i) }))}
                             >
-                                <IconTrash size={16} stroke={1.75} />
+                                <AppIcon name='Trash' size={16} />
                             </IconButton>
                         </Stack>
                     ))}
@@ -689,7 +689,7 @@ export const InfoForm = ({ kind, refId, doc, setDoc, registry, issues, onRemove 
                             />
                             <Tooltip title='Xoá quy trình'>
                                 <IconButton aria-label='Xoá quy trình' onClick={onRemove} sx={{ '&:hover': { color: 'error.main' } }}>
-                                    <IconTrash size={18} stroke={1.75} />
+                                    <AppIcon name='Trash' size={18} />
                                 </IconButton>
                             </Tooltip>
                         </Stack>
@@ -809,15 +809,11 @@ export const ResourcesForm = ({ doc, setDoc, issueList, onSelectNode, nameOf }) 
                                             '&:hover': { bgcolor: theme.palette.alpha.hover }
                                         }}
                                     >
-                                        <Box
-                                            sx={{
-                                                width: 6,
-                                                height: 6,
-                                                borderRadius: '50%',
-                                                bgcolor: t.main,
-                                                flexShrink: 0,
-                                                transform: 'translateY(-1px)'
-                                            }}
+                                        <AppIcon
+                                            name={it.tone === 'rose' ? 'WarningOctagon' : 'WarningCircle'}
+                                            size={14}
+                                            color={t.main}
+                                            style={{ flexShrink: 0, transform: 'translateY(2px)' }}
                                         />
                                         <Typography variant='body2' sx={{ fontSize: '0.8125rem', fontWeight: 600, flexShrink: 0 }}>
                                             {nameOf(it.nodeId)}

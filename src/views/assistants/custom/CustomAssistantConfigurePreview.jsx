@@ -12,16 +12,7 @@ import useConfirm from '@/hooks/useConfirm'
 // Material-UI
 import { IconButton, Avatar, ButtonBase, Toolbar, Box, Button, Grid, OutlinedInput, Stack, Typography } from '@mui/material'
 import { alpha, useTheme } from '@mui/material/styles'
-import {
-    IconCode,
-    IconArrowLeft,
-    IconDeviceFloppy,
-    IconSettings,
-    IconX,
-    IconTrash,
-    IconPencilPlus,
-    IconArrowsMaximize
-} from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // Project import
 import MainCard from '@/ui-component/cards/MainCard'
@@ -174,7 +165,7 @@ const CustomAssistantConfigurePreview = () => {
                 variant: 'warning',
                 action: (key) => (
                     <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                        <IconX />
+                        <AppIcon name='X' />
                     </Button>
                 )
             }
@@ -291,7 +282,7 @@ const CustomAssistantConfigurePreview = () => {
                                 variant: 'success',
                                 action: (key) => (
                                     <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                        <IconX />
+                                        <AppIcon name='X' />
                                     </Button>
                                 )
                             }
@@ -309,7 +300,7 @@ const CustomAssistantConfigurePreview = () => {
                         variant: 'error',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -512,7 +503,7 @@ const CustomAssistantConfigurePreview = () => {
                     variant: 'error',
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -573,7 +564,7 @@ const CustomAssistantConfigurePreview = () => {
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -633,7 +624,7 @@ const CustomAssistantConfigurePreview = () => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -650,7 +641,7 @@ const CustomAssistantConfigurePreview = () => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -883,7 +874,7 @@ const CustomAssistantConfigurePreview = () => {
                                                         title={t('Back')}
                                                         onClick={() => navigate(-1)}
                                                     >
-                                                        <IconArrowLeft />
+                                                        <AppIcon name='ArrowLeft' />
                                                     </StyledFab>
                                                     <Typography sx={{ ml: 2, mr: 2 }} variant='h3'>
                                                         {selectedCustomAssistant?.name ?? ''}
@@ -903,7 +894,7 @@ const CustomAssistantConfigurePreview = () => {
                                                             color='inherit'
                                                             onClick={onAPIDialogClick}
                                                         >
-                                                            <IconCode stroke={1.75} size={18} />
+                                                            <AppIcon name='Code' size={18} />
                                                         </Avatar>
                                                     </ButtonBase>
                                                 )}
@@ -920,7 +911,7 @@ const CustomAssistantConfigurePreview = () => {
                                                             color='inherit'
                                                             onClick={onSaveAndProcess}
                                                         >
-                                                            <IconDeviceFloppy stroke={1.75} size={18} />
+                                                            <AppIcon name='FloppyDisk' size={18} />
                                                         </Avatar>
                                                     </ButtonBase>
                                                 </Available>
@@ -936,7 +927,7 @@ const CustomAssistantConfigurePreview = () => {
                                                             }}
                                                             onClick={() => setSettingsOpen(!isSettingsOpen)}
                                                         >
-                                                            <IconSettings stroke={1.75} size={18} />
+                                                            <AppIcon name='GearSix' size={18} />
                                                         </Avatar>
                                                     </ButtonBase>
                                                 )}
@@ -957,7 +948,7 @@ const CustomAssistantConfigurePreview = () => {
                                                                 }}
                                                                 onClick={handleDeleteFlow}
                                                             >
-                                                                <IconTrash stroke={1.75} size={18} />
+                                                                <AppIcon name='Trash' size={18} />
                                                             </Avatar>
                                                         </ButtonBase>
                                                     </Available>
@@ -1028,7 +1019,7 @@ const CustomAssistantConfigurePreview = () => {
                                                     color='secondary'
                                                     onClick={() => onExpandDialogClicked(customAssistantInstruction)}
                                                 >
-                                                    <IconArrowsMaximize />
+                                                    <AppIcon name='ArrowsOut' />
                                                 </IconButton>
                                                 {selectedChatModel?.name && (
                                                     <Button
@@ -1037,7 +1028,7 @@ const CustomAssistantConfigurePreview = () => {
                                                         size='small'
                                                         variant='text'
                                                         onClick={() => generateInstruction()}
-                                                        startIcon={<IconPencilPlus size={20} />}
+                                                        startIcon={<AppIcon name='NotePencil' size={20} />}
                                                     >
                                                         {t('Generate')}
                                                     </Button>
@@ -1132,10 +1123,11 @@ const CustomAssistantConfigurePreview = () => {
                                                                     {ds.name}
                                                                 </span>
                                                                 <IconButton
+                                                                    aria-label={t('Remove')}
                                                                     sx={{ height: 15, width: 15, p: 0 }}
                                                                     onClick={() => onDocStoreItemDelete(ds.id)}
                                                                 >
-                                                                    <IconX />
+                                                                    <AppIcon name='X' />
                                                                 </IconButton>
                                                             </div>
                                                             <div style={{ flex: 1 }}></div>
@@ -1146,7 +1138,7 @@ const CustomAssistantConfigurePreview = () => {
                                                                     size='small'
                                                                     variant='text'
                                                                     onClick={() => generateDocStoreToolDesc(ds.id)}
-                                                                    startIcon={<IconPencilPlus size={20} />}
+                                                                    startIcon={<AppIcon name='NotePencil' size={20} />}
                                                                 >
                                                                     {t('Generate')}
                                                                 </Button>
@@ -1241,6 +1233,7 @@ const CustomAssistantConfigurePreview = () => {
                                                                 </Typography>
                                                                 <div style={{ flex: 1 }}></div>
                                                                 <IconButton
+                                                                    aria-label={t('Delete')}
                                                                     color='error'
                                                                     sx={{ height: 15, width: 15, p: 0 }}
                                                                     onClick={() => {
@@ -1248,7 +1241,7 @@ const CustomAssistantConfigurePreview = () => {
                                                                         setSelectedTools(newSelectedTools)
                                                                     }}
                                                                 >
-                                                                    <IconTrash />
+                                                                    <AppIcon name='Trash' />
                                                                 </IconButton>
                                                             </div>
                                                             <Dropdown

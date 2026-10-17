@@ -1,47 +1,43 @@
-import {
-    IconApi,
-    IconBookFilled,
-    IconCalculatorFilled,
-    IconFunctionFilled,
-    IconGlobeFilled,
-    IconHeadset,
-    IconLibrary,
-    IconListCheck,
-    IconMessage2,
-    IconMessageCircleFilled,
-    IconPuzzleFilled,
-    IconShieldCheckFilled,
-    IconUserFilled,
-    IconVectorBezier2,
-    IconWorld,
-    IconWorldSearch
-} from '@tabler/icons-react'
+import { iconComponent } from '@/ui-component/icons/AppIcon'
 
 // Everything the agent may use. The agent decides on its own when to call each one,
 // based on `when` (tool description) — no fixed flow.
 export const TOOL_KINDS = {
-    kb: { label: 'Kho tài liệu', Icon: IconBookFilled, tone: 'emerald', column: 'knowledge', group: 'core' },
-    api: { label: 'Gọi API', Icon: IconApi, tone: 'orange', column: 'tools', group: 'core' },
-    deepResearch: { label: 'Deep Research', Icon: IconWorldSearch, tone: 'teal', column: 'tools', group: 'core', single: true },
-    webBrowser: { label: 'Đọc trang web', Icon: IconGlobeFilled, tone: 'teal', column: 'tools', group: 'core', single: true },
-    calculator: { label: 'Máy tính', Icon: IconCalculatorFilled, column: 'tools', group: 'core', single: true },
-    customTool: { label: 'Custom Tool', Icon: IconPuzzleFilled, tone: 'orange', column: 'tools', group: 'core' },
+    kb: { label: 'Kho tài liệu', Icon: iconComponent('Book'), tone: 'emerald', column: 'knowledge', group: 'core' },
+    api: { label: 'Gọi API', Icon: iconComponent('PlugsConnected'), tone: 'orange', column: 'tools', group: 'core' },
+    deepResearch: {
+        label: 'Deep Research',
+        Icon: iconComponent('GlobeSimple'),
+        tone: 'teal',
+        column: 'tools',
+        group: 'core',
+        single: true
+    },
+    webBrowser: { label: 'Đọc trang web', Icon: iconComponent('Globe'), tone: 'teal', column: 'tools', group: 'core', single: true },
+    calculator: { label: 'Máy tính', Icon: iconComponent('Calculator'), column: 'tools', group: 'core', single: true },
+    customTool: { label: 'Custom Tool', Icon: iconComponent('PuzzlePiece'), tone: 'orange', column: 'tools', group: 'core' },
 
     // Agentflow gốc — dùng như công cụ của agent
-    retrieverAgentflow: { label: 'Retriever', Icon: IconLibrary, tone: 'emerald', column: 'knowledge', group: 'advanced' },
-    httpAgentflow: { label: 'HTTP', Icon: IconWorld, tone: 'orange', column: 'tools', group: 'advanced' },
-    customFunctionAgentflow: { label: 'Custom Function', Icon: IconFunctionFilled, tone: 'orange', column: 'tools', group: 'advanced' },
-    llmAgentflow: { label: 'LLM phụ', Icon: IconMessage2, tone: 'orange', column: 'tools', group: 'advanced' },
-    executeFlowAgentflow: { label: 'Execute Flow', Icon: IconVectorBezier2, tone: 'orange', column: 'tools', group: 'advanced' }
+    retrieverAgentflow: { label: 'Retriever', Icon: iconComponent('Books'), tone: 'emerald', column: 'knowledge', group: 'advanced' },
+    httpAgentflow: { label: 'HTTP', Icon: iconComponent('Globe'), tone: 'orange', column: 'tools', group: 'advanced' },
+    customFunctionAgentflow: {
+        label: 'Custom Function',
+        Icon: iconComponent('Function'),
+        tone: 'orange',
+        column: 'tools',
+        group: 'advanced'
+    },
+    llmAgentflow: { label: 'LLM phụ', Icon: iconComponent('ChatTeardropText'), tone: 'orange', column: 'tools', group: 'advanced' },
+    executeFlowAgentflow: { label: 'Execute Flow', Icon: iconComponent('BezierCurve'), tone: 'orange', column: 'tools', group: 'advanced' }
 }
 
 // Fixed, non-removable blocks around the agent
 export const FIXED = {
-    channels: { label: 'Kênh', Icon: IconMessageCircleFilled, column: 'input' },
-    profile: { label: 'Hồ sơ khách hàng', Icon: IconUserFilled, tone: 'teal', column: 'input' },
-    guard: { label: 'Quy tắc an toàn', Icon: IconShieldCheckFilled, column: 'input' },
-    handoff: { label: 'Chuyển nhân viên', Icon: IconHeadset, tone: 'rose', column: 'below' },
-    sop: { label: 'Quy trình', Icon: IconListCheck, tone: 'amber', column: 'sops' }
+    channels: { label: 'Kênh', Icon: iconComponent('ChatCircle'), column: 'input' },
+    profile: { label: 'Hồ sơ khách hàng', Icon: iconComponent('User'), tone: 'teal', column: 'input' },
+    guard: { label: 'Quy tắc an toàn', Icon: iconComponent('ShieldCheck'), column: 'input' },
+    handoff: { label: 'Chuyển nhân viên', Icon: iconComponent('Headset'), tone: 'rose', column: 'below' },
+    sop: { label: 'Quy trình', Icon: iconComponent('ListChecks'), tone: 'amber', column: 'sops' }
 }
 
 export const CHANNELS = [

@@ -10,13 +10,14 @@ import ViewHeader from '@/layout/MainLayout/ViewHeader'
 import { useLanguage } from '@/store/context/LanguageContext'
 
 // icons
-import { IconHeadset, IconBrandOpenai } from '@tabler/icons-react'
+import { IconBrandOpenai } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 const cards = [
     {
         title: 'Custom Assistant',
         description: 'Create custom assistant using your choice of LLMs',
-        icon: <IconHeadset size={18} stroke={1.75} />,
+        icon: <AppIcon name='Headset' size={18} />,
         iconText: 'Custom'
     },
     {

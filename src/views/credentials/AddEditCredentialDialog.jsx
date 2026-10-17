@@ -14,7 +14,7 @@ import ConfirmDialog from '@/ui-component/dialog/ConfirmDialog'
 import CredentialInputHandler from './CredentialInputHandler'
 
 // Icons
-import { IconHandStop, IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // API
 import credentialsApi from '@/api/credentials'
@@ -153,7 +153,7 @@ const AddEditCredentialDialog = ({ show, dialogProps, onCancel, onConfirm, setEr
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -172,7 +172,7 @@ const AddEditCredentialDialog = ({ show, dialogProps, onCancel, onConfirm, setEr
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -205,7 +205,7 @@ const AddEditCredentialDialog = ({ show, dialogProps, onCancel, onConfirm, setEr
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -224,7 +224,7 @@ const AddEditCredentialDialog = ({ show, dialogProps, onCancel, onConfirm, setEr
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -302,7 +302,7 @@ const AddEditCredentialDialog = ({ show, dialogProps, onCancel, onConfirm, setEr
                                     variant: 'success',
                                     action: (key) => (
                                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                            <IconX />
+                                            <AppIcon name='X' />
                                         </Button>
                                     )
                                 }
@@ -317,7 +317,7 @@ const AddEditCredentialDialog = ({ show, dialogProps, onCancel, onConfirm, setEr
                                     persist: true,
                                     action: (key) => (
                                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                            <IconX />
+                                            <AppIcon name='X' />
                                         </Button>
                                     )
                                 }
@@ -370,7 +370,7 @@ const AddEditCredentialDialog = ({ show, dialogProps, onCancel, onConfirm, setEr
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -440,7 +440,7 @@ const AddEditCredentialDialog = ({ show, dialogProps, onCancel, onConfirm, setEr
                                 alignItems: 'center'
                             }}
                         >
-                            <IconHandStop size={25} color='white' />
+                            <AppIcon name='Hand' size={25} color='white' />
                             <span style={{ color: 'white', marginLeft: 10, fontWeight: 400 }}>{t('Cannot edit shared credential.')}</span>
                         </div>
                     </div>

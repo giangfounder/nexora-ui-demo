@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useState } from 'react'
 
 import { Box, Button, Chip, Drawer, IconButton, MenuItem, Stack, Tab, Tabs, TextField, Typography } from '@mui/material'
-import { IconPlus, IconTrashFilled, IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 import { StyledButton } from '@/ui-component/button/StyledButton'
 import { TabPanel } from '@/ui-component/tabs/TabPanel'
@@ -72,7 +72,7 @@ const SettingsDialog = ({ show, attributeDefs, customerTypes, onCancel, onSave }
                             '&:hover': { bgcolor: alpha(theme.palette.text.primary, 0.06), color: 'text.primary' }
                         }}
                     >
-                        <IconX size={16} strokeWidth={2.5} />
+                        <AppIcon name='X' size={16} />
                     </IconButton>
                 </Box>
 
@@ -146,12 +146,12 @@ const SettingsDialog = ({ show, attributeDefs, customerTypes, onCancel, onSave }
                                         aria-label={t('Xoá {name}', { name: attr.label })}
                                         sx={rowDeleteSx}
                                     >
-                                        <IconTrashFilled size={16} />
+                                        <AppIcon name='Trash' size={16} />
                                     </IconButton>
                                 </Stack>
                             ))}
                             <Button
-                                startIcon={<IconPlus size={16} strokeWidth={2.5} />}
+                                startIcon={<AppIcon name='Plus' size={16} />}
                                 onClick={addAttr}
                                 sx={{ alignSelf: 'flex-start', fontWeight: 500 }}
                             >
@@ -185,7 +185,7 @@ const SettingsDialog = ({ show, attributeDefs, customerTypes, onCancel, onSave }
                                             aria-label={t('Xoá {name}', { name: type.name })}
                                             sx={rowDeleteSx}
                                         >
-                                            <IconTrashFilled size={16} />
+                                            <AppIcon name='Trash' size={16} />
                                         </IconButton>
                                     </Stack>
                                     <Typography sx={{ fontSize: '0.75rem', fontWeight: 500, color: 'text.secondary', mb: 1 }}>
@@ -217,13 +217,13 @@ const SettingsDialog = ({ show, attributeDefs, customerTypes, onCancel, onSave }
                                                     onClick={() => removeStage(typeIndex, stageIndex)}
                                                     sx={{ ...rowDeleteSx, width: 28, height: 28 }}
                                                 >
-                                                    <IconTrashFilled size={14} />
+                                                    <AppIcon name='Trash' size={14} />
                                                 </IconButton>
                                             </Stack>
                                         ))}
                                         <Button
                                             size='small'
-                                            startIcon={<IconPlus size={14} strokeWidth={2.5} />}
+                                            startIcon={<AppIcon name='Plus' size={14} />}
                                             onClick={() => addStage(typeIndex)}
                                             sx={{ alignSelf: 'flex-start', fontWeight: 500 }}
                                         >
@@ -233,7 +233,7 @@ const SettingsDialog = ({ show, attributeDefs, customerTypes, onCancel, onSave }
                                 </Box>
                             ))}
                             <Button
-                                startIcon={<IconPlus size={16} strokeWidth={2.5} />}
+                                startIcon={<AppIcon name='Plus' size={16} />}
                                 onClick={addType}
                                 sx={{ alignSelf: 'flex-start', fontWeight: 500 }}
                             >

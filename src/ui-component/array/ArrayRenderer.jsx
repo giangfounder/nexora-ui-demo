@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Chip, Box, Button, IconButton } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import { IconTrash, IconPlus } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import NodeInputHandler from '@/views/canvas/NodeInputHandler'
 import DocStoreInputHandler from '@/views/docstore/DocStoreInputHandler'
 import { showHideInputs } from '@/utils/genericHelper'
@@ -213,7 +213,7 @@ export const ArrayRenderer = ({ inputParam, data, disabled, isDocStore = false }
                                     '&:hover': { color: 'red' }
                                 }}
                             >
-                                <IconTrash />
+                                <AppIcon name='Trash' />
                             </IconButton>
                         )}
 
@@ -265,7 +265,7 @@ export const ArrayRenderer = ({ inputParam, data, disabled, isDocStore = false }
                 size='small'
                 variant='outlined'
                 sx={{ borderRadius: '16px', mt: 2 }}
-                startIcon={<IconPlus />}
+                startIcon={<AppIcon name='Plus' />}
                 onClick={handleAddItem}
             >
                 Add {inputParam.label}

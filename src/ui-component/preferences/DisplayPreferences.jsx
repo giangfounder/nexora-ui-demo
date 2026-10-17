@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { alpha, useTheme } from '@mui/material/styles'
 import { Box, ButtonBase, Paper, Popover, Stack, Tooltip, Typography } from '@mui/material'
-import { IconDeviceDesktop, IconMoon, IconSun } from '@tabler/icons-react'
+import { iconComponent } from '@/ui-component/icons/AppIcon'
 
 import { SET_THEME_MODE } from '@/store/actions'
 import { LANGUAGES } from '@/i18n'
@@ -14,9 +14,9 @@ import { useLanguage } from '@/store/context/LanguageContext'
 // One header control for appearance (light / dark / follow system) and language.
 
 const MODE_OPTIONS = [
-    { value: 'light', label: 'Sáng', Icon: IconSun },
-    { value: 'dark', label: 'Tối', Icon: IconMoon },
-    { value: 'system', label: 'Hệ thống', Icon: IconDeviceDesktop }
+    { value: 'light', label: 'Sáng', Icon: iconComponent('Sun') },
+    { value: 'dark', label: 'Tối', Icon: iconComponent('Moon') },
+    { value: 'system', label: 'Hệ thống', Icon: iconComponent('Desktop') }
 ]
 
 const Segmented = ({ value, options, onChange, label }) => {
@@ -75,7 +75,7 @@ const DisplayPreferences = () => {
     const anchorRef = useRef(null)
     const [open, setOpen] = useState(false)
 
-    const TriggerIcon = themeMode === 'system' ? IconDeviceDesktop : isDarkMode ? IconMoon : IconSun
+    const TriggerIcon = themeMode === 'system' ? iconComponent('Desktop') : isDarkMode ? iconComponent('Moon') : iconComponent('Sun')
     const short = LANGUAGES.find((l) => l.code === language)?.short
 
     return (

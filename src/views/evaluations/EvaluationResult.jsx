@@ -24,11 +24,7 @@ import {
 } from '@mui/material'
 import { alpha, useTheme } from '@mui/material/styles'
 import moment from 'moment'
-import PaidIcon from '@mui/icons-material/Paid'
-import { IconHierarchy, IconUsersGroup, IconScale } from '@tabler/icons-react'
-import LLMIcon from '@mui/icons-material/ModelTraining'
-import AlarmIcon from '@mui/icons-material/AlarmOn'
-import TokensIcon from '@mui/icons-material/AutoAwesomeMotion'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // project imports
 import MainCard from '@/ui-component/cards/MainCard'
@@ -55,17 +51,6 @@ import useConfirm from '@/hooks/useConfirm'
 import { closeSnackbar as closeSnackbarAction, enqueueSnackbar as enqueueSnackbarAction } from '@/store/actions'
 
 // icons
-import {
-    IconPercentage,
-    IconVectorBezier2,
-    IconMaximize,
-    IconClock,
-    IconAlertTriangle,
-    IconRun,
-    IconEye,
-    IconEyeOff,
-    IconX
-} from '@tabler/icons-react'
 
 //const
 import { useError } from '@/store/context/ErrorContext'
@@ -202,7 +187,7 @@ const EvalEvaluationRows = () => {
                     variant: 'success',
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -357,19 +342,19 @@ const EvalEvaluationRows = () => {
 
     const getFlowIcon = (index) => {
         if (index === undefined) {
-            return <IconHierarchy size={17} />
+            return <AppIcon name='TreeStructure' size={17} />
         }
         if (additionalConfig.chatflowTypes) {
             switch (additionalConfig.chatflowTypes[index]) {
                 case 'Chatflow':
-                    return <IconHierarchy size={17} />
+                    return <AppIcon name='TreeStructure' size={17} />
                 case 'Custom Assistant':
-                    return <IconScale size={17} />
+                    return <AppIcon name='Scales' size={17} />
                 case 'Agentflow v2':
-                    return <IconUsersGroup size={17} />
+                    return <AppIcon name='UsersThree' size={17} />
             }
         }
-        return <IconHierarchy />
+        return <AppIcon name='TreeStructure' />
     }
     return (
         <>
@@ -399,7 +384,7 @@ const EvalEvaluationRows = () => {
                             {evaluation?.versionCount > 1 && (
                                 <Button
                                     sx={{ borderRadius: 2 }}
-                                    startIcon={<IconClock />}
+                                    startIcon={<AppIcon name='Clock' />}
                                     variant='outlined'
                                     color='primary'
                                     onClick={openVersionsDrawer}
@@ -410,7 +395,7 @@ const EvalEvaluationRows = () => {
                             <PermissionButton
                                 permissionId={'evaluations:run'}
                                 sx={{ borderRadius: 2 }}
-                                startIcon={<IconRun />}
+                                startIcon={<AppIcon name='PersonSimpleRun' />}
                                 variant='contained'
                                 color='primary'
                                 disabled={outdated?.errors?.length > 0}
@@ -437,7 +422,7 @@ const EvalEvaluationRows = () => {
                                 }}
                             >
                                 <Box sx={{ p: 2 }}>
-                                    <IconAlertTriangle size={25} color={theme.palette.warning.main} />
+                                    <AppIcon name='Warning' size={25} color={theme.palette.warning.main} />
                                 </Box>
                                 <Stack flexDirection='column'>
                                     <span style={{ color: warningText }}>
@@ -507,12 +492,13 @@ const EvalEvaluationRows = () => {
                                     {outdated.errors.length > 0 &&
                                         outdated.errors.map((error, index) => <ListItem key={index}>{error.message}</ListItem>)}
                                     <IconButton
+                                        aria-label={t('Dismiss')}
                                         style={{ position: 'absolute', top: 10, right: 10 }}
                                         size='small'
                                         color='inherit'
                                         onClick={() => setOutdated(null)}
                                     >
-                                        <IconX color={warningText} />
+                                        <AppIcon name='X' color={warningText} />
                                     </IconButton>
                                 </Stack>
                             </div>
@@ -523,7 +509,7 @@ const EvalEvaluationRows = () => {
                                 value={showCharts}
                                 title={t('Show Charts')}
                                 onClick={handleShowChartsChange}
-                                startIcon={showCharts ? <IconEyeOff /> : <IconEye />}
+                                startIcon={showCharts ? <AppIcon name='EyeSlash' /> : <AppIcon name='Eye' />}
                             >
                                 {t('Charts')}
                             </Button>
@@ -534,7 +520,7 @@ const EvalEvaluationRows = () => {
                                     disabled={!customEvalsDefined}
                                     title={t('Show Custom Evaluator')}
                                     onClick={handleCustomEvalsChange}
-                                    startIcon={showCustomEvals ? <IconEyeOff /> : <IconEye />}
+                                    startIcon={showCustomEvals ? <AppIcon name='EyeSlash' /> : <AppIcon name='Eye' />}
                                 >
                                     {t('Custom Evaluator')}
                                 </Button>
@@ -544,7 +530,7 @@ const EvalEvaluationRows = () => {
                                 value={showCostMetrics}
                                 title={t('Show Cost Metrics')}
                                 onClick={handleDisplayCostChange}
-                                startIcon={showCostMetrics ? <IconEyeOff /> : <IconEye />}
+                                startIcon={showCostMetrics ? <AppIcon name='EyeSlash' /> : <AppIcon name='Eye' />}
                             >
                                 {t('Cost Metrics')}
                             </Button>
@@ -553,7 +539,7 @@ const EvalEvaluationRows = () => {
                                 value={showTokenMetrics}
                                 title={t('Show Token Metrics')}
                                 onClick={handleShowTokenChange}
-                                startIcon={showTokenMetrics ? <IconEyeOff /> : <IconEye />}
+                                startIcon={showTokenMetrics ? <AppIcon name='EyeSlash' /> : <AppIcon name='Eye' />}
                             >
                                 {t('Token Metrics')}
                             </Button>
@@ -562,7 +548,7 @@ const EvalEvaluationRows = () => {
                                 value={showCustomEvals}
                                 title={t('Show Latency Metrics')}
                                 onClick={handleLatencyMetricsChange}
-                                startIcon={showLatencyMetrics ? <IconEyeOff /> : <IconEye />}
+                                startIcon={showLatencyMetrics ? <AppIcon name='EyeSlash' /> : <AppIcon name='Eye' />}
                             >
                                 {t('Latency Metrics')}
                             </Button>
@@ -575,7 +561,7 @@ const EvalEvaluationRows = () => {
                                             data={{
                                                 header: t('PASS RATE'),
                                                 value: (evaluation.average_metrics?.passPcnt ?? '0') + '%',
-                                                icon: <IconPercentage />
+                                                icon: <AppIcon name='Percent' />
                                             }}
                                             component={<ChartPassPrnt data={passPrntChartData} sx={{ pt: 2 }} />}
                                         />
@@ -587,7 +573,7 @@ const EvalEvaluationRows = () => {
                                             data={{
                                                 header: t('TOKENS USED'),
                                                 value: avgTokensUsed,
-                                                icon: <TokensIcon />
+                                                icon: <AppIcon name='Stack' />
                                             }}
                                             component={
                                                 <ChartTokens
@@ -605,7 +591,7 @@ const EvalEvaluationRows = () => {
                                             data={{
                                                 header: t('LATENCY (ms)'),
                                                 value: (evaluation.average_metrics?.averageLatency ?? '0') + ' ms',
-                                                icon: <AlarmIcon />
+                                                icon: <AppIcon name='Alarm' />
                                             }}
                                             component={
                                                 <ChartLatency
@@ -634,7 +620,7 @@ const EvalEvaluationRows = () => {
                                         alignItems: 'center'
                                     }}
                                 >
-                                    <IconVectorBezier2 style={{ marginRight: 5 }} size={17} />
+                                    <AppIcon name='BezierCurve' style={{ marginRight: 5 }} size={17} />
                                     {t('Flows Used')}:
                                 </div>
                                 {(evaluation.chatflowName || []).map((chatflowUsed, index) => (
@@ -657,7 +643,7 @@ const EvalEvaluationRows = () => {
                             <Button
                                 variant='outlined'
                                 sx={{ width: 'max-content' }}
-                                startIcon={<IconMaximize />}
+                                startIcon={<AppIcon name='CornersOut' />}
                                 onClick={() => openTableDialog()}
                             >
                                 {t('Expand')}
@@ -687,7 +673,7 @@ const EvalEvaluationRows = () => {
                                                     {rows.length > 0 && rows[0].metrics[index].model && (
                                                         <Chip
                                                             variant='outlined'
-                                                            icon={<LLMIcon />}
+                                                            icon={<AppIcon name='Graph' />}
                                                             color={'info'}
                                                             size='small'
                                                             label={
@@ -781,7 +767,7 @@ const EvalEvaluationRows = () => {
                                                                             >
                                                                                 <Chip
                                                                                     variant='outlined'
-                                                                                    icon={<PaidIcon />}
+                                                                                    icon={<AppIcon name='CurrencyCircleDollar' />}
                                                                                     size='small'
                                                                                     label={t('Total Cost: {value}', {
                                                                                         value: item.metrics[index]?.totalCost || t('N/A')
@@ -791,7 +777,7 @@ const EvalEvaluationRows = () => {
                                                                                 <Chip
                                                                                     variant='outlined'
                                                                                     size='small'
-                                                                                    icon={<TokensIcon />}
+                                                                                    icon={<AppIcon name='Stack' />}
                                                                                     label={t('Total Tokens: {value}', {
                                                                                         value: item.metrics[index]?.totalTokens || t('N/A')
                                                                                     })}
@@ -802,7 +788,7 @@ const EvalEvaluationRows = () => {
                                                                                         <Chip
                                                                                             variant='outlined'
                                                                                             size='small'
-                                                                                            icon={<TokensIcon />}
+                                                                                            icon={<AppIcon name='Stack' />}
                                                                                             label={t('Prompt Tokens: {value}', {
                                                                                                 value:
                                                                                                     item.metrics[index]?.promptTokens ||
@@ -813,7 +799,7 @@ const EvalEvaluationRows = () => {
                                                                                         <Chip
                                                                                             variant='outlined'
                                                                                             size='small'
-                                                                                            icon={<TokensIcon />}
+                                                                                            icon={<AppIcon name='Stack' />}
                                                                                             label={t('Completion Tokens: {value}', {
                                                                                                 value:
                                                                                                     item.metrics[index]?.completionTokens ||
@@ -828,7 +814,7 @@ const EvalEvaluationRows = () => {
                                                                                         <Chip
                                                                                             variant='outlined'
                                                                                             size='small'
-                                                                                            icon={<PaidIcon />}
+                                                                                            icon={<AppIcon name='CurrencyCircleDollar' />}
                                                                                             label={t('Prompt Cost: {value}', {
                                                                                                 value:
                                                                                                     item.metrics[index]?.promptCost ||
@@ -839,7 +825,7 @@ const EvalEvaluationRows = () => {
                                                                                         <Chip
                                                                                             variant='outlined'
                                                                                             size='small'
-                                                                                            icon={<PaidIcon />}
+                                                                                            icon={<AppIcon name='CurrencyCircleDollar' />}
                                                                                             label={t('Completion Cost: {value}', {
                                                                                                 value:
                                                                                                     item.metrics[index]?.completionCost ||
@@ -852,7 +838,7 @@ const EvalEvaluationRows = () => {
                                                                                 <Chip
                                                                                     variant='outlined'
                                                                                     size='small'
-                                                                                    icon={<AlarmIcon />}
+                                                                                    icon={<AppIcon name='Alarm' />}
                                                                                     label={t('API Latency: {value}', {
                                                                                         value: item.metrics[index]?.apiLatency || t('N/A')
                                                                                     })}
@@ -864,7 +850,7 @@ const EvalEvaluationRows = () => {
                                                                                             <Chip
                                                                                                 variant='outlined'
                                                                                                 size='small'
-                                                                                                icon={<AlarmIcon />}
+                                                                                                icon={<AppIcon name='Alarm' />}
                                                                                                 label={t('Chain Latency: {value}', {
                                                                                                     value:
                                                                                                         item.metrics[index]?.chain ||
@@ -876,7 +862,7 @@ const EvalEvaluationRows = () => {
                                                                                         {item.metrics[index]?.retriever && (
                                                                                             <Chip
                                                                                                 variant='outlined'
-                                                                                                icon={<AlarmIcon />}
+                                                                                                icon={<AppIcon name='Alarm' />}
                                                                                                 size='small'
                                                                                                 sx={{ mr: 1, mb: 1 }}
                                                                                                 label={t('Retriever Latency: {value}', {
@@ -887,7 +873,7 @@ const EvalEvaluationRows = () => {
                                                                                         {item.metrics[index]?.tool && (
                                                                                             <Chip
                                                                                                 variant='outlined'
-                                                                                                icon={<AlarmIcon />}
+                                                                                                icon={<AppIcon name='Alarm' />}
                                                                                                 size='small'
                                                                                                 sx={{ mr: 1, mb: 1 }}
                                                                                                 label={t('Tool Latency: {value}', {
@@ -897,7 +883,7 @@ const EvalEvaluationRows = () => {
                                                                                         )}{' '}
                                                                                         <Chip
                                                                                             variant='outlined'
-                                                                                            icon={<AlarmIcon />}
+                                                                                            icon={<AppIcon name='Alarm' />}
                                                                                             size='small'
                                                                                             label={t('LLM Latency: {value}', {
                                                                                                 value: item.metrics[index]?.llm || t('N/A')

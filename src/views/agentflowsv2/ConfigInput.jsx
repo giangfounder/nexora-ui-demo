@@ -5,8 +5,7 @@ import { cloneDeep } from 'lodash'
 // Material
 import { Accordion, AccordionSummary, AccordionDetails, Box, Typography, Tooltip, IconButton } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { IconSettings, IconAlertTriangle } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // Project imports
 import NodeInputHandler from '../canvas/NodeInputHandler'
@@ -291,9 +290,9 @@ export const ConfigInput = ({ data, inputParam, disabled = false, arrayIndex = n
                 }}
             >
                 <Accordion sx={{ background: 'transparent' }} expanded={expanded} onChange={handleAccordionChange}>
-                    <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ background: 'transparent' }}>
+                    <AccordionSummary expandIcon={<AppIcon name='CaretDown' />} sx={{ background: 'transparent' }}>
                         <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-                            <IconSettings stroke={1.5} size='1.3rem' />
+                            <AppIcon name='GearSix' size='1.3rem' />
                             <Typography sx={{ ml: 1 }}>{selectedComponentNodeData?.label} Parameters</Typography>
                             <div style={{ flexGrow: 1 }}></div>
                             {selectedComponentNodeData?.warning && (
@@ -302,7 +301,7 @@ export const ConfigInput = ({ data, inputParam, disabled = false, arrayIndex = n
                                     placement='top'
                                 >
                                     <IconButton sx={{ height: 35, width: 35 }}>
-                                        <IconAlertTriangle size={20} color='orange' />
+                                        <AppIcon name='Warning' size={20} color='orange' />
                                     </IconButton>
                                 </Tooltip>
                             )}

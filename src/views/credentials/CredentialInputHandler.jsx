@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 // material-ui
 import { Box, Typography, IconButton } from '@mui/material'
-import { IconArrowsMaximize, IconAlertTriangle } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // project import
 import { Dropdown } from '@/ui-component/dropdown/Dropdown'
@@ -65,7 +65,7 @@ const CredentialInputHandler = ({ inputParam, data, disabled = false, onReveal }
                                     color='primary'
                                     onClick={() => onExpandDialogClicked(data[inputParam.name] ?? inputParam.default ?? '', inputParam)}
                                 >
-                                    <IconArrowsMaximize />
+                                    <AppIcon name='ArrowsOut' />
                                 </IconButton>
                             )}
                         </div>
@@ -81,7 +81,7 @@ const CredentialInputHandler = ({ inputParam, data, disabled = false, onReveal }
                                     marginBottom: 10
                                 }}
                             >
-                                <IconAlertTriangle size={36} color='orange' />
+                                <AppIcon name='Warning' size={36} color='orange' />
                                 <span style={{ color: 'rgb(116,66,16)', marginLeft: 10 }}>{inputParam.warning}</span>
                             </div>
                         )}

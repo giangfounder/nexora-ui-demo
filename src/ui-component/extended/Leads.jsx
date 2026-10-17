@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 // material-ui
 import { Button, Box, OutlinedInput, Typography } from '@mui/material'
-import { IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // Project import
 import { StyledButton } from '@/ui-component/button/StyledButton'
@@ -60,7 +60,7 @@ const Leads = ({ dialogProps }) => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -77,7 +77,7 @@ const Leads = ({ dialogProps }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }

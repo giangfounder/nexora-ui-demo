@@ -5,7 +5,6 @@ import useSavedViews from '@/hooks/useSavedViews'
 
 import { alpha, useTheme } from '@mui/material/styles'
 import {
-    Avatar,
     Box,
     Button,
     Dialog,
@@ -32,33 +31,15 @@ import {
     Tooltip,
     Typography
 } from '@mui/material'
-import {
-    IconBookmark,
-    IconChevronDown,
-    IconEdit,
-    IconFilterOff,
-    IconLayoutKanban,
-    IconLock,
-    IconPlus,
-    IconSearch,
-    IconSettings,
-    IconShieldLock,
-    IconTable,
-    IconTrash,
-    IconUserPlus,
-    IconUsers,
-    IconUsersGroup,
-    IconX
-} from '@tabler/icons-react'
+import { AppIcon, iconComponent } from '@/ui-component/icons/AppIcon'
 
 import MainCard from '@/ui-component/cards/MainCard'
 import ViewHeader from '@/layout/MainLayout/ViewHeader'
 import ConfirmDialog from '@/ui-component/dialog/ConfirmDialog'
 import TablePagination, { DEFAULT_ITEMS_PER_PAGE } from '@/ui-component/pagination/TablePagination'
-import { SharedTableCell, SharedTableContainer, SharedTableRow, StatusDot } from '@/ui-component/table/SharedTable'
+import { SharedTableCell, SharedTableContainer, SharedTableRow, StatusIcon } from '@/ui-component/table/SharedTable'
 import { useLanguage } from '@/store/context/LanguageContext'
 import useConfirm from '@/hooks/useConfirm'
-import { getAvatarColorKey, getInitials } from '@/views/customers/utils'
 import EmployeeFormDialog from './EmployeeFormDialog'
 import EmployeeKanban from './EmployeeKanban'
 import EmployeeSettingsDialog from './EmployeeSettingsDialog'
@@ -66,17 +47,16 @@ import RoleBuilderDialog from './RoleBuilderDialog'
 import TeamFormDialog from './TeamFormDialog'
 import TeamsTab from './TeamsTab'
 import { mockEmployees, mockRoles, mockTeams } from './mockEmployees'
-
-const ICON_STROKE = 1.75
+import PersonAvatar from '@/ui-component/avatar/PersonAvatar'
 
 const STATUS_TONE = { active: 'emerald', invited: 'amber', disabled: 'rose' }
 const STATUS_LABEL = { active: 'Đang hoạt động', invited: 'Đã mời', disabled: 'Vô hiệu' }
+const STATUS_ICON = { active: 'CheckCircle', invited: 'EnvelopeSimple', disabled: 'Prohibit' }
 
 const Employees = () => {
     const navigate = useNavigate()
     const { t } = useLanguage()
     const theme = useTheme()
-    const isDark = theme.palette.mode === 'dark'
     const { confirm } = useConfirm()
 
     const [tab, setTab] = useUrlTabState('tab', ['list', 'teams', 'roles'])
@@ -305,7 +285,6 @@ const Employees = () => {
                 </TableHead>
                 <TableBody>
                     {pagedEmployees.map((e) => {
-                        const colorKey = getAvatarColorKey(e.name)
                         const role = roleById(e.roleId)
                         const statusTone = STATUS_TONE[e.status] || 'teal'
                         return (
@@ -321,18 +300,7 @@ const Employees = () => {
                             >
                                 <SharedTableCell>
                                     <Stack direction='row' spacing={1.25} alignItems='center'>
-                                        <Avatar
-                                            sx={{
-                                                width: 28,
-                                                height: 28,
-                                                fontSize: '0.75rem',
-                                                fontWeight: 600,
-                                                bgcolor: alpha(theme.palette[colorKey].main, isDark ? 0.24 : 0.15),
-                                                color: isDark ? theme.palette[colorKey].light : theme.palette[colorKey].dark
-                                            }}
-                                        >
-                                            {getInitials(e.name)}
-                                        </Avatar>
+                                        <PersonAvatar name={e.name} size={28} />
                                         <Typography variant='body2' sx={{ fontWeight: 500 }} noWrap>
                                             {e.name}
                                         </Typography>
@@ -360,7 +328,7 @@ const Employees = () => {
                                 </SharedTableCell>
                                 <SharedTableCell>
                                     <Stack direction='row' spacing={0.75} alignItems='center'>
-                                        <StatusDot tone={statusTone} size={7} />
+                                        <StatusIcon tone={statusTone} icon={STATUS_ICON[e.status]} />
                                         <Typography variant='body2' noWrap>
                                             {t(STATUS_LABEL[e.status] || e.status)}
                                         </Typography>
@@ -381,7 +349,7 @@ const Employees = () => {
                                             }}
                                             sx={{ color: 'text.secondary' }}
                                         >
-                                            <IconEdit size={16} stroke={ICON_STROKE} />
+                                            <AppIcon name='PencilSimpleLine' size={16} />
                                         </IconButton>
                                     </Tooltip>
                                     <Tooltip title={t('Xoá')}>
@@ -391,7 +359,7 @@ const Employees = () => {
                                             onClick={() => handleDeleteEmployee(e)}
                                             sx={deleteButtonSx}
                                         >
-                                            <IconTrash size={16} stroke={ICON_STROKE} />
+                                            <AppIcon name='Trash' size={16} />
                                         </IconButton>
                                     </Tooltip>
                                 </SharedTableCell>
@@ -445,7 +413,7 @@ const Employees = () => {
                                     variant='standard'
                                     disableUnderline
                                     aria-label={field.label}
-                                    IconComponent={IconChevronDown}
+                                    IconComponent={iconComponent('CaretDown')}
                                     sx={{
                                         minWidth: 120,
                                         '& .MuiSelect-select': {
@@ -481,7 +449,7 @@ const Employees = () => {
                                     variant='standard'
                                     disableUnderline
                                     aria-label={field.label}
-                                    IconComponent={IconChevronDown}
+                                    IconComponent={iconComponent('CaretDown')}
                                     sx={{
                                         minWidth: 90,
                                         '& .MuiSelect-select': {
@@ -532,7 +500,7 @@ const Employees = () => {
                                 aria-label={t('Bỏ lọc')}
                                 sx={{ borderRadius: 0, borderLeft: `1px solid ${alphaBorder}`, px: 0.75 }}
                             >
-                                <IconX size={13} stroke={ICON_STROKE} />
+                                <AppIcon name='X' size={13} />
                             </IconButton>
                         </Box>
                     )
@@ -540,7 +508,7 @@ const Employees = () => {
 
                 <Button
                     size='small'
-                    startIcon={<IconPlus size={14} stroke={ICON_STROKE} />}
+                    startIcon={<AppIcon name='Plus' size={14} />}
                     onClick={(e) => setFilterAnchor(e.currentTarget)}
                     sx={{
                         height: 30,
@@ -578,7 +546,7 @@ const Employees = () => {
                 {filters.length > 0 && (
                     <Button
                         size='small'
-                        startIcon={<IconFilterOff size={13} stroke={ICON_STROKE} />}
+                        startIcon={<AppIcon name='FunnelX' size={13} />}
                         onClick={() => setFilters([])}
                         sx={{ color: 'text.secondary' }}
                     >
@@ -590,7 +558,7 @@ const Employees = () => {
 
                 <Button
                     size='small'
-                    startIcon={<IconBookmark size={14} stroke={ICON_STROKE} />}
+                    startIcon={<AppIcon name='BookmarkSimple' size={14} />}
                     onClick={(e) => setSavedAnchor(e.currentTarget)}
                     sx={{ color: 'text.secondary' }}
                 >
@@ -612,7 +580,7 @@ const Employees = () => {
                         }}
                         disabled={filters.length === 0 && !search}
                     >
-                        <IconPlus size={14} stroke={ICON_STROKE} style={{ marginRight: 8 }} />
+                        <AppIcon name='Plus' size={14} style={{ marginRight: 8 }} />
                         {t('Lưu bộ lọc hiện tại')}
                     </MenuItem>
                     {savedViews.length > 0 && <Divider />}
@@ -628,7 +596,7 @@ const Employees = () => {
                                 aria-label={t('Xoá')}
                                 sx={{ p: 0.5 }}
                             >
-                                <IconTrash size={13} stroke={ICON_STROKE} />
+                                <AppIcon name='Trash' size={13} />
                             </IconButton>
                         </MenuItem>
                     ))}
@@ -666,10 +634,10 @@ const Employees = () => {
                         }}
                     >
                         <ToggleButton value='table'>
-                            <IconTable size={14} stroke={ICON_STROKE} /> {t('Bảng')}
+                            <AppIcon name='Table' size={14} /> {t('Bảng')}
                         </ToggleButton>
                         <ToggleButton value='kanban'>
-                            <IconLayoutKanban size={14} stroke={ICON_STROKE} /> {t('Kanban')}
+                            <AppIcon name='Kanban' size={14} /> {t('Kanban')}
                         </ToggleButton>
                     </ToggleButtonGroup>
                     <Divider orientation='vertical' flexItem sx={{ height: 22, alignSelf: 'center' }} />
@@ -680,7 +648,7 @@ const Employees = () => {
             {view === 'table' &&
                 (filteredEmployees.length === 0 ? (
                     <Box sx={{ p: 8, textAlign: 'center', color: 'text.secondary' }}>
-                        <IconUsersGroup size={40} stroke={ICON_STROKE} style={{ opacity: 0.3, marginBottom: 12 }} />
+                        <AppIcon name='UsersThree' size={40} style={{ opacity: 0.3, marginBottom: 12 }} />
                         <Typography>{t('Chưa có nhân viên nào phù hợp')}</Typography>
                     </Box>
                 ) : (
@@ -748,9 +716,9 @@ const Employees = () => {
                                     <Stack direction='row' spacing={1} alignItems='center'>
                                         <Box sx={{ display: 'flex', color: 'text.secondary' }}>
                                             {role.isSystem ? (
-                                                <IconLock size={16} stroke={ICON_STROKE} />
+                                                <AppIcon name='Lock' size={16} />
                                             ) : (
-                                                <IconShieldLock size={16} stroke={ICON_STROKE} />
+                                                <AppIcon name='ShieldCheckered' size={16} />
                                             )}
                                         </Box>
                                         <Typography variant='body2' sx={{ fontWeight: 500 }} noWrap>
@@ -778,7 +746,7 @@ const Employees = () => {
                                             onClick={openRole}
                                             sx={{ color: 'text.secondary' }}
                                         >
-                                            <IconEdit size={16} stroke={ICON_STROKE} />
+                                            <AppIcon name='PencilSimpleLine' size={16} />
                                         </IconButton>
                                     </Tooltip>
                                     {!role.isSystem && (
@@ -789,7 +757,7 @@ const Employees = () => {
                                                 onClick={() => handleDeleteRole(role)}
                                                 sx={deleteButtonSx}
                                             >
-                                                <IconTrash size={16} stroke={ICON_STROKE} />
+                                                <AppIcon name='Trash' size={16} />
                                             </IconButton>
                                         </Tooltip>
                                     )}
@@ -845,7 +813,7 @@ const Employees = () => {
                             }}
                             startAdornment={
                                 <InputAdornment position='start' sx={{ color: 'text.secondary' }}>
-                                    <IconSearch size={16} stroke={ICON_STROKE} />
+                                    <AppIcon name='MagnifyingGlass' size={16} />
                                 </InputAdornment>
                             }
                             sx={{ width: 280, height: 36 }}
@@ -857,14 +825,14 @@ const Employees = () => {
                             aria-label={t('Cấu hình nhân sự')}
                             sx={{ width: 36, height: 36, border: `1px solid ${alphaBorder}`, color: 'text.secondary' }}
                         >
-                            <IconSettings size={17} stroke={ICON_STROKE} />
+                            <AppIcon name='GearSix' size={17} />
                         </IconButton>
                     </Tooltip>
                     {secondaryAction && (
                         <Button
                             variant='outlined'
                             color='inherit'
-                            startIcon={<IconPlus size={16} stroke={ICON_STROKE} />}
+                            startIcon={<AppIcon name='Plus' size={16} />}
                             onClick={secondaryAction.onClick}
                             sx={{ borderColor: alphaBorder }}
                         >
@@ -873,7 +841,7 @@ const Employees = () => {
                     )}
                     <Button
                         variant='contained'
-                        startIcon={<IconUserPlus size={16} stroke={ICON_STROKE} />}
+                        startIcon={<AppIcon name='UserPlus' size={16} />}
                         onClick={() => {
                             setEditingEmployee(null)
                             setShowEmployeeForm(true)
@@ -902,13 +870,9 @@ const Employees = () => {
                     '& .MuiTabs-indicator': { height: 2 }
                 }}
             >
-                <Tab icon={<IconUsersGroup size={16} stroke={ICON_STROKE} />} iconPosition='start' label={t('Nhân sự')} />
-                <Tab icon={<IconUsers size={16} stroke={ICON_STROKE} />} iconPosition='start' label={`${t('Nhóm')} · ${teams.length}`} />
-                <Tab
-                    icon={<IconShieldLock size={16} stroke={ICON_STROKE} />}
-                    iconPosition='start'
-                    label={`${t('Vai trò')} · ${roles.length}`}
-                />
+                <Tab icon={<AppIcon name='UsersThree' size={16} />} iconPosition='start' label={t('Nhân sự')} />
+                <Tab icon={<AppIcon name='Users' size={16} />} iconPosition='start' label={`${t('Nhóm')} · ${teams.length}`} />
+                <Tab icon={<AppIcon name='ShieldCheckered' size={16} />} iconPosition='start' label={`${t('Vai trò')} · ${roles.length}`} />
             </Tabs>
 
             {tab === 0 && renderListTab()}

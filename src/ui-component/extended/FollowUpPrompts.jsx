@@ -23,7 +23,7 @@ import { Input } from '@/ui-component/input/Input'
 import { AsyncDropdown } from '@/ui-component/dropdown/AsyncDropdown'
 
 // Icons
-import { IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { Dropdown } from '@/ui-component/dropdown/Dropdown'
 import { useLanguage } from '@/store/context/LanguageContext'
 
@@ -388,7 +388,7 @@ const FollowUpPrompts = ({ dialogProps }) => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -405,7 +405,7 @@ const FollowUpPrompts = ({ dialogProps }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }

@@ -17,6 +17,29 @@ export const getAvatarColorKey = (seed = '') => {
     return AVATAR_COLOR_KEYS[hash % AVATAR_COLOR_KEYS.length]
 }
 
+// Glyph for each pipeline stage (status is shown as an icon + label, never a bare colour dot).
+const STAGE_ICONS = {
+    // B2C
+    new: 'ChatCircleDots',
+    consulting: 'Headset',
+    ordered: 'Handshake',
+    purchased: 'ShoppingBag',
+    loyal: 'Crown',
+    // B2B
+    lead: 'Target',
+    contacted: 'PhoneCall',
+    quoted: 'Receipt',
+    negotiating: 'Scales',
+    signed: 'Signature',
+    // Agency
+    candidate: 'UserPlus',
+    review: 'MagnifyingGlass',
+    onboarding: 'PenNib',
+    active: 'Storefront'
+}
+
+export const getStageIcon = (stageId) => STAGE_ICONS[stageId] || 'Circle'
+
 // Maps a stage's position within its pipeline to a Chip color, so a customer's
 // progress reads at a glance: early stages are neutral, later ones look "won".
 export const getStageChipColor = (stageIndex, stageCount) => {

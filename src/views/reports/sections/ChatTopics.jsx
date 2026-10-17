@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
-import { IconArrowDownRight, IconArrowUpRight } from '@tabler/icons-react'
+import { iconComponent } from '@/ui-component/icons/AppIcon'
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { useLanguage } from '@/store/context/LanguageContext'
 import SectionShell from './SectionShell'
@@ -41,7 +41,7 @@ const ChatTopics = () => {
                     <TableBody>
                         {topics.map((r) => {
                             const positive = r.trend >= 0
-                            const Arrow = positive ? IconArrowUpRight : IconArrowDownRight
+                            const Arrow = positive ? iconComponent('ArrowUpRight') : iconComponent('ArrowDownRight')
                             return (
                                 <TableRow key={r.key} hover>
                                     <TableCell sx={{ fontWeight: 500 }}>{r.topic}</TableCell>

@@ -10,7 +10,7 @@ import { MENU_OPEN, SET_MENU } from '@/store/actions'
 import config from '@/config'
 import { useLanguage } from '@/store/context/LanguageContext'
 
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 const NavItem = ({ item, level, navType, onClick, onUploadFile }) => {
     const theme = useTheme()
@@ -24,7 +24,8 @@ const NavItem = ({ item, level, navType, onClick, onUploadFile }) => {
     const itemIcon = item?.icon ? (
         <Icon size={18} strokeWidth={isActive ? 2 : 1.75} />
     ) : (
-        <FiberManualRecordIcon
+        <AppIcon
+            name='Circle'
             sx={{
                 width: customization.isOpen.findIndex((id) => id === item?.id) > -1 ? 8 : 6,
                 height: customization.isOpen.findIndex((id) => id === item?.id) > -1 ? 8 : 6

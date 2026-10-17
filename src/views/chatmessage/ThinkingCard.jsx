@@ -2,7 +2,7 @@ import { useState, useEffect, memo } from 'react'
 import PropTypes from 'prop-types'
 import { Box, Collapse, Typography, CircularProgress } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import { IconChevronDown, IconChevronRight, IconHourglass } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { useLanguage } from '@/store/context/LanguageContext'
 
 const ThinkingCard = ({ thinking, thinkingDuration, isThinking }) => {
@@ -70,16 +70,16 @@ const ThinkingCard = ({ thinking, thinkingDuration, isThinking }) => {
             >
                 <Box sx={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
                     {isExpanded ? (
-                        <IconChevronDown size={16} color={theme.palette.text.secondary} />
+                        <AppIcon name='CaretDown' size={16} color={theme.palette.text.secondary} />
                     ) : (
-                        <IconChevronRight size={16} color={theme.palette.text.secondary} />
+                        <AppIcon name='CaretRight' size={16} color={theme.palette.text.secondary} />
                     )}
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
                     {isThinking ? (
                         <CircularProgress size={14} thickness={5} sx={{ color: theme.palette.primary.main }} />
                     ) : (
-                        <IconHourglass size={16} color={theme.palette.primary.main} />
+                        <AppIcon name='Hourglass' size={16} color={theme.palette.primary.main} />
                     )}
                 </Box>
                 <Typography

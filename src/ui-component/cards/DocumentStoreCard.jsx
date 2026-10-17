@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 // material-ui
 import { styled } from '@mui/material/styles'
 import { Box, Grid, Typography, useTheme } from '@mui/material'
-import { IconVectorBezier2, IconLanguage, IconScissors } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // project imports
 import MainCard from '@/ui-component/cards/MainCard'
@@ -107,7 +107,7 @@ const DocumentStoreCard = ({ data, images, onClick, hasActions }) => {
                                 alignItems: 'center'
                             }}
                         >
-                            <IconVectorBezier2 style={{ marginRight: 5 }} size={14} stroke={1.75} />
+                            <AppIcon name='BezierCurve' style={{ marginRight: 5 }} size={14} />
                             {data.whereUsed?.length ?? 0} {t(data.whereUsed?.length <= 1 ? 'flow' : 'flows')}
                         </div>
                         <div
@@ -127,7 +127,7 @@ const DocumentStoreCard = ({ data, images, onClick, hasActions }) => {
                                 alignItems: 'center'
                             }}
                         >
-                            <IconLanguage style={{ marginRight: 5 }} size={14} stroke={1.75} />
+                            <AppIcon name='Translate' style={{ marginRight: 5 }} size={14} />
                             {kFormatter(data.totalChars ?? 0)} {t('chars')}
                         </div>
                         <div
@@ -146,7 +146,7 @@ const DocumentStoreCard = ({ data, images, onClick, hasActions }) => {
                                 alignItems: 'center'
                             }}
                         >
-                            <IconScissors style={{ marginRight: 5 }} size={14} stroke={1.75} />
+                            <AppIcon name='Scissors' style={{ marginRight: 5 }} size={14} />
                             {kFormatter(data.totalChunks ?? 0)} {t('chunks')}
                         </div>
                     </Grid>

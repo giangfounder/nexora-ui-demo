@@ -20,7 +20,7 @@ import assistantsApi from '@/api/assistants'
 import useApi from '@/hooks/useApi'
 
 // icons
-import { IconPlus, IconFileUpload } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import AssistantEmptySVG from '@/assets/images/assistant_empty.svg'
 import { gridSpacing } from '@/store/constant'
 import { useLanguage } from '@/store/context/LanguageContext'
@@ -129,7 +129,7 @@ const OpenAIAssistantLayout = () => {
                                 permissionId={'assistants:create'}
                                 variant='outlined'
                                 onClick={loadExisting}
-                                startIcon={<IconFileUpload />}
+                                startIcon={<AppIcon name='FileArrowUp' />}
                                 sx={{ borderRadius: 2, height: 40 }}
                             >
                                 {t('Load')}
@@ -139,7 +139,7 @@ const OpenAIAssistantLayout = () => {
                                 variant='contained'
                                 sx={{ borderRadius: 2, height: 40 }}
                                 onClick={addNew}
-                                startIcon={<IconPlus />}
+                                startIcon={<AppIcon name='Plus' />}
                             >
                                 {t('Add')}
                             </StyledPermissionButton>

@@ -44,7 +44,7 @@ import useApi from '@/hooks/useApi'
 import useConfirm from '@/hooks/useConfirm'
 
 // icons
-import { IconX, IconRefreshAlert, IconMagnetFilled, IconMagnetOff, IconArtboard, IconArtboardOff } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // utils
 import {
@@ -209,7 +209,7 @@ const AgentflowCanvas = () => {
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -328,7 +328,7 @@ const AgentflowCanvas = () => {
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -382,7 +382,7 @@ const AgentflowCanvas = () => {
                                 persist: true,
                                 action: (key) => (
                                     <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                        <IconX />
+                                        <AppIcon name='X' />
                                     </Button>
                                 )
                             }
@@ -400,7 +400,7 @@ const AgentflowCanvas = () => {
                                 persist: true,
                                 action: (key) => (
                                     <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                        <IconX />
+                                        <AppIcon name='X' />
                                     </Button>
                                 )
                             }
@@ -495,7 +495,7 @@ const AgentflowCanvas = () => {
                 variant: 'success',
                 action: (key) => (
                     <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                        <IconX />
+                        <AppIcon name='X' />
                     </Button>
                 )
             }
@@ -511,7 +511,7 @@ const AgentflowCanvas = () => {
                 persist: true,
                 action: (key) => (
                     <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                        <IconX />
+                        <AppIcon name='X' />
                     </Button>
                 )
             }
@@ -766,7 +766,7 @@ const AgentflowCanvas = () => {
                                         title={t('Toggle snapping')}
                                         aria-label={t('Toggle snapping')}
                                     >
-                                        {isSnappingEnabled ? <IconMagnetFilled /> : <IconMagnetOff />}
+                                        {isSnappingEnabled ? <AppIcon name='Magnet' /> : <AppIcon name='Magnet' style={{ opacity: 0.4 }} />}
                                     </button>
                                     <button
                                         className='react-flow__controls-button react-flow__controls-interactive'
@@ -776,7 +776,11 @@ const AgentflowCanvas = () => {
                                         title={t('Toggle background')}
                                         aria-label={t('Toggle background')}
                                     >
-                                        {isBackgroundEnabled ? <IconArtboard /> : <IconArtboardOff />}
+                                        {isBackgroundEnabled ? (
+                                            <AppIcon name='GridNine' />
+                                        ) : (
+                                            <AppIcon name='GridNine' style={{ opacity: 0.4 }} />
+                                        )}
                                     </button>
                                 </Controls>
                                 <MiniMap
@@ -817,7 +821,7 @@ const AgentflowCanvas = () => {
                                         title={t('Sync Nodes')}
                                         onClick={() => syncNodes()}
                                     >
-                                        <IconRefreshAlert />
+                                        <AppIcon name='ArrowsCounterClockwise' />
                                     </Fab>
                                 )}
                                 {isScheduleFlow ? (

@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 import { alpha, useTheme } from '@mui/material/styles'
 import { Box, Button, Drawer, IconButton, MenuItem, TextField, Typography } from '@mui/material'
-import { IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 import { StyledButton } from '@/ui-component/button/StyledButton'
 import { FormField, useSheetShell } from '@/hooks/useDialogShell'
@@ -48,7 +48,7 @@ const EmployeeFormDialog = ({ show, employee, roles, onCancel, onSave }) => {
                             '&:hover': { bgcolor: alpha(theme.palette.text.primary, 0.06), color: 'text.primary' }
                         }}
                     >
-                        <IconX size={16} strokeWidth={2.5} />
+                        <AppIcon name='X' size={16} />
                     </IconButton>
                 </Box>
 

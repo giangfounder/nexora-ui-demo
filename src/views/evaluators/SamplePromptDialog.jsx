@@ -13,7 +13,7 @@ import { TooltipWithParser } from '@/ui-component/tooltip/TooltipWithParser'
 import { Grid } from '@/ui-component/grid/Grid'
 
 // Icons
-import { IconTestPipe2 } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // utils
 import useNotifier from '@/utils/useNotifier'
@@ -100,7 +100,7 @@ const SamplePromptDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
         >
             <DialogTitle sx={{ fontSize: '1rem' }} id='alert-dialog-title'>
                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                    <IconTestPipe2 style={{ marginRight: '10px' }} />
+                    <AppIcon name='Flask' style={{ marginRight: '10px' }} />
                     {t('Sample Prompts')}
                 </div>
             </DialogTitle>

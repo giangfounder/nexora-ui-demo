@@ -24,7 +24,7 @@ import { useAuth } from '@/hooks/useAuth'
 import useApi from '@/hooks/useApi'
 
 // icons
-import { IconDotsVertical, IconEdit, IconLayoutGrid, IconList, IconPlus, IconTrash, IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import doc_store_empty from '@/assets/images/doc_store_empty.svg'
 
 // const
@@ -227,7 +227,7 @@ const Documents = () => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -252,7 +252,7 @@ const Documents = () => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -347,7 +347,7 @@ const Documents = () => {
                                     value='card'
                                     title={t('Card View')}
                                 >
-                                    <IconLayoutGrid size={18} stroke={1.75} />
+                                    <AppIcon name='GridFour' size={18} />
                                 </ToggleButton>
                                 <ToggleButton
                                     sx={{ borderColor: theme.palette.alpha.border }}
@@ -355,7 +355,7 @@ const Documents = () => {
                                     value='list'
                                     title={t('List View')}
                                 >
-                                    <IconList size={18} stroke={1.75} />
+                                    <AppIcon name='List' size={18} />
                                 </ToggleButton>
                             </ToggleButtonGroup>
                         )}
@@ -364,7 +364,7 @@ const Documents = () => {
                             variant='contained'
                             sx={{ height: '100%' }}
                             onClick={addNew}
-                            startIcon={<IconPlus size={18} stroke={1.75} />}
+                            startIcon={<AppIcon name='Plus' size={18} />}
                             id='btn_createVariable'
                         >
                             {t('Add New')}
@@ -414,7 +414,7 @@ const Documents = () => {
                                                     }}
                                                     onClick={(event) => handleActionMenuOpen(event, data)}
                                                 >
-                                                    <IconDotsVertical size={18} />
+                                                    <AppIcon name='DotsThreeVertical' size={18} />
                                                 </IconButton>
                                             )}
                                         </Box>
@@ -463,7 +463,7 @@ const Documents = () => {
                 {canRenameDocumentStore && (
                     <MenuItem onClick={renameDocumentStore}>
                         <ListItemIcon>
-                            <IconEdit size={16} />
+                            <AppIcon name='PencilSimpleLine' size={16} />
                         </ListItemIcon>
                         <ListItemText>{t('Rename')}</ListItemText>
                     </MenuItem>
@@ -471,7 +471,7 @@ const Documents = () => {
                 {canDeleteDocumentStore && (
                     <MenuItem onClick={deleteDocumentStore}>
                         <ListItemIcon>
-                            <IconTrash size={16} />
+                            <AppIcon name='Trash' size={16} />
                         </ListItemIcon>
                         <ListItemText>{t('Delete')}</ListItemText>
                     </MenuItem>

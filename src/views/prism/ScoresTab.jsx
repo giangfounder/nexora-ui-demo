@@ -20,18 +20,16 @@ import {
     Tooltip,
     Typography
 } from '@mui/material'
-import { IconBookmark, IconChevronDown, IconFilterOff, IconPlus, IconTrash, IconX } from '@tabler/icons-react'
+import { AppIcon, iconComponent } from '@/ui-component/icons/AppIcon'
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip as ChartTooltip, XAxis, YAxis } from 'recharts'
 
 // project imports
 import { useLanguage } from '@/store/context/LanguageContext'
 import useSavedViews from '@/hooks/useSavedViews'
-import { SharedTableCell, SharedTableContainer, SharedTableRow, StatusDot } from '@/ui-component/table/SharedTable'
+import { SharedTableCell, SharedTableContainer, SharedTableRow, StatusIcon } from '@/ui-component/table/SharedTable'
 import { mockEmployees, mockTeams } from '@/views/employees/mockEmployees'
 import { CHANNELS } from '@/views/omnichannel/mockConversations'
 import { getScoreDistribution, mockPrismCriteria, mockScoredConversations } from './mockPrism'
-
-const ICON_STROKE = 1.75
 
 const SCORE_BANDS = [
     { value: 'excellent', min: 8.5, max: Infinity },
@@ -45,6 +43,12 @@ const scoreTone = (s) => {
     if (s >= 7) return 'orange'
     if (s >= 6) return 'amber'
     return 'rose'
+}
+const scoreIcon = (s) => {
+    if (s >= 8.5) return 'Star'
+    if (s >= 7) return 'ThumbsUp'
+    if (s >= 6) return 'WarningCircle'
+    return 'TrendDown'
 }
 
 const fmtScore = (n, locale) =>
@@ -217,7 +221,7 @@ const ScoresTab = () => {
                                 variant='standard'
                                 disableUnderline
                                 aria-label={field.label}
-                                IconComponent={IconChevronDown}
+                                IconComponent={iconComponent('CaretDown')}
                                 sx={{
                                     minWidth: 120,
                                     '& .MuiSelect-select': {
@@ -244,7 +248,7 @@ const ScoresTab = () => {
                                 aria-label={t('Bỏ lọc')}
                                 sx={{ borderRadius: 0, borderLeft: `1px solid ${alphaBorder}`, px: 0.75 }}
                             >
-                                <IconX size={13} stroke={ICON_STROKE} />
+                                <AppIcon name='X' size={13} />
                             </IconButton>
                         </Box>
                     )
@@ -252,7 +256,7 @@ const ScoresTab = () => {
 
                 <Button
                     size='small'
-                    startIcon={<IconPlus size={14} stroke={ICON_STROKE} />}
+                    startIcon={<AppIcon name='Plus' size={14} />}
                     onClick={(e) => setFilterAnchor(e.currentTarget)}
                     sx={{
                         height: 30,
@@ -280,7 +284,7 @@ const ScoresTab = () => {
                 {filters.length > 0 && (
                     <Button
                         size='small'
-                        startIcon={<IconFilterOff size={13} stroke={ICON_STROKE} />}
+                        startIcon={<AppIcon name='FunnelX' size={13} />}
                         onClick={() => setFilters([])}
                         sx={{ color: 'text.secondary' }}
                     >
@@ -296,7 +300,7 @@ const ScoresTab = () => {
 
                 <Button
                     size='small'
-                    startIcon={<IconBookmark size={14} stroke={ICON_STROKE} />}
+                    startIcon={<AppIcon name='BookmarkSimple' size={14} />}
                     onClick={(e) => setSavedAnchor(e.currentTarget)}
                     sx={{ color: 'text.secondary' }}
                 >
@@ -312,7 +316,7 @@ const ScoresTab = () => {
                         disabled={filters.length === 0}
                         sx={{ gap: 1 }}
                     >
-                        <IconPlus size={14} stroke={ICON_STROKE} />
+                        <AppIcon name='Plus' size={14} />
                         {t('Lưu bộ lọc hiện tại')}
                     </MenuItem>
                     {savedViews.length > 0 && <Divider />}
@@ -328,7 +332,7 @@ const ScoresTab = () => {
                                 aria-label={t('Xoá')}
                                 sx={{ p: 0.5 }}
                             >
-                                <IconTrash size={13} stroke={ICON_STROKE} />
+                                <AppIcon name='Trash' size={13} />
                             </IconButton>
                         </MenuItem>
                     ))}
@@ -438,7 +442,7 @@ const ScoresTab = () => {
                                 {activeCriteria.map((c) => renderScoreCell(r.perCrit[c.id], c.id))}
                                 <SharedTableCell numeric>
                                     <Stack direction='row' spacing={0.75} alignItems='center' justifyContent='flex-end'>
-                                        <StatusDot tone={scoreTone(r.avg)} size={7} />
+                                        <StatusIcon tone={scoreTone(r.avg)} icon={scoreIcon(r.avg)} />
                                         <Box component='span' sx={{ fontWeight: 600 }}>
                                             {fmt(r.avg)}
                                         </Box>
@@ -495,7 +499,10 @@ const ScoresTab = () => {
                                 </SharedTableCell>
                                 <SharedTableCell sx={{ whiteSpace: 'nowrap' }}>
                                     <Stack direction='row' spacing={0.75} alignItems='center'>
-                                        <StatusDot tone={sc.reviewedBy ? 'emerald' : 'teal'} size={7} />
+                                        <StatusIcon
+                                            tone={sc.reviewedBy ? 'emerald' : 'teal'}
+                                            icon={sc.reviewedBy ? 'UserCircleCheck' : 'HourglassMedium'}
+                                        />
                                         <span>{sc.reviewedBy ? empById(sc.reviewedBy)?.name || t('Đã duyệt') : t('Chấm tự động')}</span>
                                     </Stack>
                                 </SharedTableCell>

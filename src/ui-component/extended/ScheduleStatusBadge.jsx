@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 import { Box, CircularProgress, Tooltip } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import { IconClock } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { useLanguage } from '@/store/context/LanguageContext'
 
 const ACTIVE = {
@@ -86,7 +86,7 @@ const ScheduleStatusBadge = ({ scheduleStatus, size = 'md' }) => {
                         }}
                     />
                 ) : (
-                    <IconClock size={dims.icon} stroke={2} />
+                    <AppIcon name='Clock' size={dims.icon} />
                 )}
                 {isLoading ? t('Loading…') : isActive ? t('Scheduled') : t('Paused')}
             </Box>

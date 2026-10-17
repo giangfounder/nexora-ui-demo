@@ -4,7 +4,7 @@ import { Link as RouterLink } from 'react-router-dom'
 
 import { alpha, useTheme } from '@mui/material/styles'
 import { Box, Button, Stack, Typography } from '@mui/material'
-import { IconArrowLeft, IconPrinter } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 import logo from '@/assets/images/nexora_logo_primary.svg'
 import logoDark from '@/assets/images/nexora_logo_white.svg'
@@ -99,7 +99,7 @@ const LegalPage = ({ doc }) => {
                             size='small'
                             color='inherit'
                             onClick={() => window.print()}
-                            startIcon={<IconPrinter size={16} stroke={1.75} />}
+                            startIcon={<AppIcon name='Printer' size={16} />}
                             sx={{ color: 'text.secondary', display: { xs: 'none', sm: 'inline-flex' } }}
                         >
                             {t('In')}
@@ -109,7 +109,7 @@ const LegalPage = ({ doc }) => {
                             to='/signin'
                             size='small'
                             variant='outlined'
-                            startIcon={<IconArrowLeft size={16} stroke={1.75} />}
+                            startIcon={<AppIcon name='ArrowLeft' size={16} />}
                             sx={{ borderColor: hairline, color: 'text.primary' }}
                         >
                             {t('Về trang đăng nhập')}

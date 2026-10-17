@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Badge, Tooltip } from '@mui/material'
-import { IconHistory } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // project import
 import { StyledFab } from '@/ui-component/button/StyledFab'
@@ -61,7 +61,7 @@ const ScheduleHistoryFAB = ({ chatflowid, onOpenChange }) => {
                     }}
                 >
                     <StyledFab size='small' color='secondary' aria-label='schedule-history' onClick={handleToggle}>
-                        <IconHistory />
+                        <AppIcon name='ClockCounterClockwise' />
                     </StyledFab>
                 </Badge>
             </Tooltip>

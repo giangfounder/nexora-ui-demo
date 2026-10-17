@@ -21,8 +21,7 @@ import {
     AccordionDetails,
     Card
 } from '@mui/material'
-import { IconArrowsMaximize, IconX } from '@tabler/icons-react'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { useTheme } from '@mui/material/styles'
 
 // Project import
@@ -104,7 +103,7 @@ const PostProcessing = ({ dialogProps }) => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -122,7 +121,7 @@ const PostProcessing = ({ dialogProps }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -173,7 +172,7 @@ const PostProcessing = ({ dialogProps }) => {
                         color='primary'
                         onClick={() => onExpandDialogClicked(postProcessingFunction)}
                     >
-                        <IconArrowsMaximize />
+                        <AppIcon name='ArrowsOut' />
                     </IconButton>
                 </Box>
 
@@ -216,7 +215,7 @@ const PostProcessing = ({ dialogProps }) => {
                         }
                     }}
                 >
-                    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    <AccordionSummary expandIcon={<AppIcon name='CaretDown' />}>
                         <Typography sx={{ fontSize: '0.875rem', fontWeight: 500 }}>{t('Available Variables')}</Typography>
                     </AccordionSummary>
                     <AccordionDetails sx={{ p: 0 }}>

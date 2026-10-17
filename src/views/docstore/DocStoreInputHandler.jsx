@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 // material-ui
 import { Box, Typography, IconButton, Button } from '@mui/material'
 import { alpha, useTheme } from '@mui/material/styles'
-import { IconArrowsMaximize, IconAlertTriangle, IconRefresh } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // project import
 import { Dropdown } from '@/ui-component/dropdown/Dropdown'
@@ -120,7 +120,7 @@ const DocStoreInputHandler = ({ inputParam, data, disabled = false, onNodeDataCh
                                         onExpandDialogClicked(data.inputs[inputParam.name] ?? inputParam.default ?? '', inputParam)
                                     }
                                 >
-                                    <IconArrowsMaximize />
+                                    <AppIcon name='ArrowsOut' />
                                 </IconButton>
                             )}
                         </div>
@@ -137,7 +137,7 @@ const DocStoreInputHandler = ({ inputParam, data, disabled = false, onNodeDataCh
                                     marginBottom: 10
                                 }}
                             >
-                                <IconAlertTriangle size={30} color={theme.palette.warning.main} />
+                                <AppIcon name='Warning' size={30} color={theme.palette.warning.main} />
                                 <span style={{ color: isDark ? theme.palette.warning.light : 'rgb(116,66,16)', marginLeft: 10 }}>
                                     {inputParam.warning}
                                 </span>
@@ -264,7 +264,7 @@ const DocStoreInputHandler = ({ inputParam, data, disabled = false, onNodeDataCh
                                             size='small'
                                             onClick={() => setReloadTimestamp(Date.now().toString())}
                                         >
-                                            <IconRefresh />
+                                            <AppIcon name='ArrowClockwise' />
                                         </IconButton>
                                     )}
                                 </div>

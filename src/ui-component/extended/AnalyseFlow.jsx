@@ -16,8 +16,7 @@ import {
     ListItemText
 } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // Project import
 import CredentialInputHandler from '@/views/canvas/CredentialInputHandler'
@@ -247,7 +246,7 @@ const AnalyseFlow = ({ dialogProps }) => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -265,7 +264,7 @@ const AnalyseFlow = ({ dialogProps }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -316,7 +315,7 @@ const AnalyseFlow = ({ dialogProps }) => {
                     disableGutters
                     key={index}
                 >
-                    <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls={provider.name} id={provider.name}>
+                    <AccordionSummary expandIcon={<AppIcon name='CaretDown' />} aria-controls={provider.name} id={provider.name}>
                         <ListItem style={{ padding: 0, margin: 0 }} alignItems='center'>
                             <ListItemAvatar>
                                 <div

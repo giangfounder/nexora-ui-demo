@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
-import { Avatar, Box, Stack, Tooltip, Typography, useTheme } from '@mui/material'
+import { Box, Stack, Tooltip, Typography, useTheme } from '@mui/material'
 import { alpha, darken } from '@mui/material/styles'
-import { IconApi, IconBookFilled, IconClipboardFilled, IconHash, IconInfoCircle, IconUserFilled, IconVariable } from '@tabler/icons-react'
-import { getAvatarColorKey, getInitials, tintText } from '@/views/customers/utils'
+import { AppIcon, iconComponent } from '@/ui-component/icons/AppIcon'
+import PersonAvatar from '@/ui-component/avatar/PersonAvatar'
 
 // Radius contract: 6 control · 10 card · 12 shell (chat pane, bubbles, composer, tables) · 50% dots/avatars.
 // Always pass these strings — a numeric borderRadius is multiplied by theme.shape.borderRadius.
@@ -59,12 +59,12 @@ export const cardSx = (theme, { level = 1, hover = false } = {}) => ({
 
 // Keep the Icon component plain outline/filled Tabler so TokenChip can size it per use.
 export const TOKEN_KINDS = {
-    customer: { label: 'Hồ sơ khách', short: 'Khách', tone: 'teal', Icon: IconUserFilled },
-    collect: { label: 'Hỏi khách', short: 'Hỏi khách', tone: 'amber', Icon: IconVariable },
-    api: { label: 'Gọi API', short: 'API', tone: 'orange', Icon: IconApi },
-    output: { label: 'Trả về từ API', short: 'Đầu ra', tone: 'orange', Icon: IconHash },
-    kb: { label: 'Kho tài liệu', short: 'Tài liệu', tone: 'emerald', Icon: IconBookFilled },
-    system: { label: 'Hệ thống', short: 'Hệ thống', tone: undefined, Icon: IconClipboardFilled }
+    customer: { label: 'Hồ sơ khách', short: 'Khách', tone: 'teal', Icon: iconComponent('User') },
+    collect: { label: 'Hỏi khách', short: 'Hỏi khách', tone: 'amber', Icon: iconComponent('BracketsSquare') },
+    api: { label: 'Gọi API', short: 'API', tone: 'orange', Icon: iconComponent('PlugsConnected') },
+    output: { label: 'Trả về từ API', short: 'Đầu ra', tone: 'orange', Icon: iconComponent('Hash') },
+    kb: { label: 'Kho tài liệu', short: 'Tài liệu', tone: 'emerald', Icon: iconComponent('Book') },
+    system: { label: 'Hệ thống', short: 'Hệ thống', tone: undefined, Icon: iconComponent('Clipboard') }
 }
 
 export const tokenKindMeta = (kind) => TOKEN_KINDS[kind] || TOKEN_KINDS.system
@@ -406,7 +406,7 @@ export const LabelWithTip = ({ text, tip }) => (
         {text}
         <Tooltip title={tip}>
             <Box component='span' tabIndex={0} aria-label={tip} sx={{ display: 'inline-flex', color: 'text.disabled', cursor: 'help' }}>
-                <IconInfoCircle size={14} stroke={ICON_STROKE} />
+                <AppIcon name='Info' size={14} />
             </Box>
         </Tooltip>
     </Box>
@@ -504,7 +504,7 @@ export const AttentionStrip = ({ tone = 'amber', weight = 500, action, children,
                 ...sx
             }}
         >
-            <Box sx={{ width: 6, height: 6, borderRadius: '50%', bgcolor: main, flexShrink: 0 }} />
+            <AppIcon name={tone === 'rose' ? 'WarningOctagon' : 'WarningCircle'} size={16} color={main} style={{ flexShrink: 0 }} />
             <Typography variant='body2' sx={{ flex: 1, minWidth: 0, fontSize: '0.8125rem', fontWeight: weight }}>
                 {children}
             </Typography>
@@ -525,33 +525,9 @@ AttentionStrip.propTypes = {
 // Avatar
 // ---------------------------------------------------------------------------
 
-// Same as the CustomerDetail header avatar and omnichannel CustomerAvatar (hashed tone, initials).
-// Without a name it falls back to a neutral person glyph.
-export const InitialsAvatar = ({ name, size = 40, fontSize }) => {
-    const theme = useTheme()
-    if (!name) {
-        return (
-            <Avatar sx={{ width: size, height: size, bgcolor: alpha(theme.palette.text.primary, 0.06), color: 'text.secondary' }}>
-                <IconUserFilled size={Math.round(size * 0.45)} />
-            </Avatar>
-        )
-    }
-    const spec = theme.palette[getAvatarColorKey(name)]
-    return (
-        <Avatar
-            sx={{
-                width: size,
-                height: size,
-                fontSize: fontSize || size * 0.36,
-                fontWeight: 600,
-                bgcolor: alpha(spec.main, theme.palette.mode === 'dark' ? 0.24 : 0.15),
-                color: tintText(theme, spec)
-            }}
-        >
-            {getInitials(name)}
-        </Avatar>
-    )
-}
+// Default avatar for people across the workspace (shared PersonAvatar: neutral rounded square + initials).
+// Without a name it falls back to a person glyph.
+export const InitialsAvatar = ({ name, size = 40 }) => <PersonAvatar name={name} size={size} />
 
 InitialsAvatar.propTypes = {
     name: PropTypes.string,

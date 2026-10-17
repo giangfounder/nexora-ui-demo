@@ -1,30 +1,4 @@
-import {
-    IconLayoutDashboard,
-    IconChartAreaLine,
-    IconMessage2,
-    IconUser,
-    IconBriefcase,
-    IconHierarchy,
-    IconUsersGroup,
-    IconGitBranch,
-    IconBuildingStore,
-    IconTool,
-    IconLock,
-    IconVariable,
-    IconKey,
-    IconFiles,
-    IconSettings,
-    IconClipboardList,
-    IconChartHistogram,
-    IconDatabase,
-    IconTestPipe,
-    IconMicroscope,
-    IconShieldLock,
-    IconLockCheck,
-    IconUsers,
-    IconStack2,
-    IconListCheck
-} from '@tabler/icons-react'
+import { iconComponent } from '@/ui-component/icons/AppIcon'
 
 const dashboard = {
     id: 'dashboard-root',
@@ -40,7 +14,7 @@ const dashboard = {
                     title: 'Dashboard',
                     type: 'item',
                     url: '/dashboard',
-                    icon: IconLayoutDashboard,
+                    icon: iconComponent('SquaresFour'),
                     breadcrumbs: true
                 },
                 {
@@ -48,7 +22,7 @@ const dashboard = {
                     title: 'Báo cáo',
                     type: 'item',
                     url: '/reports',
-                    icon: IconChartAreaLine,
+                    icon: iconComponent('ChartLine'),
                     breadcrumbs: true
                 }
             ]
@@ -63,7 +37,7 @@ const dashboard = {
                     title: 'Kênh',
                     type: 'item',
                     url: '/omnichannel',
-                    icon: IconMessage2,
+                    icon: iconComponent('ChatTeardropText'),
                     breadcrumbs: true,
                     permission: 'customers:view'
                 },
@@ -72,7 +46,7 @@ const dashboard = {
                     title: 'Khách hàng',
                     type: 'item',
                     url: '/customers',
-                    icon: IconUser,
+                    icon: iconComponent('User'),
                     breadcrumbs: true,
                     permission: 'customers:view'
                 },
@@ -81,7 +55,7 @@ const dashboard = {
                     title: 'Nhân sự',
                     type: 'item',
                     url: '/employees',
-                    icon: IconBriefcase,
+                    icon: iconComponent('Briefcase'),
                     breadcrumbs: true,
                     permission: 'customers:view'
                 }
@@ -97,7 +71,7 @@ const dashboard = {
                     title: 'Chat Flows',
                     type: 'item',
                     url: '/chatflows',
-                    icon: IconHierarchy,
+                    icon: iconComponent('TreeStructure'),
                     breadcrumbs: true,
                     permission: 'chatflows:view'
                 },
@@ -106,7 +80,7 @@ const dashboard = {
                     title: 'Agent Flows',
                     type: 'item',
                     url: '/agentflows',
-                    icon: IconUsersGroup,
+                    icon: iconComponent('UsersThree'),
                     breadcrumbs: true,
                     permission: 'agentflows:view'
                 },
@@ -115,7 +89,7 @@ const dashboard = {
                     title: 'Assistants',
                     type: 'item',
                     url: '/assistants',
-                    icon: IconGitBranch,
+                    icon: iconComponent('GitBranch'),
                     breadcrumbs: true,
                     permission: 'assistants:view'
                 },
@@ -124,7 +98,7 @@ const dashboard = {
                     title: 'Prism',
                     type: 'item',
                     url: '/prism',
-                    icon: IconMicroscope,
+                    icon: iconComponent('Microscope'),
                     breadcrumbs: true,
                     permission: 'customers:view'
                 }
@@ -140,7 +114,7 @@ const dashboard = {
                     title: 'Kho ứng dụng',
                     type: 'item',
                     url: '/marketplaces',
-                    icon: IconBuildingStore,
+                    icon: iconComponent('Storefront'),
                     breadcrumbs: true,
                     permission: 'templates:marketplace,templates:custom'
                 },
@@ -149,7 +123,7 @@ const dashboard = {
                     title: 'Công cụ',
                     type: 'item',
                     url: '/tools',
-                    icon: IconTool,
+                    icon: iconComponent('Wrench'),
                     breadcrumbs: true,
                     permission: 'tools:view'
                 },
@@ -158,7 +132,7 @@ const dashboard = {
                     title: 'Chứng thực',
                     type: 'item',
                     url: '/credentials',
-                    icon: IconLock,
+                    icon: iconComponent('Lock'),
                     breadcrumbs: true,
                     permission: 'credentials:view'
                 },
@@ -167,7 +141,7 @@ const dashboard = {
                     title: 'Biến',
                     type: 'item',
                     url: '/variables',
-                    icon: IconVariable,
+                    icon: iconComponent('BracketsSquare'),
                     breadcrumbs: true,
                     permission: 'variables:view'
                 },
@@ -176,7 +150,7 @@ const dashboard = {
                     title: 'Khoá API',
                     type: 'item',
                     url: '/apikey',
-                    icon: IconKey,
+                    icon: iconComponent('Key'),
                     breadcrumbs: true,
                     permission: 'apikeys:view'
                 },
@@ -185,7 +159,7 @@ const dashboard = {
                     title: 'Kho tài liệu',
                     type: 'item',
                     url: '/document-stores',
-                    icon: IconFiles,
+                    icon: iconComponent('Files'),
                     breadcrumbs: true,
                     permission: 'documentStores:view'
                 }
@@ -201,7 +175,7 @@ const dashboard = {
                     title: 'Cấu hình',
                     type: 'item',
                     url: '/settings',
-                    icon: IconSettings,
+                    icon: iconComponent('GearSix'),
                     breadcrumbs: true,
                     permission: 'customers:view'
                 },
@@ -210,7 +184,7 @@ const dashboard = {
                     title: 'Lịch sử chạy',
                     type: 'item',
                     url: '/executions',
-                    icon: IconClipboardList,
+                    icon: iconComponent('ClipboardText'),
                     breadcrumbs: true,
                     permission: 'executions:view'
                 },
@@ -219,7 +193,7 @@ const dashboard = {
                     title: 'Đánh giá',
                     type: 'item',
                     url: '/evaluations',
-                    icon: IconChartHistogram,
+                    icon: iconComponent('ChartBar'),
                     breadcrumbs: true,
                     display: 'feat:evaluations',
                     permission: 'evaluations:view'
@@ -229,7 +203,7 @@ const dashboard = {
                     title: 'Datasets',
                     type: 'item',
                     url: '/datasets',
-                    icon: IconDatabase,
+                    icon: iconComponent('Database'),
                     breadcrumbs: true,
                     display: 'feat:datasets',
                     permission: 'datasets:view'
@@ -239,7 +213,7 @@ const dashboard = {
                     title: 'Evaluators',
                     type: 'item',
                     url: '/evaluators',
-                    icon: IconTestPipe,
+                    icon: iconComponent('TestTube'),
                     breadcrumbs: true,
                     display: 'feat:evaluators',
                     permission: 'evaluators:view'
@@ -249,7 +223,7 @@ const dashboard = {
                     title: 'Nhật ký',
                     type: 'item',
                     url: '/logs',
-                    icon: IconListCheck,
+                    icon: iconComponent('ListChecks'),
                     breadcrumbs: true,
                     display: 'feat:logs',
                     permission: 'logs:view'
@@ -266,7 +240,7 @@ const dashboard = {
                     title: 'SSO',
                     type: 'item',
                     url: '/sso-config',
-                    icon: IconShieldLock,
+                    icon: iconComponent('ShieldCheckered'),
                     breadcrumbs: true,
                     display: 'feat:sso-config',
                     permission: 'sso:manage'
@@ -276,7 +250,7 @@ const dashboard = {
                     title: 'Vai trò',
                     type: 'item',
                     url: '/roles',
-                    icon: IconLockCheck,
+                    icon: iconComponent('LockKey'),
                     breadcrumbs: true,
                     display: 'feat:roles',
                     permission: 'roles:manage'
@@ -286,7 +260,7 @@ const dashboard = {
                     title: 'Người dùng',
                     type: 'item',
                     url: '/users',
-                    icon: IconUsers,
+                    icon: iconComponent('Users'),
                     breadcrumbs: true,
                     display: 'feat:users',
                     permission: 'users:manage'
@@ -296,7 +270,7 @@ const dashboard = {
                     title: 'Workspace',
                     type: 'item',
                     url: '/workspaces',
-                    icon: IconStack2,
+                    icon: iconComponent('Stack'),
                     breadcrumbs: true,
                     display: 'feat:workspaces',
                     permission: 'workspace:view'
@@ -306,7 +280,7 @@ const dashboard = {
                     title: 'Lịch sử đăng nhập',
                     type: 'item',
                     url: '/login-activity',
-                    icon: IconClipboardList,
+                    icon: iconComponent('ClipboardText'),
                     breadcrumbs: true,
                     display: 'feat:login-activity',
                     permission: 'loginActivity:view'

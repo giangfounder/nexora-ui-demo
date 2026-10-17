@@ -13,7 +13,7 @@ import { Available } from '@/ui-component/rbac/available'
 import { StyledPermissionButton } from '@/ui-component/button/RBACButtons'
 
 // Icons
-import { IconX, IconCopy, IconArrowUpRightCircle } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // API
 import chatflowsApi from '@/api/chatflows'
@@ -192,7 +192,7 @@ const ShareChatbot = ({ isSessionMemory, isAgentCanvas }) => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -210,7 +210,7 @@ const ShareChatbot = ({ isSessionMemory, isAgentCanvas }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -229,7 +229,7 @@ const ShareChatbot = ({ isSessionMemory, isAgentCanvas }) => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -247,7 +247,7 @@ const ShareChatbot = ({ isSessionMemory, isAgentCanvas }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -441,14 +441,14 @@ const ShareChatbot = ({ isSessionMemory, isAgentCanvas }) => {
                         }, 1500)
                     }}
                 >
-                    <IconCopy />
+                    <AppIcon name='Copy' />
                 </IconButton>
                 <IconButton
                     title={t('Open New Tab')}
                     color='primary'
                     onClick={() => window.open(`${baseURL}/chatbot/${chatflowid}`, '_blank')}
                 >
-                    <IconArrowUpRightCircle />
+                    <AppIcon name='ArrowCircleUpRight' />
                 </IconButton>
                 <div style={{ flex: 1 }} />
                 <Available permission={'chatflows:update,agentflows:update'}>

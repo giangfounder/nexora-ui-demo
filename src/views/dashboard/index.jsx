@@ -2,19 +2,19 @@ import { useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
 import { alpha, useTheme } from '@mui/material/styles'
-import { Avatar, Box, ButtonBase, Stack, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material'
-import { IconBolt, IconChevronRight, IconCircleCheck, IconClockHour4, IconUserPlus } from '@tabler/icons-react'
+import { Box, ButtonBase, Stack, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material'
+import { AppIcon, iconComponent } from '@/ui-component/icons/AppIcon'
 
 import ViewHeader from '@/layout/MainLayout/ViewHeader'
 import { useLanguage } from '@/store/context/LanguageContext'
 import { mockConversations, CHANNELS, CHANNEL_ORDER } from '@/views/omnichannel/mockConversations'
 import { mockCustomers } from '@/views/customers/mockCustomers'
-import { getInitials, getAvatarColorKey } from '@/views/customers/utils'
 import { generateHourlyChannelData, kpiSparklines, watchlistScores, feedEvents, feedAgo, feedText } from './mockDashboard'
 import { DepthCard, IconBadge, Tilt3D, shade, useDepth } from './depth'
 import OrbitHero from './OrbitHero'
 import Pie3D from './Pie3D'
 import IsoBarChart from './IsoBarChart'
+import PersonAvatar from '@/ui-component/avatar/PersonAvatar'
 
 const RANGES = [
     { id: '24h', label: '24 giờ', factor: 1 },
@@ -148,13 +148,20 @@ const Dashboard = () => {
     ]
 
     const kpis = [
-        { label: 'Tỉ lệ trả lời tự động', value: `${autoPct}%`, delta: 5, icon: IconBolt, color: '#0EA5E9', spark: kpiSparklines.pulse },
+        {
+            label: 'Tỉ lệ trả lời tự động',
+            value: `${autoPct}%`,
+            delta: 5,
+            icon: iconComponent('Lightning'),
+            color: '#0EA5E9',
+            spark: kpiSparklines.pulse
+        },
         {
             label: 'Thời gian phản hồi TB',
             value: '2m 14s',
             delta: -8,
             invertColor: true,
-            icon: IconClockHour4,
+            icon: iconComponent('Clock'),
             color: '#8B5CF6',
             spark: kpiSparklines.response
         },
@@ -162,7 +169,7 @@ const Dashboard = () => {
             label: 'Đã xử lý hôm nay',
             value: statusCount('resolved') * 9,
             delta: 12,
-            icon: IconCircleCheck,
+            icon: iconComponent('CheckCircle'),
             color: '#10B981',
             spark: kpiSparklines.open
         },
@@ -170,7 +177,7 @@ const Dashboard = () => {
             label: 'Khách hàng mới (7 ngày)',
             value: mockCustomers.length,
             delta: 24,
-            icon: IconUserPlus,
+            icon: iconComponent('UserPlus'),
             color: theme.palette.primary.main,
             spark: kpiSparklines.newCustomers
         }
@@ -377,7 +384,6 @@ const Dashboard = () => {
                         <Stack sx={{ px: 1.5, pb: 1.5 }} spacing={0.5}>
                             {priorityRows.map(({ customer, score, reason, reasonVars }) => {
                                 const tone = toneColor(tonePriority(score))
-                                const ak = getAvatarColorKey(customer.name)
                                 return (
                                     <ButtonBase
                                         key={customer.id}
@@ -408,18 +414,7 @@ const Dashboard = () => {
                                                 boxShadow: `0 6px 14px -8px ${alpha(tone, 0.8)}`
                                             }}
                                         >
-                                            <Avatar
-                                                sx={{
-                                                    width: 32,
-                                                    height: 32,
-                                                    fontSize: '0.75rem',
-                                                    fontWeight: 700,
-                                                    bgcolor: 'background.paper',
-                                                    color: d.isDark ? theme.palette[ak].main : theme.palette[ak].dark
-                                                }}
-                                            >
-                                                {getInitials(customer.name)}
-                                            </Avatar>
+                                            <PersonAvatar name={customer.name} size={32} />
                                         </Box>
                                         <Box sx={{ flex: 1, minWidth: 0 }}>
                                             <Typography variant='body2' sx={{ fontWeight: 600, color: 'text.primary' }} noWrap>
@@ -444,7 +439,7 @@ const Dashboard = () => {
                                                 transition: 'all 150ms ease-out'
                                             }}
                                         >
-                                            <IconChevronRight size={18} stroke={2} />
+                                            <AppIcon name='CaretRight' size={18} />
                                         </Box>
                                     </ButtonBase>
                                 )

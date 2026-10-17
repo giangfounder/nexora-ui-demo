@@ -2,7 +2,7 @@ import { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useTheme } from '@mui/material/styles'
 import { FormControl, Button } from '@mui/material'
-import { IconUpload } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { getFileName } from '@/utils/genericHelper'
 import { useLanguage } from '@/store/context/LanguageContext'
 
@@ -98,7 +98,7 @@ export const File = ({ value, formDataUpload, fileType, onChange, onFormDataChan
                 variant='outlined'
                 component='label'
                 fullWidth
-                startIcon={<IconUpload />}
+                startIcon={<AppIcon name='UploadSimple' />}
                 sx={{ marginRight: '1rem' }}
             >
                 {t('Upload File')}

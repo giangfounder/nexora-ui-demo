@@ -29,7 +29,7 @@ import { useError } from '@/store/context/ErrorContext'
 import { useLanguage } from '@/store/context/LanguageContext'
 
 // icons
-import { IconLayoutGrid, IconList, IconPlus } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // ==============================|| CHATFLOWS ||============================== //
 
@@ -158,7 +158,7 @@ const Chatflows = () => {
                                 value='card'
                                 title={t('Card View')}
                             >
-                                <IconLayoutGrid size={18} stroke={1.75} />
+                                <AppIcon name='GridFour' size={18} />
                             </ToggleButton>
                             <ToggleButton
                                 sx={{ borderColor: theme.palette.alpha.border }}
@@ -166,14 +166,14 @@ const Chatflows = () => {
                                 value='list'
                                 title={t('List View')}
                             >
-                                <IconList size={18} stroke={1.75} />
+                                <AppIcon name='List' size={18} />
                             </ToggleButton>
                         </ToggleButtonGroup>
                         <StyledPermissionButton
                             permissionId={'chatflows:create'}
                             variant='contained'
                             onClick={addNew}
-                            startIcon={<IconPlus size={18} stroke={1.75} />}
+                            startIcon={<AppIcon name='Plus' size={18} />}
                             sx={{ height: 40 }}
                         >
                             {t('Add New')}

@@ -53,7 +53,7 @@ const ChannelsCompare = () => {
                         {channelsMatrix.map((r) => (
                             <TableRow key={r.channelId} hover>
                                 <TableCell>
-                                    <ChannelName label={r.channel} color={c.channel(r.channelId)} />
+                                    <ChannelName label={r.channel} channelId={r.channelId} color={c.channel(r.channelId)} />
                                 </TableCell>
                                 <TableCell align='right' sx={{ fontVariantNumeric: 'tabular-nums' }}>
                                     {r.conversations}

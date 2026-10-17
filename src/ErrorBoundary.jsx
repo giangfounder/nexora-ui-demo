@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 
 import { Box, Card, IconButton, Stack, Typography, useTheme } from '@mui/material'
-import { IconCopy } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 const ErrorBoundary = ({ error }) => {
     const theme = useTheme()
@@ -21,11 +21,12 @@ const ErrorBoundary = ({ error }) => {
                 <Card variant='outlined'>
                     <Box sx={{ position: 'relative', px: 2, py: 3 }}>
                         <IconButton
+                            aria-label='Copy'
                             onClick={copyToClipboard}
                             size='small'
                             sx={{ position: 'absolute', top: 1, right: 1, color: theme.palette.grey[900] + 25 }}
                         >
-                            <IconCopy />
+                            <AppIcon name='Copy' />
                         </IconButton>
                         <pre style={{ margin: 0, overflowWrap: 'break-word', whiteSpace: 'pre-wrap', textAlign: 'center' }}>
                             <code>{`Status: ${error.response.status}`}</code>

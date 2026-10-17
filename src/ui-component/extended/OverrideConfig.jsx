@@ -27,8 +27,7 @@ import useNotifier from '@/utils/useNotifier'
 import { closeSnackbar as closeSnackbarAction, enqueueSnackbar as enqueueSnackbarAction, SET_CHATFLOW } from '@/store/actions'
 
 // Icons
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { IconX, IconBox, IconVariable } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // API
 import useApi from '@/hooks/useApi'
@@ -347,7 +346,7 @@ const OverrideConfig = ({ dialogProps, hideTitle = false }) => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -365,7 +364,7 @@ const OverrideConfig = ({ dialogProps, hideTitle = false }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -425,7 +424,7 @@ const OverrideConfig = ({ dialogProps, hideTitle = false }) => {
                                 }}
                             >
                                 <Stack sx={{ mt: 1, mb: 2, ml: 1, alignItems: 'center' }} direction='row' spacing={2}>
-                                    <IconBox />
+                                    <AppIcon name='Cube' />
                                     <Typography variant='h4'>{t('Nodes')}</Typography>
                                 </Stack>
                                 <Stack direction='column'>
@@ -444,7 +443,7 @@ const OverrideConfig = ({ dialogProps, hideTitle = false }) => {
                                                 }}
                                             >
                                                 <AccordionSummary
-                                                    expandIcon={<ExpandMoreIcon />}
+                                                    expandIcon={<AppIcon name='CaretDown' />}
                                                     aria-controls={`nodes-accordian-${nodeLabel}`}
                                                     id={`nodes-accordian-header-${nodeLabel}`}
                                                 >
@@ -508,7 +507,7 @@ const OverrideConfig = ({ dialogProps, hideTitle = false }) => {
                                 }}
                             >
                                 <Stack sx={{ mt: 1, mb: 2, ml: 1, alignItems: 'center' }} direction='row' spacing={2}>
-                                    <IconVariable />
+                                    <AppIcon name='BracketsSquare' />
                                     <Typography variant='h4'>{t('Variables')}</Typography>
                                 </Stack>
                                 <OverrideConfigTable

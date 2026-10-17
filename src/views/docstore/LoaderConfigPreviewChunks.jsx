@@ -12,7 +12,7 @@ import { useAuth } from '@/hooks/useAuth'
 // Material-UI
 import { Skeleton, Toolbar, Box, Button, Card, CardContent, Grid, OutlinedInput, Stack, Typography, TextField } from '@mui/material'
 import { useTheme, styled } from '@mui/material/styles'
-import { IconScissors, IconArrowLeft, IconDatabaseImport, IconBook, IconX, IconEye } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // Project import
 import MainCard from '@/ui-component/cards/MainCard'
@@ -164,7 +164,7 @@ const LoaderConfigPreviewChunks = () => {
                     variant: 'warning',
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -198,7 +198,7 @@ const LoaderConfigPreviewChunks = () => {
                         variant: 'error',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -222,7 +222,7 @@ const LoaderConfigPreviewChunks = () => {
                             variant: 'success',
                             action: (key) => (
                                 <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                    <IconX />
+                                    <AppIcon name='X' />
                                 </Button>
                             )
                         }
@@ -242,7 +242,7 @@ const LoaderConfigPreviewChunks = () => {
                         variant: 'error',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -404,7 +404,7 @@ const LoaderConfigPreviewChunks = () => {
                                         title={t('Back')}
                                         onClick={() => navigate(-1)}
                                     >
-                                        <IconArrowLeft />
+                                        <AppIcon name='ArrowLeft' />
                                     </StyledFab>
                                     <Typography sx={{ ml: 2, mr: 2 }} variant='h3'>
                                         {selectedDocumentLoader?.label}
@@ -434,7 +434,7 @@ const LoaderConfigPreviewChunks = () => {
                                                 src={`${baseURL}/api/v1/node-icon/${selectedDocumentLoader?.name}`}
                                             />
                                         ) : (
-                                            <IconBook color='black' />
+                                            <AppIcon name='Book' color='black' />
                                         )}
                                     </div>
                                 </Box>
@@ -443,7 +443,7 @@ const LoaderConfigPreviewChunks = () => {
                                         variant='contained'
                                         onClick={onSaveAndProcess}
                                         sx={{ borderRadius: 2, height: '100%' }}
-                                        startIcon={<IconDatabaseImport />}
+                                        startIcon={<AppIcon name='DownloadSimple' />}
                                     >
                                         {t('Process')}
                                     </StyledButton>
@@ -519,7 +519,7 @@ const LoaderConfigPreviewChunks = () => {
                                                                 src={`${baseURL}/api/v1/node-icon/${selectedTextSplitter?.name}`}
                                                             />
                                                         ) : (
-                                                            <IconScissors color='black' />
+                                                            <AppIcon name='Scissors' color='black' />
                                                         )}
                                                     </div>
                                                 </Box>
@@ -613,7 +613,7 @@ const LoaderConfigPreviewChunks = () => {
                                                         variant='extended'
                                                         onClick={onPreviewChunks}
                                                     >
-                                                        <IconEye style={{ marginRight: '5px' }} />
+                                                        <AppIcon name='Eye' style={{ marginRight: '5px' }} />
                                                         {t('Preview Chunks')}
                                                     </StyledFab>
                                                 </div>
@@ -643,7 +643,7 @@ const LoaderConfigPreviewChunks = () => {
                                                         variant='extended'
                                                         onClick={onPreviewChunks}
                                                     >
-                                                        <IconEye style={{ marginRight: '5px' }} />
+                                                        <AppIcon name='Eye' style={{ marginRight: '5px' }} />
                                                         {t('Preview')}
                                                     </StyledFab>
                                                 </div>

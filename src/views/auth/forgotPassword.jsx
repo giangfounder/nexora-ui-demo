@@ -23,7 +23,7 @@ import useNotifier from '@/utils/useNotifier'
 import { useLanguage } from '@/store/context/LanguageContext'
 
 // Icons
-import { IconCircleCheck, IconExclamationCircle } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // ==============================|| ForgotPasswordPage ||============================== //
 
@@ -96,17 +96,17 @@ const ForgotPasswordPage = () => {
             <MainCard>
                 <Stack flexDirection='column' sx={{ width: '480px', gap: 3 }}>
                     {responseMsg && responseMsg?.type === 'error' && (
-                        <Alert icon={<IconExclamationCircle />} variant='filled' severity='error'>
+                        <Alert icon={<AppIcon name='WarningCircle' />} variant='filled' severity='error'>
                             {responseMsg.msg}
                         </Alert>
                     )}
                     {authRateLimitError && (
-                        <Alert icon={<IconExclamationCircle />} variant='filled' severity='error'>
+                        <Alert icon={<AppIcon name='WarningCircle' />} variant='filled' severity='error'>
                             {authRateLimitError}
                         </Alert>
                     )}
                     {responseMsg && responseMsg?.type !== 'error' && (
-                        <Alert icon={<IconCircleCheck />} variant='filled' severity='success'>
+                        <Alert icon={<AppIcon name='CheckCircle' />} variant='filled' severity='success'>
                             {responseMsg.msg}
                         </Alert>
                     )}

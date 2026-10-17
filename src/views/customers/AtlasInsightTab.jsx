@@ -2,30 +2,31 @@ import { Fragment, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
 import { alpha, useTheme } from '@mui/material/styles'
-import { Avatar, Box, Button, ButtonBase, Collapse, Menu, MenuItem, Stack, Tooltip, Typography } from '@mui/material'
-import { IconArrowRight, IconChevronDown, IconCornerDownRight, IconUserPlus } from '@tabler/icons-react'
+import { Box, Button, ButtonBase, Collapse, Menu, MenuItem, Stack, Tooltip, Typography } from '@mui/material'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 import { useLanguage } from '@/store/context/LanguageContext'
 import ExportMenu from '@/ui-component/export/ExportMenu'
 import { exportTables } from '@/utils/tableExport'
 import { mockEmployees } from '@/views/employees/mockEmployees'
-import { getAvatarColorKey, getInitials, tintBg, tintText } from './utils'
+import { tintBg, tintText } from './utils'
+import PersonAvatar from '@/ui-component/avatar/PersonAvatar'
 import { atlasActions, atlasSignals } from './mockAtlas'
 
 // ==============================|| CUSTOMERS — ANALYSIS ||============================== //
 // A manager's desk, not a feed: decide on actions (own them, track them), then check the signals behind them.
 
 const PRIORITY = {
-    high: { label: 'Cao', tone: 'rose', rank: 0 },
-    medium: { label: 'Vừa', tone: 'amber', rank: 1 },
-    low: { label: 'Thấp', tone: 'teal', rank: 2 }
+    high: { label: 'Cao', tone: 'rose', rank: 0, icon: 'CaretDoubleUp' },
+    medium: { label: 'Vừa', tone: 'amber', rank: 1, icon: 'Equals' },
+    low: { label: 'Thấp', tone: 'teal', rank: 2, icon: 'CaretDown' }
 }
 
 const STATUS = {
-    new: { label: 'Chưa làm', tone: 'orange' },
-    doing: { label: 'Đang làm', tone: 'amber' },
-    done: { label: 'Xong', tone: 'emerald' },
-    dismissed: { label: 'Bỏ qua', tone: 'teal' }
+    new: { label: 'Chưa làm', tone: 'orange', icon: 'CircleDashed' },
+    doing: { label: 'Đang làm', tone: 'amber', icon: 'HourglassMedium' },
+    done: { label: 'Xong', tone: 'emerald', icon: 'CheckCircle' },
+    dismissed: { label: 'Bỏ qua', tone: 'teal', icon: 'MinusCircle' }
 }
 const STATUS_ORDER = ['new', 'doing', 'done', 'dismissed']
 
@@ -63,7 +64,7 @@ const Spark = ({ values, color }) => {
 
 Spark.propTypes = { values: PropTypes.array.isRequired, color: PropTypes.string.isRequired }
 
-const Pill = ({ tone, children, sx }) => {
+const Pill = ({ tone, icon, children, sx }) => {
     const theme = useTheme()
     const spec = theme.palette.spectrum?.[tone] || theme.palette.primary
     return (
@@ -84,38 +85,23 @@ const Pill = ({ tone, children, sx }) => {
                 ...sx
             }}
         >
-            <Box component='span' sx={{ width: 6, height: 6, borderRadius: '50%', bgcolor: spec.main }} />
+            {icon && <AppIcon name={icon} size={14} color={spec.main} />}
             {children}
         </Box>
     )
 }
 
-Pill.propTypes = { tone: PropTypes.string, children: PropTypes.node, sx: PropTypes.object }
+Pill.propTypes = { tone: PropTypes.string, icon: PropTypes.string, children: PropTypes.node, sx: PropTypes.object }
 
 const Person = ({ id, size = 24 }) => {
-    const theme = useTheme()
     const emp = mockEmployees.find((e) => e.id === id)
     if (!emp) return null
-    const ck = getAvatarColorKey(emp.name)
-    return (
-        <Avatar
-            sx={{
-                width: size,
-                height: size,
-                fontSize: size * 0.4,
-                fontWeight: 700,
-                bgcolor: tintBg(theme, theme.palette[ck].main, 0.16, 0.24),
-                color: tintText(theme, theme.palette[ck])
-            }}
-        >
-            {getInitials(emp.name)}
-        </Avatar>
-    )
+    return <PersonAvatar name={emp.name} size={size} />
 }
 
 Person.propTypes = { id: PropTypes.string, size: PropTypes.number }
 
-const COLS = '6px minmax(260px, 2.4fr) minmax(150px, 1.2fr) 90px 170px 110px 130px'
+const COLS = '18px minmax(260px, 2.4fr) minmax(150px, 1.2fr) 90px 170px 110px 130px'
 
 const AtlasInsightTab = () => {
     const { t, locale } = useLanguage()
@@ -463,9 +449,13 @@ const AtlasInsightTab = () => {
                                     >
                                         <Tooltip title={t('Ưu tiên {level}', { level: t(pr.label).toLowerCase() })} placement='left'>
                                             <Box
-                                                sx={{ width: 4, height: 36, borderRadius: 2, bgcolor: prColor }}
+                                                component='span'
+                                                role='img'
                                                 aria-label={t('Ưu tiên {level}', { level: t(pr.label) })}
-                                            />
+                                                sx={{ display: 'inline-flex', color: prColor }}
+                                            >
+                                                <AppIcon name={pr.icon} size={18} />
+                                            </Box>
                                         </Tooltip>
 
                                         <ButtonBase
@@ -496,15 +486,15 @@ const AtlasInsightTab = () => {
                                                     alignItems='center'
                                                     sx={{ mt: 0.25, color: 'text.secondary', minWidth: 0 }}
                                                 >
-                                                    <IconCornerDownRight size={13} stroke={1.75} style={{ flexShrink: 0 }} />
+                                                    <AppIcon name='ArrowElbowDownRight' size={13} style={{ flexShrink: 0 }} />
                                                     <Typography variant='caption' noWrap>
                                                         {a.signalIds.map((id) => signalById[id]?.title).join(', ')}
                                                     </Typography>
                                                 </Stack>
                                             </Box>
-                                            <IconChevronDown
+                                            <AppIcon
+                                                name='CaretDown'
                                                 size={16}
-                                                stroke={1.75}
                                                 style={{
                                                     flexShrink: 0,
                                                     opacity: 0.5,
@@ -557,7 +547,7 @@ const AtlasInsightTab = () => {
                                                     alignItems='center'
                                                     sx={{ color: theme.palette.warning.dark }}
                                                 >
-                                                    <IconUserPlus size={18} stroke={1.75} />
+                                                    <AppIcon name='UserPlus' size={18} />
                                                     <Typography
                                                         variant='body2'
                                                         sx={{ fontSize: '0.8125rem', fontWeight: 600, color: 'inherit' }}
@@ -594,8 +584,10 @@ const AtlasInsightTab = () => {
                                             aria-label={t('Đổi trạng thái')}
                                             sx={{ justifySelf: 'start', borderRadius: '8px', gap: 0.25 }}
                                         >
-                                            <Pill tone={STATUS[a.status].tone}>{t(STATUS[a.status].label)}</Pill>
-                                            <IconChevronDown size={14} stroke={2} style={{ opacity: 0.45 }} />
+                                            <Pill tone={STATUS[a.status].tone} icon={STATUS[a.status].icon}>
+                                                {t(STATUS[a.status].label)}
+                                            </Pill>
+                                            <AppIcon name='CaretDown' size={14} style={{ opacity: 0.45 }} />
                                         </ButtonBase>
                                     </Box>
 
@@ -623,7 +615,7 @@ const AtlasInsightTab = () => {
                                                     <Button
                                                         size='small'
                                                         variant='contained'
-                                                        endIcon={<IconArrowRight size={16} />}
+                                                        endIcon={<AppIcon name='ArrowRight' size={16} />}
                                                         onClick={() => navigate('/customers?tab=list')}
                                                     >
                                                         {t('Xem {n} khách liên quan', { n: a.affected })}
@@ -819,7 +811,9 @@ const AtlasInsightTab = () => {
                                 setMenu(null)
                             }}
                         >
-                            <Pill tone={STATUS[st].tone}>{t(STATUS[st].label)}</Pill>
+                            <Pill tone={STATUS[st].tone} icon={STATUS[st].icon}>
+                                {t(STATUS[st].label)}
+                            </Pill>
                         </MenuItem>
                     ))}
             </Menu>

@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 import { alpha, lighten, useTheme } from '@mui/material/styles'
 import { Box, ButtonBase } from '@mui/material'
-import { IconApps, IconBriefcase, IconLayoutDashboard, IconRoute, IconSettings, IconShieldLock } from '@tabler/icons-react'
+import { iconComponent } from '@/ui-component/icons/AppIcon'
 
 import { menuItems } from '@/menu-items'
 import { useAuth } from '@/hooks/useAuth'
@@ -22,12 +22,12 @@ const SWITCH_DELAY = 250
 const PILL_H = 36
 
 const GROUP_ICONS = {
-    overview: IconLayoutDashboard,
-    operations: IconBriefcase,
-    ai: IconRoute,
-    apps: IconApps,
-    system: IconSettings,
-    management: IconShieldLock
+    overview: iconComponent('SquaresFour'),
+    operations: iconComponent('Briefcase'),
+    ai: iconComponent('Path'),
+    apps: iconComponent('SquaresFour'),
+    system: iconComponent('GearSix'),
+    management: iconComponent('ShieldCheckered')
 }
 
 const flattenItems = (menus) =>

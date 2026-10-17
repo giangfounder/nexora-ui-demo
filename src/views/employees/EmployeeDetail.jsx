@@ -5,7 +5,6 @@ import useUrlTabState from '@/hooks/useUrlTabState'
 
 import { alpha, useTheme } from '@mui/material/styles'
 import {
-    Avatar,
     Box,
     Button,
     Card,
@@ -24,44 +23,30 @@ import {
     Tooltip,
     Typography
 } from '@mui/material'
-import {
-    IconArrowsExchange,
-    IconCheck,
-    IconChevronRight,
-    IconDots,
-    IconEdit,
-    IconFile,
-    IconHistory,
-    IconMessages,
-    IconMinus,
-    IconNote,
-    IconUserPlus
-} from '@tabler/icons-react'
+import { AppIcon, iconComponent } from '@/ui-component/icons/AppIcon'
 
 import { TabPanel } from '@/ui-component/tabs/TabPanel'
 import ConfirmDialog from '@/ui-component/dialog/ConfirmDialog'
 import { SharedTableCell, SharedTableContainer, SharedTableRow, StatusPill } from '@/ui-component/table/SharedTable'
 import { useLanguage } from '@/store/context/LanguageContext'
 import useConfirm from '@/hooks/useConfirm'
-import { getAvatarColorKey, getInitials } from '@/views/customers/utils'
 import { mockCustomers } from '@/views/customers/mockCustomers'
 import { mockInteractionLog } from '@/views/customers/mockAtlas'
 import EmployeeFormDialog from './EmployeeFormDialog'
 import { mockEmployees, mockRoles, mockTeams, PERMISSION_ACTIONS, PERMISSION_MODULES } from './mockEmployees'
-
-const ICON_STROKE = 1.75
+import PersonAvatar from '@/ui-component/avatar/PersonAvatar'
 
 const STATUS_TONE = { active: 'emerald', invited: 'amber', disabled: 'rose' }
 const STATUS_LABEL = { active: 'Đang hoạt động', invited: 'Đã mời', disabled: 'Vô hiệu' }
 const ACTION_LABEL = { view: 'Xem', create: 'Tạo', edit: 'Sửa', delete: 'Xoá' }
 
 const feedIconFor = (kind) => {
-    if (kind === 'chat' || kind === 'reply') return IconMessages
-    if (kind === 'note') return IconNote
-    if (kind === 'file') return IconFile
-    if (kind === 'stage') return IconArrowsExchange
-    if (kind === 'created') return IconUserPlus
-    return IconHistory
+    if (kind === 'chat' || kind === 'reply') return iconComponent('Chats')
+    if (kind === 'note') return iconComponent('Note')
+    if (kind === 'file') return iconComponent('File')
+    if (kind === 'stage') return iconComponent('ArrowsLeftRight')
+    if (kind === 'created') return iconComponent('UserPlus')
+    return iconComponent('ClockCounterClockwise')
 }
 
 const Field = ({ label, value }) => (
@@ -120,7 +105,7 @@ const ActivityList = ({ items, dense, alphaDivider, t }) => {
                                     justifyContent: 'center'
                                 })}
                             >
-                                <Icon size={13} stroke={ICON_STROKE} />
+                                <Icon size={13} />
                             </Box>
                             {!isLast && (
                                 <Box
@@ -153,7 +138,6 @@ const ActivityList = ({ items, dense, alphaDivider, t }) => {
 const EmployeeDetail = () => {
     const { t } = useLanguage()
     const theme = useTheme()
-    const isDark = theme.palette.mode === 'dark'
     const { employeeId } = useParams()
     const navigate = useNavigate()
     const { confirm } = useConfirm()
@@ -199,7 +183,6 @@ const EmployeeDetail = () => {
         )
     }
 
-    const colorKey = getAvatarColorKey(employee.name)
     const statusTone = STATUS_TONE[employee.status] || 'teal'
 
     const closeMenu = () => setMenuAnchor(null)
@@ -241,25 +224,14 @@ const EmployeeDetail = () => {
                 >
                     {t('Nhân sự')}
                 </Box>
-                <IconChevronRight size={14} stroke={ICON_STROKE} />
+                <AppIcon name='CaretRight' size={14} />
                 <Typography variant='body2' sx={{ color: 'text.primary', fontWeight: 500 }} noWrap>
                     {employee.name}
                 </Typography>
             </Stack>
 
             <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} alignItems={{ sm: 'center' }} sx={{ mb: 3 }}>
-                <Avatar
-                    sx={{
-                        width: 52,
-                        height: 52,
-                        fontSize: '1.125rem',
-                        fontWeight: 600,
-                        bgcolor: alpha(theme.palette[colorKey].main, isDark ? 0.24 : 0.15),
-                        color: isDark ? theme.palette[colorKey].light : theme.palette[colorKey].dark
-                    }}
-                >
-                    {getInitials(employee.name)}
-                </Avatar>
+                <PersonAvatar name={employee.name} size={52} />
                 <Stack sx={{ flex: 1, minWidth: 0 }} spacing={0.75}>
                     <Typography variant='h1' noWrap>
                         {employee.name}
@@ -273,7 +245,7 @@ const EmployeeDetail = () => {
                     </Stack>
                 </Stack>
                 <Stack direction='row' spacing={1} alignItems='center' sx={{ flexShrink: 0 }}>
-                    <Button variant='contained' startIcon={<IconEdit size={16} stroke={ICON_STROKE} />} onClick={() => setShowForm(true)}>
+                    <Button variant='contained' startIcon={<AppIcon name='PencilSimpleLine' size={16} />} onClick={() => setShowForm(true)}>
                         {t('Chỉnh sửa')}
                     </Button>
                     <Tooltip title={t('Hành động khác')}>
@@ -282,7 +254,7 @@ const EmployeeDetail = () => {
                             onClick={(e) => setMenuAnchor(e.currentTarget)}
                             sx={{ width: 36, height: 36, border: `1px solid ${alphaBorder}`, color: 'text.secondary' }}
                         >
-                            <IconDots size={17} stroke={ICON_STROKE} />
+                            <AppIcon name='DotsThree' size={17} />
                         </IconButton>
                     </Tooltip>
                     <Menu
@@ -412,9 +384,9 @@ const EmployeeDetail = () => {
                                                                     sx={{ color: granted ? 'success.main' : 'text.disabled' }}
                                                                 >
                                                                     {granted ? (
-                                                                        <IconCheck size={16} stroke={ICON_STROKE} />
+                                                                        <AppIcon name='Check' size={16} />
                                                                     ) : (
-                                                                        <IconMinus size={14} stroke={ICON_STROKE} />
+                                                                        <AppIcon name='Minus' size={14} />
                                                                     )}
                                                                 </SharedTableCell>
                                                             )

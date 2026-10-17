@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 // Material
 import { Typography, Box, Dialog, DialogContent, DialogTitle, Button, Tooltip } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import { IconCopy, IconX, IconLink } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // Constants
 import { enqueueSnackbar as enqueueSnackbarAction, closeSnackbar as closeSnackbarAction } from '@/store/actions'
@@ -44,7 +44,7 @@ const ShareExecutionDialog = ({ show, executionId, onClose, onUnshare }) => {
                     variant: 'success',
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => dispatch(closeSnackbarAction(key))}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -85,7 +85,7 @@ const ShareExecutionDialog = ({ show, executionId, onClose, onUnshare }) => {
                         backgroundColor: customization.isDarkMode ? theme.palette.background.paper : theme.palette.surface.sunken
                     }}
                 >
-                    <IconLink size={20} style={{ marginRight: '8px', color: theme.palette.text.secondary }} />
+                    <AppIcon name='Link' size={20} style={{ marginRight: '8px', color: theme.palette.text.secondary }} />
                     <Typography
                         variant='body2'
                         sx={{
@@ -99,7 +99,7 @@ const ShareExecutionDialog = ({ show, executionId, onClose, onUnshare }) => {
                         {shareableLink}
                     </Typography>
                     <Tooltip title={copied ? t('Copied!') : t('Copy link')}>
-                        <Button variant='text' color='primary' onClick={copyToClipboard} startIcon={<IconCopy size={18} />}>
+                        <Button variant='text' color='primary' onClick={copyToClipboard} startIcon={<AppIcon name='Copy' size={18} />}>
                             {t('Copy')}
                         </Button>
                     </Tooltip>

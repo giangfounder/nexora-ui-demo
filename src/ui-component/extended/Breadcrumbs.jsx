@@ -12,10 +12,7 @@ import config from '@/config'
 import { gridSpacing } from '@/store/constant'
 
 // assets
-import { IconTallymark1 } from '@tabler/icons-react'
-import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone'
-import HomeIcon from '@mui/icons-material/Home'
-import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone'
+import { AppIcon, iconComponent } from '@/ui-component/icons/AppIcon'
 import { useLanguage } from '@/store/context/LanguageContext'
 
 const linkSX = {
@@ -71,7 +68,7 @@ const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAl
 
     // item separator
     const SeparatorIcon = separator
-    const separatorIcon = separator ? <SeparatorIcon stroke={1.5} size='1rem' /> : <IconTallymark1 stroke={1.5} size='1rem' />
+    const separatorIcon = separator ? <SeparatorIcon stroke={1.5} size='1rem' /> : <AppIcon name='LineVertical' size='1rem' />
 
     let mainContent
     let itemContent
@@ -82,7 +79,7 @@ const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAl
 
     // collapse item
     if (main && main.type === 'collapse') {
-        CollapseIcon = main.icon ? main.icon : AccountTreeTwoToneIcon
+        CollapseIcon = main.icon ? main.icon : iconComponent('TreeStructure')
         mainContent = (
             <Typography component={Link} to='#' variant='subtitle1' sx={linkSX}>
                 {icons && <CollapseIcon style={iconStyle} />}
@@ -95,7 +92,7 @@ const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAl
     if (item && item.type === 'item') {
         itemTitle = item.title
 
-        ItemIcon = item.icon ? item.icon : AccountTreeTwoToneIcon
+        ItemIcon = item.icon ? item.icon : iconComponent('TreeStructure')
         itemContent = (
             <Typography
                 variant='subtitle1'
@@ -144,8 +141,8 @@ const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAl
                                     separator={separatorIcon}
                                 >
                                     <Typography component={Link} to='/' color='inherit' variant='subtitle1' sx={linkSX}>
-                                        {icons && <HomeTwoToneIcon sx={iconStyle} />}
-                                        {icon && <HomeIcon sx={{ ...iconStyle, mr: 0 }} />}
+                                        {icons && <AppIcon name='House' sx={iconStyle} />}
+                                        {icon && <AppIcon name='House' sx={{ ...iconStyle, mr: 0 }} />}
                                         {!icon && t('Dashboard')}
                                     </Typography>
                                     {mainContent}

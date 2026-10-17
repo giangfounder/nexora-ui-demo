@@ -19,7 +19,7 @@ import { logoutSuccess } from '@/store/reducers/authSlice'
 import useApi from '@/hooks/useApi'
 
 // icons
-import { IconFileText, IconLogout, IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import accountApi from '@/api/account.api'
 
 const CloudMenuList = () => {
@@ -44,7 +44,7 @@ const CloudMenuList = () => {
                 variant: 'success',
                 action: (key) => (
                     <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                        <IconX />
+                        <AppIcon name='X' />
                     </Button>
                 )
             }
@@ -79,7 +79,7 @@ const CloudMenuList = () => {
                                 }}
                             >
                                 <ListItemIcon sx={{ my: 'auto', minWidth: 36 }}>
-                                    <IconFileText size='1.3rem' strokeWidth='1.5' />
+                                    <AppIcon name='FileText' size='1.3rem' />
                                 </ListItemIcon>
                                 <Typography variant='body1' color='inherit' sx={{ my: 0.5 }}>
                                     {t('Documentation')}
@@ -97,7 +97,7 @@ const CloudMenuList = () => {
                             }}
                         >
                             <ListItemIcon sx={{ my: 'auto', minWidth: 36 }}>
-                                <IconLogout size='1.3rem' strokeWidth='1.5' />
+                                <AppIcon name='SignOut' size='1.3rem' />
                             </ListItemIcon>
                             <Typography variant='body1' color='inherit' sx={{ my: 0.5 }}>
                                 {t('Logout')}

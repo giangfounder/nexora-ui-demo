@@ -13,7 +13,7 @@ import { StyledButton } from '@/ui-component/button/StyledButton'
 import ConfirmDialog from '@/ui-component/dialog/ConfirmDialog'
 
 // Icons
-import { IconAlertTriangle, IconUser, IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // API
 import authApi from '@/api/auth'
@@ -211,7 +211,7 @@ const CreateEditRoleDialog = ({ show, dialogProps, onCancel, onConfirm, setError
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -250,7 +250,7 @@ const CreateEditRoleDialog = ({ show, dialogProps, onCancel, onConfirm, setError
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -268,7 +268,7 @@ const CreateEditRoleDialog = ({ show, dialogProps, onCancel, onConfirm, setError
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -315,7 +315,7 @@ const CreateEditRoleDialog = ({ show, dialogProps, onCancel, onConfirm, setError
         >
             <DialogTitle sx={{ fontSize: '1rem' }} id='alert-dialog-title'>
                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                    <IconUser style={{ marginRight: '10px' }} />
+                    <AppIcon name='User' style={{ marginRight: '10px' }} />
                     {dialogProps.type === 'EDIT' ? t('Edit Role') : dialogProps.type === 'VIEW' ? t('View Role') : t('Create New Role')}
                 </div>
             </DialogTitle>
@@ -408,7 +408,12 @@ const CreateEditRoleDialog = ({ show, dialogProps, onCancel, onConfirm, setError
                                                                 )}
                                                                 placement='right'
                                                             >
-                                                                <IconAlertTriangle size={16} color='orange' style={{ flexShrink: 0 }} />
+                                                                <AppIcon
+                                                                    name='Warning'
+                                                                    size={16}
+                                                                    color='orange'
+                                                                    style={{ flexShrink: 0 }}
+                                                                />
                                                             </Tooltip>
                                                         )}
                                                     </label>

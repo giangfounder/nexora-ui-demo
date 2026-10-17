@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { alpha, useTheme } from '@mui/material/styles'
 import { Stack, Typography, Box, Alert, Button, Divider, TextField, IconButton, InputAdornment } from '@mui/material'
-import { IconExclamationCircle, IconEye, IconEyeOff } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { LoadingButton } from '@mui/lab'
 
 import useApi from '@/hooks/useApi'
@@ -444,12 +444,12 @@ const SignInPage = () => {
                                 </Alert>
                             )}
                             {authRateLimitError && (
-                                <Alert icon={<IconExclamationCircle size={18} stroke={1.75} />} variant='outlined' severity='error'>
+                                <Alert icon={<AppIcon name='WarningCircle' size={18} />} variant='outlined' severity='error'>
                                     {authRateLimitError}
                                 </Alert>
                             )}
                             {authError && (
-                                <Alert icon={<IconExclamationCircle size={18} stroke={1.75} />} variant='outlined' severity='error'>
+                                <Alert icon={<AppIcon name='WarningCircle' size={18} />} variant='outlined' severity='error'>
                                     {authError}
                                     {showResendButton && (
                                         <Button
@@ -513,9 +513,9 @@ const SignInPage = () => {
                                                     sx={{ color: 'text.secondary' }}
                                                 >
                                                     {showPassword ? (
-                                                        <IconEyeOff size={19} stroke={1.6} />
+                                                        <AppIcon name='EyeSlash' size={19} />
                                                     ) : (
-                                                        <IconEye size={19} stroke={1.6} />
+                                                        <AppIcon name='Eye' size={19} />
                                                     )}
                                                 </IconButton>
                                             </InputAdornment>

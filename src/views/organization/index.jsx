@@ -30,7 +30,7 @@ import GoogleSSOLoginIcon from '@/assets/images/google.svg'
 import AzureSSOLoginIcon from '@/assets/images/microsoft-azure.svg'
 import { useConfig } from '@/store/context/ConfigContext'
 import { useLanguage } from '@/store/context/LanguageContext'
-import { IconCircleCheck, IconExclamationCircle } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // ==============================|| Organization & Admin User Setup ||============================== //
 
@@ -223,7 +223,7 @@ const OrganizationSetupPage = () => {
             >
                 <Stack flexDirection='column' sx={{ width: '480px', gap: 3 }}>
                     {authError && (
-                        <Alert icon={<IconExclamationCircle />} variant='filled' severity='error'>
+                        <Alert icon={<AppIcon name='WarningCircle' />} variant='filled' severity='error'>
                             {authError.split(', ').length > 0 ? (
                                 <List dense sx={{ py: 0 }}>
                                     {authError.split(', ').map((error, index) => (
@@ -240,7 +240,7 @@ const OrganizationSetupPage = () => {
                         </Alert>
                     )}
                     {successMsg && (
-                        <Alert icon={<IconCircleCheck />} variant='filled' severity='success'>
+                        <Alert icon={<AppIcon name='CheckCircle' />} variant='filled' severity='success'>
                             {successMsg}
                         </Alert>
                     )}

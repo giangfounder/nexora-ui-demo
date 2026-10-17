@@ -1,27 +1,17 @@
 // assets
-import {
-    IconTrash,
-    IconFileUpload,
-    IconFileExport,
-    IconCopy,
-    IconMessage,
-    IconDatabaseExport,
-    IconAdjustmentsHorizontal,
-    IconUsers,
-    IconTemplate
-} from '@tabler/icons-react'
+import { iconComponent } from '@/ui-component/icons/AppIcon'
 
 // constant
 const icons = {
-    IconTrash,
-    IconFileUpload,
-    IconFileExport,
-    IconCopy,
-    IconMessage,
-    IconDatabaseExport,
-    IconAdjustmentsHorizontal,
-    IconUsers,
-    IconTemplate
+    IconTrash: iconComponent('Trash'),
+    IconFileUpload: iconComponent('FileArrowUp'),
+    IconFileExport: iconComponent('Export'),
+    IconCopy: iconComponent('Copy'),
+    IconMessage: iconComponent('ChatText'),
+    IconDatabaseExport: iconComponent('Export'),
+    IconAdjustmentsHorizontal: iconComponent('SlidersHorizontal'),
+    IconUsers: iconComponent('Users'),
+    IconTemplate: iconComponent('Layout')
 }
 
 // ==============================|| SETTINGS MENU ITEMS ||============================== //

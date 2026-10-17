@@ -15,12 +15,11 @@ import {
     TableBody
 } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import { IconHierarchy, IconUsersGroup, IconScale } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 import { useSelector } from 'react-redux'
 import { evaluators as evaluatorsOptions, numericOperators } from '../evaluators/evaluatorConstant'
 import TableCell from '@mui/material/TableCell'
-import { Close } from '@mui/icons-material'
 import { useLanguage } from '@/store/context/LanguageContext'
 
 const EvaluationResultSideDrawer = ({ show, dialogProps, onClickFunction }) => {
@@ -42,19 +41,19 @@ const EvaluationResultSideDrawer = ({ show, dialogProps, onClickFunction }) => {
 
     const getFlowIcon = (index) => {
         if (index === undefined) {
-            return <IconHierarchy size={24} />
+            return <AppIcon name='TreeStructure' size={24} />
         }
         if (dialogProps.additionalConfig.chatflowTypes) {
             switch (dialogProps.additionalConfig.chatflowTypes[index]) {
                 case 'Chatflow':
-                    return <IconHierarchy size={20} />
+                    return <AppIcon name='TreeStructure' size={20} />
                 case 'Custom Assistant':
-                    return <IconScale size={20} />
+                    return <AppIcon name='Scales' size={20} />
                 case 'Agentflow v2':
-                    return <IconUsersGroup size={20} />
+                    return <AppIcon name='UsersThree' size={20} />
             }
         }
-        return <IconHierarchy />
+        return <AppIcon name='TreeStructure' />
     }
 
     return (
@@ -70,7 +69,7 @@ const EvaluationResultSideDrawer = ({ show, dialogProps, onClickFunction }) => {
                 <Typography variant='overline' sx={{ margin: 1, fontWeight: 'bold' }}>
                     {t('Evaluation Details')}
                 </Typography>
-                <Button endIcon={<Close />} onClick={() => onClickFunction()} aria-label={t('Close')} />
+                <Button endIcon={<AppIcon name='X' />} onClick={() => onClickFunction()} aria-label={t('Close')} />
             </div>
             <Box sx={{ width: 600, p: 2 }} role='presentation'>
                 <Box>

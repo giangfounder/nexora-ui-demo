@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types'
 import { useState, useCallback } from 'react'
 import { DataGrid as MUIDataGrid, GridActionsCellItem } from '@mui/x-data-grid'
-import { IconPlus } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { Button } from '@mui/material'
-import DeleteIcon from '@mui/icons-material/Delete'
 import { cloneDeep } from 'lodash'
 import { formatDataGridRows } from '@/utils/genericHelper'
 import { alpha, styled } from '@mui/material/styles'
@@ -61,7 +60,12 @@ export const DataGrid = ({ columns, rows, style, disabled = false, hideFooter = 
                 type: 'actions',
                 width: 80,
                 getActions: (params) => [
-                    <GridActionsCellItem key={'Delete'} icon={<DeleteIcon />} label={t('Delete')} onClick={deleteItem(params.id)} />
+                    <GridActionsCellItem
+                        key={'Delete'}
+                        icon={<AppIcon name='Trash' />}
+                        label={t('Delete')}
+                        onClick={deleteItem(params.id)}
+                    />
                 ]
             }
         ]
@@ -121,7 +125,7 @@ export const DataGrid = ({ columns, rows, style, disabled = false, hideFooter = 
                 </div>
             )}
             {!disabled && (
-                <Button sx={{ mt: 1 }} variant='outlined' onClick={addNewRow} startIcon={<IconPlus />}>
+                <Button sx={{ mt: 1 }} variant='outlined' onClick={addNewRow} startIcon={<AppIcon name='Plus' />}>
                     {t('Add Item')}
                 </Button>
             )}

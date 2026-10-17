@@ -50,15 +50,7 @@ import useConfirm from '@/hooks/useConfirm'
 import { useLanguage } from '@/store/context/LanguageContext'
 
 // icons
-import { IconPlus, IconRefresh, IconX, IconVectorBezier2 } from '@tabler/icons-react'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import FileDeleteIcon from '@mui/icons-material/Delete'
-import FileEditIcon from '@mui/icons-material/Edit'
-import FileChunksIcon from '@mui/icons-material/AppRegistration'
-import NoteAddIcon from '@mui/icons-material/NoteAdd'
-import SearchIcon from '@mui/icons-material/Search'
-import RefreshIcon from '@mui/icons-material/Refresh'
-import CodeIcon from '@mui/icons-material/Code'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import doc_store_details_emptySVG from '@/assets/images/doc_store_details_empty.svg'
 
 // store
@@ -192,7 +184,7 @@ const DocumentStoreDetails = () => {
                             variant: 'success',
                             action: (key) => (
                                 <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                    <IconX />
+                                    <AppIcon name='X' />
                                 </Button>
                             )
                         }
@@ -212,7 +204,7 @@ const DocumentStoreDetails = () => {
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -233,7 +225,7 @@ const DocumentStoreDetails = () => {
                             variant: 'success',
                             action: (key) => (
                                 <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                    <IconX />
+                                    <AppIcon name='X' />
                                 </Button>
                             )
                         }
@@ -253,7 +245,7 @@ const DocumentStoreDetails = () => {
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -366,7 +358,7 @@ const DocumentStoreDetails = () => {
                             variant: 'success',
                             action: (key) => (
                                 <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                    <IconX />
+                                    <AppIcon name='X' />
                                 </Button>
                             )
                         }
@@ -384,7 +376,7 @@ const DocumentStoreDetails = () => {
                         variant: 'error',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -482,14 +474,14 @@ const DocumentStoreDetails = () => {
                                     color='primary'
                                     title={t('Refresh Document Store')}
                                 >
-                                    <IconRefresh />
+                                    <AppIcon name='ArrowClockwise' />
                                 </PermissionIconButton>
                             )}
                             <StyledPermissionButton
                                 permissionId={'documentStores:add-loader'}
                                 variant='contained'
                                 sx={{ ml: 2, minWidth: 200, borderRadius: 2, height: '100%', color: 'white' }}
-                                startIcon={<IconPlus size={18} stroke={1.75} />}
+                                startIcon={<AppIcon name='Plus' size={18} />}
                                 onClick={listLoaders}
                             >
                                 {t('Add Document Loader')}
@@ -504,7 +496,7 @@ const DocumentStoreDetails = () => {
                                 color='secondary'
                                 onClick={handleClick}
                                 sx={{ minWidth: 150 }}
-                                endIcon={<KeyboardArrowDownIcon />}
+                                endIcon={<AppIcon name='CaretDown' />}
                             >
                                 {t('More Actions')}
                             </Button>
@@ -525,7 +517,7 @@ const DocumentStoreDetails = () => {
                                     }}
                                     disableRipple
                                 >
-                                    <FileChunksIcon />
+                                    <AppIcon name='SquaresFour' />
                                     {t('View & Edit Chunks')}
                                 </MenuItem>
                                 <Available permission={'documentStores:upsert-config'}>
@@ -537,7 +529,7 @@ const DocumentStoreDetails = () => {
                                         }}
                                         disableRipple
                                     >
-                                        <NoteAddIcon />
+                                        <AppIcon name='FilePlus' />
                                         {t('Upsert All Chunks')}
                                     </MenuItem>
                                 </Available>
@@ -549,7 +541,7 @@ const DocumentStoreDetails = () => {
                                     }}
                                     disableRipple
                                 >
-                                    <SearchIcon />
+                                    <AppIcon name='MagnifyingGlass' />
                                     {t('Retrieval Query')}
                                 </MenuItem>
                                 <Available permission={'documentStores:upsert-config'}>
@@ -559,7 +551,7 @@ const DocumentStoreDetails = () => {
                                         disableRipple
                                         title={t('Re-process all loaders and upsert all chunks')}
                                     >
-                                        <RefreshIcon />
+                                        <AppIcon name='ArrowClockwise' />
                                         {t('Refresh')}
                                     </MenuItem>
                                 </Available>
@@ -571,7 +563,7 @@ const DocumentStoreDetails = () => {
                                     }}
                                     disableRipple
                                 >
-                                    <FileDeleteIcon />
+                                    <AppIcon name='Trash' />
                                     {t('Delete')}
                                 </MenuItem>
                             </StyledMenu>
@@ -592,7 +584,7 @@ const DocumentStoreDetails = () => {
                                         alignItems: 'center'
                                     }}
                                 >
-                                    <IconVectorBezier2 style={{ marginRight: 5 }} size={17} />
+                                    <AppIcon name='BezierCurve' style={{ marginRight: 5 }} size={17} />
                                     {t('Chatflows Used')}:
                                 </div>
                                 {getSpecificDocumentStore.data.whereUsed.map((chatflowUsed, index) => (
@@ -623,7 +615,7 @@ const DocumentStoreDetails = () => {
                                 <StyledButton
                                     variant='contained'
                                     sx={{ borderRadius: 2, height: '100%', mt: 2, color: 'white' }}
-                                    startIcon={<IconPlus size={18} stroke={1.75} />}
+                                    startIcon={<AppIcon name='Plus' size={18} />}
                                     onClick={listLoaders}
                                 >
                                     {t('Add Document Loader')}
@@ -857,7 +849,7 @@ function LoaderRow(props) {
                                 aria-expanded={open ? 'true' : undefined}
                                 disableElevation
                                 onClick={(e) => handleClick(e)}
-                                endIcon={<KeyboardArrowDownIcon />}
+                                endIcon={<AppIcon name='CaretDown' />}
                             >
                                 {t('Options')}
                             </Button>
@@ -878,7 +870,7 @@ function LoaderRow(props) {
                                         }}
                                         disableRipple
                                     >
-                                        <FileEditIcon />
+                                        <AppIcon name='PencilSimpleLine' />
                                         {t('Preview & Process')}
                                     </MenuItem>
                                 </Available>
@@ -890,7 +882,7 @@ function LoaderRow(props) {
                                         }}
                                         disableRipple
                                     >
-                                        <FileChunksIcon />
+                                        <AppIcon name='SquaresFour' />
                                         {t('View & Edit Chunks')}
                                     </MenuItem>
                                 </Available>
@@ -902,7 +894,7 @@ function LoaderRow(props) {
                                         }}
                                         disableRipple
                                     >
-                                        <NoteAddIcon />
+                                        <AppIcon name='FilePlus' />
                                         {t('Upsert Chunks')}
                                     </MenuItem>
                                 </Available>
@@ -914,7 +906,7 @@ function LoaderRow(props) {
                                         }}
                                         disableRipple
                                     >
-                                        <CodeIcon />
+                                        <AppIcon name='Code' />
                                         {t('View API')}
                                     </MenuItem>
                                 </Available>
@@ -927,7 +919,7 @@ function LoaderRow(props) {
                                         }}
                                         disableRipple
                                     >
-                                        <FileDeleteIcon />
+                                        <AppIcon name='Trash' />
                                         {t('Delete')}
                                     </MenuItem>
                                 </Available>

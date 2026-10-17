@@ -3,8 +3,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 // material-ui
-import { Check } from '@mui/icons-material'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import {
     Dialog,
     DialogContent,
@@ -260,7 +259,7 @@ const WorkspaceSwitcher = () => {
                         aria-expanded={open ? 'true' : undefined}
                         disableElevation
                         onClick={handleClick}
-                        endIcon={<KeyboardArrowDownIcon />}
+                        endIcon={<AppIcon name='CaretDown' />}
                     >
                         {user.activeWorkspace}
                     </Button>
@@ -284,7 +283,7 @@ const WorkspaceSwitcher = () => {
                                 {item.id === user.activeWorkspaceId ? (
                                     <>
                                         <ListItemIcon>
-                                            <Check />
+                                            <AppIcon name='Check' />
                                         </ListItemIcon>
                                         <ListItemText>{item.name}</ListItemText>
                                     </>

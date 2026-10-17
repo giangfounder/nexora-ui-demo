@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import { Stack, Box, Typography, TextField, Dialog, DialogContent, ButtonBase, Avatar } from '@mui/material'
 import NodeInputHandler from '@/views/canvas/NodeInputHandler'
 import { HIDE_CANVAS_DIALOG, SHOW_CANVAS_DIALOG } from '@/store/actions'
-import { IconPencil, IconX, IconCheck, IconInfoCircle } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { alpha, useTheme } from '@mui/material/styles'
 import { flowContext } from '@/store/context/ReactFlowContext'
 import { applyVisibleInputDefaults, showHideInputParams } from '@/utils/genericHelper'
@@ -154,7 +154,7 @@ const EditNodeDialog = ({ show, dialogProps, onCancel }) => {
                                             color='inherit'
                                             onClick={() => setEditingNodeName(true)}
                                         >
-                                            <IconPencil stroke={1.75} size='1rem' />
+                                            <AppIcon name='PencilSimple' size='1rem' />
                                         </Avatar>
                                     </ButtonBase>
                                 )}
@@ -200,7 +200,7 @@ const EditNodeDialog = ({ show, dialogProps, onCancel }) => {
                                             setEditingNodeName(false)
                                         }}
                                     >
-                                        <IconCheck stroke={1.75} size='1rem' />
+                                        <AppIcon name='Check' size='1rem' />
                                     </Avatar>
                                 </ButtonBase>
                                 <ButtonBase title={t('Cancel')} sx={{ borderRadius: '6px' }}>
@@ -216,7 +216,7 @@ const EditNodeDialog = ({ show, dialogProps, onCancel }) => {
                                         color='inherit'
                                         onClick={() => setEditingNodeName(false)}
                                     >
-                                        <IconX stroke={1.75} size='1rem' />
+                                        <AppIcon name='X' size='1rem' />
                                     </Avatar>
                                 </ButtonBase>
                             </Stack>
@@ -239,7 +239,7 @@ const EditNodeDialog = ({ show, dialogProps, onCancel }) => {
                             border: `1px solid ${customization.isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)'}`
                         }}
                     >
-                        <IconInfoCircle size='1rem' stroke={1.75} color={theme.palette.info.main} style={{ marginRight: '6px' }} />
+                        <AppIcon name='Info' size='1rem' color={theme.palette.info.main} style={{ marginRight: '6px' }} />
                         <Typography
                             variant='caption'
                             color='text.secondary'

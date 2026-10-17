@@ -3,20 +3,18 @@ import { useState } from 'react'
 // material-ui
 import { alpha, useTheme } from '@mui/material/styles'
 import { Box, Button, IconButton, Stack, Table, TableBody, TableHead, TableRow, TextField, Tooltip, Typography } from '@mui/material'
-import { IconArrowBackUp, IconDeviceFloppy, IconEdit, IconPlus, IconTrash } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // project imports
 import CriterionFormDialog from './CriterionFormDialog'
 import { useLanguage } from '@/store/context/LanguageContext'
-import { SharedTableCell, SharedTableContainer, SharedTableRow, StatusDot } from '@/ui-component/table/SharedTable'
+import { SharedTableCell, SharedTableContainer, SharedTableRow, StatusIcon } from '@/ui-component/table/SharedTable'
 import { mockEmployees } from '@/views/employees/mockEmployees'
 import { DEFAULT_AI_PROMPT, mockPrismCriteria } from './mockPrism'
 
-const ICON_STROKE = 1.75
-
 const STATUS = {
-    active: { tone: 'emerald', label: 'Đang áp dụng' },
-    draft: { tone: 'amber', label: 'Nháp' }
+    active: { tone: 'emerald', label: 'Đang áp dụng', icon: 'CheckCircle' },
+    draft: { tone: 'amber', label: 'Nháp', icon: 'NotePencil' }
 }
 
 const formatDate = (iso, locale) => {
@@ -87,19 +85,19 @@ const CriteriaTab = () => {
                     </Typography>
                 </Stack>
                 <Stack direction='row' spacing={1}>
-                    <Button startIcon={<IconArrowBackUp size={16} stroke={ICON_STROKE} />} disabled={!dirty} onClick={revert} size='small'>
+                    <Button startIcon={<AppIcon name='ArrowUUpLeft' size={16} />} disabled={!dirty} onClick={revert} size='small'>
                         {t('Hoàn tác')}
                     </Button>
                     <Button
                         variant='outlined'
-                        startIcon={<IconDeviceFloppy size={16} stroke={ICON_STROKE} />}
+                        startIcon={<AppIcon name='FloppyDisk' size={16} />}
                         disabled={!dirty}
                         onClick={save}
                         size='small'
                     >
                         {t('Lưu')}
                     </Button>
-                    <Button variant='contained' startIcon={<IconPlus size={16} stroke={ICON_STROKE} />} onClick={openAdd} size='small'>
+                    <Button variant='contained' startIcon={<AppIcon name='Plus' size={16} />} onClick={openAdd} size='small'>
                         {t('Thêm tiêu chí')}
                     </Button>
                 </Stack>
@@ -152,7 +150,7 @@ const CriteriaTab = () => {
                                     </SharedTableCell>
                                     <SharedTableCell sx={{ whiteSpace: 'nowrap' }}>
                                         <Stack direction='row' spacing={0.75} alignItems='center'>
-                                            <StatusDot tone={status.tone} size={7} />
+                                            <StatusIcon tone={status.tone} icon={status.icon} />
                                             <span>{t(status.label)}</span>
                                         </Stack>
                                     </SharedTableCell>
@@ -163,7 +161,7 @@ const CriteriaTab = () => {
                                                 onClick={() => openEdit(c)}
                                                 aria-label={t('Chỉnh sửa {name}', { name: c.name })}
                                             >
-                                                <IconEdit size={16} stroke={ICON_STROKE} />
+                                                <AppIcon name='PencilSimpleLine' size={16} />
                                             </IconButton>
                                         </Tooltip>
                                         <Tooltip title={t('Xoá')}>
@@ -176,7 +174,7 @@ const CriteriaTab = () => {
                                                     '&:hover': { color: 'error.main', bgcolor: alpha(theme.palette.error.main, 0.08) }
                                                 }}
                                             >
-                                                <IconTrash size={16} stroke={ICON_STROKE} />
+                                                <AppIcon name='Trash' size={16} />
                                             </IconButton>
                                         </Tooltip>
                                     </SharedTableCell>

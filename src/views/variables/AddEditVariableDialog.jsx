@@ -12,7 +12,7 @@ import { StyledButton } from '@/ui-component/button/StyledButton'
 import ConfirmDialog from '@/ui-component/dialog/ConfirmDialog'
 
 // Icons
-import { IconX, IconVariable } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // API
 import variablesApi from '@/api/variables'
@@ -106,7 +106,7 @@ const AddEditVariableDialog = ({ show, dialogProps, onCancel, onConfirm, setErro
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -125,7 +125,7 @@ const AddEditVariableDialog = ({ show, dialogProps, onCancel, onConfirm, setErro
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -151,7 +151,7 @@ const AddEditVariableDialog = ({ show, dialogProps, onCancel, onConfirm, setErro
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -170,7 +170,7 @@ const AddEditVariableDialog = ({ show, dialogProps, onCancel, onConfirm, setErro
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -190,7 +190,7 @@ const AddEditVariableDialog = ({ show, dialogProps, onCancel, onConfirm, setErro
         >
             <DialogTitle sx={{ fontSize: '1rem' }} id='alert-dialog-title'>
                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                    <IconVariable style={{ marginRight: '10px' }} />
+                    <AppIcon name='BracketsSquare' style={{ marginRight: '10px' }} />
                     {dialogProps.type === 'ADD' ? 'Add Variable' : 'Edit Variable'}
                 </div>
             </DialogTitle>

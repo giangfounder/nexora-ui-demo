@@ -11,7 +11,7 @@ import { StyledButton } from '@/ui-component/button/StyledButton'
 import ConfirmDialog from '@/ui-component/dialog/ConfirmDialog'
 
 // Icons
-import { IconX, IconUsersGroup } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // API
 import workspaceApi from '@/api/workspace'
@@ -88,7 +88,7 @@ const AddEditWorkspaceDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -112,7 +112,7 @@ const AddEditWorkspaceDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -130,7 +130,7 @@ const AddEditWorkspaceDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -158,7 +158,7 @@ const AddEditWorkspaceDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -176,7 +176,7 @@ const AddEditWorkspaceDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -196,7 +196,7 @@ const AddEditWorkspaceDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
         >
             <DialogTitle sx={{ fontSize: '1rem' }} id='alert-dialog-title'>
                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                    <IconUsersGroup style={{ marginRight: '10px' }} />
+                    <AppIcon name='UsersThree' style={{ marginRight: '10px' }} />
                     {dialogProps.type === 'ADD' ? t('Add Workspace') : t('Edit Workspace')}
                 </div>
             </DialogTitle>

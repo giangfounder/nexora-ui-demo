@@ -25,19 +25,7 @@ import {
     useTheme
 } from '@mui/material'
 import { alpha } from '@mui/material/styles'
-import {
-    IconAdjustmentsHorizontal,
-    IconAlertTriangleFilled,
-    IconArrowLeft,
-    IconArrowsMaximize,
-    IconArrowsMinimize,
-    IconDeviceFloppy,
-    IconFocus2,
-    IconLayoutDistributeHorizontal,
-    IconPlayerPlayFilled,
-    IconPlus,
-    IconX
-} from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 import assistantsApi from '@/api/assistants'
 import documentStoreApi from '@/api/documentstore'
@@ -292,7 +280,7 @@ const StudioPage = () => {
                             onClick={() => navigate('/assistants')}
                             sx={{ width: 32, height: 32, borderRadius: '6px' }}
                         >
-                            <IconArrowLeft size={18} stroke={1.75} />
+                            <AppIcon name='ArrowLeft' size={18} />
                         </IconButton>
                     </Tooltip>
                     <Typography variant='body2' color='text.secondary' sx={{ display: { xs: 'none', md: 'block' } }}>
@@ -326,7 +314,7 @@ const StudioPage = () => {
                                 setSelectedId(null)
                                 openPanel('config')
                             }}
-                            startIcon={<IconAlertTriangleFilled size={16} />}
+                            startIcon={<AppIcon name='Warning' size={16} />}
                             sx={{ color: theme.palette.mode === 'dark' ? theme.palette.warning.light : theme.palette.warning.dark }}
                         >
                             {issues.list.length} cần xử lý
@@ -337,7 +325,7 @@ const StudioPage = () => {
                     <Divider orientation='vertical' flexItem sx={{ my: 1.5 }} />
                     <Button
                         variant='outlined'
-                        startIcon={<IconAdjustmentsHorizontal size={16} stroke={1.75} />}
+                        startIcon={<AppIcon name='SlidersHorizontal' size={16} />}
                         onClick={() => {
                             setSelectedId(null)
                             openPanel('config')
@@ -345,10 +333,10 @@ const StudioPage = () => {
                     >
                         Cài đặt
                     </Button>
-                    <Button variant='outlined' startIcon={<IconPlayerPlayFilled size={14} />} onClick={() => openPanel('chat')}>
+                    <Button variant='outlined' startIcon={<AppIcon name='Play' size={14} />} onClick={() => openPanel('chat')}>
                         Thử
                     </Button>
-                    <Button variant='contained' startIcon={<IconDeviceFloppy size={16} stroke={1.75} />} onClick={save} disabled={!dirty}>
+                    <Button variant='contained' startIcon={<AppIcon name='FloppyDisk' size={16} />} onClick={save} disabled={!dirty}>
                         Lưu
                     </Button>
                 </Stack>
@@ -419,7 +407,7 @@ const StudioPage = () => {
                     <Stack direction='row' spacing={1} sx={{ position: 'absolute', top: 16, left: 16, zIndex: 6 }}>
                         <Button
                             variant='contained'
-                            startIcon={<IconPlus size={16} />}
+                            startIcon={<AppIcon name='Plus' size={16} />}
                             onClick={(e) => setAddMenu({ anchor: e.currentTarget, column: null })}
                         >
                             Thêm
@@ -434,7 +422,7 @@ const StudioPage = () => {
                                         setTimeout(() => rf?.fitView({ padding: 0.18, maxZoom: 1, duration: 400 }), 60)
                                     }}
                                 >
-                                    <IconLayoutDistributeHorizontal size={18} stroke={1.75} />
+                                    <AppIcon name='AlignCenterHorizontal' size={18} />
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title='Vừa khung nhìn'>
@@ -443,7 +431,7 @@ const StudioPage = () => {
                                     aria-label='Vừa khung nhìn'
                                     onClick={() => rf?.fitView({ padding: 0.18, maxZoom: 1, duration: 400 })}
                                 >
-                                    <IconFocus2 size={18} stroke={1.75} />
+                                    <AppIcon name='Crosshair' size={18} />
                                 </IconButton>
                             </Tooltip>
                         </Stack>
@@ -568,16 +556,12 @@ const StudioPage = () => {
                                     aria-label={panel.wide ? 'Thu hẹp panel' : 'Mở rộng panel'}
                                     onClick={() => setPanel((p) => ({ ...p, wide: !p.wide }))}
                                 >
-                                    {panel.wide ? (
-                                        <IconArrowsMinimize size={16} stroke={1.75} />
-                                    ) : (
-                                        <IconArrowsMaximize size={16} stroke={1.75} />
-                                    )}
+                                    {panel.wide ? <AppIcon name='ArrowsIn' size={16} /> : <AppIcon name='ArrowsOut' size={16} />}
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title='Đóng'>
                                 <IconButton size='small' aria-label='Đóng panel' onClick={() => setPanel((p) => ({ ...p, open: false }))}>
-                                    <IconX size={18} stroke={1.75} />
+                                    <AppIcon name='X' size={18} />
                                 </IconButton>
                             </Tooltip>
                         </Stack>

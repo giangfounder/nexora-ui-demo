@@ -28,7 +28,7 @@ import { StyledButton } from '@/ui-component/button/StyledButton'
 import ConfirmDialog from '@/ui-component/dialog/ConfirmDialog'
 
 // Icons
-import { IconX, IconCircleCheck, IconUser } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // API
 import accountApi from '@/api/account.api'
@@ -301,7 +301,7 @@ const InviteUsersDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                         variant: 'error',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -351,7 +351,7 @@ const InviteUsersDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -372,7 +372,7 @@ const InviteUsersDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -433,7 +433,7 @@ const InviteUsersDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                     variant: 'warning',
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -546,7 +546,7 @@ const InviteUsersDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                             <Typography variant='h5'>{option.user.name}</Typography>
                             <Typography>{option.user.email}</Typography>
                         </Stack>
-                        {isOptionSelected ? <IconCircleCheck /> : null}
+                        {isOptionSelected ? <AppIcon name='CheckCircle' /> : null}
                     </Box>
                 )}
             </li>
@@ -641,7 +641,7 @@ const InviteUsersDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
         >
             <DialogTitle sx={{ fontSize: '1rem' }} id='alert-dialog-title'>
                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                    <IconUser style={{ marginRight: '10px' }} />
+                    <AppIcon name='User' style={{ marginRight: '10px' }} />
                     {t('Invite Users')}
                 </div>
             </DialogTitle>

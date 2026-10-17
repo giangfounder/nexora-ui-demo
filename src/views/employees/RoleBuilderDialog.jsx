@@ -18,7 +18,7 @@ import {
     Typography
 } from '@mui/material'
 import { FormField, useSheetShell } from '@/hooks/useDialogShell'
-import { IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 import { StyledButton } from '@/ui-component/button/StyledButton'
 import { SharedTableCell, SharedTableContainer } from '@/ui-component/table/SharedTable'
@@ -100,7 +100,7 @@ const RoleBuilderDialog = ({ show, role, onCancel, onSave }) => {
                             '&:hover': { bgcolor: alpha(theme.palette.text.primary, 0.06), color: 'text.primary' }
                         }}
                     >
-                        <IconX size={16} strokeWidth={2.5} />
+                        <AppIcon name='X' size={16} />
                     </IconButton>
                 </Box>
 

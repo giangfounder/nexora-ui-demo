@@ -3,12 +3,12 @@ import { useEffect, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { alpha, useTheme } from '@mui/material/styles'
-import { Avatar, Box, Button, Checkbox, Drawer, IconButton, MenuItem, Stack, TextField, Typography } from '@mui/material'
-import { IconCrown, IconX } from '@tabler/icons-react'
+import { Box, Button, Checkbox, Drawer, IconButton, MenuItem, Stack, TextField, Typography } from '@mui/material'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 import { useLanguage } from '@/store/context/LanguageContext'
 import { FormField, useSheetShell } from '@/hooks/useDialogShell'
-import { getAvatarColorKey, getInitials } from '@/views/customers/utils'
+import PersonAvatar from '@/ui-component/avatar/PersonAvatar'
 
 const emptyTeam = { id: '', name: '', description: '', leaderId: '', memberIds: [], color: 'primary' }
 const COLOR_OPTIONS = ['primary', 'success', 'warning', 'secondary', 'error']
@@ -59,7 +59,7 @@ const TeamFormDialog = ({ show, team, employees, onCancel, onSave }) => {
                             '&:hover': { bgcolor: alpha(theme.palette.text.primary, 0.06), color: 'text.primary' }
                         }}
                     >
-                        <IconX size={16} strokeWidth={2.5} />
+                        <AppIcon name='X' size={16} />
                     </IconButton>
                 </Box>
 
@@ -86,13 +86,10 @@ const TeamFormDialog = ({ show, team, employees, onCancel, onSave }) => {
                                 {COLOR_OPTIONS.map((c) => (
                                     <MenuItem key={c} value={c}>
                                         <Stack direction='row' spacing={1} alignItems='center'>
-                                            <Box
-                                                sx={{
-                                                    width: 12,
-                                                    height: 12,
-                                                    borderRadius: '50%',
-                                                    bgcolor: theme.palette[c]?.main || theme.palette.primary.main
-                                                }}
+                                            <AppIcon
+                                                name='UsersThree'
+                                                size={16}
+                                                color={theme.palette[c]?.main || theme.palette.primary.main}
                                             />
                                             {t(COLOR_LABEL[c] || c)}
                                         </Stack>
@@ -120,7 +117,6 @@ const TeamFormDialog = ({ show, team, employees, onCancel, onSave }) => {
                         <Box sx={{ border: `1px solid ${alphaBorder}`, borderRadius: 1.5, maxHeight: 320, overflowY: 'auto' }}>
                             {activeEmployees.map((emp, idx) => {
                                 const selected = form.memberIds.includes(emp.id)
-                                const colorKey = getAvatarColorKey(emp.name)
                                 const isLeader = form.leaderId === emp.id
                                 return (
                                     <Box
@@ -137,18 +133,7 @@ const TeamFormDialog = ({ show, team, employees, onCancel, onSave }) => {
                                         }}
                                     >
                                         <Checkbox size='small' checked={selected} onChange={() => toggleMember(emp.id)} />
-                                        <Avatar
-                                            sx={{
-                                                width: 30,
-                                                height: 30,
-                                                fontSize: '0.75rem',
-                                                fontWeight: 600,
-                                                bgcolor: alpha(theme.palette[colorKey].main, isDark ? 0.24 : 0.15),
-                                                color: isDark ? theme.palette[colorKey].light : theme.palette[colorKey].dark
-                                            }}
-                                        >
-                                            {getInitials(emp.name)}
-                                        </Avatar>
+                                        <PersonAvatar name={emp.name} size={30} />
                                         <Stack sx={{ flex: 1, minWidth: 0 }}>
                                             <Typography sx={{ fontWeight: 500, fontSize: '0.875rem' }} noWrap>
                                                 {emp.name}
@@ -192,7 +177,7 @@ const TeamFormDialog = ({ show, team, employees, onCancel, onSave }) => {
                                                     )}`
                                                 }}
                                             >
-                                                {isLeader && <IconCrown size={12} strokeWidth={2.5} />}
+                                                {isLeader && <AppIcon name='Crown' size={12} />}
                                                 {isLeader ? t('Trưởng nhóm') : t('Đặt làm trưởng nhóm')}
                                             </Box>
                                         )}

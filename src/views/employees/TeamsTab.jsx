@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types'
 
 import { alpha, useTheme } from '@mui/material/styles'
-import { Avatar, AvatarGroup, Box, Card, IconButton, Stack, Tooltip, Typography } from '@mui/material'
-import { IconCrown, IconEdit, IconPlus, IconTrash, IconUsers } from '@tabler/icons-react'
+import { AvatarGroup, Box, Card, IconButton, Stack, Tooltip, Typography } from '@mui/material'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 import { useLanguage } from '@/store/context/LanguageContext'
-import { getAvatarColorKey, getInitials } from '@/views/customers/utils'
+import PersonAvatar from '@/ui-component/avatar/PersonAvatar'
 
-const ICON_STROKE = 1.75
 const TEAM_TONE = { primary: 'orange', success: 'emerald', warning: 'amber', secondary: 'teal', error: 'rose' }
 
 const TeamsTab = ({ teams, employees, onCreate, onEdit, onDelete }) => {
@@ -62,7 +61,7 @@ const TeamsTab = ({ teams, employees, onCreate, onEdit, onDelete }) => {
                             <Stack direction='row' justifyContent='space-between' alignItems='flex-start' spacing={1}>
                                 <Stack direction='row' spacing={1} alignItems='center' sx={{ minWidth: 0 }}>
                                     <Box sx={{ display: 'flex', color: 'text.secondary', flexShrink: 0 }}>
-                                        <IconUsers size={18} stroke={ICON_STROKE} />
+                                        <AppIcon name='Users' size={18} />
                                     </Box>
                                     <Typography sx={{ fontWeight: 600 }} noWrap>
                                         {team.name}
@@ -76,7 +75,7 @@ const TeamsTab = ({ teams, employees, onCreate, onEdit, onDelete }) => {
                                             onClick={() => onEdit(team)}
                                             sx={{ color: 'text.secondary' }}
                                         >
-                                            <IconEdit size={16} stroke={ICON_STROKE} />
+                                            <AppIcon name='PencilSimpleLine' size={16} />
                                         </IconButton>
                                     </Tooltip>
                                     <Tooltip title={t('Xoá')}>
@@ -89,7 +88,7 @@ const TeamsTab = ({ teams, employees, onCreate, onEdit, onDelete }) => {
                                                 '&:hover': { color: 'error.main', bgcolor: alpha(theme.palette.error.main, 0.08) }
                                             }}
                                         >
-                                            <IconTrash size={16} stroke={ICON_STROKE} />
+                                            <AppIcon name='Trash' size={16} />
                                         </IconButton>
                                     </Tooltip>
                                 </Stack>
@@ -103,7 +102,7 @@ const TeamsTab = ({ teams, employees, onCreate, onEdit, onDelete }) => {
 
                             <Stack direction='row' alignItems='center' sx={{ flexWrap: 'wrap', gap: 0.75 }}>
                                 {softChip(t('{n} thành viên', { n: members.length }), tone)}
-                                {leader && softChip(leader.name, tone, <IconCrown size={12} stroke={ICON_STROKE} />)}
+                                {leader && softChip(leader.name, tone, <AppIcon name='Crown' size={12} />)}
                             </Stack>
 
                             <AvatarGroup
@@ -114,17 +113,9 @@ const TeamsTab = ({ teams, employees, onCreate, onEdit, onDelete }) => {
                                 }}
                             >
                                 {members.map((m) => {
-                                    const colorKey = getAvatarColorKey(m.name)
                                     return (
                                         <Tooltip key={m.id} title={m.name}>
-                                            <Avatar
-                                                sx={{
-                                                    bgcolor: alpha(theme.palette[colorKey].main, isDark ? 0.24 : 0.15),
-                                                    color: isDark ? theme.palette[colorKey].light : theme.palette[colorKey].dark
-                                                }}
-                                            >
-                                                {getInitials(m.name)}
-                                            </Avatar>
+                                            <PersonAvatar name={m.name} size={28} />
                                         </Tooltip>
                                     )
                                 })}
@@ -157,7 +148,7 @@ const TeamsTab = ({ teams, employees, onCreate, onEdit, onDelete }) => {
                 }}
             >
                 <Stack alignItems='center' spacing={1} sx={{ color: 'text.secondary' }}>
-                    <IconPlus size={20} stroke={ICON_STROKE} />
+                    <AppIcon name='Plus' size={20} />
                     <Typography variant='body2' color='text.secondary'>
                         {t('Tạo nhóm')}
                     </Typography>

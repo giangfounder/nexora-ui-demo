@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { alpha } from '@mui/material/styles'
 import { Box, ButtonBase, Stack, Typography } from '@mui/material'
-import { IconArrowRight } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 import { CHANNELS } from '@/views/omnichannel/mockConversations'
 import { getChannelIcon } from '@/views/omnichannel/utils'
@@ -136,7 +136,7 @@ const OrbitHero = ({ t, openCount, needsHuman, channels, onOpenInbox }) => {
                             border: `1px solid ${alpha('#F43F5E', 0.35)}`
                         }}
                     >
-                        <Box sx={{ width: 7, height: 7, borderRadius: '50%', bgcolor: '#FB7185' }} />
+                        <AppIcon name='BellRinging' size={14} color='#FB7185' />
                         {t('{n} cần xử lý', { n: needsHuman })}
                     </Box>
                     <ButtonBase
@@ -157,7 +157,7 @@ const OrbitHero = ({ t, openCount, needsHuman, channels, onOpenInbox }) => {
                         }}
                     >
                         {t('Mở hộp thư')}
-                        <IconArrowRight size={15} stroke={2} />
+                        <AppIcon name='ArrowRight' size={15} />
                     </ButtonBase>
                 </Stack>
             </Stack>

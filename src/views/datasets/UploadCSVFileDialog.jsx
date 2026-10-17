@@ -16,7 +16,7 @@ import { File } from '@/ui-component/file/File'
 import { TooltipWithParser } from '@/ui-component/tooltip/TooltipWithParser'
 
 // Icons
-import { IconX, IconDatabase } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // API
 import datasetApi from '@/api/dataset'
@@ -90,7 +90,7 @@ const UploadCSVFileDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -108,7 +108,7 @@ const UploadCSVFileDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -137,7 +137,8 @@ const UploadCSVFileDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                             backgroundColor: theme.palette.background.paper
                         }}
                     >
-                        <IconDatabase
+                        <AppIcon
+                            name='Database'
                             style={{
                                 width: '100%',
                                 height: '100%',

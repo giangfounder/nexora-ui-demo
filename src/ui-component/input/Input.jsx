@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { FormControl, OutlinedInput, InputBase, Popover, InputAdornment, IconButton } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import { IconEye, IconEyeOff } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import SelectVariable from '@/ui-component/json/SelectVariable'
 import { getAvailableNodesForVariable } from '@/utils/genericHelper'
 import { useLanguage } from '@/store/context/LanguageContext'
@@ -157,7 +157,7 @@ export const Input = ({ inputParam, value, nodes, edges, nodeId, onChange, onBlu
                                         onMouseDown={(e) => e.preventDefault()}
                                         aria-label={isPasswordVisible ? t('Hide') : t('Show')}
                                     >
-                                        {isPasswordVisible ? <IconEyeOff size={18} /> : <IconEye size={18} />}
+                                        {isPasswordVisible ? <AppIcon name='EyeSlash' size={18} /> : <AppIcon name='Eye' size={18} />}
                                     </IconButton>
                                 </InputAdornment>
                             ) : undefined

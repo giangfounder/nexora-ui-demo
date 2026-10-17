@@ -35,7 +35,7 @@ import { TooltipWithParser } from '@/ui-component/tooltip/TooltipWithParser'
 import { MultiDropdown } from '@/ui-component/dropdown/MultiDropdown'
 
 // Icons
-import { IconArrowLeft, IconAlertTriangle, IconTestPipe2 } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // API
 import chatflowsApi from '@/api/chatflows'
@@ -396,7 +396,7 @@ const CreateEvaluationDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
         >
             <DialogTitle sx={{ fontSize: '1rem' }} id='alert-dialog-title'>
                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                    <IconTestPipe2 style={{ marginRight: '10px' }} />
+                    <AppIcon name='Flask' style={{ marginRight: '10px' }} />
                     {t('Start New Evaluation')}
                 </div>
             </DialogTitle>
@@ -423,7 +423,8 @@ const CreateEvaluationDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                                     borderRadius: '50%'
                                 }}
                             >
-                                <IconAlertTriangle
+                                <AppIcon
+                                    name='Warning'
                                     style={{
                                         width: '100%',
                                         height: '100%',
@@ -666,7 +667,7 @@ const CreateEvaluationDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
             <DialogActions style={{ justifyContent: 'space-between', marginBottom: 10 }}>
                 {activeStep > 0 && (
                     <IconButton sx={{ ml: 2 }} color='secondary' title={t('Previous Step')} onClick={() => goPrev(activeStep)}>
-                        <IconArrowLeft />
+                        <AppIcon name='ArrowLeft' />
                     </IconButton>
                 )}
                 <div style={{ flex: 1 }}></div>

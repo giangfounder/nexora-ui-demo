@@ -28,8 +28,7 @@ import {
     InputAdornment,
     Tooltip
 } from '@mui/material'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import ChevronRightIcon from '@mui/icons-material/ChevronRight'
+import { AppIcon, iconComponent } from '@/ui-component/icons/AppIcon'
 import { useTheme } from '@mui/material/styles'
 import { StyledButton } from '@/ui-component/button/StyledButton'
 import { TooltipWithParser } from '@/ui-component/tooltip/TooltipWithParser'
@@ -38,18 +37,6 @@ import { StyledPermissionButton } from '@/ui-component/button/RBACButtons'
 import { StatusBadge } from '@/ui-component/table/MCPServersTable'
 
 // Icons
-import {
-    IconX,
-    IconPlugConnected,
-    IconEdit,
-    IconPlus,
-    IconTrash,
-    IconSearch,
-    IconEye,
-    IconAlertTriangle,
-    IconWorld,
-    IconTool
-} from '@tabler/icons-react'
 
 // API
 import customMcpServersApi from '@/api/custommcpservers'
@@ -156,7 +143,7 @@ const DiscoveredToolRow = ({ tool, expanded, onToggle, isDarkMode, theme }) => {
                     '&:hover': { bgcolor: isDarkMode ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.03)' }
                 }}
             >
-                {expanded ? <ExpandMoreIcon fontSize='small' /> : <ChevronRightIcon fontSize='small' />}
+                {expanded ? <AppIcon name='CaretDown' fontSize='small' /> : <AppIcon name='CaretRight' fontSize='small' />}
 
                 {icon?.src ? (
                     <Box component='img' src={icon.src} alt='' sx={{ width: 20, height: 20, flexShrink: 0, borderRadius: 0.5 }} />
@@ -173,7 +160,7 @@ const DiscoveredToolRow = ({ tool, expanded, onToggle, isDarkMode, theme }) => {
                             bgcolor: isDarkMode ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.05)'
                         }}
                     >
-                        <IconTool size={12} />
+                        <AppIcon name='Wrench' size={12} />
                     </Box>
                 )}
 
@@ -208,7 +195,7 @@ const DiscoveredToolRow = ({ tool, expanded, onToggle, isDarkMode, theme }) => {
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, flexShrink: 0 }}>
                     {readOnly && (
                         <HintChip
-                            icon={IconEye}
+                            icon={iconComponent('Eye')}
                             label={t('READ-ONLY')}
                             tooltip={t('This tool does not modify any data')}
                             bg={isDarkMode ? 'rgba(46,125,50,0.18)' : 'rgba(46,125,50,0.12)'}
@@ -217,7 +204,7 @@ const DiscoveredToolRow = ({ tool, expanded, onToggle, isDarkMode, theme }) => {
                     )}
                     {destructive && (
                         <HintChip
-                            icon={IconAlertTriangle}
+                            icon={iconComponent('Warning')}
                             label={t('DESTRUCTIVE')}
                             tooltip={t('This tool may perform destructive actions')}
                             bg={isDarkMode ? 'rgba(211,47,47,0.2)' : 'rgba(211,47,47,0.12)'}
@@ -226,7 +213,7 @@ const DiscoveredToolRow = ({ tool, expanded, onToggle, isDarkMode, theme }) => {
                     )}
                     {openWorld && (
                         <HintChip
-                            icon={IconWorld}
+                            icon={iconComponent('Globe')}
                             label={t('EXTERNAL')}
                             tooltip={t('This tool interacts with external systems')}
                             bg={isDarkMode ? 'rgba(25,118,210,0.18)' : 'rgba(25,118,210,0.1)'}
@@ -532,7 +519,7 @@ const CustomMcpServerDialog = ({ show, dialogProps, onCancel, onConfirm, onAutho
                 variant,
                 action: (key) => (
                     <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                        <IconX />
+                        <AppIcon name='X' />
                     </Button>
                 ),
                 ...(variant === 'error' && { persist: true })
@@ -761,7 +748,12 @@ const CustomMcpServerDialog = ({ show, dialogProps, onCancel, onConfirm, onAutho
                     </Box>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         {dialogProps.type === 'EDIT' && !isEditing && (
-                            <StyledButton variant='outlined' size='small' startIcon={<IconEdit size={16} />} onClick={startEditing}>
+                            <StyledButton
+                                variant='outlined'
+                                size='small'
+                                startIcon={<AppIcon name='PencilSimpleLine' size={16} />}
+                                onClick={startEditing}
+                            >
                                 {t('Edit')}
                             </StyledButton>
                         )}
@@ -931,7 +923,7 @@ const CustomMcpServerDialog = ({ show, dialogProps, onCancel, onConfirm, onAutho
                                                     sx={{ minWidth: 36, p: 0.5 }}
                                                     onClick={() => setHeaders(headers.filter((_, i) => i !== index))}
                                                 >
-                                                    <IconTrash size={18} />
+                                                    <AppIcon name='Trash' size={18} />
                                                 </Button>
                                             )}
                                         </Box>
@@ -940,7 +932,7 @@ const CustomMcpServerDialog = ({ show, dialogProps, onCancel, onConfirm, onAutho
                                 <Box>
                                     <Button
                                         size='small'
-                                        startIcon={<IconPlus size={16} />}
+                                        startIcon={<AppIcon name='Plus' size={16} />}
                                         onClick={() => setHeaders([...headers, { key: '', value: '' }])}
                                     >
                                         {t('Add Header')}
@@ -954,7 +946,7 @@ const CustomMcpServerDialog = ({ show, dialogProps, onCancel, onConfirm, onAutho
                 {/* Discovered Tools */}
                 {dialogProps.type === 'EDIT' && !isEditing && discoveredTools.length > 0 && (
                     <Accordion defaultExpanded>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <AccordionSummary expandIcon={<AppIcon name='CaretDown' />}>
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                 <Typography variant='overline'>{t('Discovered Tools')}</Typography>
                                 <Chip
@@ -976,14 +968,19 @@ const CustomMcpServerDialog = ({ show, dialogProps, onCancel, onConfirm, onAutho
                                     placeholder={t('Filter tools by name, title, or description')}
                                     startAdornment={
                                         <InputAdornment position='start' sx={{ color: 'text.secondary' }}>
-                                            <IconSearch size={16} stroke={1.75} />
+                                            <AppIcon name='MagnifyingGlass' size={16} />
                                         </InputAdornment>
                                     }
                                     endAdornment={
                                         toolSearch ? (
                                             <InputAdornment position='end'>
-                                                <IconButton size='small' onClick={() => setToolSearch('')} sx={{ color: 'text.secondary' }}>
-                                                    <IconX size={14} stroke={1.75} />
+                                                <IconButton
+                                                    aria-label='Close'
+                                                    size='small'
+                                                    onClick={() => setToolSearch('')}
+                                                    sx={{ color: 'text.secondary' }}
+                                                >
+                                                    <AppIcon name='X' size={14} />
                                                 </IconButton>
                                             </InputAdornment>
                                         ) : null
@@ -1062,7 +1059,7 @@ const CustomMcpServerDialog = ({ show, dialogProps, onCancel, onConfirm, onAutho
                             variant='outlined'
                             onClick={authorizeServer}
                             disabled={authorizing}
-                            startIcon={authorizing ? <CircularProgress size={16} /> : <IconPlugConnected />}
+                            startIcon={authorizing ? <CircularProgress size={16} /> : <AppIcon name='PlugsConnected' />}
                         >
                             {authorizing ? 'Connecting...' : 'Authorize'}
                         </StyledButton>

@@ -39,17 +39,7 @@ import userPNG from '@/assets/images/account.png'
 import msgEmptySVG from '@/assets/images/message_empty.svg'
 import multiagent_supervisorPNG from '@/assets/images/multiagent_supervisor.png'
 import multiagent_workerPNG from '@/assets/images/multiagent_worker.png'
-import {
-    IconTool,
-    IconDeviceSdCard,
-    IconFileExport,
-    IconEraser,
-    IconX,
-    IconDownload,
-    IconPaperclip,
-    IconInfoCircle
-} from '@tabler/icons-react'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // Project import
 import { MemoizedReactMarkdown } from '@/ui-component/markdown/MemoizedReactMarkdown'
@@ -330,7 +320,7 @@ const ViewMessagesDialog = ({ show, dialogProps, onCancel }) => {
                     variant: 'success',
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -346,7 +336,7 @@ const ViewMessagesDialog = ({ show, dialogProps, onCancel }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -398,7 +388,7 @@ const ViewMessagesDialog = ({ show, dialogProps, onCancel }) => {
                     variant: 'success',
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -413,7 +403,7 @@ const ViewMessagesDialog = ({ show, dialogProps, onCancel }) => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -461,7 +451,7 @@ const ViewMessagesDialog = ({ show, dialogProps, onCancel }) => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -487,7 +477,7 @@ const ViewMessagesDialog = ({ show, dialogProps, onCancel }) => {
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -713,7 +703,7 @@ const ViewMessagesDialog = ({ show, dialogProps, onCancel }) => {
                     }}
                     variant='outlined'
                 >
-                    <IconPaperclip size={20} />
+                    <AppIcon name='Paperclip' size={20} />
                     <span
                         style={{
                             marginLeft: '5px',
@@ -997,7 +987,10 @@ const ViewMessagesDialog = ({ show, dialogProps, onCancel }) => {
                                 }
                             }}
                             endIcon={
-                                <KeyboardArrowDownIcon style={{ backgroundColor: customization.isDarkMode ? 'transparent' : 'inherit' }} />
+                                <AppIcon
+                                    name='CaretDown'
+                                    style={{ backgroundColor: customization.isDarkMode ? 'transparent' : 'inherit' }}
+                                />
                             }
                         >
                             {t('More Actions')}
@@ -1018,7 +1011,7 @@ const ViewMessagesDialog = ({ show, dialogProps, onCancel }) => {
                                 }}
                                 disableRipple
                             >
-                                <IconFileExport style={{ marginRight: 8 }} />
+                                <AppIcon name='Export' style={{ marginRight: 8 }} />
                                 {t('Export to JSON')}
                             </MenuItem>
                             {(stats.totalMessages ?? 0) > 0 && (
@@ -1029,7 +1022,7 @@ const ViewMessagesDialog = ({ show, dialogProps, onCancel }) => {
                                     }}
                                     disableRipple
                                 >
-                                    <IconEraser style={{ marginRight: 8 }} />
+                                    <AppIcon name='Eraser' style={{ marginRight: 8 }} />
                                     {t('Delete All')}
                                 </MenuItem>
                             )}
@@ -1177,7 +1170,7 @@ const ViewMessagesDialog = ({ show, dialogProps, onCancel }) => {
                                         >
                                             <Tooltip title={t('Clear Message')}>
                                                 <IconButton color='error' onClick={() => clearChat(chatMessages[1])}>
-                                                    <IconEraser />
+                                                    <AppIcon name='Eraser' />
                                                 </IconButton>
                                             </Tooltip>
                                             {chatMessages[1].sessionId && (
@@ -1188,7 +1181,7 @@ const ViewMessagesDialog = ({ show, dialogProps, onCancel }) => {
                                                     placement='bottom'
                                                 >
                                                     <IconButton color='primary'>
-                                                        <IconInfoCircle />
+                                                        <AppIcon name='Info' />
                                                     </IconButton>
                                                 </Tooltip>
                                             )}
@@ -1342,7 +1335,8 @@ const ViewMessagesDialog = ({ show, dialogProps, onCancel }) => {
                                                                                                             variant='outlined'
                                                                                                             clickable
                                                                                                             icon={
-                                                                                                                <IconTool
+                                                                                                                <AppIcon
+                                                                                                                    name='Wrench'
                                                                                                                     size={15}
                                                                                                                     color={
                                                                                                                         tool.error
@@ -1381,7 +1375,10 @@ const ViewMessagesDialog = ({ show, dialogProps, onCancel }) => {
                                                                                                         variant='outlined'
                                                                                                         clickable
                                                                                                         icon={
-                                                                                                            <IconDeviceSdCard size={15} />
+                                                                                                            <AppIcon
+                                                                                                                name='HardDrive'
+                                                                                                                size={15}
+                                                                                                            />
                                                                                                         }
                                                                                                         onClick={() =>
                                                                                                             onSourceDialogClick(
@@ -1514,7 +1511,8 @@ const ViewMessagesDialog = ({ show, dialogProps, onCancel }) => {
                                                                                     variant='outlined'
                                                                                     clickable
                                                                                     icon={
-                                                                                        <IconTool
+                                                                                        <AppIcon
+                                                                                            name='Wrench'
                                                                                             size={15}
                                                                                             color={
                                                                                                 tool.error
@@ -1568,7 +1566,10 @@ const ViewMessagesDialog = ({ show, dialogProps, onCancel }) => {
                                                                                     variant='outlined'
                                                                                     onClick={() => downloadFile(fileAnnotation)}
                                                                                     endIcon={
-                                                                                        <IconDownload color={theme.palette.primary.main} />
+                                                                                        <AppIcon
+                                                                                            name='DownloadSimple'
+                                                                                            color={theme.palette.primary.main}
+                                                                                        />
                                                                                     }
                                                                                 >
                                                                                     {fileAnnotation.fileName}

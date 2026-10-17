@@ -14,7 +14,7 @@ import {
     Typography,
     useTheme
 } from '@mui/material'
-import { IconTool } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import { MCP_SERVER_STATUS } from '@/store/constant'
 import { SharedTableCell as StyledTableCell, SharedTableRow as StyledTableRow } from '@/ui-component/table/SharedTable'
 import { useLanguage } from '@/store/context/LanguageContext'
@@ -32,6 +32,9 @@ const getStatusColors = (status, isDarkMode, theme) => {
                 : [theme.palette.grey[100], theme.palette.grey[400], theme.palette.grey[700]]
     }
 }
+
+export const mcpStatusIcon = (status) =>
+    ({ [MCP_SERVER_STATUS.AUTHORIZED]: 'CheckCircle', [MCP_SERVER_STATUS.ERROR]: 'XCircle' }[status] || 'HourglassMedium')
 
 export const StatusBadge = ({ status }) => {
     const theme = useTheme()
@@ -52,7 +55,7 @@ export const StatusBadge = ({ status }) => {
                 width: 'fit-content'
             }}
         >
-            <div style={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: colors[1], marginRight: 5 }} />
+            <AppIcon name={mcpStatusIcon(status)} size={12} color={colors[1]} style={{ marginRight: 5 }} />
             <span style={{ fontSize: '0.65rem', color: colors[2], textTransform: 'uppercase' }}>{status}</span>
         </div>
     )
@@ -155,7 +158,7 @@ export const MCPServersTable = ({ data, isLoading, onSelect }) => {
                                         <StyledTableCell>{row.status && <StatusBadge status={row.status} />}</StyledTableCell>
                                         <StyledTableCell>
                                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                                                <IconTool size={14} />
+                                                <AppIcon name='Wrench' size={14} />
                                                 <Typography sx={{ fontSize: 13 }}>
                                                     {toolCount} {toolCount === 1 ? 'tool' : 'tools'}
                                                 </Typography>

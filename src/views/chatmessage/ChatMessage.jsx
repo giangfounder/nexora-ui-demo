@@ -26,21 +26,7 @@ import {
     TextField
 } from '@mui/material'
 import { alpha, darken, useTheme } from '@mui/material/styles'
-import {
-    IconCircleDot,
-    IconDownload,
-    IconSend,
-    IconMicrophone,
-    IconPhotoPlus,
-    IconTrash,
-    IconX,
-    IconTool,
-    IconSquareFilled,
-    IconCheck,
-    IconPaperclip,
-    IconMessageQuestion,
-    IconVolume
-} from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 import robotPNG from '@/assets/images/robot.png'
 import userPNG from '@/assets/images/account.png'
 import multiagent_supervisorPNG from '@/assets/images/multiagent_supervisor.png'
@@ -146,7 +132,7 @@ const CardWithDeleteOverlay = ({ item, disabled, customization, onDelete }) => {
                 }}
                 variant='outlined'
             >
-                <IconPaperclip size={20} style={{ transition: 'filter 0.3s', filter: isHovered ? 'blur(2px)' : 'none' }} />
+                <AppIcon name='Paperclip' size={20} style={{ transition: 'filter 0.3s', filter: isHovered ? 'blur(2px)' : 'none' }} />
                 <span
                     style={{
                         marginLeft: '5px',
@@ -162,7 +148,7 @@ const CardWithDeleteOverlay = ({ item, disabled, customization, onDelete }) => {
                 <Button
                     disabled={disabled}
                     onClick={() => onDelete(item)}
-                    startIcon={<IconTrash color='white' size={22} />}
+                    startIcon={<AppIcon name='Trash' color='white' size={22} />}
                     title={t('Remove attachment')}
                     sx={{
                         position: 'absolute',
@@ -531,7 +517,7 @@ const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, previews, setP
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -837,7 +823,7 @@ const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, previews, setP
                 variant: 'success',
                 action: (key) => (
                     <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                        <IconX />
+                        <AppIcon name='X' />
                     </Button>
                 )
             }
@@ -2181,7 +2167,7 @@ const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, previews, setP
                     <ImageSrc style={{ backgroundImage: `url(${item.data})` }} />
                     <ImageBackdrop className='MuiImageBackdrop-root' />
                     <ImageMarked className='MuiImageMarked-root'>
-                        <IconTrash size={20} color='white' />
+                        <AppIcon name='Trash' size={20} color='white' />
                     </ImageMarked>
                 </ImageButton>
             )
@@ -2201,8 +2187,13 @@ const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, previews, setP
                     variant='outlined'
                 >
                     <CardMedia component='audio' sx={{ color: 'transparent' }} controls src={item.data} />
-                    <IconButton disabled={getInputDisabled()} onClick={() => handleDeletePreview(item)} size='small'>
-                        <IconTrash size={20} color={theme.palette.text.secondary} />
+                    <IconButton
+                        aria-label={t('Delete')}
+                        disabled={getInputDisabled()}
+                        onClick={() => handleDeletePreview(item)}
+                        size='small'
+                    >
+                        <AppIcon name='Trash' size={20} color={theme.palette.text.secondary} />
                     </IconButton>
                 </Card>
             )
@@ -2257,7 +2248,7 @@ const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, previews, setP
                     }}
                     variant='outlined'
                 >
-                    <IconPaperclip size={20} />
+                    <AppIcon name='Paperclip' size={20} />
                     <span
                         style={{
                             marginLeft: '5px',
@@ -2629,7 +2620,8 @@ const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, previews, setP
                                                             variant='outlined'
                                                             clickable
                                                             icon={
-                                                                <IconTool
+                                                                <AppIcon
+                                                                    name='Wrench'
                                                                     size={15}
                                                                     color={tool.error ? theme.palette.error.main : undefined}
                                                                 />
@@ -2758,7 +2750,7 @@ const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, previews, setP
                                                             key={index}
                                                             variant='outlined'
                                                             onClick={() => downloadFile(fileAnnotation)}
-                                                            endIcon={<IconDownload color={theme.palette.primary.main} />}
+                                                            endIcon={<AppIcon name='DownloadSimple' color={theme.palette.primary.main} />}
                                                         >
                                                             {fileAnnotation.fileName}
                                                         </Button>
@@ -2824,7 +2816,7 @@ const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, previews, setP
                                                                     variant='outlined'
                                                                     color='success'
                                                                     key={index}
-                                                                    startIcon={<IconCheck />}
+                                                                    startIcon={<AppIcon name='Check' />}
                                                                     onClick={() => handleActionClick(elem, message.action)}
                                                                 >
                                                                     {elem.label}
@@ -2842,7 +2834,7 @@ const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, previews, setP
                                                                     variant='outlined'
                                                                     color='error'
                                                                     key={index}
-                                                                    startIcon={<IconX />}
+                                                                    startIcon={<AppIcon name='X' />}
                                                                     onClick={() => handleActionClick(elem, message.action)}
                                                                 >
                                                                     {elem.label}
@@ -2899,9 +2891,14 @@ const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, previews, setP
                                                             {isTTSLoading[message.id] ? (
                                                                 <CircularProgress size={16} />
                                                             ) : isTTSPlaying[message.id] ? (
-                                                                <IconCircleDot style={{ width: '20px', height: '20px' }} color={'red'} />
+                                                                <AppIcon
+                                                                    name='RadioButton'
+                                                                    style={{ width: '20px', height: '20px' }}
+                                                                    color={'red'}
+                                                                />
                                                             ) : (
-                                                                <IconVolume
+                                                                <AppIcon
+                                                                    name='SpeakerHigh'
                                                                     style={{ width: '20px', height: '20px' }}
                                                                     color={
                                                                         customization.isDarkMode ? theme.palette.text.primary : '#1e88e5'
@@ -2963,7 +2960,7 @@ const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, previews, setP
                     <Divider sx={{ width: '100%' }} />
                     <Box sx={{ display: 'flex', flexDirection: 'column', position: 'relative', pt: 1.5 }}>
                         <Stack sx={{ flexDirection: 'row', alignItems: 'center', px: 1.5, gap: 0.5 }}>
-                            <IconMessageQuestion size={12} />
+                            <AppIcon name='ChatCenteredText' size={12} />
                             <Typography sx={{ fontSize: '0.75rem' }} variant='body2'>
                                 {t('Try these prompts')}
                             </Typography>
@@ -3024,14 +3021,15 @@ const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, previews, setP
                             >
                                 <div className='recording-elapsed-time'>
                                     <span className='red-recording-dot'>
-                                        <IconCircleDot />
+                                        <AppIcon name='RadioButton' />
                                     </span>
                                     <Typography id='elapsed-time'>00:00</Typography>
                                     {isLoadingRecording && <Typography ml={1.5}>{t('Sending...')}</Typography>}
                                 </div>
                                 <div className='recording-control-buttons-container'>
                                     <IconButton onClick={onRecordingCancelled} size='small' title={t('Cancel recording')}>
-                                        <IconX
+                                        <AppIcon
+                                            name='X'
                                             color={
                                                 loading || !chatflowid
                                                     ? theme.palette.text.disabled
@@ -3042,7 +3040,8 @@ const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, previews, setP
                                         />
                                     </IconButton>
                                     <IconButton onClick={onRecordingStopped} size='small' title={t('Send recording')}>
-                                        <IconSend
+                                        <AppIcon
+                                            name='PaperPlaneTilt'
                                             color={
                                                 loading || !chatflowid
                                                     ? theme.palette.text.disabled
@@ -3077,12 +3076,14 @@ const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, previews, setP
                                     {isChatFlowAvailableForImageUploads && !isChatFlowAvailableForFileUploads && (
                                         <InputAdornment position='start' sx={{ ml: 2 }}>
                                             <IconButton
+                                                aria-label={t('Upload image')}
                                                 onClick={handleImageUploadClick}
                                                 type='button'
                                                 disabled={getInputDisabled()}
                                                 edge='start'
                                             >
-                                                <IconPhotoPlus
+                                                <AppIcon
+                                                    name='ImageSquare'
                                                     color={
                                                         getInputDisabled()
                                                             ? theme.palette.text.disabled
@@ -3097,12 +3098,14 @@ const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, previews, setP
                                     {!isChatFlowAvailableForImageUploads && isChatFlowAvailableForFileUploads && (
                                         <InputAdornment position='start' sx={{ ml: 2 }}>
                                             <IconButton
+                                                aria-label={t('Attach file')}
                                                 onClick={handleFileUploadClick}
                                                 type='button'
                                                 disabled={getInputDisabled()}
                                                 edge='start'
                                             >
-                                                <IconPaperclip
+                                                <AppIcon
+                                                    name='Paperclip'
                                                     color={
                                                         getInputDisabled()
                                                             ? theme.palette.text.disabled
@@ -3117,12 +3120,14 @@ const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, previews, setP
                                     {isChatFlowAvailableForImageUploads && isChatFlowAvailableForFileUploads && (
                                         <InputAdornment position='start' sx={{ ml: 2 }}>
                                             <IconButton
+                                                aria-label={t('Upload image')}
                                                 onClick={handleImageUploadClick}
                                                 type='button'
                                                 disabled={getInputDisabled()}
                                                 edge='start'
                                             >
-                                                <IconPhotoPlus
+                                                <AppIcon
+                                                    name='ImageSquare'
                                                     color={
                                                         getInputDisabled()
                                                             ? theme.palette.text.disabled
@@ -3133,13 +3138,15 @@ const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, previews, setP
                                                 />
                                             </IconButton>
                                             <IconButton
+                                                aria-label={t('Attach file')}
                                                 sx={{ ml: 0 }}
                                                 onClick={handleFileUploadClick}
                                                 type='button'
                                                 disabled={getInputDisabled()}
                                                 edge='start'
                                             >
-                                                <IconPaperclip
+                                                <AppIcon
+                                                    name='Paperclip'
                                                     color={
                                                         getInputDisabled()
                                                             ? theme.palette.text.disabled
@@ -3159,12 +3166,14 @@ const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, previews, setP
                                     {isChatFlowAvailableForSpeech && (
                                         <InputAdornment position='end'>
                                             <IconButton
+                                                aria-label={t('Record audio')}
                                                 onClick={() => onMicrophonePressed()}
                                                 type='button'
                                                 disabled={getInputDisabled()}
                                                 edge='end'
                                             >
-                                                <IconMicrophone
+                                                <AppIcon
+                                                    name='Microphone'
                                                     className={'start-recording-button'}
                                                     color={
                                                         getInputDisabled()
@@ -3179,14 +3188,20 @@ const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, previews, setP
                                     )}
                                     {!isAgentCanvas && (
                                         <InputAdornment position='end' sx={{ paddingRight: '15px' }}>
-                                            <IconButton type='submit' disabled={getInputDisabled()} edge='end'>
+                                            <IconButton
+                                                aria-label={t('Send message')}
+                                                type='submit'
+                                                disabled={getInputDisabled()}
+                                                edge='end'
+                                            >
                                                 {loading ? (
                                                     <div>
                                                         <CircularProgress color='inherit' size={20} />
                                                     </div>
                                                 ) : (
                                                     // Send icon SVG in input field
-                                                    <IconSend
+                                                    <AppIcon
+                                                        name='PaperPlaneTilt'
                                                         color={
                                                             getInputDisabled()
                                                                 ? theme.palette.text.disabled
@@ -3203,8 +3218,14 @@ const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, previews, setP
                                         <>
                                             {!loading && (
                                                 <InputAdornment position='end' sx={{ paddingRight: '15px' }}>
-                                                    <IconButton type='submit' disabled={getInputDisabled()} edge='end'>
-                                                        <IconSend
+                                                    <IconButton
+                                                        aria-label={t('Send message')}
+                                                        type='submit'
+                                                        disabled={getInputDisabled()}
+                                                        edge='end'
+                                                    >
+                                                        <AppIcon
+                                                            name='PaperPlaneTilt'
                                                             color={
                                                                 getInputDisabled()
                                                                     ? theme.palette.text.disabled
@@ -3230,7 +3251,7 @@ const ChatMessage = ({ open, chatflowid, isAgentCanvas, isDialog, previews, setP
                                                                 <CircularProgress color='error' size={20} />
                                                             </div>
                                                         ) : (
-                                                            <IconSquareFilled size={15} color='red' />
+                                                            <AppIcon name='Square' size={15} color='red' />
                                                         )}
                                                     </IconButton>
                                                 </InputAdornment>

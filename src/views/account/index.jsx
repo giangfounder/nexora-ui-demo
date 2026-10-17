@@ -32,7 +32,7 @@ import SettingsSection from '@/ui-component/form/settings'
 import PricingDialog from '@/ui-component/subscription/PricingDialog'
 
 // Icons
-import { IconAlertCircle, IconCreditCard, IconExternalLink, IconX } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // API
 import accountApi from '@/api/account.api'
@@ -216,7 +216,7 @@ const AccountSettings = () => {
                     variant: 'error',
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -250,7 +250,7 @@ const AccountSettings = () => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -267,7 +267,7 @@ const AccountSettings = () => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -287,7 +287,7 @@ const AccountSettings = () => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -317,7 +317,7 @@ const AccountSettings = () => {
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -347,7 +347,7 @@ const AccountSettings = () => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -364,7 +364,7 @@ const AccountSettings = () => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -392,7 +392,7 @@ const AccountSettings = () => {
                     variant: 'success',
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -411,7 +411,7 @@ const AccountSettings = () => {
                     persist: true,
                     action: (key) => (
                         <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                            <IconX />
+                            <AppIcon name='X' />
                         </Button>
                     )
                 }
@@ -525,7 +525,7 @@ const AccountSettings = () => {
                                         >
                                             <Button
                                                 variant='outlined'
-                                                endIcon={!isBillingLoading && <IconExternalLink />}
+                                                endIcon={!isBillingLoading && <AppIcon name='ArrowSquareOut' />}
                                                 disabled={!currentUser.isOrganizationAdmin || isBillingLoading}
                                                 onClick={handleBillingPortalClick}
                                                 sx={{ borderRadius: 2, height: 40 }}
@@ -896,7 +896,7 @@ const AccountSettings = () => {
                                     gap: 1
                                 }}
                             >
-                                <IconAlertCircle size={20} />
+                                <AppIcon name='WarningCircle' size={20} />
                                 {t('You must remove users from your organization before removing seats.')}
                             </Typography>
                         ) : (
@@ -979,7 +979,7 @@ const AccountSettings = () => {
                                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                     {getCustomerDefaultSourceApi.data.invoice_settings.default_payment_method.card && (
                                         <>
-                                            <IconCreditCard size={20} stroke={1.5} color={theme.palette.primary.main} />
+                                            <AppIcon name='CreditCard' size={20} color={theme.palette.primary.main} />
                                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                                 <Typography sx={{ textTransform: 'capitalize' }}>
                                                     {getCustomerDefaultSourceApi.data.invoice_settings.default_payment_method.card.brand}
@@ -1001,12 +1001,12 @@ const AccountSettings = () => {
                         ) : (
                             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, p: 2 }}>
                                 <Typography color='error' sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                    <IconAlertCircle size={20} />
+                                    <AppIcon name='WarningCircle' size={20} />
                                     {t('No payment method found')}
                                 </Typography>
                                 <Button
                                     variant='contained'
-                                    endIcon={<IconExternalLink />}
+                                    endIcon={<AppIcon name='ArrowSquareOut' />}
                                     onClick={() => {
                                         setOpenRemoveSeatsDialog(false)
                                         handleBillingPortalClick()
@@ -1251,7 +1251,7 @@ const AccountSettings = () => {
                                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                     {getCustomerDefaultSourceApi.data.invoice_settings.default_payment_method.card && (
                                         <>
-                                            <IconCreditCard size={20} stroke={1.5} color={theme.palette.primary.main} />
+                                            <AppIcon name='CreditCard' size={20} color={theme.palette.primary.main} />
                                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                                 <Typography sx={{ textTransform: 'capitalize' }}>
                                                     {getCustomerDefaultSourceApi.data.invoice_settings.default_payment_method.card.brand}
@@ -1273,12 +1273,12 @@ const AccountSettings = () => {
                         ) : (
                             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, p: 2 }}>
                                 <Typography color='error' sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                    <IconAlertCircle size={20} />
+                                    <AppIcon name='WarningCircle' size={20} />
                                     {t('No payment method found')}
                                 </Typography>
                                 <Button
                                     variant='contained'
-                                    endIcon={<IconExternalLink />}
+                                    endIcon={<AppIcon name='ArrowSquareOut' />}
                                     onClick={() => {
                                         setOpenRemoveSeatsDialog(false)
                                         handleBillingPortalClick()

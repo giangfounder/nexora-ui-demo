@@ -1,21 +1,5 @@
 // constant
-import {
-    IconLibrary,
-    IconTools,
-    IconFunctionFilled,
-    IconMessageCircleFilled,
-    IconUserCog,
-    IconArrowsSplit,
-    IconPlayerPlayFilled,
-    IconMessage2,
-    IconReplaceUser,
-    IconRepeat,
-    IconSubtask,
-    IconNote,
-    IconWorld,
-    IconRelationOneToManyFilled,
-    IconVectorBezier2
-} from '@tabler/icons-react'
+import { iconComponent } from '@/ui-component/icons/AppIcon'
 
 export const gridSpacing = 3
 export const drawerWidth = 220
@@ -49,77 +33,77 @@ export const ErrorMessage = {
 export const AGENTFLOW_ICONS = [
     {
         name: 'conditionAgentflow',
-        icon: IconArrowsSplit,
+        icon: iconComponent('ArrowsSplit'),
         color: '#FFB938'
     },
     {
         name: 'startAgentflow',
-        icon: IconPlayerPlayFilled,
+        icon: iconComponent('Play'),
         color: '#7EE787'
     },
     {
         name: 'llmAgentflow',
-        icon: IconMessage2,
+        icon: iconComponent('ChatTeardropText'),
         color: '#64B5F6'
     },
     {
         name: 'agentAgentflow',
-        icon: IconUserCog,
+        icon: iconComponent('UserGear'),
         color: '#4DD0E1'
     },
     {
         name: 'humanInputAgentflow',
-        icon: IconReplaceUser,
+        icon: iconComponent('UserSwitch'),
         color: '#6E6EFD'
     },
     {
         name: 'loopAgentflow',
-        icon: IconRepeat,
+        icon: iconComponent('Repeat'),
         color: '#FFA07A'
     },
     {
         name: 'directReplyAgentflow',
-        icon: IconMessageCircleFilled,
+        icon: iconComponent('ChatCircle'),
         color: '#4DDBBB'
     },
     {
         name: 'customFunctionAgentflow',
-        icon: IconFunctionFilled,
+        icon: iconComponent('Function'),
         color: '#E4B7FF'
     },
     {
         name: 'toolAgentflow',
-        icon: IconTools,
+        icon: iconComponent('Toolbox'),
         color: '#d4a373'
     },
     {
         name: 'retrieverAgentflow',
-        icon: IconLibrary,
+        icon: iconComponent('Books'),
         color: '#b8bedd'
     },
     {
         name: 'conditionAgentAgentflow',
-        icon: IconSubtask,
+        icon: iconComponent('TreeView'),
         color: '#ff8fab'
     },
     {
         name: 'stickyNoteAgentflow',
-        icon: IconNote,
+        icon: iconComponent('Note'),
         color: '#fee440'
     },
     {
         name: 'httpAgentflow',
-        icon: IconWorld,
+        icon: iconComponent('Globe'),
         color: '#FF7F7F'
     },
     {
         name: 'iterationAgentflow',
-        icon: IconRelationOneToManyFilled,
+        icon: iconComponent('FlowArrow'),
         color: '#9C89B8'
     },
     {
         name: 'executeFlowAgentflow',
-        icon: IconVectorBezier2,
+        icon: iconComponent('BezierCurve'),
         color: '#a3b18a'
     }
 ]

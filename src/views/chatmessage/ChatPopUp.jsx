@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import { ClickAwayListener, Paper, Popper, Button } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import { IconMessage, IconX, IconEraser, IconArrowsMaximize } from '@tabler/icons-react'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // project import
 import { StyledFab } from '@/ui-component/button/StyledFab'
@@ -109,7 +109,7 @@ const ChatPopUp = ({ chatflowid, isAgentCanvas, onOpenChange }) => {
                         variant: 'success',
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -123,7 +123,7 @@ const ChatPopUp = ({ chatflowid, isAgentCanvas, onOpenChange }) => {
                         persist: true,
                         action: (key) => (
                             <Button style={{ color: 'white' }} onClick={() => closeSnackbar(key)}>
-                                <IconX />
+                                <AppIcon name='X' />
                             </Button>
                         )
                     }
@@ -153,7 +153,7 @@ const ChatPopUp = ({ chatflowid, isAgentCanvas, onOpenChange }) => {
                 title={t('Chat')}
                 onClick={handleToggle}
             >
-                {open ? <IconX /> : <IconMessage />}
+                {open ? <AppIcon name='X' /> : <AppIcon name='ChatText' />}
             </StyledFab>
 
             {open && (
@@ -165,7 +165,7 @@ const ChatPopUp = ({ chatflowid, isAgentCanvas, onOpenChange }) => {
                     aria-label={t('Clear Chat History')}
                     title={t('Clear Chat History')}
                 >
-                    <IconEraser />
+                    <AppIcon name='Eraser' />
                 </StyledFab>
             )}
             {open && (
@@ -177,7 +177,7 @@ const ChatPopUp = ({ chatflowid, isAgentCanvas, onOpenChange }) => {
                     aria-label={t('Expand Chat')}
                     title={t('Expand Chat')}
                 >
-                    <IconArrowsMaximize />
+                    <AppIcon name='ArrowsOut' />
                 </StyledFab>
             )}
             <Popper

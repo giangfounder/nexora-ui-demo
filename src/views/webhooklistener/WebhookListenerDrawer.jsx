@@ -7,18 +7,7 @@ import { keyframes } from '@mui/system'
 // MUI
 import { Box, Button, Chip, Collapse, Divider, Drawer, IconButton, Stack, Tooltip, Typography } from '@mui/material'
 import { alpha, useTheme } from '@mui/material/styles'
-import {
-    IconAntennaBars5,
-    IconArrowsMaximize,
-    IconArrowsMinimize,
-    IconChevronRight,
-    IconCircleCheck,
-    IconCopy,
-    IconLoader2,
-    IconRefresh,
-    IconX
-} from '@tabler/icons-react'
-import DragHandleIcon from '@mui/icons-material/DragHandle'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // project
 import { baseURL } from '@/store/constant'
@@ -51,13 +40,13 @@ const spin = keyframes`
 
 // ─── Status palette ───────────────────────────────────────────────────────────
 const STATUS_META = {
-    connecting: { label: 'CONNECTING', tone: 'info' },
-    idle: { label: 'IDLE', tone: 'default' },
-    listening: { label: 'LISTENING', tone: 'success' },
-    running: { label: 'RUNNING', tone: 'warning' },
-    done: { label: 'COMPLETED', tone: 'success' },
-    stopped: { label: 'STOPPED', tone: 'info' },
-    error: { label: 'ERROR', tone: 'error' }
+    connecting: { label: 'CONNECTING', tone: 'info', icon: 'CircleNotch' },
+    idle: { label: 'IDLE', tone: 'default', icon: 'PauseCircle' },
+    listening: { label: 'LISTENING', tone: 'success', icon: 'Broadcast' },
+    running: { label: 'RUNNING', tone: 'warning', icon: 'Lightning' },
+    done: { label: 'COMPLETED', tone: 'success', icon: 'CheckCircle' },
+    stopped: { label: 'STOPPED', tone: 'info', icon: 'StopCircle' },
+    error: { label: 'ERROR', tone: 'error', icon: 'XCircle' }
 }
 
 const TONE_COLOR = (theme, tone) => {
@@ -107,15 +96,14 @@ const StatusPill = ({ status }) => {
             }}
         >
             <Box
+                component='span'
                 sx={{
-                    width: 8,
-                    height: 8,
-                    borderRadius: '50%',
-                    bgcolor: color,
-                    boxShadow: `0 0 8px ${alpha(color, 0.7)}`,
+                    display: 'inline-flex',
                     animation: animated ? `${subtleBlink} 1.4s ease-in-out infinite` : 'none'
                 }}
-            />
+            >
+                <AppIcon name={meta.icon} size={14} className={status === 'connecting' ? 'spin-animation' : undefined} />
+            </Box>
             <Typography sx={{ fontFamily: MONO_STACK, fontSize: 10.5, letterSpacing: '0.12em', fontWeight: 600 }}>{meta.label}</Typography>
         </Stack>
     )
@@ -163,7 +151,7 @@ const SonarIdle = () => {
                     color: accent
                 }}
             >
-                <IconAntennaBars5 size={26} stroke={2.2} />
+                <AppIcon name='CellSignalFull' size={26} />
             </Box>
         </Box>
     )
@@ -236,7 +224,11 @@ const EndpointBlock = ({ method, url, isDark, onCopy }) => {
                 </Box>
                 <Tooltip title={copied ? 'Copied' : 'Copy URL'}>
                     <IconButton size='small' onClick={() => copy(url, setCopied)} sx={{ p: 0.5, color: iconColor }}>
-                        {copied ? <IconCircleCheck size={14} color={theme.palette.success.main} /> : <IconCopy size={14} />}
+                        {copied ? (
+                            <AppIcon name='CheckCircle' size={14} color={theme.palette.success.main} />
+                        ) : (
+                            <AppIcon name='Copy' size={14} />
+                        )}
                     </IconButton>
                 </Tooltip>
             </Box>
@@ -246,7 +238,8 @@ const EndpointBlock = ({ method, url, isDark, onCopy }) => {
                     size='small'
                     onClick={() => setShowCurl((v) => !v)}
                     startIcon={
-                        <IconChevronRight
+                        <AppIcon
+                            name='CaretRight'
                             size={14}
                             style={{ transform: showCurl ? 'rotate(90deg)' : 'none', transition: 'transform 120ms' }}
                         />
@@ -286,7 +279,11 @@ const EndpointBlock = ({ method, url, isDark, onCopy }) => {
                                 onClick={() => copy(curl, setCopiedCurl)}
                                 sx={{ position: 'absolute', top: 6, right: 6, p: 0.5, color: iconColor }}
                             >
-                                {copiedCurl ? <IconCircleCheck size={14} color={theme.palette.success.main} /> : <IconCopy size={14} />}
+                                {copiedCurl ? (
+                                    <AppIcon name='CheckCircle' size={14} color={theme.palette.success.main} />
+                                ) : (
+                                    <AppIcon name='Copy' size={14} />
+                                )}
                             </IconButton>
                         </Tooltip>
                     </Box>
@@ -572,7 +569,8 @@ const WebhookListenerDrawer = ({ open, chatflowid, onClose, onStatusChange }) =>
                     padding: 0
                 }}
             >
-                <DragHandleIcon
+                <AppIcon
+                    name='DotsSixVertical'
                     sx={{
                         position: 'absolute',
                         top: '50%',
@@ -612,7 +610,7 @@ const WebhookListenerDrawer = ({ open, chatflowid, onClose, onStatusChange }) =>
                             justifyContent: 'center'
                         }}
                     >
-                        <IconAntennaBars5 size={16} stroke={2.4} />
+                        <AppIcon name='CellSignalFull' size={16} />
                     </Box>
                     <Box sx={{ flex: 1 }}>
                         <Typography
@@ -637,11 +635,11 @@ const WebhookListenerDrawer = ({ open, chatflowid, onClose, onStatusChange }) =>
                             onClick={() => setMaximized((v) => !v)}
                             sx={{ color: isDark ? 'common.white' : 'text.primary' }}
                         >
-                            {maximized ? <IconArrowsMinimize size={16} /> : <IconArrowsMaximize size={16} />}
+                            {maximized ? <AppIcon name='ArrowsIn' size={16} /> : <AppIcon name='ArrowsOut' size={16} />}
                         </IconButton>
                     </Tooltip>
                     <IconButton size='small' onClick={onClose} aria-label='close' sx={{ color: isDark ? 'common.white' : 'text.primary' }}>
-                        <IconX size={16} />
+                        <AppIcon name='X' size={16} />
                     </IconButton>
                 </Stack>
 
@@ -706,12 +704,12 @@ const WebhookListenerDrawer = ({ open, chatflowid, onClose, onStatusChange }) =>
                         </Box>
                     ) : status === 'connecting' ? (
                         <Stack direction='row' alignItems='center' spacing={1} sx={{ color: 'text.secondary' }}>
-                            <IconLoader2 size={14} style={{ animation: `${spin} 0.9s linear infinite` }} />
+                            <AppIcon name='CircleNotch' size={14} style={{ animation: `${spin} 0.9s linear infinite` }} />
                             <Typography sx={{ fontSize: 12 }}>Opening event stream…</Typography>
                         </Stack>
                     ) : status === 'running' ? (
                         <Stack direction='row' alignItems='center' spacing={1} sx={{ color: 'text.secondary' }}>
-                            <IconLoader2 size={14} style={{ animation: `${spin} 0.9s linear infinite` }} />
+                            <AppIcon name='CircleNotch' size={14} style={{ animation: `${spin} 0.9s linear infinite` }} />
                             <Typography sx={{ fontSize: 12 }}>Flow started — first node executing…</Typography>
                         </Stack>
                     ) : status === 'error' ? (
@@ -815,7 +813,7 @@ const WebhookListenerDrawer = ({ open, chatflowid, onClose, onStatusChange }) =>
                     size='small'
                     onClick={resetRun}
                     disabled={status === 'idle' || status === 'connecting' || (!executedData && !finalMessage)}
-                    startIcon={<IconRefresh size={14} />}
+                    startIcon={<AppIcon name='ArrowClockwise' size={14} />}
                     sx={{
                         textTransform: 'none',
                         fontSize: 12,
