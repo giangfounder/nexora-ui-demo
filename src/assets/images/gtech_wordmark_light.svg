@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" role="img" aria-label="G-TECH">
+  <text x="0" y="76" font-family="Be Vietnam Pro, Inter, Arial, sans-serif"
+        font-size="86" font-weight="800" letter-spacing="-1" fill="#EA580C">G</text>
+  <circle cx="86" cy="52" r="10" fill="#0F172A"/>
+  <text x="110" y="76" font-family="Be Vietnam Pro, Inter, Arial, sans-serif"
+        font-size="86" font-weight="800" letter-spacing="-1" fill="#EA580C">TECH</text>
+</svg>

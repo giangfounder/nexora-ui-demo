@@ -1,0 +1,232 @@
+// ==============================|| NEXORA — DESIGN TOKENS ||============================== //
+// Hybrid A+B direction: Editorial Minimalist (Standard) + Soft Premium (Premium)
+// See DESIGN_DECISIONS.md for rationale. Do not add ad-hoc colors — extend here.
+
+// paper & background
+$paper: #ffffff;
+
+// primary — NEXORA Blue
+$primaryLight: #eff6ff;
+$primaryMain: #2563eb;
+$primaryDark: #1d4ed8;
+$primary200: #93c5fd;
+$primary800: #1e40af;
+
+// secondary — cool slate toward NEXORA Navy
+$secondaryLight: #f1f5f9;
+$secondaryMain: #475569;
+$secondaryDark: #334155;
+$secondary200: #94a3b8;
+$secondary800: #0b1220;
+
+// success
+$successLight: #dcfce7;
+$success200: #86efac;
+$successMain: #16a34a;
+$successDark: #15803d;
+
+// error
+$errorLight: #fee2e2;
+$errorMain: #dc2626;
+$errorDark: #b91c1c;
+
+// orange (utility, distinct from brand primary)
+$orangeLight: #ffedd5;
+$orangeMain: #f97316;
+$orangeDark: #c2410c;
+
+// teal (utility) — NEXORA Cyan accent
+$tealLight: #cffafe;
+$tealMain: #22d3ee;
+$tealDark: #0e7490;
+
+// warning
+$warningLight: #fef3c7;
+$warningMain: #f59e0b;
+$warningDark: #d97706;
+
+// grey — cool neutral scale (Cloud #F5F7FA … Navy #0B1220)
+$grey50: #f8fafc;
+$grey100: #f5f7fa;
+$grey200: #e2e8f0;
+$grey300: #cbd5e1;
+$grey400: #94a3b8;
+$grey500: #64748b;
+$grey600: #475569;
+$grey700: #334155;
+$grey900: #0b1220;
+
+// transparent
+$transparent: #ffffff00;
+
+// ==============================|| ALPHA TOKENS (fix broken grey900+N string-concat) ||============================== //
+$alphaBorder: rgba(0, 0, 0, 0.08);
+$alphaBorderStrong: rgba(0, 0, 0, 0.15);
+$alphaDivider: rgba(0, 0, 0, 0.06);
+$alphaHover: rgba(0, 0, 0, 0.04);
+$alphaOverlay: rgba(0, 0, 0, 0.5);
+
+// ==============================|| SURFACE TOKENS ||============================== //
+$surface: #ffffff;
+$surfaceRaised: #f8fafc;
+$surfaceSunken: #f5f7fa;
+
+// ==============================|| ACCENT (premium callouts, replaces primary.light abuse) ||============================== //
+$accentSoft: rgba(37, 99, 235, 0.08);
+$accentMedium: rgba(37, 99, 235, 0.16);
+$accentStrong: rgba(37, 99, 235, 0.24);
+
+// ==============================|| DARK THEME VARIANTS ||============================== //
+
+// paper & background — NEXORA Navy
+$darkBackground: #0b1220;
+$darkPaper: #0b1220;
+
+// dark elevated surfaces
+$darkLevel1: #111a2e;
+$darkLevel2: #070c16;
+
+// primary dark
+$darkPrimaryLight: #132a55;
+$darkPrimaryMain: #2563eb;
+$darkPrimaryDark: #60a5fa;
+$darkPrimary200: #93c5fd;
+$darkPrimary800: #1e3a8a;
+
+// secondary dark — slate
+$darkSecondaryLight: #1e293b;
+$darkSecondaryMain: #94a3b8;
+$darkSecondaryDark: #cbd5e1;
+$darkSecondary200: #475569;
+$darkSecondary800: #64748b;
+
+// text variants
+$darkTextTitle: #f8fafc;
+$darkTextPrimary: #e2e8f0;
+$darkTextSecondary: #94a3b8;
+
+// dark alpha tokens
+$darkAlphaBorder: rgba(255, 255, 255, 0.08);
+$darkAlphaBorderStrong: rgba(255, 255, 255, 0.15);
+$darkAlphaDivider: rgba(255, 255, 255, 0.06);
+$darkAlphaHover: rgba(255, 255, 255, 0.05);
+$darkAlphaOverlay: rgba(0, 0, 0, 0.72);
+
+// dark surfaces
+$darkSurface: #0b1220;
+$darkSurfaceRaised: #111a2e;
+$darkSurfaceSunken: #070c16;
+
+// ==============================|| JAVASCRIPT ||============================== //
+
+:export {
+    paper: $paper;
+
+    // primary
+    primaryLight: $primaryLight;
+    primary200: $primary200;
+    primaryMain: $primaryMain;
+    primaryDark: $primaryDark;
+    primary800: $primary800;
+
+    // secondary
+    secondaryLight: $secondaryLight;
+    secondary200: $secondary200;
+    secondaryMain: $secondaryMain;
+    secondaryDark: $secondaryDark;
+    secondary800: $secondary800;
+
+    // success
+    successLight: $successLight;
+    success200: $success200;
+    successMain: $successMain;
+    successDark: $successDark;
+
+    // error
+    errorLight: $errorLight;
+    errorMain: $errorMain;
+    errorDark: $errorDark;
+
+    // orange
+    orangeLight: $orangeLight;
+    orangeMain: $orangeMain;
+    orangeDark: $orangeDark;
+
+    // teal
+    tealLight: $tealLight;
+    tealMain: $tealMain;
+    tealDark: $tealDark;
+
+    // warning
+    warningLight: $warningLight;
+    warningMain: $warningMain;
+    warningDark: $warningDark;
+
+    // grey
+    grey50: $grey50;
+    grey100: $grey100;
+    grey200: $grey200;
+    grey300: $grey300;
+    grey400: $grey400;
+    grey500: $grey500;
+    grey600: $grey600;
+    grey700: $grey700;
+    grey900: $grey900;
+
+    // alpha
+    alphaBorder: $alphaBorder;
+    alphaBorderStrong: $alphaBorderStrong;
+    alphaDivider: $alphaDivider;
+    alphaHover: $alphaHover;
+    alphaOverlay: $alphaOverlay;
+
+    // surface
+    surface: $surface;
+    surfaceRaised: $surfaceRaised;
+    surfaceSunken: $surfaceSunken;
+
+    // accent
+    accentSoft: $accentSoft;
+    accentMedium: $accentMedium;
+    accentStrong: $accentStrong;
+
+    // dark paper & background
+    darkPaper: $darkPaper;
+    darkBackground: $darkBackground;
+    darkLevel1: $darkLevel1;
+    darkLevel2: $darkLevel2;
+
+    // dark text
+    darkTextTitle: $darkTextTitle;
+    darkTextPrimary: $darkTextPrimary;
+    darkTextSecondary: $darkTextSecondary;
+
+    // dark primary
+    darkPrimaryLight: $darkPrimaryLight;
+    darkPrimaryMain: $darkPrimaryMain;
+    darkPrimaryDark: $darkPrimaryDark;
+    darkPrimary200: $darkPrimary200;
+    darkPrimary800: $darkPrimary800;
+
+    // dark secondary
+    darkSecondaryLight: $darkSecondaryLight;
+    darkSecondaryMain: $darkSecondaryMain;
+    darkSecondaryDark: $darkSecondaryDark;
+    darkSecondary200: $darkSecondary200;
+    darkSecondary800: $darkSecondary800;
+
+    // dark alpha
+    darkAlphaBorder: $darkAlphaBorder;
+    darkAlphaBorderStrong: $darkAlphaBorderStrong;
+    darkAlphaDivider: $darkAlphaDivider;
+    darkAlphaHover: $darkAlphaHover;
+    darkAlphaOverlay: $darkAlphaOverlay;
+
+    // dark surface
+    darkSurface: $darkSurface;
+    darkSurfaceRaised: $darkSurfaceRaised;
+    darkSurfaceSunken: $darkSurfaceSunken;
+
+    // transparent
+    transparent: $transparent;
+}

@@ -1,0 +1,26 @@
+// Top navigation (menu-items/dashboard.js titles + TopNav chrome) — vi → en
+export default {
+    'Điều hướng chính': 'Main navigation',
+    'Tổng quan': 'Overview',
+    'Báo cáo': 'Reports',
+    'Vận hành': 'Operations',
+    Kênh: 'Channels',
+    'Khách hàng': 'Customers',
+    'Nhân sự': 'People',
+    'Tự động hoá': 'Automation',
+    'Kho ứng dụng': 'App library',
+    'Công cụ': 'Tools',
+    'Chứng thực': 'Credentials',
+    Biến: 'Variables',
+    'Khoá API': 'API keys',
+    'Kho tài liệu': 'Document stores',
+    'Hệ thống': 'System',
+    'Cấu hình': 'Configuration',
+    'Lịch sử chạy': 'Executions',
+    'Đánh giá': 'Evaluations',
+    'Nhật ký': 'Logs',
+    'Quản trị': 'Administration',
+    'Vai trò': 'Roles',
+    'Người dùng': 'Users',
+    'Lịch sử đăng nhập': 'Login activity'
+}

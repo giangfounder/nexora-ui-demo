@@ -1,0 +1,213 @@
+/* NEXORA DateField — override react-datepicker default styling */
+
+.gtech-datepicker-popper {
+    z-index: 1400;
+}
+
+.gtech-datepicker-popper .react-datepicker {
+    font-family: inherit;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.04);
+    background: #fff;
+    overflow: hidden;
+    padding: 0;
+}
+
+.gtech-datepicker-popper .react-datepicker__triangle {
+    display: none;
+}
+
+.gtech-datepicker-popper .react-datepicker__header {
+    background: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 0;
+}
+
+.gtech-datepicker-popper .react-datepicker__day-names {
+    padding: 6px 12px 8px;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.gtech-datepicker-popper .react-datepicker__day-name {
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    width: 32px;
+    line-height: 20px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.gtech-datepicker-popper .react-datepicker__month-container {
+    padding: 4px 8px 8px;
+}
+
+.gtech-datepicker-popper .react-datepicker__month {
+    margin: 0;
+    padding: 0 4px 4px;
+}
+
+.gtech-datepicker-popper .react-datepicker__week {
+    display: flex;
+    justify-content: space-around;
+    margin: 2px 0;
+}
+
+.gtech-datepicker-popper .react-datepicker__day {
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 13px;
+    font-weight: 500;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 8px;
+    margin: 0;
+    transition: background-color 120ms ease-out, color 120ms ease-out;
+}
+
+.gtech-datepicker-popper .react-datepicker__day:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 1);
+}
+
+.gtech-datepicker-popper .react-datepicker__day--outside-month {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.gtech-datepicker-popper .react-datepicker__day--today {
+    font-weight: 700;
+    color: #2563eb;
+    background: transparent;
+    position: relative;
+}
+.gtech-datepicker-popper .react-datepicker__day--today::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #2563eb;
+}
+
+.gtech-datepicker-popper .react-datepicker__day--selected,
+.gtech-datepicker-popper .react-datepicker__day--keyboard-selected,
+.gtech-datepicker-popper .react-datepicker__day--in-range,
+.gtech-datepicker-popper .react-datepicker__day--in-selecting-range {
+    background: #2563eb;
+    color: #fff;
+    font-weight: 600;
+}
+.gtech-datepicker-popper .react-datepicker__day--selected::after,
+.gtech-datepicker-popper .react-datepicker__day--keyboard-selected::after {
+    background: #fff;
+}
+.gtech-datepicker-popper .react-datepicker__day--selected:hover {
+    background: #1d4ed8;
+}
+
+.gtech-datepicker-popper .react-datepicker__day--disabled {
+    color: rgba(0, 0, 0, 0.25);
+    cursor: not-allowed;
+}
+.gtech-datepicker-popper .react-datepicker__day--disabled:hover {
+    background: transparent;
+}
+
+/* Time select column */
+.gtech-datepicker-popper .react-datepicker__time-container {
+    border-left: 1px solid rgba(0, 0, 0, 0.06);
+    width: 96px;
+}
+.gtech-datepicker-popper .react-datepicker__header--time {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+.gtech-datepicker-popper .react-datepicker-time__header {
+    color: rgba(0, 0, 0, 0.55);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+.gtech-datepicker-popper .react-datepicker__time-box {
+    width: 96px !important;
+}
+.gtech-datepicker-popper .react-datepicker__time-list-item {
+    font-size: 13px !important;
+    height: 30px !important;
+    line-height: 30px !important;
+    padding: 0 !important;
+}
+.gtech-datepicker-popper .react-datepicker__time-list-item--selected {
+    background: #2563eb !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+}
+
+/* Dark mode — DateField adds .gtech-datepicker-dark to the popper when theme.palette.mode === 'dark' */
+.gtech-datepicker-dark.gtech-datepicker-popper .react-datepicker {
+    background: #111a2e;
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+.gtech-datepicker-dark.gtech-datepicker-popper .react-datepicker__header {
+    background: #111a2e;
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+.gtech-datepicker-dark.gtech-datepicker-popper .react-datepicker__day {
+    color: rgba(255, 255, 255, 0.85);
+}
+.gtech-datepicker-dark.gtech-datepicker-popper .react-datepicker__day:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+}
+.gtech-datepicker-dark.gtech-datepicker-popper .react-datepicker__day-name {
+    color: rgba(255, 255, 255, 0.4);
+}
+.gtech-datepicker-dark.gtech-datepicker-popper .react-datepicker__day--outside-month {
+    color: rgba(255, 255, 255, 0.25);
+}
+.gtech-datepicker-dark.gtech-datepicker-popper .react-datepicker__day--disabled {
+    color: rgba(255, 255, 255, 0.2);
+}
+.gtech-datepicker-dark.gtech-datepicker-popper .react-datepicker__day--today {
+    color: #60a5fa;
+}
+.gtech-datepicker-dark.gtech-datepicker-popper .react-datepicker__day--selected,
+.gtech-datepicker-dark.gtech-datepicker-popper .react-datepicker__day--keyboard-selected,
+.gtech-datepicker-dark.gtech-datepicker-popper .react-datepicker__day--in-range,
+.gtech-datepicker-dark.gtech-datepicker-popper .react-datepicker__day--in-selecting-range {
+    background: #2563eb;
+    color: #fff;
+}
+.gtech-datepicker-dark.gtech-datepicker-popper .react-datepicker__time-container {
+    border-left-color: rgba(255, 255, 255, 0.08);
+}
+.gtech-datepicker-dark.gtech-datepicker-popper .react-datepicker__header--time {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.5);
+}
+.gtech-datepicker-dark.gtech-datepicker-popper .react-datepicker-time__header {
+    color: rgba(255, 255, 255, 0.55);
+}
+.gtech-datepicker-dark.gtech-datepicker-popper .react-datepicker__time,
+.gtech-datepicker-dark.gtech-datepicker-popper .react-datepicker__time-box {
+    background: #111a2e;
+}
+.gtech-datepicker-dark.gtech-datepicker-popper .react-datepicker__time-list-item {
+    color: rgba(255, 255, 255, 0.85);
+}
+.gtech-datepicker-dark.gtech-datepicker-popper .react-datepicker__time-list-item:hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+}
