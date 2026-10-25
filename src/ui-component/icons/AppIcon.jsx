@@ -259,7 +259,7 @@ import {
     XCircle
 } from '@phosphor-icons/react'
 
-// Style: filled glyphs (weight "fill") everywhere, no outline-only icons.
+// Style: duotone glyphs everywhere (soft filled layer + outline), no outline-only icons.
 // Single entry point for every UI icon in the app (Phosphor Icons).
 // Only the glyphs listed here end up in the bundle; to change icon set, edit this file only.
 const ICONS = {
@@ -540,7 +540,18 @@ const THEME_COLORS = {
 
 export const AppIcon = forwardRef(function AppIcon(
     // stroke / strokeWidth were Tabler-only props; Phosphor controls thickness through weight
-    { name, size, weight = 'fill', color = 'currentColor', fontSize, htmlColor, sx, stroke: _stroke, strokeWidth: _strokeWidth, ...rest },
+    {
+        name,
+        size,
+        weight = 'duotone',
+        color = 'currentColor',
+        fontSize,
+        htmlColor,
+        sx,
+        stroke: _stroke,
+        strokeWidth: _strokeWidth,
+        ...rest
+    },
     ref
 ) {
     const Glyph = ICONS[name]
@@ -576,7 +587,7 @@ export const AppIcon = forwardRef(function AppIcon(
 AppIcon.propTypes = {
     name: PropTypes.oneOf(ICON_NAMES).isRequired,
     size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    weight: PropTypes.oneOf(['fill', 'regular', 'duotone']),
+    weight: PropTypes.oneOf(['duotone', 'fill', 'regular']),
     color: PropTypes.string,
     fontSize: PropTypes.oneOf(['small', 'medium', 'large', 'inherit']),
     htmlColor: PropTypes.string,
@@ -589,7 +600,7 @@ const componentCache = new Map()
 
 // Component form for places that take an icon component rather than an element
 // (menu items, `icon: X` config objects, `<item.icon />`).
-export function iconComponent(name, weight = 'fill') {
+export function iconComponent(name, weight = 'duotone') {
     const key = `${name}:${weight}`
     if (!componentCache.has(key)) {
         const Bound = forwardRef(function BoundAppIcon(props, ref) {
