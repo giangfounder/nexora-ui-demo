@@ -168,7 +168,7 @@ const ChatTestPanel = ({ assistantName, welcome, modelLabel, stores, selectedSto
         {
             id: 'g',
             role: 'bot',
-            text: interpolate(welcome || 'Xin chào! Mình có thể giúp gì cho bạn?', cust || {}),
+            text: interpolate(welcome || 'Xin chào! Tôi có thể hỗ trợ bạn nội dung nào?', cust || {}),
             traces: [],
             at: nowHm()
         }
@@ -225,7 +225,7 @@ const ChatTestPanel = ({ assistantName, welcome, modelLabel, stores, selectedSto
             const tier = vals.customer_tier ? ` Bạn đang là ${vals.customer_tier}.` : ''
             return `${hi}Đơn ${vals.order_code || 'gần nhất'} của bạn đang “${vals.order_status}”${
                 vals.order_eta ? `, dự kiến giao ${vals.order_eta}` : ''
-            }.${tier} Bạn cần mình hỗ trợ thêm gì không?`
+            }.${tier} Bạn cần hỗ trợ thêm nội dung nào không?`
         }
         if (vals.__products) {
             const budget = parseBudget(vals.budget ?? vals['customer.budget'])
@@ -243,12 +243,12 @@ const ChatTestPanel = ({ assistantName, welcome, modelLabel, stores, selectedSto
                     near.price
                 )}. Bạn có muốn xem thêm không?`
             }
-            return `${hi}${Number.isNaN(budget) ? 'Một vài mẫu dễ tiếp cận' : `Với ngân sách ${vnd(budget)}`}${interest}, mình gợi ý:\n${fit
-                .map((p) => `• ${p.name} — ${vnd(p.price)}`)
-                .join('\n')}`
+            return `${hi}${
+                Number.isNaN(budget) ? 'Một vài mẫu dễ tiếp cận' : `Với ngân sách ${vnd(budget)}`
+            }${interest}, tôi đề xuất:\n${fit.map((p) => `• ${p.name} — ${vnd(p.price)}`).join('\n')}`
         }
         if (vals.__hit) return vals.__hit.chunk.pageContent
-        return `${hi}Mình đã xử lý xong yêu cầu “${playbook.name}”.`
+        return `${hi}Tôi đã xử lý xong yêu cầu “${playbook.name}”.`
     }
 
     // Executes steps from `from` until the next question or the end.
@@ -269,7 +269,7 @@ const ChatTestPanel = ({ assistantName, welcome, modelLabel, stores, selectedSto
                 if (vals[step.var.name] !== undefined) continue
                 setRun({ ...state, idx: i, values: vals })
                 return {
-                    text: `${prefix}Bạn cho mình xin ${varLabel(step.var)} nhé${step.var.required ? '' : ' (gõ "bỏ qua" nếu không có)'}.`,
+                    text: `${prefix}Vui lòng cung cấp ${varLabel(step.var)}${step.var.required ? '' : ' (gõ "bỏ qua" nếu không có)'}.`,
                     traces
                 }
             } else if (step.kind === 'call') {
@@ -283,7 +283,7 @@ const ChatTestPanel = ({ assistantName, welcome, modelLabel, stores, selectedSto
                     })
                     if (toolState.guards.onError === 'handoff') {
                         setRun(null)
-                        return { text: 'Hệ thống tra cứu đang gặp sự cố, mình chuyển bạn sang nhân viên hỗ trợ ngay nhé.', traces }
+                        return { text: 'Hệ thống tra cứu đang gặp sự cố; yêu cầu được chuyển sang nhân viên hỗ trợ.', traces }
                     }
                     continue
                 }
@@ -310,12 +310,12 @@ const ChatTestPanel = ({ assistantName, welcome, modelLabel, stores, selectedSto
             const skip = !v.required && /bo qua|khong co|skip/.test(norm)
             if (!skip && v.type === 'phone' && !/^0\d{9}$/.test(text.replace(/[\s.-]/g, '')))
                 return {
-                    text: 'Số điện thoại cần đủ 10 số và bắt đầu bằng 0, bạn kiểm tra lại giúp mình nhé.',
+                    text: 'Số điện thoại cần đủ 10 số và bắt đầu bằng 0. Vui lòng kiểm tra lại.',
                     traces: [{ tone: 'rose', icon: iconComponent('ClipboardText'), label: `{{${v.name}}} chưa hợp lệ` }]
                 }
             if (!skip && v.type === 'number' && Number.isNaN(parseBudget(text)))
                 return {
-                    text: 'Bạn cho mình con số cụ thể nhé, ví dụ “5 triệu”.',
+                    text: 'Vui lòng nhập con số cụ thể, ví dụ “5 triệu”.',
                     traces: [{ tone: 'rose', icon: iconComponent('ClipboardText'), label: `{{${v.name}}} chưa hợp lệ` }]
                 }
             const value = skip ? '' : text.trim()
@@ -349,11 +349,11 @@ const ChatTestPanel = ({ assistantName, welcome, modelLabel, stores, selectedSto
         if (toolState.enabled.deepResearch && toolState.deepResearch.links.length) {
             const hosts = toolState.deepResearch.links.slice(0, 2).map((l) => hostOf(l.url))
             return {
-                text: `Mình chưa thấy câu trả lời trong kho tài liệu nên đã nghiên cứu thêm ${toolState.deepResearch.links.length} nguồn. Đây là phản hồi mẫu của bản prototype — khi chạy thật, agent sẽ tổng hợp nội dung kèm trích dẫn.`,
+                text: `Chưa tìm thấy câu trả lời trong kho tài liệu nên hệ thống đã nghiên cứu thêm ${toolState.deepResearch.links.length} nguồn. Đây là phản hồi mẫu của bản prototype — khi chạy thật, agent sẽ tổng hợp nội dung kèm trích dẫn.`,
                 traces: [{ tone: 'teal', icon: iconComponent('Globe'), label: `Deep Research · ${hosts.join(', ')}` }]
             }
         }
-        return { text: 'Mình chưa có thông tin cho câu hỏi này. Bạn thử gắn thêm kho tài liệu hoặc bật Deep Research nhé.', traces: [] }
+        return { text: 'Chưa có thông tin cho câu hỏi này. Vui lòng gắn thêm kho tài liệu hoặc bật Deep Research.', traces: [] }
     }
 
     const send = (raw) => {

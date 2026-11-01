@@ -102,7 +102,7 @@ const AssistantWorkspace = () => {
     const [stores, setStores] = useState([])
 
     const [name, setName] = useState('')
-    const [welcome, setWelcome] = useState('Xin chào {{customer.name}}! Mình là trợ lý của Nexora, bạn cần hỗ trợ gì ạ?')
+    const [welcome, setWelcome] = useState('Xin chào {{customer.name}}! Tôi là trợ lý của Nexora. Bạn cần hỗ trợ nội dung nào?')
     const [instruction, setInstruction] = useState('')
     const [modelName, setModelName] = useState('')
     const [params, setParams] = useState({ temperature: 0.7, topP: 0.95, maxTokens: 2048, memory: 10, streaming: true })

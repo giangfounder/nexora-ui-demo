@@ -21,7 +21,7 @@ const persist = (m) => {
 const baseSettings = (patch = {}) => ({
     modelName: 'chatOpenAI',
     instruction: '',
-    welcome: 'Xin chào {{customer.name}}! Mình có thể giúp gì cho bạn?',
+    welcome: 'Xin chào {{customer.name}}! Tôi có thể hỗ trợ bạn nội dung nào?',
     memory: 10,
     temperature: 0.4,
     guards: { fillMissing: true, skipKnown: true, onError: 'retry' },
@@ -43,7 +43,7 @@ const seedCskh = () => {
         settings: baseSettings({
             instruction:
                 'Bạn là trợ lý CSKH của Nexora. Tự tra cứu tài liệu và hệ thống để trả lời; chỉ hỏi khách khi thật sự thiếu thông tin. Xưng hô bằng {{customer.name}}, trả lời ngắn gọn, lịch sự.',
-            welcome: 'Xin chào {{customer.name}}! Mình là trợ lý của Nexora, bạn cần hỗ trợ gì ạ?'
+            welcome: 'Xin chào {{customer.name}}! Tôi là trợ lý của Nexora. Bạn cần hỗ trợ nội dung nào?'
         }),
         channels: ['web', 'zalo', 'messenger'],
         customerAttrs: [
@@ -106,7 +106,7 @@ const seedCskh = () => {
             enabled: true,
             team: 'CSKH',
             when: 'Khách muốn gặp người thật, phàn nàn gay gắt, hoặc vấn đề ngoài khả năng của trợ lý',
-            message: 'Mình chuyển bạn sang nhân viên CSKH ngay, bạn chờ chút nhé.'
+            message: 'Yêu cầu đang được chuyển sang nhân viên CSKH. Vui lòng chờ trong giây lát.'
         },
         positions: {}
     }
@@ -150,7 +150,7 @@ const seedSales = () => {
             enabled: true,
             team: 'Bán hàng',
             when: 'Khách muốn đặt số lượng lớn hoặc cần báo giá doanh nghiệp',
-            message: 'Mình chuyển bạn sang chuyên viên bán hàng nhé.'
+            message: 'Yêu cầu đang được chuyển sang chuyên viên bán hàng.'
         },
         positions: {}
     }
@@ -193,7 +193,7 @@ export const createDoc = ({ name, modelName }) =>
             enabled: true,
             team: 'CSKH',
             when: 'Khách muốn gặp người thật hoặc vấn đề ngoài khả năng của trợ lý',
-            message: 'Mình chuyển bạn sang nhân viên hỗ trợ nhé.'
+            message: 'Yêu cầu đang được chuyển sang nhân viên hỗ trợ.'
         },
         positions: {}
     })

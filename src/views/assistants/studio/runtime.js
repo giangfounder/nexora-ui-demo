@@ -75,10 +75,10 @@ export const parseMoney = (raw = '') => {
 export const validateAnswer = (v, text) => {
     if (!v.required && /bo qua|khong co|skip/.test(stripVi(text))) return { ok: true, value: '' }
     if (v.type === 'phone' && !/^0\d{9}$/.test(text.replace(/[\s.-]/g, '')))
-        return { ok: false, msg: 'Số điện thoại cần đủ 10 số và bắt đầu bằng 0, bạn kiểm tra lại giúp mình nhé.' }
-    if (v.type === 'number' && Number.isNaN(parseMoney(text))) return { ok: false, msg: 'Bạn cho mình con số cụ thể nhé, ví dụ “5 triệu”.' }
+        return { ok: false, msg: 'Số điện thoại cần đủ 10 số và bắt đầu bằng 0. Vui lòng kiểm tra lại.' }
+    if (v.type === 'number' && Number.isNaN(parseMoney(text))) return { ok: false, msg: 'Vui lòng nhập con số cụ thể, ví dụ “5 triệu”.' }
     if (v.type === 'email' && !/^\S+@\S+\.\S+$/.test(text.trim()))
-        return { ok: false, msg: 'Email chưa đúng định dạng, bạn kiểm tra lại nhé.' }
+        return { ok: false, msg: 'Email chưa đúng định dạng. Vui lòng kiểm tra lại.' }
     return { ok: true, value: text.trim() }
 }
 
@@ -194,7 +194,7 @@ export const agentTurn = ({ doc, stores, customer, state, text }) => {
         }
         S('agent', 'amber', `Thiếu {{${v.name}}} → hỏi khách`)
         return {
-            reply: `Dạ, ${given ? `${given} ` : 'bạn '}cho mình xin ${varLabel(v)} nhé.`,
+            reply: `${given ? `${given}, vui` : 'Vui'} lòng cung cấp ${varLabel(v)}.`,
             steps,
             state: { vals, pending: { question, plan, index, var: v, sopId: sop?.id } }
         }
@@ -267,7 +267,7 @@ export const agentTurn = ({ doc, stores, customer, state, text }) => {
         if (fit.length)
             reply = `${hi}${
                 Number.isNaN(budget) ? 'một vài mẫu dễ tiếp cận' : `với ngân sách ${vnd(budget)}`
-            }${interest}, mình gợi ý:\n${fit.map((p) => `• ${p.name} — ${vnd(p.price)}`).join('\n')}`
+            }${interest}, tôi đề xuất:\n${fit.map((p) => `• ${p.name} — ${vnd(p.price)}`).join('\n')}`
         else {
             const near = [...products].sort((a, b) => a.price - b.price)[0]
             reply = `${hi}hiện chưa có mẫu nào trong ngân sách ${vnd(budget)}${interest}. Mẫu gần nhất là ${near.name} — ${vnd(
@@ -283,11 +283,9 @@ export const agentTurn = ({ doc, stores, customer, state, text }) => {
         if (research && research.config?.links?.length) {
             const hosts = research.config.links.slice(0, 2).map((l) => l.url.replace(/^https?:\/\//, '').split('/')[0])
             S(toolNode(research), 'teal', `Deep Research · ${hosts.join(', ')}`)
-            reply = `Tài liệu nội bộ chưa có thông tin này nên mình đã tìm thêm trên ${research.config.links.length} nguồn web. (Bản prototype: khi chạy thật, agent tổng hợp nội dung kèm trích dẫn.)`
+            reply = `Tài liệu nội bộ chưa có thông tin này nên hệ thống đã tìm thêm trên ${research.config.links.length} nguồn web. (Bản prototype: khi chạy thật, agent tổng hợp nội dung kèm trích dẫn.)`
         } else {
-            reply = `Mình chưa tìm thấy thông tin này.${
-                doc.handoff?.enabled ? ' Bạn có muốn mình chuyển sang nhân viên hỗ trợ không?' : ''
-            }`
+            reply = `Chưa tìm thấy thông tin này.${doc.handoff?.enabled ? ' Bạn có muốn chuyển sang nhân viên hỗ trợ không?' : ''}`
         }
     }
     if (doc.rules.length) S('guard', undefined, `Đối chiếu ${doc.rules.length} quy tắc an toàn`)

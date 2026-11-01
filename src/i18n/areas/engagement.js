@@ -45,7 +45,7 @@ export default {
     // Thread
     'Hệ thống': 'System',
     'Đã chuyển cho {name}': 'Handed off to {name}',
-    'Đang chờ nhân viên nhận': 'Waiting for an agent to pick up',
+    'Đang chờ nhân viên tiếp nhận': 'Waiting for an agent to pick up',
     'Thông tin khách hàng': 'Customer info',
     'Mở thông tin khách hàng': 'Open customer info',
 

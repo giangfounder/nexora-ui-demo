@@ -67,14 +67,14 @@ export const mockConversations = [
             {
                 id: 'm2',
                 sender: 'ai',
-                text: 'Dạ chào chị Lan, sản phẩm size M hiện còn hàng ạ. Chị cần đặt bao nhiêu sản phẩm?',
+                text: 'Kính chào chị Lan, sản phẩm size M hiện còn hàng. Chị cần đặt bao nhiêu sản phẩm?',
                 at: '09:13'
             },
             { id: 'm3', sender: 'customer', text: 'Cho mình 2 cái nhé', at: '09:15' },
             {
                 id: 'm4',
                 sender: 'ai',
-                text: 'Dạ em đã lên đơn 2 sản phẩm size M, chị vui lòng xác nhận địa chỉ giao hàng giúp em ạ.',
+                text: 'Hệ thống đã lập đơn 2 sản phẩm size M. Chị vui lòng xác nhận địa chỉ giao hàng.',
                 at: '09:15'
             }
         ]
@@ -97,7 +97,7 @@ export const mockConversations = [
             {
                 id: 'm2',
                 sender: 'ai',
-                text: 'Dạ em rất xin lỗi vì sự bất tiện này. Đây là trường hợp cần xử lý hoàn tiền nên em xin phép chuyển anh đến nhân viên phụ trách để hỗ trợ nhanh nhất ạ.',
+                text: 'Chúng tôi xin lỗi vì sự bất tiện này. Đây là trường hợp cần xử lý hoàn tiền, nên yêu cầu được chuyển đến nhân viên phụ trách để hỗ trợ nhanh nhất.',
                 at: '08:41'
             },
             {
@@ -110,7 +110,7 @@ export const mockConversations = [
                 id: 'm4',
                 sender: 'agent',
                 employeeId: 'e2',
-                text: 'Chào anh Khôi, em là Nam bên chăm sóc khách hàng. Em đã kiểm tra và sẽ xử lý hoàn tiền cho anh trong hôm nay ạ.',
+                text: 'Kính chào anh Khôi, tôi là Nam thuộc bộ phận chăm sóc khách hàng. Tôi đã kiểm tra và sẽ xử lý hoàn tiền cho anh trong hôm nay.',
                 at: '08:55'
             }
         ]
@@ -136,7 +136,7 @@ export const mockConversations = [
                 text: 'Thank you for reaching out. This is a bulk pricing request, so I am routing it to our sales team for a custom quote.',
                 at: 'Yesterday'
             },
-            { id: 'm3', sender: 'system', text: 'Đang chờ nhân viên nhận', at: 'Yesterday' }
+            { id: 'm3', sender: 'system', text: 'Đang chờ nhân viên tiếp nhận', at: 'Yesterday' }
         ]
     },
     {
@@ -152,7 +152,7 @@ export const mockConversations = [
         unread: 0,
         messages: [
             { id: 'm1', sender: 'customer', text: 'Sản phẩm trong ảnh có màu trắng không shop?', at: 'Mon' },
-            { id: 'm2', sender: 'agent', employeeId: 'e4', text: 'Dạ hiện tại chỉ còn màu đen và be thôi ạ.', at: 'Mon' },
+            { id: 'm2', sender: 'agent', employeeId: 'e4', text: 'Hiện tại sản phẩm chỉ còn màu đen và màu be.', at: 'Mon' },
             { id: 'm3', sender: 'customer', text: 'Ok cảm ơn shop', at: 'Mon' }
         ]
     },
@@ -169,7 +169,7 @@ export const mockConversations = [
         unread: 0,
         messages: [
             { id: 'm1', sender: 'customer', text: 'Bên mình có hỗ trợ trả góp không?', at: '10 phút trước' },
-            { id: 'm2', sender: 'ai', text: 'Dạ shop hỗ trợ trả góp 0% qua thẻ tín dụng cho đơn từ 3 triệu đồng ạ.', at: '10 phút trước' }
+            { id: 'm2', sender: 'ai', text: 'Cửa hàng hỗ trợ trả góp 0% qua thẻ tín dụng cho đơn từ 3 triệu đồng.', at: '10 phút trước' }
         ]
     },
     {
@@ -208,7 +208,7 @@ export const mockConversations = [
         unread: 0,
         messages: [
             { id: 'm1', sender: 'customer', text: 'Shop cho hỏi giờ mở cửa?', at: '11:02' },
-            { id: 'm2', sender: 'ai', text: 'Dạ shop mở cửa từ 8h đến 21h tất cả các ngày trong tuần ạ.', at: '11:02' }
+            { id: 'm2', sender: 'ai', text: 'Cửa hàng mở cửa từ 8h đến 21h tất cả các ngày trong tuần.', at: '11:02' }
         ]
     },
     {
@@ -224,7 +224,7 @@ export const mockConversations = [
         unread: 0,
         messages: [
             { id: 'm1', sender: 'customer', text: 'Cảm ơn shop đã hỗ trợ nhiệt tình', at: 'Sun' },
-            { id: 'm2', sender: 'agent', employeeId: 'e2', text: 'Dạ cảm ơn chị đã ủng hộ shop ạ!', at: 'Sun' }
+            { id: 'm2', sender: 'agent', employeeId: 'e2', text: 'Cảm ơn chị đã ủng hộ cửa hàng.', at: 'Sun' }
         ]
     },
     {
@@ -240,7 +240,7 @@ export const mockConversations = [
         unread: 0,
         messages: [
             { id: 'm1', sender: 'customer', text: 'Anh ơi cho em xin bảng giá sỉ với ạ', at: '13:20' },
-            { id: 'm2', sender: 'ai', text: 'Dạ đây là bảng giá sỉ áp dụng cho đơn từ 50 sản phẩm trở lên ạ [đính kèm].', at: '13:21' }
+            { id: 'm2', sender: 'ai', text: 'Đây là bảng giá sỉ áp dụng cho đơn từ 50 sản phẩm trở lên [đính kèm].', at: '13:21' }
         ]
     },
     {
@@ -261,7 +261,7 @@ export const mockConversations = [
             {
                 id: 'm2',
                 sender: 'system',
-                text: 'Đang chờ nhân viên nhận',
+                text: 'Đang chờ nhân viên tiếp nhận',
                 at: '2 giờ trước'
             }
         ]
@@ -282,7 +282,7 @@ export const mockConversations = [
             {
                 id: 'm2',
                 sender: 'ai',
-                text: 'Dạ đơn hàng của bạn dự kiến giao vào ngày mai, hiện đang ở kho trung chuyển ạ.',
+                text: 'Đơn hàng dự kiến giao vào ngày mai, hiện đang ở kho trung chuyển.',
                 at: '30 phút trước'
             }
         ]
@@ -300,7 +300,7 @@ export const mockConversations = [
         unread: 0,
         messages: [
             { id: 'm1', sender: 'customer', text: 'Sản phẩm bị lỗi, mình muốn đổi trả', at: 'Fri' },
-            { id: 'm2', sender: 'agent', employeeId: 'e2', text: 'Dạ shop đã tạo yêu cầu đổi trả cho đơn hàng của bạn ạ.', at: 'Fri' }
+            { id: 'm2', sender: 'agent', employeeId: 'e2', text: 'Cửa hàng đã tạo yêu cầu đổi trả cho đơn hàng của bạn.', at: 'Fri' }
         ]
     }
 ]

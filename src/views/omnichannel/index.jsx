@@ -41,7 +41,7 @@ const STATUS_UI = {
 const STATUS_TABS = ['all', 'escalated', 'ai_handling', 'resolved']
 
 const MACRO_TEMPLATES = [
-    { id: 'm-greet', label: 'Chào mừng', text: 'Xin chào! Cảm ơn bạn đã liên hệ NEXORA. Mình có thể hỗ trợ gì cho bạn?' },
+    { id: 'm-greet', label: 'Chào mừng', text: 'Xin chào! Cảm ơn bạn đã liên hệ NEXORA. Chúng tôi có thể hỗ trợ gì cho bạn?' },
     {
         id: 'm-confirm-order',
         label: 'Xác nhận đơn',
@@ -50,13 +50,13 @@ const MACRO_TEMPLATES = [
     {
         id: 'm-shipping',
         label: 'Thông tin vận chuyển',
-        text: 'Đơn hàng của bạn dự kiến giao trong 2-3 ngày làm việc. Mình sẽ gửi mã vận đơn ngay khi có.'
+        text: 'Đơn hàng của bạn dự kiến giao trong 2-3 ngày làm việc. Mã vận đơn sẽ được gửi ngay khi có.'
     },
-    { id: 'm-thanks', label: 'Cảm ơn', text: 'Cảm ơn bạn rất nhiều! Nếu cần hỗ trợ thêm, cứ nhắn cho mình bất cứ lúc nào nhé.' },
+    { id: 'm-thanks', label: 'Cảm ơn', text: 'Cảm ơn bạn rất nhiều! Nếu cần hỗ trợ thêm, vui lòng liên hệ bất cứ lúc nào.' },
     {
         id: 'm-apologize',
         label: 'Xin lỗi vì bất tiện',
-        text: 'Xin lỗi bạn vì bất tiện. Mình sẽ kiểm tra ngay và phản hồi bạn trong ít phút.'
+        text: 'Xin lỗi bạn vì bất tiện. Chúng tôi sẽ kiểm tra và phản hồi trong ít phút.'
     }
 ]
 
