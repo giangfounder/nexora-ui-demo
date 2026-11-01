@@ -50,6 +50,24 @@ export const demoFeatures = {
 
 export const demoPermissions = ['*']
 
+// Permission catalogue grouped by area (shape of GET /auth/permissions/:type), used by the API key and role dialogs
+const permissionItem = (key, value) => ({ key, value, isOpenSource: true, isEnterprise: true, isCloud: true })
+export const demoPermissionGroups = {
+    chatflows: [
+        permissionItem('chatflows:view', 'Xem'),
+        permissionItem('chatflows:create', 'Tạo'),
+        permissionItem('chatflows:update', 'Cập nhật')
+    ],
+    assistants: [
+        permissionItem('assistants:view', 'Xem'),
+        permissionItem('assistants:create', 'Tạo'),
+        permissionItem('assistants:update', 'Cập nhật')
+    ],
+    tools: [permissionItem('tools:view', 'Xem'), permissionItem('tools:create', 'Tạo')],
+    variables: [permissionItem('variables:view', 'Xem'), permissionItem('variables:create', 'Tạo')],
+    credentials: [permissionItem('credentials:view', 'Xem'), permissionItem('credentials:create', 'Tạo')]
+}
+
 export const demoChatflows = [
     {
         id: 'cf-demo-1',

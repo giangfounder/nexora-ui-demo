@@ -16,6 +16,7 @@ import {
     demoTools,
     demoCredentials,
     demoVariables,
+    demoPermissionGroups,
     demoApikeys,
     demoDocumentStores,
     demoDatasets,
@@ -100,7 +101,7 @@ const resolveResponse = (method, pathname, config) => {
     if (p === '/auth/resolve') return ok({ redirectUrl: '/signin' }, config)
     if (p === '/auth/login') return ok(sessionFor(config), config)
     if (p === '/auth/refreshToken') return ok({ id: demoUser.id }, config)
-    if (p.startsWith('/auth/permissions/')) return ok(demoPermissions, config)
+    if (p.startsWith('/auth/permissions/')) return ok(structuredClone(demoPermissionGroups), config)
     if (p.startsWith('/auth/sso-success')) return ok(sessionFor({}), config)
 
     if (p === '/account/logout') return ok({ message: 'logged_out', redirectTo: '/signin' }, config)
@@ -205,8 +206,11 @@ const resolveResponse = (method, pathname, config) => {
     if (p.startsWith('/openai-assistants')) return ok([], config)
     if (p.startsWith('/tools')) return ok(demoTools, config)
     if (p.startsWith('/credentials')) return ok(demoCredentials, config)
-    if (p.startsWith('/variables')) return ok(demoVariables, config)
-    if (p.startsWith('/apikey')) return ok(demoApikeys, config)
+    if (p.startsWith('/variables')) {
+        // The list view asks for pages ({ data, total }); other callers (suggestions, API dialog) expect a plain array
+        return ok(config.params?.page ? { data: demoVariables, total: demoVariables.length } : demoVariables, config)
+    }
+    if (p.startsWith('/apikey')) return ok(config.params?.page ? { data: demoApikeys, total: demoApikeys.length } : demoApikeys, config)
 
     // DOCSTORE
     if (p === '/document-store/components/loaders') return ok(demoDocStoreLoaders, config)
