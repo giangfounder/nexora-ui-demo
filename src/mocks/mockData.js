@@ -221,7 +221,7 @@ export const demoAssistants = [
         type: 'CUSTOM',
         details: JSON.stringify({
             name: 'Sales Assistant',
-            instruction: 'Bạn là chuyên viên tư vấn bán hàng. Tập trung chốt đơn, upsell và cross-sell.',
+            instruction: 'Bạn là chuyên viên tư vấn bán hàng. Tập trung hoàn tất đơn hàng, bán thêm và bán chéo.',
             chatModel: { label: 'ChatAnthropic (Claude 3.5 Sonnet)', name: 'chatAnthropic' }
         }),
         credential: 'demo-cred-2',

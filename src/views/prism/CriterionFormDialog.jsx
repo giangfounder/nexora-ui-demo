@@ -90,7 +90,7 @@ const CriterionFormDialog = ({ show, criterion, onCancel, onSave }) => {
                         <FormField label={t('Trạng thái')}>
                             <TextField select fullWidth size='small' value={form.status} onChange={(e) => set('status')(e.target.value)}>
                                 <MenuItem value='active'>{t('Đang áp dụng')}</MenuItem>
-                                <MenuItem value='draft'>{t('Nháp')}</MenuItem>
+                                <MenuItem value='draft'>{t('Bản nháp')}</MenuItem>
                             </TextField>
                         </FormField>
 

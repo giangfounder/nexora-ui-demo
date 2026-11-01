@@ -49,16 +49,16 @@ export const segmentsByType = [
     { name: 'Khách lẻ (B2C)', value: 1024, tone: 'orange' },
     { name: 'Doanh nghiệp (B2B)', value: 512, tone: 'teal' },
     { name: 'Đại lý', value: 218, tone: 'amber' },
-    { name: 'Khách vãng lai', value: 88, tone: 'rose' }
+    { name: 'Khách chưa định danh', value: 88, tone: 'rose' }
 ]
 
 export const segmentsByStage = [
-    { stage: 'Mới hỏi', count: 312 },
+    { stage: 'Tiếp nhận mới', count: 312 },
     { stage: 'Đang tư vấn', count: 264 },
     { stage: 'Đã báo giá', count: 198 },
-    { stage: 'Đã chốt đơn', count: 402 },
+    { stage: 'Đã đặt hàng', count: 402 },
     { stage: 'Đã mua', count: 486 },
-    { stage: 'Khách thân thiết', count: 180 }
+    { stage: 'Khách hàng trung thành', count: 180 }
 ]
 
 export const segmentsBreakdown = [
@@ -172,28 +172,28 @@ export const channelFunnel = {
         { stage: 'Tin nhắn mới', count: 1240 },
         { stage: 'Có phản hồi', count: 1104 },
         { stage: 'Tư vấn', count: 728 },
-        { stage: 'Chốt đơn', count: 312 },
+        { stage: 'Hoàn tất đơn hàng', count: 312 },
         { stage: 'Thanh toán', count: 264 }
     ],
     zalo: [
         { stage: 'Tin nhắn mới', count: 986 },
         { stage: 'Có phản hồi', count: 892 },
         { stage: 'Tư vấn', count: 604 },
-        { stage: 'Chốt đơn', count: 248 },
+        { stage: 'Hoàn tất đơn hàng', count: 248 },
         { stage: 'Thanh toán', count: 206 }
     ],
     website: [
         { stage: 'Tin nhắn mới', count: 648 },
         { stage: 'Có phản hồi', count: 612 },
         { stage: 'Tư vấn', count: 384 },
-        { stage: 'Chốt đơn', count: 172 },
+        { stage: 'Hoàn tất đơn hàng', count: 172 },
         { stage: 'Thanh toán', count: 148 }
     ],
     shopee: [
         { stage: 'Tin nhắn mới', count: 486 },
         { stage: 'Có phản hồi', count: 462 },
         { stage: 'Tư vấn', count: 296 },
-        { stage: 'Chốt đơn', count: 142 },
+        { stage: 'Hoàn tất đơn hàng', count: 142 },
         { stage: 'Thanh toán', count: 128 }
     ]
 }

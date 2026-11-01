@@ -86,7 +86,7 @@ export const AVAILABLE_AGENTS = [
     { id: 'agent-sales', label: 'Sales Assistant' },
     { id: 'agent-b2b', label: 'B2B Quote Bot' },
     { id: 'agent-general', label: 'General FAQ' },
-    { id: 'agent-livestream', label: 'Livestream Follow-up' },
+    { id: 'agent-livestream', label: 'Phát trực tiếp: theo dõi lại' },
     { id: 'agent-marketplace', label: 'Marketplace Order' }
 ]
 
@@ -94,7 +94,7 @@ export const AVAILABLE_SCRIPTS = [
     { id: 'sales-general', label: 'Bán hàng tổng hợp' },
     { id: 'b2b-quote', label: 'Báo giá B2B' },
     { id: 'faq-first', label: 'FAQ trước tiên' },
-    { id: 'live-buy', label: 'Chốt đơn livestream' },
+    { id: 'live-buy', label: 'Đơn hàng phát trực tiếp' },
     { id: 'order-status', label: 'Tra cứu đơn hàng' }
 ]
 

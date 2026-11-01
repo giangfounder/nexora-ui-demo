@@ -327,7 +327,7 @@ const AtlasInsightTab = () => {
                 <Stat value={affected} label={t('khách bị ảnh hưởng')} />
                 <Stat
                     value={`${badSignals}/${signals.length}`}
-                    label={t('tín hiệu đang xấu đi')}
+                    label={t('tín hiệu đang suy giảm')}
                     tone={badSignals ? theme.palette.error.main : undefined}
                 />
             </Stack>

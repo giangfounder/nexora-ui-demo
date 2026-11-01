@@ -236,7 +236,7 @@ export default {
     'Bán hàng tổng hợp': 'General sales',
     'Báo giá B2B': 'B2B quote',
     'FAQ trước tiên': 'FAQ first',
-    'Chốt đơn livestream': 'Livestream checkout',
+    'Đơn hàng phát trực tiếp': 'Livestream checkout',
     'Tra cứu đơn hàng': 'Order lookup',
 
     // Routing rules

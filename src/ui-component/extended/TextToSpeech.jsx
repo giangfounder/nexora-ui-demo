@@ -246,7 +246,7 @@ const TextToSpeech = ({ dialogProps }) => {
         try {
             const providerConfig = textToSpeech?.[selectedProvider] || {}
             const body = {
-                text: 'Today is a wonderful day to build something with Nexora!',
+                text: 'Welcome to Nexora.',
                 provider: selectedProvider,
                 credentialId: providerConfig.credentialId,
                 voice: providerConfig.voice,
@@ -612,7 +612,7 @@ const TextToSpeech = ({ dialogProps }) => {
                         </Typography>
 
                         <Typography variant='body2' color='textSecondary' sx={{ mb: 2 }}>
-                            Test text: &quot;Today is a wonderful day to build something with Nexora!&quot;
+                            Test text: &quot;Welcome to Nexora.&quot;
                         </Typography>
 
                         <AudioWaveform

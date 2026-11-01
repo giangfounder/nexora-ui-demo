@@ -185,7 +185,7 @@ const Dashboard = () => {
                                     component='h2'
                                     sx={{ fontFamily: SIGN_FONT, fontWeight: 600, fontSize: '1.375rem', lineHeight: 1.2, color: '#fff' }}
                                 >
-                                    {t('Hàng đợi chuyển người')}
+                                    {t('Hàng đợi chuyển giao nhân viên')}
                                 </Typography>
                                 <Typography sx={{ fontSize: '0.8125rem', color: alpha('#fff', 0.7) }}>
                                     {t('{n} cuộc đang mở', { n: openCount })}
@@ -292,7 +292,7 @@ const Dashboard = () => {
                                             <Stack direction='row' alignItems='center' spacing={0.5} sx={{ color: '#F2B233' }}>
                                                 <AppIcon name='HourglassMedium' size={16} />
                                                 <Typography sx={{ fontSize: '0.8125rem', fontWeight: 600, color: '#F2B233' }}>
-                                                    {t('Chờ nhận')}
+                                                    {t('Chờ tiếp nhận')}
                                                 </Typography>
                                             </Stack>
                                         </ButtonBase>
@@ -526,7 +526,7 @@ const Dashboard = () => {
                                     </Typography>
                                 }
                             >
-                                {t('Cần xử lý ngay')}
+                                {t('Cần xử lý ưu tiên')}
                             </SectionTitle>
                         </Box>
                         <Stack sx={{ px: 1, pb: 1 }}>

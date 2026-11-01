@@ -305,7 +305,7 @@ const vi = {
     'Bán hàng tổng hợp': 'Bán hàng tổng hợp',
     'Báo giá B2B': 'Báo giá B2B',
     'FAQ trước tiên': 'FAQ trước tiên',
-    'Chốt đơn livestream': 'Chốt đơn livestream',
+    'Đơn hàng phát trực tiếp': 'Đơn hàng phát trực tiếp',
     'Tra cứu đơn hàng': 'Tra cứu đơn hàng',
     'Connect each channel to the platform so Pulse can receive its messages.':
         'Kết nối từng kênh vào hệ thống để Pulse nhận được tin nhắn.',
@@ -358,7 +358,7 @@ const vi = {
     'Lifetime value': 'Giá trị vòng đời',
     'Churn risk': 'Rủi ro rời bỏ',
     'Purchase pattern': 'Xu hướng mua',
-    'Upsell suggestions': 'Gợi ý upsell',
+    'Upsell suggestions': 'Gợi ý bán thêm',
     'Next best action': 'Hành động khuyến nghị',
     'Files & Notes': 'Tệp & Ghi chú',
     'Attached files': 'Tệp đính kèm',

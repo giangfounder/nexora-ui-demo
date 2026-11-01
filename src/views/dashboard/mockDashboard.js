@@ -58,7 +58,7 @@ export const feedEvents = [
         id: 4,
         kind: 'deal_closed',
         tone: 'emerald',
-        text: 'Chốt đơn {amount} – {name}',
+        text: 'Hoàn tất đơn hàng {amount} – {name}',
         vars: { amount: 12500000, name: 'Nguyễn Thị Ngọc Anh' },
         ago: { n: 14, unit: 'minute' }
     },
@@ -90,7 +90,7 @@ export const feedEvents = [
         id: 8,
         kind: 'deal_closed',
         tone: 'emerald',
-        text: 'Chốt đơn {amount} – {name}',
+        text: 'Hoàn tất đơn hàng {amount} – {name}',
         vars: { amount: 3800000, name: 'Hoàng Bảo Long' },
         ago: { n: 1, unit: 'hour' }
     }
@@ -111,7 +111,7 @@ export const watchlistScores = {
     c2: { score: 88, reason: 'Khiếu nại hoàn tiền chưa xử lý' },
     c6: { score: 74, reason: 'Yêu cầu hợp đồng chờ {n} giờ', reasonVars: { n: 3 } },
     c1: { score: 62, reason: 'Đơn chờ xác nhận địa chỉ' },
-    c7: { score: 48, reason: 'Hỏi bảng giá sỉ, chưa follow-up' }
+    c7: { score: 48, reason: 'Hỏi bảng giá sỉ, chưa theo dõi lại' }
 }
 
 export const teamStats = {

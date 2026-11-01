@@ -34,7 +34,7 @@ export default {
     // Tags & handoff reasons
     VIP: 'VIP',
     'Khiếu nại': 'Complaint',
-    'Khách thân thiết': 'Loyal customers',
+    'Khách hàng trung thành': 'Loyal customers',
     'Đại lý cấp 1': 'Tier-1 dealer',
     'Ưu tiên': 'Priority',
     'Xử lý hoàn tiền': 'Refund handling',
@@ -153,10 +153,10 @@ export default {
         'There are 42 white T-shirts in size M left at the central warehouse. (Source: Inventory sheet — updated 08:00 this morning)',
     'Bạn đang có 3 hội thoại mở: 1 trên Facebook (chờ phản hồi giá), 1 trên Zalo (đã hứa giao trong 2 ngày), 1 trên Shopee (hỏi thời gian giao hàng).':
         'You have 3 open conversations: 1 on Facebook (awaiting a price reply), 1 on Zalo (delivery promised within 2 days), 1 on Shopee (asking about delivery time).',
-    'Đây là thông tin tra cứu bên ngoài — mình cần kết nối nguồn dữ liệu tỷ giá thực tế để trả lời chính xác. Hiện tại demo chưa bật tính năng này.':
+    'Đây là thông tin tra cứu bên ngoài — tôi cần kết nối nguồn dữ liệu tỷ giá thực tế để trả lời chính xác. Hiện tại demo chưa bật tính năng này.':
         'This needs an external lookup — I need a live exchange-rate source to answer accurately. This feature is not enabled in the demo yet.',
-    'Mình đã ghi nhận câu hỏi này. Trong bản demo, Mira chỉ trả lời được vài chủ đề mẫu — hãy thử một trong các gợi ý nhanh bên dưới nhé.':
+    'Tôi đã ghi nhận câu hỏi này. Trong bản demo, Mira chỉ trả lời được vài chủ đề mẫu — hãy thử một trong các gợi ý nhanh bên dưới.':
         'Got it. In this demo, Mira can only answer a few sample topics — try one of the quick suggestions below.',
-    'Chào bạn! Mình là Mira — trợ lý nội bộ. Bạn có thể hỏi mình thông tin trong hệ thống (chính sách, tồn kho, hội thoại...) hoặc nhờ mình tra cứu thông tin bên ngoài.':
+    'Xin chào! Tôi là Mira — trợ lý nội bộ. Bạn có thể hỏi tôi thông tin trong hệ thống (chính sách, tồn kho, hội thoại...) hoặc nhờ tôi tra cứu thông tin bên ngoài.':
         "Hi! I'm Mira, your internal assistant. Ask me about anything in the system (policies, inventory, conversations...) or have me look things up externally."
 }

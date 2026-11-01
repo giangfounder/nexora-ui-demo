@@ -156,7 +156,7 @@ const makeChipEl = (name, item) => {
     el.className = 'tk-chip'
     el.dataset.token = name
     el.dataset.kind = kind
-    el.title = item ? `${tokenKindMeta(kind).label} · {{${name}}} — bấm (hoặc Alt+Enter) để xem` : `Không có biến {{${name}}}`
+    el.title = item ? `${tokenKindMeta(kind).label} · {{${name}}} — nhấp (hoặc Alt+Enter) để xem` : `Không có biến {{${name}}}`
     const ic = document.createElement('span')
     ic.className = 'tk-ic'
     ic.innerHTML = kindSvg(kind)

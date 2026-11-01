@@ -14,7 +14,7 @@ import { DEFAULT_AI_PROMPT, mockPrismCriteria } from './mockPrism'
 
 const STATUS = {
     active: { tone: 'emerald', label: 'Đang áp dụng', icon: 'CheckCircle' },
-    draft: { tone: 'amber', label: 'Nháp', icon: 'NotePencil' }
+    draft: { tone: 'amber', label: 'Bản nháp', icon: 'NotePencil' }
 }
 
 const formatDate = (iso, locale) => {

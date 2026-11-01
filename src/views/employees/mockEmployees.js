@@ -160,7 +160,7 @@ export const mockTeams = [
     {
         id: 'team-sales',
         name: 'Đội Sales tổng',
-        description: 'Chốt đơn, tư vấn sản phẩm và chăm sóc khách VIP.',
+        description: 'Hoàn tất đơn hàng, tư vấn sản phẩm và chăm sóc khách VIP.',
         leaderId: 'e1',
         memberIds: ['e1', 'e6'],
         color: 'success'

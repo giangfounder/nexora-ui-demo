@@ -41,11 +41,11 @@ const priorityOf = (c) => {
 // Tiny mock: one AI recommendation attached to the first card of each column.
 const aiRecommend = (stageLabel) => {
     const m = {
-        'Mới hỏi': 'Gọi trong 4h tới, tỷ lệ chốt cao khi phản hồi nhanh',
-        'Đang tư vấn': 'Gửi báo giá kèm case study — tăng 22% chốt đơn',
-        'Đã chốt đơn': 'Chuyển sang đội chăm sóc + upsell dịch vụ đi kèm',
-        'Đã mua': 'Gợi ý upsell sản phẩm bổ trợ trong 30 ngày',
-        'Khách thân thiết': 'Mời tham gia chương trình loyalty tier vàng'
+        'Tiếp nhận mới': 'Gọi trong 4h tới, tỷ lệ chuyển đổi cao khi phản hồi nhanh',
+        'Đang tư vấn': 'Gửi báo giá kèm case study — tăng 22% tỷ lệ hoàn tất đơn hàng',
+        'Đã đặt hàng': 'Chuyển sang đội chăm sóc + bán thêm dịch vụ đi kèm',
+        'Đã mua': 'Gợi ý bán thêm sản phẩm bổ trợ trong 30 ngày',
+        'Khách hàng trung thành': 'Mời tham gia chương trình loyalty tier vàng'
     }
     return m[stageLabel] || null
 }

@@ -249,7 +249,7 @@ export const AgentNode = memo(function AgentNode({ id, selected }) {
 
             <Box sx={{ px: 2, py: 1.5 }}>
                 <Rich
-                    text={doc.settings.instruction || 'Chưa có hướng dẫn — bấm để viết vai trò và cách trả lời.'}
+                    text={doc.settings.instruction || 'Chưa có hướng dẫn — nhấp để viết vai trò và cách trả lời.'}
                     lines={4}
                     size='0.78125rem'
                 />

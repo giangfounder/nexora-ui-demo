@@ -405,7 +405,7 @@ const CustomerDetail = () => {
                                 <Tab label={t('Thông tin')} />
                                 <Tab label={t('Lịch sử')} />
                                 <Tab label={t('Ghi chú')} />
-                                <Tab label={t('Deals & Hội thoại')} />
+                                <Tab label={t('Cơ hội & Hội thoại')} />
                             </Tabs>
                         </Box>
 
@@ -613,7 +613,7 @@ const CustomerDetail = () => {
                                                             endIcon={<AppIcon name='ArrowSquareOut' size={13} />}
                                                             onClick={() => navigate('/omnichannel')}
                                                         >
-                                                            {t('Mở trong Inbox')}
+                                                            {t('Mở trong Hộp thư')}
                                                         </Button>
                                                     </Stack>
                                                     <Typography
@@ -655,7 +655,7 @@ const CustomerDetail = () => {
                                 />
                                 {insight.upsell?.length > 0 && (
                                     <AtlasCard
-                                        label={t('Đề xuất upsell')}
+                                        label={t('Đề xuất bán thêm')}
                                         headline={insight.upsell[0]}
                                         body={insight.upsell.slice(1).join(' · ')}
                                         source={t('Từ dữ liệu: lịch sử mua {type} + đặc điểm nhóm khách', { type: t(type?.name) })}

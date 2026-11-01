@@ -121,7 +121,7 @@ const seedSales = () => {
         updatedAt: '2026-09-28T15:40:00.000Z',
         settings: baseSettings({
             modelName: 'chatAnthropic',
-            instruction: 'Bạn là chuyên viên tư vấn bán hàng, chủ động gợi ý và chốt đơn, luôn kèm giá.'
+            instruction: 'Bạn là chuyên viên tư vấn bán hàng, chủ động gợi ý và hoàn tất đơn hàng, luôn kèm giá.'
         }),
         channels: ['web', 'messenger'],
         customerAttrs: ['customer.name', 'customer.industry', 'customer.budget'],
@@ -140,7 +140,7 @@ const seedSales = () => {
         sops: [
             {
                 id: 'p-advice',
-                name: 'Tư vấn & chốt đơn',
+                name: 'Tư vấn & hoàn tất đơn hàng',
                 enabled: true,
                 when: 'Khách hỏi nên mua gì',
                 body: 'Hỏi ngân sách {{budget}} nếu chưa có, tìm trong {{kb.san_pham}}, gợi ý 3 mẫu và 1 phụ kiện đi kèm.'

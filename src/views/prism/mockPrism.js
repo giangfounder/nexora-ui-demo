@@ -31,7 +31,7 @@ export const mockPrismCriteria = [
     },
     {
         id: 'crit-resolution',
-        name: 'Chốt giải pháp rõ ràng',
+        name: 'Đề xuất giải pháp rõ ràng',
         weight: 25,
         version: 'v2.2',
         owner: 'e1',
@@ -51,7 +51,7 @@ export const mockPrismCriteria = [
     },
     {
         id: 'crit-upsell',
-        name: 'Gợi mở upsell/cross-sell',
+        name: 'Gợi mở bán thêm/bán chéo',
         weight: 10,
         version: 'v0.9',
         owner: 'e6',
@@ -133,7 +133,7 @@ export const mockScoredConversations = [
         completedAt: '2026-09-10',
         overallScore: 8.2,
         scores: { 'crit-greeting': 8, 'crit-empathy': 8, 'crit-accuracy': 9, 'crit-resolution': 8, 'crit-tone': 8 },
-        aiComment: 'Tư vấn combo phù hợp, chốt đơn rõ ràng.',
+        aiComment: 'Tư vấn combo phù hợp, hoàn tất đơn hàng rõ ràng.',
         reviewedBy: null
     },
     {

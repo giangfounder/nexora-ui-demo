@@ -139,7 +139,7 @@ export default {
     'Đăng ký thất bại. Vui lòng thử lại.': 'Error in registering user. Please try again.',
     'Đăng ký thành công. Bạn sẽ được chuyển tới trang đăng nhập trong giây lát.':
         'Registration Successful. You will be redirected to the sign in page shortly.',
-    'Để hoàn tất đăng ký, vui lòng bấm vào liên kết xác thực chúng tôi đã gửi tới email của bạn':
+    'Để hoàn tất đăng ký, vui lòng nhấp vào liên kết xác thực chúng tôi đã gửi tới email của bạn':
         'To complete your registration, please click on the verification link we sent to your email address',
     'Đăng ký': 'Sign Up',
     'Đã có tài khoản?': 'Already have an account?',

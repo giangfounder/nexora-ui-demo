@@ -374,7 +374,7 @@ const ChatTestPanel = ({ assistantName, welcome, modelLabel, stores, selectedSto
     const pendingVar = run ? run.steps[run.idx]?.var : null
     const dark = theme.palette.mode === 'dark'
     const botName = assistantName?.trim() || 'Trợ lý'
-    const custName = customer ? customer.name : 'Khách vãng lai'
+    const custName = customer ? customer.name : 'Khách chưa định danh'
     const custMeta = cust
         ? [cust['customer.phone'], cust['customer.type']].filter(Boolean).join(' · ')
         : 'Chưa định danh — agent phải hỏi thông tin'
@@ -486,7 +486,7 @@ const ChatTestPanel = ({ assistantName, welcome, modelLabel, stores, selectedSto
                 >
                     <InitialsAvatar size={28} />
                     <Box sx={{ flex: 1, minWidth: 0 }}>
-                        <Typography sx={{ fontSize: '0.875rem', fontWeight: 600 }}>Khách vãng lai</Typography>
+                        <Typography sx={{ fontSize: '0.875rem', fontWeight: 600 }}>Khách chưa định danh</Typography>
                         <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary' }}>Không có hồ sơ</Typography>
                     </Box>
                 </MenuItem>

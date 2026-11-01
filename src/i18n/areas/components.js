@@ -439,7 +439,7 @@ export default {
     'Giọng nói': 'Voice',
     'Giọng nói dùng để tạo âm thanh': 'The voice to use when generating the audio',
     'Giọng nói dùng cho chuyển văn bản thành giọng nói': 'The voice to use for text-to-speech',
-    'Hôm nay là một ngày tuyệt vời để xây dựng điều gì đó với Nexora!': 'Today is a wonderful day to build something with Nexora!',
+    'Chào mừng đến với Nexora.': 'Welcome to Nexora.',
     // ---- Cards / tables (shared keys) ----
     'mục khác': 'More',
     'Đường dẫn': 'Path',

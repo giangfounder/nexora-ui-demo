@@ -42,8 +42,8 @@ export default {
     'Đã bật lịch chạy': 'Schedule enabled successfully',
     'Đã tắt lịch chạy': 'Schedule disabled successfully',
     'Không thể bật/tắt lịch chạy': 'Failed to toggle schedule',
-    'Lịch chạy đang bật — bấm để tắt': 'Schedule active — click to disable',
-    'Lịch chạy đang tắt — bấm để bật': 'Schedule inactive — click to enable',
+    'Lịch chạy đang bật — nhấp để tắt': 'Schedule active — click to disable',
+    'Lịch chạy đang tắt — nhấp để bật': 'Schedule inactive — click to enable',
     'Hãy sửa cấu hình lịch chạy để có thể bật': 'Fix the schedule configuration to enable',
 
     // ---- Canvas ----

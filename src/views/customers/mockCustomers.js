@@ -23,11 +23,11 @@ export const mockCustomerTypes = [
         id: 'b2c',
         name: 'Khách lẻ (B2C)',
         stages: [
-            { id: 'new', label: 'Mới hỏi' },
+            { id: 'new', label: 'Tiếp nhận mới' },
             { id: 'consulting', label: 'Đang tư vấn' },
-            { id: 'ordered', label: 'Đã chốt đơn' },
+            { id: 'ordered', label: 'Đã đặt hàng' },
             { id: 'purchased', label: 'Đã mua' },
-            { id: 'loyal', label: 'Khách thân thiết' }
+            { id: 'loyal', label: 'Khách hàng trung thành' }
         ]
     },
     {
@@ -85,7 +85,7 @@ export const mockCustomers = [
         stageId: 'loyal',
         email: 'thuha@example.com',
         phone: '0987 654 321',
-        tags: ['Khách thân thiết'],
+        tags: ['Khách hàng trung thành'],
         attributes: { source: 'Giới thiệu', industry: ['Mỹ phẩm', 'Thời trang'], budget: 1500000, birthday: '1993-02-18', nda: false },
         createdAt: '2026-05-10',
         lastContactAt: '2026-09-10'

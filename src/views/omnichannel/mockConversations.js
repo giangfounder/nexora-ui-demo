@@ -160,7 +160,7 @@ export const mockConversations = [
         id: 'conv-5',
         channel: 'website',
         customerId: 'c5',
-        customerName: 'Khách vãng lai #8823',
+        customerName: 'Khách chưa định danh #8823',
         status: 'ai_handling',
         priority: 'normal',
         tag: null,
@@ -253,7 +253,7 @@ export const mockConversations = [
         tag: null,
         assignedTo: null,
         handoffTag: 'context_missing',
-        handoffNote: 'Khách hỏi giá sản phẩm trong video livestream, cần nhân viên xác định video.',
+        handoffNote: 'Khách hỏi giá sản phẩm trong video phát trực tiếp, cần nhân viên xác định video.',
         waitingSince: '2 giờ',
         unread: 2,
         messages: [

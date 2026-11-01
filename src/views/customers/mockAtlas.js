@@ -20,16 +20,16 @@ export const atlasSignals = [
     },
     {
         id: 'sig-b2b-close',
-        title: 'Tỉ lệ chốt đơn B2B',
-        metric: 'Chốt / tổng deal',
+        title: 'Tỷ lệ chuyển đổi B2B',
+        metric: 'Thành công / tổng cơ hội',
         before: 34,
         after: 28,
         unit: '%',
         impact: 'bad',
         series: [35, 34, 33, 34, 31, 30, 29, 28],
         scope: 'B2B · Đàm phán',
-        detail: '85 deal rớt ở bước Đàm phán; giá đề xuất lệch 12–15% so với đối thủ.',
-        source: '118 deal B2B trong quý'
+        detail: '85 cơ hội thất bại ở bước Đàm phán; giá đề xuất lệch 12–15% so với đối thủ.',
+        source: '118 cơ hội B2B trong quý'
     },
     {
         id: 'sig-b2c-new',
@@ -90,10 +90,10 @@ export const atlasActions = [
     {
         id: 'act-b2b-discount',
         title: 'Xem lại bậc chiết khấu B2B 12%',
-        why: 'Khoảng lệch giá 12–15% là lý do rớt deal phổ biến nhất ở bước Đàm phán.',
+        why: 'Khoảng lệch giá 12–15% là lý do thất bại phổ biến nhất ở bước Đàm phán.',
         signalIds: ['sig-b2b-close'],
         priority: 'high',
-        impact: 'Kỳ vọng +4–6 điểm tỉ lệ chốt',
+        impact: 'Kỳ vọng +4–6 điểm tỷ lệ chuyển đổi',
         affected: 85,
         effort: 'Vừa',
         owner: null,
@@ -161,7 +161,7 @@ export const mockCustomerNotes = {
             id: 'n1',
             authorId: 'e2',
             at: '2026-09-15 10:22',
-            text: 'Khách chốt 2 áo thun size M màu be. Cần giao trước 20/9. Đã báo thu hộ 100k.'
+            text: 'Khách xác nhận mua 2 áo thun size M màu be. Cần giao trước 20/9. Đã báo thu hộ 100k.'
         }
     ],
     c4: [
@@ -187,8 +187,8 @@ export const mockCustomerNotes = {
 export const mockInteractionLog = {
     c1: [
         { id: 'l1', at: '2026-09-15 10:22', actorId: 'e2', action: 'note', summary: 'Ghi chú đơn hàng size M' },
-        { id: 'l2', at: '2026-09-15 09:15', actorId: 'e2', action: 'reply', summary: 'Trả lời tin nhắn Facebook — chốt 2 sản phẩm' },
-        { id: 'l3', at: '2026-09-12 16:00', actorId: 'e4', action: 'stage', summary: 'Chuyển giai đoạn: Đang tư vấn sang Đã chốt đơn' },
+        { id: 'l2', at: '2026-09-15 09:15', actorId: 'e2', action: 'reply', summary: 'Trả lời tin nhắn Facebook — xác nhận 2 sản phẩm' },
+        { id: 'l3', at: '2026-09-12 16:00', actorId: 'e4', action: 'stage', summary: 'Chuyển giai đoạn: Đang tư vấn sang Đã đặt hàng' },
         { id: 'l4', at: '2026-08-20 08:00', actorId: null, action: 'created', summary: 'Pulse tạo hồ sơ khách từ tin nhắn Facebook' }
     ],
     c4: [

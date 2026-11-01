@@ -186,7 +186,7 @@ const StudioChat = ({ doc, stores, onRun, onSelectNode }) => {
                 >
                     <PersonAvatar name={customer?.name} size={20} sx={{ mr: 1 }} />
                     <Box component='span' sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                        {customer ? customer.name : 'Khách vãng lai'}
+                        {customer ? customer.name : 'Khách chưa định danh'}
                     </Box>
                 </Button>
                 <Menu anchorEl={anchor} open={Boolean(anchor)} onClose={() => setAnchor(null)} PaperProps={{ sx: { minWidth: 260 } }}>
@@ -198,7 +198,7 @@ const StudioChat = ({ doc, stores, onRun, onSelectNode }) => {
                         }}
                     >
                         <ListItemText
-                            primary='Khách vãng lai'
+                            primary='Khách chưa định danh'
                             secondary='Chưa có hồ sơ — agent phải hỏi'
                             primaryTypographyProps={{ fontSize: '0.875rem' }}
                         />

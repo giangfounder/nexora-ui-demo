@@ -22,7 +22,7 @@ const KNOWLEDGE_REPLIES = [
     },
     {
         match: ['tỷ giá', 'usd', 'exchange'],
-        reply: 'Đây là thông tin tra cứu bên ngoài — mình cần kết nối nguồn dữ liệu tỷ giá thực tế để trả lời chính xác. Hiện tại demo chưa bật tính năng này.'
+        reply: 'Đây là thông tin tra cứu bên ngoài — tôi cần kết nối nguồn dữ liệu tỷ giá thực tế để trả lời chính xác. Hiện tại demo chưa bật tính năng này.'
     }
 ]
 
@@ -30,14 +30,14 @@ export const getMiraReply = (question) => {
     const q = question.toLowerCase()
     const found = KNOWLEDGE_REPLIES.find((k) => k.match.some((m) => q.includes(m)))
     if (found) return found.reply
-    return 'Mình đã ghi nhận câu hỏi này. Trong bản demo, Mira chỉ trả lời được vài chủ đề mẫu — hãy thử một trong các gợi ý nhanh bên dưới nhé.'
+    return 'Tôi đã ghi nhận câu hỏi này. Trong bản demo, Mira chỉ trả lời được vài chủ đề mẫu — hãy thử một trong các gợi ý nhanh bên dưới.'
 }
 
 export const mockMiraMessages = [
     {
         id: 'mira-welcome',
         sender: 'mira',
-        text: 'Chào bạn! Mình là Mira — trợ lý nội bộ. Bạn có thể hỏi mình thông tin trong hệ thống (chính sách, tồn kho, hội thoại...) hoặc nhờ mình tra cứu thông tin bên ngoài.',
+        text: 'Xin chào! Tôi là Mira — trợ lý nội bộ. Bạn có thể hỏi tôi thông tin trong hệ thống (chính sách, tồn kho, hội thoại...) hoặc nhờ tôi tra cứu thông tin bên ngoài.',
         at: 'now'
     }
 ]
