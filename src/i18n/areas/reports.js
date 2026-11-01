@@ -241,5 +241,12 @@ export default {
     'Chốt đơn {amount} – {name}': 'Order closed {amount} – {name}',
     'Đánh giá {stars} sao trên {channel} – {name}': '{stars}-star review on {channel} – {name}',
     '{n} phút trước': '{n} min ago',
-    '{n} giờ trước': '{n} h ago'
+    '{n} giờ trước': '{n} h ago',
+    // ---- Dashboard: arrivals board ----
+    'Hàng đợi chuyển người': 'Hand-off queue',
+    '{n} cuộc đang mở': '{n} open',
+    Chờ: 'Wait',
+    'Lý do chuyển': 'Hand-off reason',
+    'Chờ nhận': 'Waiting',
+    'Không có cuộc nào cần người xử lý.': 'No conversations need a person right now.'
 }

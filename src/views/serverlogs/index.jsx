@@ -114,7 +114,7 @@ const Logs = () => {
             color: 'rgba(120, 120, 120, 0.5)'
         },
         '.cm-content': {
-            fontFamily: 'Roboto, sans-serif',
+            fontFamily: `'Be Vietnam Pro', 'Segoe UI', system-ui, sans-serif`,
             fontSize: '0.95rem',
             letterSpacing: '0em',
             fontWeight: 400,

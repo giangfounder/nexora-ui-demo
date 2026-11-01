@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
-import { useMemo, useRef } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useRef } from 'react'
 
 // material-ui
 import { alpha, useTheme } from '@mui/material/styles'
@@ -11,38 +10,13 @@ import { AppIcon } from '@/ui-component/icons/AppIcon'
 import useSearchShortcut from '@/hooks/useSearchShortcut'
 import { getOS } from '@/utils/genericHelper'
 import { useLanguage } from '@/store/context/LanguageContext'
-import dashboardMenu from '@/menu-items/dashboard'
 
 const os = getOS()
 const isMac = os === 'macos'
 const isDesktop = isMac || os === 'windows' || os === 'linux'
 const shortcutKey = isMac ? '⌘F' : 'Ctrl+F'
 
-// The page's own menu entry (longest URL prefix wins) → its icon and the menu group it lives in.
-const findMenuEntry = (pathname) => {
-    let best = null
-    const walk = (node, group) => {
-        ;(node.children || []).forEach((c) => {
-            if (c.type === 'group') walk(c, c)
-            else if (c.url && (pathname === c.url || pathname.startsWith(`${c.url}/`))) {
-                if (!best || c.url.length > best.item.url.length) best = { item: c, group }
-            }
-        })
-    }
-    walk(dashboardMenu, null)
-    return best
-}
-
-const initialsOf = (s = '') =>
-    String(s)
-        .split(/\s+/)
-        .filter(Boolean)
-        .slice(0, 2)
-        .map((w) => w[0])
-        .join('')
-        .toUpperCase()
-
-// Shared page header for every menu page: one card with the page icon, menu group, title and actions.
+// Shared page header for every menu page: one flat card with the title, count and actions.
 // 2026 text-discipline rule: titles stand alone — `description` is kept for backward compat but never rendered.
 const ViewHeader = ({
     children,
@@ -57,18 +31,15 @@ const ViewHeader = ({
     onBack,
     isEditButton,
     onEdit,
-    icon: IconProp,
+    // eslint-disable-next-line no-unused-vars
+    icon: _unusedIcon,
     count
 }) => {
     const theme = useTheme()
     const searchInputRef = useRef()
     useSearchShortcut(searchInputRef)
     const { t } = useLanguage()
-    const { pathname } = useLocation()
-    const entry = useMemo(() => findMenuEntry(pathname), [pathname])
-    const PageIcon = IconProp || entry?.item.icon
     const dark = theme.palette.mode === 'dark'
-    const primary = theme.palette.primary.main
     const hairline = theme.palette.alpha?.border || alpha(theme.palette.text.primary, 0.08)
 
     return (
@@ -81,8 +52,7 @@ const ViewHeader = ({
                 py: 2,
                 bgcolor: 'background.paper',
                 border: `1px solid ${hairline}`,
-                borderRadius: '10px',
-                boxShadow: theme.customShadows?.xs
+                borderRadius: '8px'
             }}
         >
             <Stack
@@ -112,48 +82,15 @@ const ViewHeader = ({
                             </IconButton>
                         </Tooltip>
                     )}
-                    <Box
-                        aria-hidden
-                        sx={{
-                            flexShrink: 0,
-                            width: 48,
-                            height: 48,
-                            borderRadius: '12px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            color: 'primary.main',
-                            bgcolor: alpha(primary, dark ? 0.2 : 0.09),
-                            border: `1px solid ${alpha(primary, 0.22)}`,
-                            fontWeight: 700,
-                            fontSize: '1rem'
-                        }}
-                    >
-                        {PageIcon ? <PageIcon size={24} stroke={1.75} /> : initialsOf(t(title))}
-                    </Box>
                     <Box sx={{ minWidth: 0 }}>
-                        {entry?.group?.title && (
-                            <Typography
-                                sx={{
-                                    fontSize: '0.6875rem',
-                                    fontWeight: 700,
-                                    letterSpacing: '0.08em',
-                                    textTransform: 'uppercase',
-                                    color: 'text.secondary',
-                                    lineHeight: 1.4,
-                                    mb: 0.25
-                                }}
-                            >
-                                {t(entry.group.title)}
-                            </Typography>
-                        )}
                         <Stack direction='row' alignItems='center' spacing={1}>
                             <Typography
                                 component='h1'
                                 sx={{
+                                    fontFamily: theme.typography.h1?.fontFamily,
                                     fontSize: { xs: '1.375rem', md: '1.625rem' },
-                                    fontWeight: 700,
-                                    letterSpacing: '-0.01em',
+                                    fontWeight: 600,
+                                    letterSpacing: '0',
                                     lineHeight: 1.2,
                                     display: '-webkit-box',
                                     WebkitLineClamp: 2,

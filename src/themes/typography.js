@@ -2,8 +2,8 @@
 // Base 15px body, display headline scale with real hierarchy (was 12→34, flat).
 // Weight range 400/500/600/700 used consistently across scale.
 
-// NEXORA: Space Grotesk for display/brand headings, Inter for UI/body.
-const DISPLAY_FONT = `'Space Grotesk', 'Inter', 'Roboto', 'Arial', sans-serif`
+// NEXORA: Barlow Semi Condensed (station-signage voice) for headings and figures, Be Vietnam Pro for UI/body.
+const DISPLAY_FONT = `'Barlow Semi Condensed', 'Be Vietnam Pro', 'Segoe UI', sans-serif`
 
 export default function themeTypography(theme) {
     return {

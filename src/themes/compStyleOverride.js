@@ -129,17 +129,17 @@ export default function componentStyleOverrides(theme) {
                 root: {
                     backgroundImage: 'none'
                 },
-                // Panel default = 10px. Dialog/overlay override via their own components.
+                // Panel default = 8px, one corner language everywhere.
                 rounded: {
-                    borderRadius: 10
+                    borderRadius: 8
                 }
             }
         },
         MuiCard: {
             styleOverrides: {
                 root: {
-                    borderRadius: 10,
-                    boxShadow: isDark ? '0 1px 3px rgba(0,0,0,0.4)' : '0 1px 2px rgba(16,24,40,0.04), 0 2px 8px -2px rgba(16,24,40,0.06)',
+                    borderRadius: 8,
+                    boxShadow: 'none',
                     backgroundImage: 'none',
                     border: `1px solid ${hairline}`
                 }
@@ -175,7 +175,7 @@ export default function componentStyleOverrides(theme) {
         MuiDialog: {
             styleOverrides: {
                 paper: {
-                    borderRadius: 12,
+                    borderRadius: 8,
                     backgroundImage: 'none'
                 }
             }

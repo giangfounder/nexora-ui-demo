@@ -208,7 +208,7 @@ const LegalPage = ({ doc }) => {
                     <Typography
                         component='h1'
                         sx={{
-                            fontFamily: `'Space Grotesk', 'Inter', sans-serif`,
+                            fontFamily: `'Barlow Semi Condensed', 'Be Vietnam Pro', 'Segoe UI', sans-serif`,
                             fontSize: { xs: 30, md: 40 },
                             fontWeight: 600,
                             letterSpacing: '-0.02em',

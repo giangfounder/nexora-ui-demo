@@ -3,18 +3,19 @@ import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
 import { alpha, useTheme } from '@mui/material/styles'
 import { Box, ButtonBase, Stack, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material'
-import { AppIcon, iconComponent } from '@/ui-component/icons/AppIcon'
+import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 import ViewHeader from '@/layout/MainLayout/ViewHeader'
+import PersonAvatar from '@/ui-component/avatar/PersonAvatar'
 import { useLanguage } from '@/store/context/LanguageContext'
-import { mockConversations, CHANNELS, CHANNEL_ORDER } from '@/views/omnichannel/mockConversations'
+import { mockConversations, CHANNELS, CHANNEL_ORDER, HANDOFF_TAGS } from '@/views/omnichannel/mockConversations'
+import { getChannelIcon } from '@/views/omnichannel/utils'
 import { mockCustomers } from '@/views/customers/mockCustomers'
 import { generateHourlyChannelData, kpiSparklines, watchlistScores, feedEvents, feedAgo, feedText } from './mockDashboard'
-import { DepthCard, IconBadge, Tilt3D, shade, useDepth } from './depth'
-import OrbitHero from './OrbitHero'
-import Pie3D from './Pie3D'
-import IsoBarChart from './IsoBarChart'
-import PersonAvatar from '@/ui-component/avatar/PersonAvatar'
+
+// "Bảng đến": the dashboard reads like a station arrivals board. Conversations arrive, the board says
+// when, from whom, on which channel, why a person is needed, and what state it is in.
+const SIGN_FONT = `'Barlow Semi Condensed', 'Be Vietnam Pro', 'Segoe UI', sans-serif`
 
 const RANGES = [
     { id: '24h', label: '24 giờ', factor: 1 },
@@ -35,70 +36,30 @@ const SHORT_CHANNEL = {
     lazada: 'Lazada'
 }
 
-const tonePriority = (score) => (score >= 85 ? 'rose' : score >= 70 ? 'amber' : 'teal')
-
-// Tiny smooth area sparkline drawn inline (no chart lib needed at this size).
-// Catmull-Rom → cubic Bézier keeps the line soft instead of jagged when the card stretches.
-const smoothPath = (pts) =>
-    pts.reduce((d, [x, y], i) => {
-        if (i === 0) return `M${x} ${y}`
-        const [x0, y0] = pts[i - 2] || pts[i - 1]
-        const [x1, y1] = pts[i - 1]
-        const [x3, y3] = pts[i + 1] || [x, y]
-        const c1x = x1 + (x - x0) / 6
-        const c1y = y1 + (y - y0) / 6
-        const c2x = x - (x3 - x1) / 6
-        const c2y = y - (y3 - y1) / 6
-        return `${d} C${c1x.toFixed(1)} ${c1y.toFixed(1)} ${c2x.toFixed(1)} ${c2y.toFixed(1)} ${x.toFixed(1)} ${y.toFixed(1)}`
-    }, '')
-
-const Sparkline = ({ points, color, height = 56 }) => {
-    const theme = useTheme()
-    const w = 160
-    const h = height
-    const ys = points.map((p) => p.y)
-    const min = Math.min(...ys)
-    const max = Math.max(...ys)
-    const xy = points.map((p, i) => [(i / (points.length - 1)) * w, h - 4 - ((p.y - min) / (max - min || 1)) * (h - 10)])
-    const line = smoothPath(xy)
-    const [lx, ly] = xy[xy.length - 1]
-    const id = `spark-${color.replace('#', '')}`
-    return (
-        <svg viewBox={`0 0 ${w} ${h}`} width='100%' height={h} preserveAspectRatio='none' aria-hidden style={{ overflow: 'visible' }}>
-            <defs>
-                <linearGradient id={id} x1='0' y1='0' x2='0' y2='1'>
-                    <stop offset='0%' stopColor={color} stopOpacity='0.3' />
-                    <stop offset='100%' stopColor={color} stopOpacity='0' />
-                </linearGradient>
-            </defs>
-            <path d={`${line} L${w} ${h} L0 ${h} Z`} fill={`url(#${id})`} />
-            <path
-                d={line}
-                fill='none'
-                stroke={color}
-                strokeWidth='2.25'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                vectorEffect='non-scaling-stroke'
-            />
-            {/* latest value marker */}
-            <circle
-                cx={lx}
-                cy={ly}
-                r='3.5'
-                fill={theme.palette.background.paper}
-                stroke={color}
-                strokeWidth='2'
-                vectorEffect='non-scaling-stroke'
-            />
-        </svg>
-    )
+// State is a glyph plus a word; colour only reinforces it.
+const CONVERSATION_STATE = {
+    escalated: { label: 'Cần xử lý', icon: 'WarningCircle', tone: 'error' },
+    ai_handling: { label: 'Tự động', icon: 'Robot', tone: 'primary' },
+    resolved: { label: 'Đã xong', icon: 'CheckCircle', tone: 'success' }
 }
 
-Sparkline.propTypes = { points: PropTypes.array.isRequired, color: PropTypes.string.isRequired, height: PropTypes.number }
+const Panel = ({ children, sx }) => (
+    <Box
+        sx={(theme) => ({
+            bgcolor: 'background.paper',
+            border: `1px solid ${theme.palette.alpha?.border || alpha(theme.palette.text.primary, 0.1)}`,
+            borderRadius: '8px',
+            ...(typeof sx === 'function' ? sx(theme) : sx)
+        })}
+    >
+        {children}
+    </Box>
+)
+
+Panel.propTypes = { children: PropTypes.node, sx: PropTypes.oneOfType([PropTypes.object, PropTypes.func]) }
 
 const SectionTitle = ({ children, action }) => (
-    <Stack direction='row' alignItems='center' justifyContent='space-between' flexWrap='wrap' useFlexGap gap={1.5} sx={{ mb: 2 }}>
+    <Stack direction='row' alignItems='center' justifyContent='space-between' spacing={2} sx={{ mb: 2 }}>
         <Typography variant='h3' component='h2'>
             {children}
         </Typography>
@@ -108,79 +69,68 @@ const SectionTitle = ({ children, action }) => (
 
 SectionTitle.propTypes = { children: PropTypes.node, action: PropTypes.node }
 
-// ==============================|| DASHBOARD ||============================== //
+// One-colour sparkline: shape only, no fill and no per-card hue.
+const Sparkline = ({ points, height = 36 }) => {
+    const theme = useTheme()
+    const w = 120
+    const ys = points.map((p) => p.y)
+    const min = Math.min(...ys)
+    const max = Math.max(...ys)
+    const span = max - min || 1
+    const pad = 3
+    const pts = points.map((p, i) => [(i / (points.length - 1)) * w, pad + (1 - (p.y - min) / span) * (height - pad * 2)])
+    const d = pts.map(([x, y], i) => `${i ? 'L' : 'M'}${x.toFixed(1)} ${y.toFixed(1)}`).join(' ')
+    return (
+        <svg width='100%' height={height} viewBox={`0 0 ${w} ${height}`} preserveAspectRatio='none' aria-hidden>
+            <path
+                d={d}
+                fill='none'
+                stroke={alpha(theme.palette.text.primary, 0.45)}
+                strokeWidth='1.5'
+                vectorEffect='non-scaling-stroke'
+                strokeLinejoin='round'
+            />
+        </svg>
+    )
+}
+
+Sparkline.propTypes = { points: PropTypes.array.isRequired, height: PropTypes.number }
 
 const Dashboard = () => {
     const theme = useTheme()
     const navigate = useNavigate()
     const { t, locale } = useLanguage()
-    const d = useDepth()
     const [range, setRange] = useState('24h')
+    const hairline = theme.palette.alpha?.border || alpha(theme.palette.text.primary, 0.1)
+    const faint = theme.palette.alpha?.divider || alpha(theme.palette.text.primary, 0.06)
 
     const statusCount = (s) => mockConversations.filter((c) => c.status === s).length
     const openCount = mockConversations.filter((c) => c.status !== 'resolved').length
-    const escalated = statusCount('escalated')
+    const escalatedList = mockConversations.filter((c) => c.status === 'escalated')
     const autoPct = Math.round((statusCount('ai_handling') / mockConversations.length) * 100)
 
     const hourly = useMemo(() => generateHourlyChannelData(), [])
     const factor = RANGES.find((r) => r.id === range)?.factor || 1
     const channelBars = useMemo(
         () =>
-            CHANNEL_ORDER.map((ch) => {
-                const base = hourly.reduce((s, row) => s + row[ch], 0)
-                const brand = CHANNELS[ch].color
-                return {
-                    key: ch,
-                    label: t(SHORT_CHANNEL[ch] || CHANNELS[ch].label),
-                    value: Math.round(base * factor),
-                    // near-black brand marks would vanish on the dark theme
-                    color: d.isDark && ['tiktok', 'lazada'].includes(ch) ? '#94A3B8' : brand
-                }
-            }).sort((a, b) => b.value - a.value),
-        [hourly, factor, d.isDark, t]
+            CHANNEL_ORDER.map((ch) => ({
+                key: ch,
+                label: t(SHORT_CHANNEL[ch] || CHANNELS[ch].label),
+                value: Math.round(hourly.reduce((s, row) => s + row[ch], 0) * factor)
+            })).sort((a, b) => b.value - a.value),
+        [hourly, factor, t]
     )
     const totalConversations = channelBars.reduce((s, b) => s + b.value, 0)
+    const maxChannel = Math.max(...channelBars.map((b) => b.value), 1)
 
-    const statusSlices = [
-        { key: 'escalated', label: 'Cần xử lý', value: escalated, color: '#F43F5E' },
-        { key: 'ai_handling', label: 'Tự động', value: statusCount('ai_handling'), color: '#22D3EE' },
-        { key: 'resolved', label: 'Đã xong', value: statusCount('resolved'), color: theme.palette.primary.main }
-    ]
+    const statusRows = ['escalated', 'ai_handling', 'resolved'].map((key) => ({ key, value: statusCount(key), ...CONVERSATION_STATE[key] }))
+    const toneMain = (tone) => (tone === 'primary' ? theme.palette.primary.main : theme.palette[tone].main)
 
     const kpis = [
-        {
-            label: 'Tỉ lệ trả lời tự động',
-            value: `${autoPct}%`,
-            delta: 5,
-            icon: iconComponent('Lightning'),
-            color: '#0EA5E9',
-            spark: kpiSparklines.pulse
-        },
-        {
-            label: 'Thời gian phản hồi TB',
-            value: '2m 14s',
-            delta: -8,
-            invertColor: true,
-            icon: iconComponent('Clock'),
-            color: '#8B5CF6',
-            spark: kpiSparklines.response
-        },
-        {
-            label: 'Đã xử lý hôm nay',
-            value: statusCount('resolved') * 9,
-            delta: 12,
-            icon: iconComponent('CheckCircle'),
-            color: '#10B981',
-            spark: kpiSparklines.open
-        },
-        {
-            label: 'Khách hàng mới (7 ngày)',
-            value: mockCustomers.length,
-            delta: 24,
-            icon: iconComponent('UserPlus'),
-            color: theme.palette.primary.main,
-            spark: kpiSparklines.newCustomers
-        }
+        { label: 'Tỉ lệ trả lời tự động', value: `${autoPct}%`, delta: 5, spark: kpiSparklines.pulse },
+        { label: 'Thời gian phản hồi TB', value: '2m 14s', delta: -8, invertColor: true, spark: kpiSparklines.response },
+        { label: 'Đã xử lý hôm nay', value: statusCount('resolved') * 9, delta: 12, spark: kpiSparklines.open },
+        { label: 'Khách hàng mới (7 ngày)', value: mockCustomers.length, delta: 24, spark: kpiSparklines.newCustomers }
     ]
 
     const priorityRows = useMemo(
@@ -195,7 +145,9 @@ const Dashboard = () => {
         []
     )
 
-    const toneColor = (tone) => theme.palette.spectrum?.[tone]?.main || theme.palette.warning.main
+    const feedTone = (tone) => (tone === 'rose' ? 'error' : tone === 'amber' ? 'warning' : tone === 'emerald' ? 'success' : 'primary')
+    const feedIcon = (tone) =>
+        tone === 'rose' ? 'WarningCircle' : tone === 'amber' ? 'Info' : tone === 'emerald' ? 'CheckCircle' : 'ChatCircle'
 
     return (
         <Box>
@@ -204,104 +156,261 @@ const Dashboard = () => {
             <Box
                 sx={{
                     display: 'grid',
-                    gap: { xs: 2, md: 2.5 },
+                    gap: 2,
                     gridTemplateColumns: { xs: '1fr', md: 'repeat(12, 1fr)' },
-                    '& > *': { minWidth: 0 },
-                    '@keyframes dashRise': {
-                        from: { opacity: 0, transform: 'translateY(14px)' },
-                        to: { opacity: 1, transform: 'none' }
-                    },
-                    '& > .rise': { animation: 'dashRise 560ms cubic-bezier(0.22, 1, 0.36, 1) both' },
-                    '@media (prefers-reduced-motion: reduce)': { '& > .rise': { animation: 'none' } }
+                    '& > *': { minWidth: 0 }
                 }}
             >
-                {/* Hero */}
-                <Box className='rise' sx={{ gridColumn: { md: 'span 8' } }}>
-                    <OrbitHero
-                        t={t}
-                        openCount={openCount}
-                        needsHuman={escalated}
-                        channels={CHANNEL_ORDER}
-                        onOpenInbox={() => navigate('/omnichannel')}
-                    />
-                </Box>
-
-                {/* Status 3D pie */}
-                <Box className='rise' sx={{ gridColumn: { md: 'span 4' }, animationDelay: '60ms' }}>
-                    <Tilt3D max={5} sx={{ p: 2.5, display: 'flex', flexDirection: 'column' }}>
-                        <Typography variant='h3' component='h2' sx={{ mb: 0.5 }}>
-                            {t('Trạng thái hội thoại')}
-                        </Typography>
-                        <Typography variant='caption'>{t('{n} cuộc thoại hôm nay', { n: mockConversations.length })}</Typography>
-                        <Box sx={{ flex: 1, mt: 1.5, transform: 'translateZ(24px)' }}>
-                            <Pie3D data={statusSlices} t={t} />
-                        </Box>
-                    </Tilt3D>
-                </Box>
-
-                {/* KPI tiles — 2×2 on medium screens, one row from lg */}
-                {kpis.map((k, i) => {
-                    const positive = k.invertColor ? k.delta < 0 : k.delta > 0
-                    const deltaColor = positive ? theme.palette.success.main : theme.palette.error.main
-                    return (
-                        <Box
-                            key={k.label}
-                            className='rise'
-                            sx={{ gridColumn: { md: 'span 6', lg: 'span 3' }, animationDelay: `${120 + i * 50}ms` }}
+                {/* Arrivals board: the conversations that need a person */}
+                <Box sx={{ gridColumn: { md: 'span 8' } }}>
+                    <Box
+                        sx={{
+                            height: '100%',
+                            borderRadius: '8px',
+                            overflow: 'hidden',
+                            bgcolor: '#0E2350',
+                            color: '#fff',
+                            border: '1px solid #0E2350'
+                        }}
+                    >
+                        <Stack
+                            direction='row'
+                            alignItems='baseline'
+                            justifyContent='space-between'
+                            spacing={2}
+                            sx={{ px: 2.5, pt: 2.25, pb: 1.5 }}
                         >
-                            <Tilt3D max={5} sx={{ p: 2.5, display: 'flex', alignItems: 'stretch', gap: 2 }}>
-                                <Stack justifyContent='space-between' spacing={2} sx={{ flex: 1, minWidth: 0 }}>
-                                    <Stack direction='row' alignItems='center' spacing={1.25} sx={{ minWidth: 0 }}>
-                                        <IconBadge icon={k.icon} color={k.color} size={38} />
-                                        <Typography variant='body2' sx={{ color: 'text.primary', fontWeight: 500, lineHeight: 1.3 }}>
-                                            {t(k.label)}
-                                        </Typography>
-                                    </Stack>
-                                    <Stack direction='row' alignItems='baseline' spacing={1} flexWrap='wrap' useFlexGap>
-                                        <Typography
+                            <Stack direction='row' alignItems='baseline' spacing={1.5}>
+                                <Typography
+                                    component='h2'
+                                    sx={{ fontFamily: SIGN_FONT, fontWeight: 600, fontSize: '1.375rem', lineHeight: 1.2, color: '#fff' }}
+                                >
+                                    {t('Hàng đợi chuyển người')}
+                                </Typography>
+                                <Typography sx={{ fontSize: '0.8125rem', color: alpha('#fff', 0.7) }}>
+                                    {t('{n} cuộc đang mở', { n: openCount })}
+                                </Typography>
+                            </Stack>
+                            <ButtonBase
+                                onClick={() => navigate('/omnichannel')}
+                                sx={{
+                                    gap: 0.75,
+                                    px: 1.5,
+                                    height: 32,
+                                    borderRadius: '6px',
+                                    fontWeight: 600,
+                                    fontSize: '0.8125rem',
+                                    color: '#0E2350',
+                                    bgcolor: '#fff',
+                                    '&:hover': { bgcolor: alpha('#fff', 0.88) },
+                                    '&.Mui-focusVisible': { outline: '2px solid #fff', outlineOffset: 2 }
+                                }}
+                            >
+                                {t('Mở hộp thư')}
+                                <AppIcon name='ArrowRight' size={14} />
+                            </ButtonBase>
+                        </Stack>
+
+                        <Box sx={{ overflowX: 'auto' }}>
+                            <Box sx={{ minWidth: 560 }}>
+                                {/* header row */}
+                                <Box
+                                    sx={{
+                                        display: 'grid',
+                                        gridTemplateColumns: '64px minmax(0, 1.3fr) 110px minmax(0, 1.6fr) 110px',
+                                        columnGap: 2,
+                                        px: 2.5,
+                                        py: 0.875,
+                                        borderTop: `1px solid ${alpha('#fff', 0.18)}`,
+                                        borderBottom: `1px solid ${alpha('#fff', 0.18)}`,
+                                        fontSize: '0.75rem',
+                                        fontWeight: 600,
+                                        color: alpha('#fff', 0.72)
+                                    }}
+                                >
+                                    <span>{t('Chờ')}</span>
+                                    <span>{t('Khách')}</span>
+                                    <span>{t('Kênh')}</span>
+                                    <span>{t('Lý do chuyển')}</span>
+                                    <span>{t('Trạng thái')}</span>
+                                </Box>
+                                {escalatedList.map((c) => {
+                                    const ChannelIcon = getChannelIcon(c.channel)
+                                    const reason = HANDOFF_TAGS[c.handoffTag]?.label || c.tag
+                                    return (
+                                        <ButtonBase
+                                            key={c.id}
+                                            onClick={() => navigate('/omnichannel')}
                                             sx={{
-                                                fontFamily: `'Space Grotesk', 'Inter', sans-serif`,
-                                                fontSize: '2rem',
-                                                fontWeight: 700,
-                                                lineHeight: 1,
-                                                letterSpacing: '-0.02em',
-                                                color: 'text.primary',
-                                                fontVariantNumeric: 'tabular-nums'
-                                            }}
-                                        >
-                                            {k.value}
-                                        </Typography>
-                                        <Box
-                                            component='span'
-                                            sx={{
-                                                px: 0.75,
-                                                height: 22,
-                                                borderRadius: '999px',
-                                                display: 'inline-flex',
+                                                display: 'grid',
+                                                width: '100%',
+                                                textAlign: 'left',
+                                                gridTemplateColumns: '64px minmax(0, 1.3fr) 110px minmax(0, 1.6fr) 110px',
+                                                columnGap: 2,
                                                 alignItems: 'center',
-                                                gap: 0.25,
-                                                fontSize: '0.75rem',
-                                                fontWeight: 700,
-                                                color: deltaColor,
-                                                bgcolor: alpha(deltaColor, 0.1),
-                                                fontVariantNumeric: 'tabular-nums'
+                                                px: 2.5,
+                                                py: 1.25,
+                                                borderBottom: `1px solid ${alpha('#fff', 0.1)}`,
+                                                '&:hover': { bgcolor: alpha('#fff', 0.06) },
+                                                '&.Mui-focusVisible': { outline: '2px solid #fff', outlineOffset: -2 }
                                             }}
                                         >
-                                            {k.delta > 0 ? '▲' : '▼'} {Math.abs(k.delta)}%
+                                            <Typography
+                                                sx={{
+                                                    fontFamily: SIGN_FONT,
+                                                    fontWeight: 600,
+                                                    fontSize: '1.125rem',
+                                                    fontVariantNumeric: 'tabular-nums',
+                                                    color: '#F2B233'
+                                                }}
+                                            >
+                                                {c.waitingSince}
+                                            </Typography>
+                                            <Stack direction='row' alignItems='center' spacing={1.25} sx={{ minWidth: 0 }}>
+                                                <PersonAvatar
+                                                    name={c.customerName}
+                                                    size={28}
+                                                    sx={{
+                                                        color: '#fff',
+                                                        bgcolor: alpha('#fff', 0.1),
+                                                        border: `1px solid ${alpha('#fff', 0.28)}`
+                                                    }}
+                                                />
+                                                <Typography sx={{ fontWeight: 600, fontSize: '0.9375rem', color: '#fff' }} noWrap>
+                                                    {c.customerName}
+                                                </Typography>
+                                            </Stack>
+                                            <Stack direction='row' alignItems='center' spacing={0.75}>
+                                                <ChannelIcon size={18} />
+                                                <Typography sx={{ fontSize: '0.8125rem', color: alpha('#fff', 0.85) }} noWrap>
+                                                    {t(SHORT_CHANNEL[c.channel])}
+                                                </Typography>
+                                            </Stack>
+                                            <Typography sx={{ fontSize: '0.875rem', color: alpha('#fff', 0.92) }} noWrap>
+                                                {t(reason)}
+                                            </Typography>
+                                            <Stack direction='row' alignItems='center' spacing={0.5} sx={{ color: '#F2B233' }}>
+                                                <AppIcon name='HourglassMedium' size={16} />
+                                                <Typography sx={{ fontSize: '0.8125rem', fontWeight: 600, color: '#F2B233' }}>
+                                                    {t('Chờ nhận')}
+                                                </Typography>
+                                            </Stack>
+                                        </ButtonBase>
+                                    )
+                                })}
+                                {escalatedList.length === 0 && (
+                                    <Typography sx={{ px: 2.5, py: 3, color: alpha('#fff', 0.8) }}>
+                                        {t('Không có cuộc nào cần người xử lý.')}
+                                    </Typography>
+                                )}
+                            </Box>
+                        </Box>
+                    </Box>
+                </Box>
+
+                {/* Conversation state */}
+                <Box sx={{ gridColumn: { md: 'span 4' } }}>
+                    <Panel sx={{ height: '100%', p: 2.5 }}>
+                        <SectionTitle>{t('Trạng thái hội thoại')}</SectionTitle>
+                        <Typography variant='caption' sx={{ display: 'block', mb: 1.5 }}>
+                            {t('{n} cuộc thoại hôm nay', { n: mockConversations.length })}
+                        </Typography>
+                        <Stack spacing={0}>
+                            {statusRows.map((s, i) => (
+                                <Stack
+                                    key={s.key}
+                                    direction='row'
+                                    alignItems='center'
+                                    spacing={1.25}
+                                    sx={{ py: 1.25, borderTop: i ? `1px solid ${faint}` : 0 }}
+                                >
+                                    <Box sx={{ display: 'inline-flex', color: toneMain(s.tone) }}>
+                                        <AppIcon name={s.icon} size={20} />
+                                    </Box>
+                                    <Typography variant='body2' sx={{ flex: 1, fontWeight: 500 }}>
+                                        {t(s.label)}
+                                    </Typography>
+                                    <Typography
+                                        sx={{
+                                            fontFamily: SIGN_FONT,
+                                            fontWeight: 600,
+                                            fontSize: '1.5rem',
+                                            lineHeight: 1,
+                                            fontVariantNumeric: 'tabular-nums'
+                                        }}
+                                    >
+                                        {s.value}
+                                    </Typography>
+                                </Stack>
+                            ))}
+                        </Stack>
+                    </Panel>
+                </Box>
+
+                {/* Key figures: station-board numerals, no icon tiles */}
+                <Box sx={{ gridColumn: { md: 'span 12' } }}>
+                    <Panel
+                        sx={{
+                            display: 'grid',
+                            gridTemplateColumns: { xs: '1fr 1fr', lg: 'repeat(4, 1fr)' }
+                        }}
+                    >
+                        {kpis.map((k, i) => {
+                            const positive = k.invertColor ? k.delta < 0 : k.delta > 0
+                            const deltaColor = positive ? theme.palette.success.main : theme.palette.error.main
+                            return (
+                                <Box
+                                    key={k.label}
+                                    sx={{
+                                        p: 2.5,
+                                        borderLeft: { xs: i % 2 ? `1px solid ${hairline}` : 0, lg: i ? `1px solid ${hairline}` : 0 },
+                                        borderTop: { xs: i > 1 ? `1px solid ${hairline}` : 0, lg: 0 }
+                                    }}
+                                >
+                                    <Typography variant='body2' sx={{ color: 'text.secondary', mb: 1 }}>
+                                        {t(k.label)}
+                                    </Typography>
+                                    <Stack direction='row' alignItems='flex-end' justifyContent='space-between' spacing={1.5}>
+                                        <Box>
+                                            <Typography
+                                                sx={{
+                                                    fontFamily: SIGN_FONT,
+                                                    fontSize: '2.25rem',
+                                                    fontWeight: 600,
+                                                    lineHeight: 1,
+                                                    color: 'text.primary',
+                                                    fontVariantNumeric: 'tabular-nums'
+                                                }}
+                                            >
+                                                {k.value}
+                                            </Typography>
+                                            <Stack direction='row' alignItems='center' spacing={0.5} sx={{ mt: 0.75, color: deltaColor }}>
+                                                <AppIcon name={k.delta > 0 ? 'TrendUp' : 'TrendDown'} size={16} />
+                                                <Typography
+                                                    sx={{
+                                                        fontSize: '0.8125rem',
+                                                        fontWeight: 600,
+                                                        color: deltaColor,
+                                                        fontVariantNumeric: 'tabular-nums'
+                                                    }}
+                                                >
+                                                    {Math.abs(k.delta)}%
+                                                </Typography>
+                                            </Stack>
+                                        </Box>
+                                        <Box sx={{ width: '45%', maxWidth: 130, minWidth: 80 }}>
+                                            <Sparkline points={k.spark} />
                                         </Box>
                                     </Stack>
-                                </Stack>
-                                <Box sx={{ width: '40%', maxWidth: 180, minWidth: 96, alignSelf: 'flex-end', pb: 0.5 }}>
-                                    <Sparkline points={k.spark} color={k.color} height={56} />
                                 </Box>
-                            </Tilt3D>
-                        </Box>
-                    )
-                })}
+                            )
+                        })}
+                    </Panel>
+                </Box>
 
-                {/* Channels — isometric bars */}
-                <Box className='rise' sx={{ gridColumn: { md: 'span 12' }, animationDelay: '320ms' }}>
-                    <DepthCard sx={{ p: { xs: 2, md: 3 } }}>
+                {/* Channels: flat bars, each channel by its own mark */}
+                <Box sx={{ gridColumn: { md: 'span 12' } }}>
+                    <Panel sx={{ p: { xs: 2, md: 2.5 } }}>
                         <SectionTitle
                             action={
                                 <ToggleButtonGroup
@@ -311,24 +420,15 @@ const Dashboard = () => {
                                     onChange={(_, v) => v && setRange(v)}
                                     aria-label={t('Khoảng thời gian')}
                                     sx={{
-                                        p: 0.5,
-                                        gap: 0.5,
-                                        borderRadius: '12px',
-                                        bgcolor: alpha(theme.palette.text.primary, 0.04),
                                         '& .MuiToggleButton-root': {
-                                            border: 0,
-                                            borderRadius: '9px !important',
                                             px: 1.5,
                                             whiteSpace: 'nowrap',
-                                            typography: 'tabItem',
                                             fontSize: '0.8125rem',
                                             color: 'text.primary',
                                             '&.Mui-selected': {
-                                                bgcolor: 'background.paper',
-                                                color: 'primary.main',
-                                                fontWeight: 600,
-                                                boxShadow: theme.customShadows?.xs,
-                                                '&:hover': { bgcolor: 'background.paper' }
+                                                bgcolor: 'primary.main',
+                                                color: '#fff',
+                                                '&:hover': { bgcolor: 'primary.dark' }
                                             }
                                         }
                                     }}
@@ -350,40 +450,93 @@ const Dashboard = () => {
                                 {t('{n} cuộc', { n: totalConversations.toLocaleString(locale) })}
                             </Typography>
                         </SectionTitle>
-                        <IsoBarChart data={channelBars} t={t} />
-                    </DepthCard>
+                        <Stack spacing={0}>
+                            {channelBars.map((b, i) => {
+                                const ChannelIcon = getChannelIcon(b.key)
+                                return (
+                                    <Stack
+                                        key={b.key}
+                                        direction='row'
+                                        alignItems='center'
+                                        spacing={1.5}
+                                        sx={{ py: 0.875, borderTop: i ? `1px solid ${faint}` : 0 }}
+                                    >
+                                        <Stack
+                                            direction='row'
+                                            alignItems='center'
+                                            spacing={1}
+                                            sx={{ width: { xs: 120, md: 160 }, flexShrink: 0 }}
+                                        >
+                                            <ChannelIcon size={20} />
+                                            <Typography variant='body2' noWrap>
+                                                {b.label}
+                                            </Typography>
+                                        </Stack>
+                                        <Box
+                                            sx={{
+                                                flex: 1,
+                                                height: 10,
+                                                bgcolor: alpha(theme.palette.text.primary, 0.06),
+                                                borderRadius: '2px'
+                                            }}
+                                        >
+                                            <Box
+                                                sx={{
+                                                    width: `${(b.value / maxChannel) * 100}%`,
+                                                    height: '100%',
+                                                    bgcolor: i === 0 ? 'primary.main' : alpha(theme.palette.primary.main, 0.45),
+                                                    borderRadius: '2px'
+                                                }}
+                                            />
+                                        </Box>
+                                        <Typography
+                                            sx={{
+                                                width: 56,
+                                                textAlign: 'right',
+                                                fontFamily: SIGN_FONT,
+                                                fontWeight: 600,
+                                                fontSize: '1.0625rem',
+                                                fontVariantNumeric: 'tabular-nums'
+                                            }}
+                                        >
+                                            {b.value.toLocaleString(locale)}
+                                        </Typography>
+                                    </Stack>
+                                )
+                            })}
+                        </Stack>
+                    </Panel>
                 </Box>
 
                 {/* Needs attention */}
-                <Box className='rise' sx={{ gridColumn: { md: 'span 7' }, animationDelay: '380ms' }}>
-                    <DepthCard sx={{ height: '100%' }}>
-                        <Box sx={{ px: 3, pt: 2.5 }}>
+                <Box sx={{ gridColumn: { md: 'span 7' } }}>
+                    <Panel sx={{ height: '100%' }}>
+                        <Box sx={{ px: 2.5, pt: 2.5 }}>
                             <SectionTitle
                                 action={
-                                    <Box
-                                        component='span'
+                                    <Typography
                                         sx={{
-                                            px: 1,
-                                            height: 24,
-                                            borderRadius: '999px',
-                                            display: 'inline-flex',
-                                            alignItems: 'center',
-                                            fontSize: '0.75rem',
-                                            fontWeight: 700,
-                                            color: theme.palette.error.main,
-                                            bgcolor: alpha(theme.palette.error.main, 0.1)
+                                            fontFamily: SIGN_FONT,
+                                            fontWeight: 600,
+                                            fontSize: '1.125rem',
+                                            fontVariantNumeric: 'tabular-nums'
                                         }}
                                     >
                                         {priorityRows.length}
-                                    </Box>
+                                    </Typography>
                                 }
                             >
                                 {t('Cần xử lý ngay')}
                             </SectionTitle>
                         </Box>
-                        <Stack sx={{ px: 1.5, pb: 1.5 }} spacing={0.5}>
+                        <Stack sx={{ px: 1, pb: 1 }}>
                             {priorityRows.map(({ customer, score, reason, reasonVars }) => {
-                                const tone = toneColor(tonePriority(score))
+                                const urgent = score >= 85
+                                const tone = urgent
+                                    ? theme.palette.error.main
+                                    : score >= 70
+                                    ? theme.palette.warning.dark
+                                    : theme.palette.text.secondary
                                 return (
                                     <ButtonBase
                                         key={customer.id}
@@ -394,28 +547,12 @@ const Dashboard = () => {
                                             gap: 1.5,
                                             px: 1.5,
                                             py: 1.25,
-                                            borderRadius: '12px',
-                                            transition: 'background-color 150ms ease-out, transform 150ms ease-out',
-                                            '&:hover': { bgcolor: alpha(theme.palette.primary.main, 0.05), transform: 'translateX(2px)' },
-                                            '&:hover .row-go': { opacity: 1, transform: 'none' },
+                                            borderRadius: '6px',
+                                            '&:hover': { bgcolor: alpha(theme.palette.primary.main, 0.05) },
                                             '&.Mui-focusVisible': { boxShadow: theme.customShadows?.focusRing }
                                         }}
                                     >
-                                        {/* score ring */}
-                                        <Box
-                                            sx={{
-                                                width: 40,
-                                                height: 40,
-                                                borderRadius: '50%',
-                                                flexShrink: 0,
-                                                display: 'grid',
-                                                placeItems: 'center',
-                                                background: `conic-gradient(${tone} ${score * 3.6}deg, ${alpha(tone, 0.14)} 0)`,
-                                                boxShadow: `0 6px 14px -8px ${alpha(tone, 0.8)}`
-                                            }}
-                                        >
-                                            <PersonAvatar name={customer.name} size={32} />
-                                        </Box>
+                                        <PersonAvatar name={customer.name} size={32} />
                                         <Box sx={{ flex: 1, minWidth: 0 }}>
                                             <Typography variant='body2' sx={{ fontWeight: 600, color: 'text.primary' }} noWrap>
                                                 {customer.name}
@@ -424,84 +561,55 @@ const Dashboard = () => {
                                                 {t(reason, reasonVars)}
                                             </Typography>
                                         </Box>
-                                        <Typography
-                                            sx={{ fontWeight: 700, color: tone, fontVariantNumeric: 'tabular-nums', fontSize: '0.875rem' }}
-                                        >
-                                            {score}
-                                        </Typography>
-                                        <Box
-                                            className='row-go'
-                                            sx={{
-                                                display: 'flex',
-                                                color: 'primary.main',
-                                                opacity: 0.35,
-                                                transform: 'translateX(-4px)',
-                                                transition: 'all 150ms ease-out'
-                                            }}
-                                        >
-                                            <AppIcon name='CaretRight' size={18} />
-                                        </Box>
+                                        <Stack direction='row' alignItems='center' spacing={0.5} sx={{ color: tone }}>
+                                            <AppIcon name={urgent ? 'WarningOctagon' : score >= 70 ? 'WarningCircle' : 'Info'} size={16} />
+                                            <Typography
+                                                sx={{
+                                                    fontFamily: SIGN_FONT,
+                                                    fontWeight: 600,
+                                                    fontSize: '1.125rem',
+                                                    color: tone,
+                                                    fontVariantNumeric: 'tabular-nums'
+                                                }}
+                                            >
+                                                {score}
+                                            </Typography>
+                                        </Stack>
+                                        <AppIcon name='CaretRight' size={16} />
                                     </ButtonBase>
                                 )
                             })}
                         </Stack>
-                    </DepthCard>
+                    </Panel>
                 </Box>
 
-                {/* Activity */}
-                <Box className='rise' sx={{ gridColumn: { md: 'span 5' }, animationDelay: '440ms' }}>
-                    <DepthCard sx={{ height: '100%' }}>
-                        <Box sx={{ px: 3, pt: 2.5 }}>
+                {/* Activity: newest on top, one direction of time */}
+                <Box sx={{ gridColumn: { md: 'span 5' } }}>
+                    <Panel sx={{ height: '100%' }}>
+                        <Box sx={{ px: 2.5, pt: 2.5 }}>
                             <SectionTitle>{t('Hoạt động')}</SectionTitle>
                         </Box>
-                        <Box sx={{ px: 3, pb: 2.5, position: 'relative' }}>
-                            {/* timeline spine */}
-                            <Box
-                                sx={{ position: 'absolute', left: 30, top: 8, bottom: 28, width: 2, bgcolor: d.hairline, borderRadius: 1 }}
-                            />
-                            <Stack spacing={1.75}>
-                                {feedEvents.slice(0, 6).map((ev) => {
-                                    const c = toneColor(ev.tone)
-                                    return (
-                                        <Stack
-                                            key={ev.id}
-                                            direction='row'
-                                            spacing={1.75}
-                                            alignItems='flex-start'
-                                            sx={{ position: 'relative' }}
-                                        >
-                                            <Box
-                                                sx={{
-                                                    width: 14,
-                                                    height: 14,
-                                                    mt: 0.375,
-                                                    borderRadius: '50%',
-                                                    flexShrink: 0,
-                                                    background: `radial-gradient(circle at 35% 30%, ${shade(
-                                                        c.startsWith('#') ? c : '#2563EB',
-                                                        0.4
-                                                    )}, ${c})`,
-                                                    boxShadow: `0 0 0 3px ${theme.palette.background.paper}, 0 4px 10px -2px ${alpha(
-                                                        c,
-                                                        0.6
-                                                    )}`,
-                                                    zIndex: 1
-                                                }}
-                                            />
-                                            <Box sx={{ flex: 1, minWidth: 0 }}>
-                                                <Typography variant='body2' sx={{ color: 'text.primary' }}>
-                                                    {feedText(t, ev, locale)}
-                                                </Typography>
-                                                <Typography variant='caption' sx={{ color: 'text.secondary' }}>
-                                                    {feedAgo(t, ev)}
-                                                </Typography>
-                                            </Box>
-                                        </Stack>
-                                    )
-                                })}
-                            </Stack>
-                        </Box>
-                    </DepthCard>
+                        <Stack sx={{ px: 2.5, pb: 2.5 }} spacing={1.75}>
+                            {feedEvents.slice(0, 6).map((ev) => {
+                                const tone = feedTone(ev.tone)
+                                return (
+                                    <Stack key={ev.id} direction='row' spacing={1.25} alignItems='flex-start'>
+                                        <Box sx={{ display: 'inline-flex', mt: 0.125, color: toneMain(tone) }}>
+                                            <AppIcon name={feedIcon(ev.tone)} size={18} />
+                                        </Box>
+                                        <Box sx={{ flex: 1, minWidth: 0 }}>
+                                            <Typography variant='body2' sx={{ color: 'text.primary' }}>
+                                                {feedText(t, ev, locale)}
+                                            </Typography>
+                                            <Typography variant='caption' sx={{ color: 'text.secondary' }}>
+                                                {feedAgo(t, ev)}
+                                            </Typography>
+                                        </Box>
+                                    </Stack>
+                                )
+                            })}
+                        </Stack>
+                    </Panel>
                 </Box>
             </Box>
         </Box>

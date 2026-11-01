@@ -103,7 +103,7 @@ const toHtml = (tables, meta) => {
 <style>
   @page { size: A4; margin: 14mm; }
   * { box-sizing: border-box; }
-  body { font-family: Inter, 'Segoe UI', Roboto, Arial, sans-serif; color: #0B1220; margin: 0; padding: 32px; font-size: 12px; }
+  body { font-family: 'Be Vietnam Pro', 'Segoe UI', Arial, sans-serif; color: #0B1220; margin: 0; padding: 32px; font-size: 12px; }
   header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 3px solid #2563EB; padding-bottom: 12px; margin-bottom: 20px; }
   .brand { font-weight: 800; letter-spacing: .08em; color: #2563EB; font-size: 13px; }
   h1 { font-size: 20px; margin: 4px 0 0; }

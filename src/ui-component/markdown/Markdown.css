@@ -82,8 +82,10 @@
 
 .react-markdown blockquote {
     margin: 0.5em 0;
-    padding-left: 0.9em;
-    border-left: 3px solid color-mix(in srgb, currentColor 25%, transparent);
+    padding: 0.4em 0.9em;
+    border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+    border-radius: 6px;
+    background: color-mix(in srgb, currentColor 4%, transparent);
     color: inherit;
-    opacity: 0.85;
+    opacity: 0.9;
 }

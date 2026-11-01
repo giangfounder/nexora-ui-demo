@@ -108,7 +108,7 @@ export const JSONViewer = ({ data, maxHeight = '400px' }) => {
             <pre
                 style={{
                     margin: 0,
-                    fontFamily: `'Inter', 'Roboto', 'Arial', sans-serif`,
+                    fontFamily: `'Be Vietnam Pro', 'Segoe UI', system-ui, sans-serif`,
                     fontSize: '0.875rem',
                     whiteSpace: 'pre-wrap',
                     wordBreak: 'break-word'
