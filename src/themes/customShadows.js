@@ -19,7 +19,14 @@ const customShadows = (isDark) => ({
     warmSm: isDark ? 'inset 0 1px 0 rgba(255,255,255,0.06), 0 2px 6px rgba(0,0,0,0.4)' : '0 2px 6px rgba(0,0,0,0.06)',
     warmMd: isDark ? 'inset 0 1px 0 rgba(255,255,255,0.08), 0 8px 24px rgba(0,0,0,0.5)' : '0 8px 24px rgba(0,0,0,0.08)',
     warmLg: isDark ? 'inset 0 1px 0 rgba(255,255,255,0.08), 0 8px 24px rgba(0,0,0,0.5)' : '0 8px 24px rgba(0,0,0,0.08)',
-    legacyCard: 'none'
+    legacyCard: 'none',
+
+    // Clickable cards only — sections and panels stay flat. Rest: a tight contact line; hover: the lift
+    // (same depth as the assistant workspace cardShadow level 2).
+    card: isDark ? '0 1px 2px rgba(0,0,0,0.45)' : '0 1px 2px rgba(16,24,40,0.06)',
+    cardHover: isDark
+        ? 'inset 0 1px 0 rgba(255,255,255,0.05), 0 2px 4px rgba(0,0,0,0.4), 0 12px 28px -10px rgba(0,0,0,0.65)'
+        : '0 1px 2px rgba(16,24,40,0.06), 0 4px 8px -2px rgba(16,24,40,0.08), 0 14px 30px -10px rgba(16,24,40,0.16)'
 })
 
 export default customShadows

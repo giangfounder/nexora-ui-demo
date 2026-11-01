@@ -60,8 +60,13 @@ const MCPItemCard = ({ data, onClick }) => {
                 border: 1,
                 borderColor: theme.palette.alpha.border,
                 borderRadius: '10px',
-                boxShadow: 'none',
-                '&:hover': { borderColor: theme.palette.alpha.borderStrong, backgroundColor: theme.palette.alpha.hover, boxShadow: 'none' }
+                boxShadow: theme.customShadows.card,
+                transition: 'box-shadow 150ms ease-out, border-color 150ms ease-out, background-color 150ms ease-out',
+                '&:hover': {
+                    borderColor: theme.palette.alpha.borderStrong,
+                    backgroundColor: theme.palette.alpha.hover,
+                    boxShadow: theme.customShadows.cardHover
+                }
             }}
         >
             <Box sx={{ height: '100%', p: 2.25 }}>
@@ -172,27 +177,9 @@ const MCPItemCard = ({ data, onClick }) => {
                     </Box>
 
                     {/* Footer: tool count badge */}
-                    <Grid container columnGap={2} rowGap={1}>
-                        <div
-                            style={{
-                                paddingLeft: '7px',
-                                paddingRight: '7px',
-                                paddingTop: '3px',
-                                paddingBottom: '3px',
-                                fontSize: '11px',
-                                width: 'max-content',
-                                borderRadius: '25px',
-                                border: `1px solid ${theme.palette.alpha.border}`,
-                                color: theme.palette.text.secondary,
-                                display: 'flex',
-                                flexDirection: 'row',
-                                alignItems: 'center'
-                            }}
-                        >
-                            <AppIcon name='Wrench' style={{ marginRight: 5 }} size={14} />
-                            {toolCount} {t(toolCount === 1 ? 'tool' : 'tools')}
-                        </div>
-                    </Grid>
+                    <Typography variant='caption' sx={{ color: 'text.secondary', fontVariantNumeric: 'tabular-nums' }}>
+                        {toolCount} {t(toolCount === 1 ? 'tool' : 'tools')}
+                    </Typography>
                 </Grid>
             </Box>
         </CardWrapper>

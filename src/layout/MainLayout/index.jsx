@@ -11,7 +11,7 @@ import Header from './Header'
 import Sidebar from './Sidebar'
 import AnnouncementBanner from './AnnouncementBanner'
 import MiraAssistant from '@/ui-component/mira/MiraAssistant'
-import { headerHeight, pageBottom, pageGutter, pageTop } from '@/store/constant'
+import { assistantClearance, headerHeight, pageBottom, pageGutter, pageTop } from '@/store/constant'
 import { SET_MENU } from '@/store/actions'
 import { useLanguage } from '@/store/context/LanguageContext'
 
@@ -26,7 +26,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'bannerOffse
     minHeight: `calc(100vh - ${headerHeight + bannerOffset}px)`,
     marginTop: `${headerHeight + bannerOffset}px`,
     paddingTop: pageTop,
-    paddingBottom: pageBottom,
+    paddingBottom: pageBottom + assistantClearance,
     paddingLeft: pageGutter.xs,
     paddingRight: pageGutter.xs,
     [theme.breakpoints.up('sm')]: { paddingLeft: pageGutter.sm, paddingRight: pageGutter.sm }

@@ -103,6 +103,9 @@ const Dashboard = () => {
     const [range, setRange] = useState('24h')
     const hairline = theme.palette.alpha?.border || alpha(theme.palette.text.primary, 0.1)
     const faint = theme.palette.alpha?.divider || alpha(theme.palette.text.primary, 0.06)
+    const hoverBg = theme.palette.alpha?.hover || alpha(theme.palette.text.primary, 0.04)
+    // Waiting time is the one urgent signal on the board: semantic warning, darker shade for contrast on light paper
+    const waitTone = theme.palette.mode === 'dark' ? theme.palette.warning.main : theme.palette.warning.dark
 
     const statusCount = (s) => mockConversations.filter((c) => c.status === s).length
     const openCount = mockConversations.filter((c) => c.status !== 'resolved').length
@@ -168,9 +171,8 @@ const Dashboard = () => {
                             height: '100%',
                             borderRadius: '8px',
                             overflow: 'hidden',
-                            bgcolor: '#0E2350',
-                            color: '#fff',
-                            border: '1px solid #0E2350'
+                            bgcolor: 'background.paper',
+                            border: `1px solid ${theme.palette.alpha?.border || alpha(theme.palette.text.primary, 0.1)}`
                         }}
                     >
                         <Stack
@@ -183,11 +185,17 @@ const Dashboard = () => {
                             <Stack direction='row' alignItems='baseline' spacing={1.5}>
                                 <Typography
                                     component='h2'
-                                    sx={{ fontFamily: SIGN_FONT, fontWeight: 600, fontSize: '1.375rem', lineHeight: 1.2, color: '#fff' }}
+                                    sx={{
+                                        fontFamily: SIGN_FONT,
+                                        fontWeight: 600,
+                                        fontSize: '1.375rem',
+                                        lineHeight: 1.2,
+                                        color: 'text.primary'
+                                    }}
                                 >
                                     {t('Hàng đợi chuyển giao nhân viên')}
                                 </Typography>
-                                <Typography sx={{ fontSize: '0.8125rem', color: alpha('#fff', 0.7) }}>
+                                <Typography sx={{ fontSize: '0.8125rem', color: 'text.secondary' }}>
                                     {t('{n} cuộc đang mở', { n: openCount })}
                                 </Typography>
                             </Stack>
@@ -200,10 +208,10 @@ const Dashboard = () => {
                                     borderRadius: '6px',
                                     fontWeight: 600,
                                     fontSize: '0.8125rem',
-                                    color: '#0E2350',
-                                    bgcolor: '#fff',
-                                    '&:hover': { bgcolor: alpha('#fff', 0.88) },
-                                    '&.Mui-focusVisible': { outline: '2px solid #fff', outlineOffset: 2 }
+                                    color: 'text.primary',
+                                    border: `1px solid ${theme.palette.alpha?.borderStrong || alpha(theme.palette.text.primary, 0.14)}`,
+                                    '&:hover': { bgcolor: hoverBg },
+                                    '&.Mui-focusVisible': { boxShadow: theme.customShadows?.focusRing }
                                 }}
                             >
                                 {t('Mở hộp thư')}
@@ -217,15 +225,15 @@ const Dashboard = () => {
                                 <Box
                                     sx={{
                                         display: 'grid',
-                                        gridTemplateColumns: '64px minmax(0, 1.3fr) 110px minmax(0, 1.6fr) 110px',
+                                        gridTemplateColumns: '64px minmax(0, 1.3fr) 110px minmax(0, 1.4fr) 136px',
                                         columnGap: 2,
                                         px: 2.5,
                                         py: 0.875,
-                                        borderTop: `1px solid ${alpha('#fff', 0.18)}`,
-                                        borderBottom: `1px solid ${alpha('#fff', 0.18)}`,
+                                        borderTop: `1px solid ${faint}`,
+                                        borderBottom: `1px solid ${faint}`,
                                         fontSize: '0.75rem',
                                         fontWeight: 600,
-                                        color: alpha('#fff', 0.72)
+                                        color: 'text.secondary'
                                     }}
                                 >
                                     <span>{t('Chờ')}</span>
@@ -245,14 +253,14 @@ const Dashboard = () => {
                                                 display: 'grid',
                                                 width: '100%',
                                                 textAlign: 'left',
-                                                gridTemplateColumns: '64px minmax(0, 1.3fr) 110px minmax(0, 1.6fr) 110px',
+                                                gridTemplateColumns: '64px minmax(0, 1.3fr) 110px minmax(0, 1.4fr) 136px',
                                                 columnGap: 2,
                                                 alignItems: 'center',
                                                 px: 2.5,
                                                 py: 1.25,
-                                                borderBottom: `1px solid ${alpha('#fff', 0.1)}`,
-                                                '&:hover': { bgcolor: alpha('#fff', 0.06) },
-                                                '&.Mui-focusVisible': { outline: '2px solid #fff', outlineOffset: -2 }
+                                                borderBottom: `1px solid ${faint}`,
+                                                '&:hover': { bgcolor: hoverBg },
+                                                '&.Mui-focusVisible': { boxShadow: `inset ${theme.customShadows?.focusRing}` }
                                             }}
                                         >
                                             <Typography
@@ -261,37 +269,29 @@ const Dashboard = () => {
                                                     fontWeight: 600,
                                                     fontSize: '1.125rem',
                                                     fontVariantNumeric: 'tabular-nums',
-                                                    color: '#F2B233'
+                                                    color: waitTone
                                                 }}
                                             >
                                                 {c.waitingSince}
                                             </Typography>
                                             <Stack direction='row' alignItems='center' spacing={1.25} sx={{ minWidth: 0 }}>
-                                                <PersonAvatar
-                                                    name={c.customerName}
-                                                    size={28}
-                                                    sx={{
-                                                        color: '#fff',
-                                                        bgcolor: alpha('#fff', 0.1),
-                                                        border: `1px solid ${alpha('#fff', 0.28)}`
-                                                    }}
-                                                />
-                                                <Typography sx={{ fontWeight: 600, fontSize: '0.9375rem', color: '#fff' }} noWrap>
+                                                <PersonAvatar name={c.customerName} size={28} />
+                                                <Typography sx={{ fontWeight: 600, fontSize: '0.9375rem', color: 'text.primary' }} noWrap>
                                                     {c.customerName}
                                                 </Typography>
                                             </Stack>
                                             <Stack direction='row' alignItems='center' spacing={0.75}>
                                                 <ChannelIcon size={18} />
-                                                <Typography sx={{ fontSize: '0.8125rem', color: alpha('#fff', 0.85) }} noWrap>
+                                                <Typography sx={{ fontSize: '0.8125rem', color: 'text.secondary' }} noWrap>
                                                     {t(SHORT_CHANNEL[c.channel])}
                                                 </Typography>
                                             </Stack>
-                                            <Typography sx={{ fontSize: '0.875rem', color: alpha('#fff', 0.92) }} noWrap>
+                                            <Typography sx={{ fontSize: '0.875rem', color: 'text.primary' }} noWrap>
                                                 {t(reason)}
                                             </Typography>
-                                            <Stack direction='row' alignItems='center' spacing={0.5} sx={{ color: '#F2B233' }}>
+                                            <Stack direction='row' alignItems='center' spacing={0.5} sx={{ color: waitTone }}>
                                                 <AppIcon name='HourglassMedium' size={16} />
-                                                <Typography sx={{ fontSize: '0.8125rem', fontWeight: 600, color: '#F2B233' }}>
+                                                <Typography sx={{ fontSize: '0.8125rem', fontWeight: 600, color: waitTone }} noWrap>
                                                     {t('Chờ tiếp nhận')}
                                                 </Typography>
                                             </Stack>
@@ -299,7 +299,7 @@ const Dashboard = () => {
                                     )
                                 })}
                                 {escalatedList.length === 0 && (
-                                    <Typography sx={{ px: 2.5, py: 3, color: alpha('#fff', 0.8) }}>
+                                    <Typography sx={{ px: 2.5, py: 3, color: 'text.secondary' }}>
                                         {t('Không có cuộc nào cần người xử lý.')}
                                     </Typography>
                                 )}

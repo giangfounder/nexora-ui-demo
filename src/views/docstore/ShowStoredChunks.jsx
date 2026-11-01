@@ -367,7 +367,9 @@ const ShowStoredChunks = () => {
                                                     border: 1,
                                                     borderColor: theme.palette.alpha.border,
                                                     borderRadius: '10px',
-                                                    boxShadow: 'none'
+                                                    boxShadow: theme.customShadows.card,
+                                                    transition: 'box-shadow 150ms ease-out',
+                                                    '&:hover': { boxShadow: theme.customShadows.cardHover }
                                                 }}
                                             >
                                                 <Card>

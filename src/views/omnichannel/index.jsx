@@ -126,7 +126,6 @@ const Omnichannel = () => {
     const primary = theme.palette.primary.main
     const selectedBg = alpha(primary, isDark ? 0.16 : 0.08)
     const selectedHoverBg = alpha(primary, isDark ? 0.2 : 0.1)
-    const logoShadow = isDark ? theme.customShadows?.xs || 'none' : `0 3px 8px -3px ${alpha(theme.palette.text.primary, 0.35)}`
     const warningFg = toneFg(theme, theme.palette.warning)
     const warningBg = alpha(theme.palette.warning.main, tintAlpha(theme))
     const toneOf = (tone) => theme.palette[tone] || theme.palette.spectrum?.[tone] || theme.palette.info
@@ -449,12 +448,14 @@ const Omnichannel = () => {
                                         bgcolor: active ? 'background.paper' : 'transparent',
                                         boxShadow: active ? `0 0 0 2px ${primary}, 0 6px 14px -6px ${alpha(primary, 0.55)}` : 'none',
                                         transition: 'transform 160ms ease-out, box-shadow 160ms ease-out, background-color 160ms ease-out',
+                                        // Brand colour only where the eye should go: the selected channel and the one under the pointer
                                         '& .rail-logo': {
-                                            opacity: active ? 1 : 0.82,
-                                            transition: 'opacity 160ms ease-out, transform 160ms ease-out'
+                                            opacity: active ? 1 : 0.6,
+                                            filter: active ? 'none' : 'grayscale(1)',
+                                            transition: 'opacity 160ms ease-out, filter 160ms ease-out, transform 160ms ease-out'
                                         },
                                         '&:hover': { bgcolor: active ? 'background.paper' : alpha(theme.palette.text.primary, 0.05) },
-                                        '&:hover .rail-logo': { opacity: 1, transform: 'translateY(-1px) scale(1.06)' },
+                                        '&:hover .rail-logo': { opacity: 1, filter: 'none', transform: 'translateY(-1px) scale(1.06)' },
                                         '&.Mui-focusVisible': { boxShadow: theme.customShadows?.focusRing }
                                     }}
                                 >
@@ -463,7 +464,6 @@ const Omnichannel = () => {
                                             <Box
                                                 sx={{
                                                     borderRadius: '9px',
-                                                    boxShadow: logoShadow,
                                                     lineHeight: 0
                                                 }}
                                             >

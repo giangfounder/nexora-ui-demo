@@ -16,7 +16,8 @@ const isMac = os === 'macos'
 const isDesktop = isMac || os === 'windows' || os === 'linux'
 const shortcutKey = isMac ? '⌘F' : 'Ctrl+F'
 
-// Shared page header for every menu page: one flat card with the title, count and actions.
+// Shared page header for every menu page: title, count and actions sit directly on the page — no box,
+// so the content below is the first surface the eye lands on.
 // 2026 text-discipline rule: titles stand alone — `description` is kept for backward compat but never rendered.
 const ViewHeader = ({
     children,
@@ -47,12 +48,7 @@ const ViewHeader = ({
             component='header'
             sx={{
                 width: '100%',
-                mb: 3,
-                px: { xs: 2, md: 3 },
-                py: 2,
-                bgcolor: 'background.paper',
-                border: `1px solid ${hairline}`,
-                borderRadius: '8px'
+                mb: 3
             }}
         >
             <Stack

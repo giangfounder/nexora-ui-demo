@@ -34,14 +34,15 @@ const StyledCard = styled(Card)(({ theme }) => ({
     position: 'relative',
     overflow: 'hidden',
     cursor: 'pointer',
-    boxShadow: 'none',
+    boxShadow: theme.customShadows.card,
     background: theme.palette.background.paper,
     border: `1px solid ${theme.palette.alpha.border}`,
     borderRadius: 10,
-    transition: 'border-color 150ms ease-out, background-color 150ms ease-out',
+    transition: 'box-shadow 150ms ease-out, border-color 150ms ease-out, background-color 150ms ease-out',
     '&:hover': {
         borderColor: theme.palette.alpha.borderStrong,
-        backgroundColor: theme.palette.alpha.hover
+        backgroundColor: theme.palette.alpha.hover,
+        boxShadow: theme.customShadows.cardHover
     }
 }))
 

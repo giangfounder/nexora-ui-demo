@@ -11,8 +11,10 @@ export const headerHeight = 56
 export const pageGutter = { xs: 16, sm: 24 }
 export const pageTop = 24
 export const pageBottom = 24
+// Bottom band kept free for the Mira dock (52px mascot, 16px from the edge) so it never sits on content
+export const assistantClearance = 52
 // Screens that fill the viewport (e.g. the inbox)
-export const fullPageHeight = `calc(100vh - ${56 + 24 + 24}px)`
+export const fullPageHeight = `calc(100vh - ${56 + 24 + 24 + 52}px)`
 export const fullPageBottomOffset = 0
 export const maxScroll = 100000
 export const baseURL = import.meta.env.VITE_API_BASE_URL || window.location.origin

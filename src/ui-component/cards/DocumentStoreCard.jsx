@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux'
 // material-ui
 import { styled } from '@mui/material/styles'
 import { Box, Grid, Typography, useTheme } from '@mui/material'
-import { AppIcon } from '@/ui-component/icons/AppIcon'
 
 // project imports
 import MainCard from '@/ui-component/cards/MainCard'
@@ -42,8 +41,13 @@ const DocumentStoreCard = ({ data, images, onClick, hasActions }) => {
                 border: 1,
                 borderColor: theme.palette.alpha.border,
                 borderRadius: '10px',
-                boxShadow: 'none',
-                '&:hover': { borderColor: theme.palette.alpha.borderStrong, backgroundColor: theme.palette.alpha.hover, boxShadow: 'none' }
+                boxShadow: theme.customShadows.card,
+                transition: 'box-shadow 150ms ease-out, border-color 150ms ease-out, background-color 150ms ease-out',
+                '&:hover': {
+                    borderColor: theme.palette.alpha.borderStrong,
+                    backgroundColor: theme.palette.alpha.hover,
+                    boxShadow: theme.customShadows.cardHover
+                }
             }}
         >
             <Box sx={{ height: '100%', p: 2.25 }}>
@@ -89,67 +93,14 @@ const DocumentStoreCard = ({ data, images, onClick, hasActions }) => {
                             {data.description || ' '}
                         </span>
                     </Box>
-                    <Grid container columnGap={2} rowGap={1}>
-                        <div
-                            style={{
-                                paddingLeft: '7px',
-                                paddingRight: '7px',
-                                paddingTop: '3px',
-                                paddingBottom: '3px',
-                                fontSize: '11px',
-                                width: 'max-content',
-                                borderRadius: '25px',
-                                border: `1px solid ${theme.palette.alpha.border}`,
-                                color: theme.palette.text.secondary,
-
-                                display: 'flex',
-                                flexDirection: 'row',
-                                alignItems: 'center'
-                            }}
-                        >
-                            <AppIcon name='BezierCurve' style={{ marginRight: 5 }} size={14} />
-                            {data.whereUsed?.length ?? 0} {t(data.whereUsed?.length <= 1 ? 'flow' : 'flows')}
-                        </div>
-                        <div
-                            style={{
-                                paddingLeft: '7px',
-                                paddingRight: '7px',
-                                paddingTop: '3px',
-                                paddingBottom: '3px',
-                                fontSize: '11px',
-                                width: 'max-content',
-                                borderRadius: '25px',
-                                border: `1px solid ${theme.palette.alpha.border}`,
-                                color: theme.palette.text.secondary,
-
-                                display: 'flex',
-                                flexDirection: 'row',
-                                alignItems: 'center'
-                            }}
-                        >
-                            <AppIcon name='Translate' style={{ marginRight: 5 }} size={14} />
-                            {kFormatter(data.totalChars ?? 0)} {t('chars')}
-                        </div>
-                        <div
-                            style={{
-                                paddingLeft: '7px',
-                                paddingRight: '7px',
-                                paddingTop: '3px',
-                                paddingBottom: '3px',
-                                fontSize: '11px',
-                                width: 'max-content',
-                                borderRadius: '25px',
-                                border: `1px solid ${theme.palette.alpha.border}`,
-                                color: theme.palette.text.secondary,
-                                display: 'flex',
-                                flexDirection: 'row',
-                                alignItems: 'center'
-                            }}
-                        >
-                            <AppIcon name='Scissors' style={{ marginRight: 5 }} size={14} />
-                            {kFormatter(data.totalChunks ?? 0)} {t('chunks')}
-                        </div>
-                    </Grid>
+                    {/* Usage stats as one quiet line of text, not three pills competing with the status badge */}
+                    <Typography variant='caption' sx={{ color: 'text.secondary', fontVariantNumeric: 'tabular-nums' }}>
+                        {[
+                            `${data.whereUsed?.length ?? 0} ${t(data.whereUsed?.length <= 1 ? 'flow' : 'flows')}`,
+                            `${kFormatter(data.totalChars ?? 0)} ${t('chars')}`,
+                            `${kFormatter(data.totalChunks ?? 0)} ${t('chunks')}`
+                        ].join(' · ')}
+                    </Typography>
                     {images && images.length > 0 && (
                         <Box
                             sx={{
@@ -169,7 +120,15 @@ const DocumentStoreCard = ({ data, images, onClick, hasActions }) => {
                                         backgroundColor: customization.isDarkMode ? theme.palette.common.white : theme.palette.alpha.border
                                     }}
                                 >
-                                    <img style={{ width: '100%', height: '100%', padding: 5, objectFit: 'contain' }} alt='' src={img} />
+                                    <img
+                                        style={{ width: '100%', height: '100%', padding: 5, objectFit: 'contain' }}
+                                        alt=''
+                                        src={img}
+                                        // A missing node icon would show the browser's broken-image glyph: drop the bubble instead
+                                        onError={(e) => {
+                                            e.currentTarget.parentElement.style.display = 'none'
+                                        }}
+                                    />
                                 </Box>
                             ))}
                             {images.length > 3 && (

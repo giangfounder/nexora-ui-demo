@@ -46,9 +46,6 @@ import { getStageIcon, tintBg } from './utils'
 import PersonAvatar from '@/ui-component/avatar/PersonAvatar'
 import { mockAttributeDefs, mockCustomerTypes, mockCustomers } from './mockCustomers'
 
-const STAGE_TONES = ['teal', 'amber', 'orange', 'emerald', 'rose']
-const stageTone = (idx, total) => (total > 0 ? STAGE_TONES[Math.min(idx, STAGE_TONES.length - 1)] : 'teal')
-
 const Customers = () => {
     const navigate = useNavigate()
     const { t } = useLanguage()
@@ -135,7 +132,6 @@ const Customers = () => {
         const stageIndex = type?.stages.findIndex((s) => s.id === customer.stageId) ?? -1
         return {
             label: t(type?.stages[stageIndex]?.label) || '—',
-            tone: stageTone(stageIndex, type?.stages.length || 0),
             icon: getStageIcon(customer.stageId)
         }
     }
@@ -224,7 +220,8 @@ const Customers = () => {
                                 </SharedTableCell>
                                 <SharedTableCell>
                                     <Stack direction='row' spacing={0.75} alignItems='center'>
-                                        <StatusIcon tone={stage.tone} icon={stage.icon} />
+                                        {/* Stage is progress, not a status: neutral glyph, the label carries the meaning */}
+                                        <StatusIcon icon={stage.icon} sx={{ color: 'text.secondary' }} />
                                         <Typography variant='body2'>{stage.label}</Typography>
                                     </Stack>
                                 </SharedTableCell>

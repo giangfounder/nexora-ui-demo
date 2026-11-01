@@ -24,8 +24,8 @@ MiraAvatar.propTypes = {
     size: PropTypes.number
 }
 
-const DOCK = 68
-const DOCK_MASCOT = 64
+const DOCK = 52
+const DOCK_MASCOT = 48
 const EDGE = 12
 const DRAG_THRESHOLD = 5
 // Fab transform-origin sits 40% of its height below the centre (feet), see `transformOrigin` below.
@@ -36,7 +36,7 @@ const clampDock = (pos) => ({
     y: Math.min(Math.max(EDGE, pos.y), Math.max(EDGE, window.innerHeight - DOCK - EDGE))
 })
 
-const defaultDock = () => ({ x: window.innerWidth - DOCK - 18, y: window.innerHeight - DOCK - 18 })
+const defaultDock = () => ({ x: window.innerWidth - DOCK - 16, y: window.innerHeight - DOCK - 16 })
 
 // Transform that puts the mascot's centre at (x, y) relative to its resting centre,
 // compensating for the feet-anchored transform-origin so the start frame matches the login chibi exactly.
@@ -343,9 +343,9 @@ const MiraAssistant = () => {
                         touchAction: 'none',
                         cursor: drag ? 'grabbing' : 'grab',
                         userSelect: 'none',
-                        width: 68,
-                        height: 68,
-                        minHeight: 68,
+                        width: DOCK,
+                        height: DOCK,
+                        minHeight: DOCK,
                         bgcolor: 'transparent',
                         boxShadow: 'none',
                         overflow: 'visible',

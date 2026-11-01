@@ -156,10 +156,10 @@ const IntegrationsTab = () => {
                                             sx={{
                                                 height: '100%',
                                                 cursor: 'pointer',
-                                                boxShadow: 'none',
-                                                transition: 'border-color 120ms ease-out',
+                                                boxShadow: theme.customShadows.card,
+                                                transition: 'box-shadow 120ms ease-out, border-color 120ms ease-out',
                                                 '&:hover': {
-                                                    boxShadow: 'none',
+                                                    boxShadow: theme.customShadows.cardHover,
                                                     borderColor: alpha(theme.palette.text.primary, 0.24)
                                                 }
                                             }}

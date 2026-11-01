@@ -40,8 +40,13 @@ const ItemCard = ({ data, images, icons, scheduleStatus, onClick }) => {
                 border: 1,
                 borderColor: theme.palette.alpha.border,
                 borderRadius: '10px',
-                boxShadow: 'none',
-                '&:hover': { borderColor: theme.palette.alpha.borderStrong, backgroundColor: theme.palette.alpha.hover, boxShadow: 'none' }
+                boxShadow: theme.customShadows.card,
+                transition: 'box-shadow 150ms ease-out, border-color 150ms ease-out, background-color 150ms ease-out',
+                '&:hover': {
+                    borderColor: theme.palette.alpha.borderStrong,
+                    backgroundColor: theme.palette.alpha.hover,
+                    boxShadow: theme.customShadows.cardHover
+                }
             }}
         >
             <Box sx={{ height: '100%', p: 2.25 }}>
@@ -155,6 +160,9 @@ const ItemCard = ({ data, images, icons, scheduleStatus, onClick }) => {
                                                         style={{ width: '100%', height: '100%', padding: 5, objectFit: 'contain' }}
                                                         alt=''
                                                         src={item.src}
+                                                        onError={(e) => {
+                                                            e.currentTarget.parentElement.style.display = 'none'
+                                                        }}
                                                     />
                                                 </Box>
                                             ) : (

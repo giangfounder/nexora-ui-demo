@@ -182,12 +182,15 @@ const RoutingRulesTab = () => {
                                 gap: 2,
                                 px: 2,
                                 py: 1.5,
-                                boxShadow: 'none',
+                                boxShadow: theme.customShadows.card,
                                 border: `1px solid ${alphaBorder}`,
                                 bgcolor: rule.enabled ? 'background.paper' : alpha(theme.palette.text.primary, 0.02),
                                 opacity: rule.enabled ? 1 : 0.7,
-                                transition: 'border-color 120ms ease-out',
-                                '&:hover': { borderColor: alpha(theme.palette.text.primary, 0.24) }
+                                transition: 'box-shadow 120ms ease-out, border-color 120ms ease-out',
+                                '&:hover': {
+                                    borderColor: alpha(theme.palette.text.primary, 0.24),
+                                    boxShadow: theme.customShadows.cardHover
+                                }
                             }}
                         >
                             <AppIcon name='DotsSixVertical' size={16} style={{ opacity: 0.35, cursor: 'grab' }} />
