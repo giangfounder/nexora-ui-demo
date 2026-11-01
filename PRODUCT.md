@@ -26,7 +26,7 @@ NEXORA is a platform for running customer conversations with AI. An AI customer-
 
 -   Main workflows: omnichannel inbox and hand-off queue, customer list / Kanban pipeline / customer detail, AI assistant studio (build and test an assistant), employees, teams and routing rules, Prism quality criteria and scores, reports, automation flows, app/integration store, settings.
 -   `ui-prototype/` is the main UI version. It runs standalone on mock data (`src/mocks/`), with no backend, and is deployed as a static site.
--   Built on a Flowise fork: React 18, Vite, MUI 5. Icons go through the single `AppIcon` wrapper (Phosphor, duotone weight).
+-   Built on a Flowise fork: React 18, Vite, MUI 5. Icons go through the single `AppIcon` wrapper (Bootstrap Icons, solid glyphs inlined in `bootstrapGlyphs.js`).
 
 ## Capabilities and Constraints
 
